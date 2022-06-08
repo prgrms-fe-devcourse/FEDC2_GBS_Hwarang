@@ -2,7 +2,31 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as S from "./Input.style";
 
-function Input({
+const propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  fontSize: PropTypes.number,
+  label: PropTypes.string,
+  block: PropTypes.bool,
+  invalid: PropTypes.bool,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  readOnly: PropTypes.bool,
+};
+
+const defaultProps = {
+  width: 300,
+  height: 50,
+  fontSize: 20,
+  label: "",
+  block: false,
+  invalid: false,
+  required: false,
+  disabled: false,
+  readOnly: false,
+};
+
+const Input = ({
   width,
   height,
   fontSize,
@@ -13,7 +37,7 @@ function Input({
   disabled,
   readOnly,
   ...props
-}) {
+}) => {
   const sizeStyle = {
     width,
     height,
@@ -35,30 +59,9 @@ function Input({
       />
     </S.Wrapper>
   );
-}
-
-Input.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
-  fontSize: PropTypes.number,
-  label: PropTypes.string,
-  block: PropTypes.bool,
-  invalid: PropTypes.bool,
-  required: PropTypes.bool,
-  disabled: PropTypes.bool,
-  readOnly: PropTypes.bool,
 };
 
-Input.defaultProps = {
-  width: 300,
-  height: 50,
-  fontSize: 20,
-  label: "",
-  block: false,
-  invalid: false,
-  required: false,
-  disabled: false,
-  readOnly: false,
-};
+Input.propTypes = propTypes;
+Input.defaultProps = defaultProps;
 
 export default Input;
