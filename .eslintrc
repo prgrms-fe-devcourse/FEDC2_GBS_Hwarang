@@ -1,6 +1,5 @@
 {
   "extends": ["airbnb", "plugin:prettier/recommended"],
-  "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/jsx-filename-extension": [
