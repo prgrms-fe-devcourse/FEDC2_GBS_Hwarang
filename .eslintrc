@@ -1,7 +1,11 @@
 {
   "extends": ["airbnb", "plugin:prettier/recommended"],
   "rules": {
-    "prettier/prettier": ["error"],
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".js", ".jsx"] }
+    ],
+    "jsx-a11y/img-has-alt": "off"
   }
 }
