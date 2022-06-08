@@ -6,6 +6,7 @@
       "error",
       { "extensions": [".js", ".jsx"] }
     ],
-    "jsx-a11y/img-has-alt": "off"
+    "jsx-a11y/img-has-alt": "off",
+    "jsx-a11y/alt-text": "off"
   }
 }
