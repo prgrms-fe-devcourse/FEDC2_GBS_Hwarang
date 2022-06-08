@@ -8,9 +8,10 @@
       { "extensions": [".js", ".jsx"] }
     ],
     "jsx-a11y/img-has-alt": "off",
+    "jsx-a11y/alt-text": "off",
     "react/function-component-definition": "off",
     "consistent-return": "off",
     "no-undef": "off",
-    "import/no-unresolved": "off"
+    "react/jsx-props-no-spreading": "off"
   }
 }

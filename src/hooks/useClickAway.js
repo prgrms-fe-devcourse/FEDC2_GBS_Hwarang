@@ -13,7 +13,6 @@ function useClickAway(handler) {
       if (!element.contains(e.target)) handler();
     };
 
-    /* global document */
     events.forEach((event) => document.addEventListener(event, handleEvent));
 
     // eslint-disable-next-line

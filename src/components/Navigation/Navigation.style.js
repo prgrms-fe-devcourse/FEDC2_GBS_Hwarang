@@ -17,3 +17,8 @@ export const ButtonBlock = styled.div`
 export const NavigationLink = styled(NavLink)`
   text-decoration: none;
 `;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
