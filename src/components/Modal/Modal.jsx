@@ -14,6 +14,7 @@ function Modal({ children, width, height, visible, onClose, ...props }) {
     height,
   }));
 
+  /* global document */
   const elem = useMemo(() => document.createElement("div"), []);
   useEffect(() => {
     document.body.appendChild(elem);
@@ -23,7 +24,7 @@ function Modal({ children, width, height, visible, onClose, ...props }) {
   });
 
   return ReactDOM.createPortal(
-    <Ms.BackgroundDim style={{ display: visible ? "block" : "none" }}>
+    <Ms.BackgroundDim>
       <Ms.ModalContainer
         ref={ref}
         style={{ ...props.style, ...containerStyle }}
@@ -41,6 +42,7 @@ Modal.propTypes = {
   height: PropTypes.number,
   visible: PropTypes.bool,
   onClose: PropTypes.func,
+  style: PropTypes.shape,
 };
 
 Modal.defaultProps = {
