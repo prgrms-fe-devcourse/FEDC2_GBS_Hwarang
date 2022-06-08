@@ -1,12 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import MainPage from "./pages";
+import Navigation from "./components/Navigation";
 
 function App() {
   return (
     <div>
-      <MainPage />
-      <Router>{/* 여기에 react router dom code를 작성하시면 됩니다 */}</Router>
+      <Router>
+        <Navigation />
+        <Routes>
+          <Route path="/" elements={<MainPage/>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
