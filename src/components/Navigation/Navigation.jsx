@@ -75,7 +75,6 @@ function Navigation() {
         visible={modalStatus.visible}
         onClose={() => setModalStatus({ visible: false, type: "" })}
       >
-        {modalStatus.type}
         {modalStatus.type === "login" ? (
           <Login
             handleLogin={setIsLogined}
