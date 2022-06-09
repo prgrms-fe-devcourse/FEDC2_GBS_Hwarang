@@ -9,7 +9,6 @@
     "jsx-a11y/img-has-alt": "off",
     "react/function-component-definition": "off",
     "consistent-return": "off",
-    "no-undef": "off",
-    "react/jsx-props-no-spreading": "off"
+    "no-undef": "off"
   }
 }
