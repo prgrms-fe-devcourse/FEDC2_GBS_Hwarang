@@ -16,6 +16,7 @@ const propTypes = {
   borderColor: PropTypes.string,
   fontColor: PropTypes.string,
   icon: PropTypes.string,
+  style: PropTypes.instanceOf(Object),
 };
 
 const defaultProps = {
@@ -31,6 +32,7 @@ const defaultProps = {
   borderColor: "#ec5e58",
   fontColor: "#ffc2c0",
   icon: "search",
+  style: {},
 };
 
 const InputWrapper = styled.div`
@@ -91,8 +93,7 @@ const Input = ({
           required={required}
           disabled={disabled}
           readOnly={readOnly}
-          style={inputStyle}
-          {...props}
+          style={{ ...inputStyle, ...props.style }}
         />
         <Actions>
           <Icon className="material-symbols-outlined">{icon}</Icon>
