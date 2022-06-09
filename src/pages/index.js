@@ -1,3 +1,3 @@
-import MainPage from "./MainPage/MainPage";
+import MainPage from "./MainPage";
 
 export default MainPage;
