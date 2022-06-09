@@ -1,10 +1,15 @@
-import React, { useState } from "react";
-import { useRecoilState } from "recoil";
-import authenticateState from "../../recoil/authentication";
+import React, { useState, useEffect } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  loginStatus,
+  isTokenExist,
+  logoutProcess,
+} from "../../recoil/authentication";
 import * as Ns from "./Navigation.style";
 import Modal from "../Modal";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import { userLogout } from "../../api";
 
 function Navigation() {
   const [modalStatus, setModalStatus] = useState({
@@ -12,7 +17,20 @@ function Navigation() {
     type: "",
   });
 
-  const [isLogined, setIsLogined] = useRecoilState(authenticateState);
+  const [isLogined, setIsLogined] = useRecoilState(loginStatus);
+  const TokenExist = useRecoilValue(isTokenExist);
+  const setLogOut = useSetRecoilState(logoutProcess);
+
+  const handleLogOut = async () => {
+    await userLogout();
+    setLogOut();
+  };
+
+  useEffect(() => {
+    if (!isLogined) {
+      if (TokenExist) setIsLogined(true);
+    }
+  }, [isLogined, TokenExist]);
 
   return (
     <>
@@ -29,6 +47,9 @@ function Navigation() {
             <>
               <button type="button">회원정보</button>
               <button type="button">글쓰기</button>
+              <button type="button" onClick={handleLogOut}>
+                로그아웃
+              </button>
             </>
           ) : (
             <>
@@ -54,7 +75,6 @@ function Navigation() {
         visible={modalStatus.visible}
         onClose={() => setModalStatus({ visible: false, type: "" })}
       >
-        {modalStatus.type}
         {modalStatus.type === "login" ? (
           <Login
             handleLogin={setIsLogined}

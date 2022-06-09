@@ -1,4 +1,6 @@
-const API_END_POINT = "http://kdt.frontend.2nd.programmers.co.kr";
+import axios from "axios";
+
+const API_END_POINT = "http://kdt.frontend.2nd.programmers.co.kr:5001";
 
 export const userLogin = async (email, password) => {
   const res = await axios.post(`${API_END_POINT}/login`, {

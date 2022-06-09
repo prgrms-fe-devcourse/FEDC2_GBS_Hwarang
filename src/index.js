@@ -3,19 +3,22 @@ import ReactDOM from "react-dom/client";
 import { RecoilRoot } from "recoil";
 import { Global, css } from "@emotion/react";
 import emotionReset from "emotion-reset";
+import { CookiesProvider } from "react-cookie";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <Global
-        styles={css`
-          ${emotionReset}
-        `}
-      />
-      <App />
-    </RecoilRoot>
+    <CookiesProvider>
+      <RecoilRoot>
+        <Global
+          styles={css`
+            ${emotionReset}
+          `}
+        />
+        <App />
+      </RecoilRoot>
+    </CookiesProvider>
   </React.StrictMode>
 );
