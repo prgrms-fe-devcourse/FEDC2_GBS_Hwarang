@@ -22,3 +22,14 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
 `;
+
+export const ErrorMsg = styled.p`
+  color: red;
+  font-size: 0.8rem;
+`;
+
+export const Title = styled.h1`
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+`;
