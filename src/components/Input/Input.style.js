@@ -26,3 +26,9 @@ export const Input = styled.input`
     color: #ffc2c0;
   }
 `;
+
+export const InputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
