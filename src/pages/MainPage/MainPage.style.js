@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Common from "../styles/common";
+import Common from "../../styles/common";
 
 const NavBar = styled.nav`
   position: fixed;
@@ -52,14 +52,10 @@ const Section = styled.div`
   align-items: center;
 `;
 
-const MainGrid = styled.div`
-  width: 1500px;
-  height: 800px;
-  background-color: ${Common.colors.main_light};
-  margin: 0 auto;
-`;
-
 const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   width: 150px;
   height: 50px;
@@ -68,7 +64,6 @@ const Button = styled.div`
   border: 1px solid ${Common.colors.main};
   border-radius: 10px;
   text-align: center;
-  padding-top: 10px;
   margin: 0 auto;
 `;
 
@@ -86,6 +81,5 @@ export default {
   HeaderText,
   HeaderCarousel,
   Section,
-  MainGrid,
   Footer,
 };

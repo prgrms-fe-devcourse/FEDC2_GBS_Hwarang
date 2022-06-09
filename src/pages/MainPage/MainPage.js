@@ -1,6 +1,7 @@
 import React from "react";
 import S from "./MainPage.style";
-import Image from "../components/Image";
+import Image from "../../components/Image";
+import MainGrid from "./components/MainGrid";
 
 const MainPage = () => {
   return (
@@ -16,9 +17,8 @@ const MainPage = () => {
       </S.Header>
       <S.Section>
         <div>
-          <S.MainGrid>
-            Grid Section{/* Main Grid Component - 인기순 */}
-          </S.MainGrid>
+          <h1>가봤슈 사용자들의 최고 인기 여행지</h1>
+          <MainGrid />
           <S.Button type="button">더보기</S.Button>
         </div>
         <Image
@@ -27,9 +27,8 @@ const MainPage = () => {
           height="100%"
         />
         <div>
-          <S.MainGrid>
-            Grid Section{/* Main Grid Component - 최신순 */}
-          </S.MainGrid>
+          <h1>가봤슈에 올라온 최근 여행지</h1>
+          <MainGrid />
           <S.Button type="button">더보기</S.Button>
         </div>
       </S.Section>
