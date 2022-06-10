@@ -1,8 +1,7 @@
 import React from "react";
-import { Button, Image } from "components";
 import S from "./MainPage.style";
+import Image from "../../components/Image";
 import MainGrid from "./components/MainGrid";
-import DummyData from "./dummyData";
 
 const MainPage = () => {
   return (

@@ -23,7 +23,7 @@ const Icon = ({ width, height, fontSize, name }) => {
     fontSize,
   };
   return (
-    <S.Icon className="material-symbols-outlined" style={sizeStyle}>
+    <S.Icon className="material-symbols-outlined" style={sizeStyle} {...props}>
       {name}
     </S.Icon>
   );

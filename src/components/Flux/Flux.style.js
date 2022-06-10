@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
-const Col = styled.div`
+export const Col = styled.div`
   max-width: 100%;
   box-sizing: border-box;
 `;
 
-const Row = styled.div`
+export const Row = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
