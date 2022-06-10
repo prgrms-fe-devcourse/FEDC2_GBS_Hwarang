@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "components/Navigation";
 import MainPage from "./pages";
-import Navigation from "./components/Navigation";
 
 function App() {
   return (
@@ -10,7 +9,7 @@ function App() {
       <Router>
         <Navigation />
         <Routes>
-          <Route path="/" elements={<MainPage/>} />
+          <Route path="/" element={<MainPage />} />
         </Routes>
       </Router>
     </div>
