@@ -7,8 +7,12 @@ import { userLogin } from "../../api";
 import { loginProcess } from "../../recoil/authentication";
 import Divider from "../Divider";
 
-function Login({ handleLogin, onClose }) {
-  const { register, handleSubmit } = useForm();
+function Login({ handleLogin, onClose, changeModalType }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const setToken = useSetRecoilState(loginProcess);
 
   const onSubmit = async (data) => {
@@ -25,12 +29,40 @@ function Login({ handleLogin, onClose }) {
     <Ns.Form onSubmit={handleSubmit(onSubmit)}>
       <Ns.Title>Login</Ns.Title>
       <Divider />
-      <input {...register("loginId", { required: true })} placeholder="ID" />
-      <input
-        {...register("loginPassWord", { required: true })}
-        placeholder="PassWord"
-      />
-      <button type="submit">Login</button>
+      <div className="inputBlock">
+        <Ns.ModalInput
+          {...register("loginId", {
+            required: { value: true, message: "이메일을 입력해 주세요!" },
+          })}
+          placeholder="ID"
+          useIcon={false}
+          width="100%"
+          invalid={!!errors.loginId}
+        />
+        {errors.loginId && <Ns.ErrorMsg>{errors.loginId.message}</Ns.ErrorMsg>}
+      </div>
+      <div className="inputBlock">
+        <Ns.ModalInput
+          {...register("loginPassWord", {
+            required: { value: true, message: "패스워드를 입력해 주세요!" },
+          })}
+          placeholder="PassWord"
+          type="password"
+          useIcon={false}
+          width="100%"
+          invalid={!!errors.loginPassWord}
+        />
+        {errors.loginPassWord && (
+          <Ns.ErrorMsg>{errors.loginPassWord.message}</Ns.ErrorMsg>
+        )}
+      </div>
+      <Ns.MainButton type="submit">Login</Ns.MainButton>
+      <Ns.SubButtonBlock>
+        <p>가봤슈와 함께하고 싶으신가요?</p>
+        <Ns.SubButton onClick={() => changeModalType("signup")}>
+          회원가입
+        </Ns.SubButton>
+      </Ns.SubButtonBlock>
     </Ns.Form>
   );
 }
@@ -40,9 +72,11 @@ export default Login;
 Login.propTypes = {
   handleLogin: PropTypes.func,
   onClose: PropTypes.func,
+  changeModalType: PropTypes.func,
 };
 
 Login.defaultProps = {
   handleLogin: null,
   onClose: null,
+  changeModalType: null,
 };

@@ -31,20 +31,24 @@ function SignUp({ handleSignUp, onClose }) {
   };
 
   return (
-    <>
+    <Ns.Form onSubmit={handleSubmit(onSubmit)}>
       <Ns.Title>SignUp</Ns.Title>
       <Divider />
-      <Ns.Form onSubmit={handleSubmit(onSubmit)}>
-        <input
+      <div className="inputBlock">
+        <Ns.ModalInput
           {...register("userName", {
             required: { value: true, message: "userName을 입력해 주세요!" },
           })}
           placeholder="Name"
+          useIcon={false}
+          width="100%"
         />
         {errors.userName && (
           <Ns.ErrorMsg>{errors.userName.message}</Ns.ErrorMsg>
         )}
-        <input
+      </div>
+      <div className="inputBlock">
+        <Ns.ModalInput
           {...register("signUpId", {
             required: { value: true, message: "아이디를 입력해 주세요!" },
             pattern: {
@@ -54,21 +58,42 @@ function SignUp({ handleSignUp, onClose }) {
             },
           })}
           placeholder="Id"
+          useIcon={false}
+          width="100%"
         />
         {errors.signUpId && (
           <Ns.ErrorMsg>{errors.signUpId.message}</Ns.ErrorMsg>
         )}
-        <input
+      </div>
+      <div className="inputBlock">
+        <Ns.ModalInput
           {...register("signUpPassWord", {
             required: { value: true, message: "비밀번호를 입력해 주세요!" },
+            minLength: {
+              value: 8,
+              message: "최소 8자리 이상 입력해 주세요!",
+            },
+            maxLength: {
+              value: 12,
+              message: "최대 12자리 까지만 입력해 주세요!",
+            },
+            pattern: {
+              value:
+                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]/,
+              message: "비밀번호는 알파벳, 특수문자, 숫자를 포함하여야 합니다",
+            },
           })}
           placeholder="PassWord"
           type="password"
+          useIcon={false}
+          width="100%"
         />
         {errors.signUpPassWord && (
           <Ns.ErrorMsg>{errors.signUpPassWord.message}</Ns.ErrorMsg>
         )}
-        <input
+      </div>
+      <div className="inputBlock">
+        <Ns.ModalInput
           {...register("checkPassWord", {
             required: {
               value: true,
@@ -80,13 +105,15 @@ function SignUp({ handleSignUp, onClose }) {
           })}
           placeholder="PassWord"
           type="password"
+          useIcon={false}
+          width="100%"
         />
         {errors.checkPassWord && (
           <Ns.ErrorMsg>{errors.checkPassWord.message}</Ns.ErrorMsg>
         )}
-        <button type="submit">Sign Up</button>
-      </Ns.Form>
-    </>
+      </div>
+      <Ns.MainButton type="submit">Sign Up</Ns.MainButton>
+    </Ns.Form>
   );
 }
 
