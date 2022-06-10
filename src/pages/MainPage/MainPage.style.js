@@ -24,7 +24,7 @@ const HeaderText = styled.div`
   top: 350px;
   right: calc(50% - 170px);
   width: 340px;
-  font-size: ${Common.fontSize.h1};
+  font-size: ${Common.fontSize.title};
   font-weight: bold;
   color: white;
   text-align: center;

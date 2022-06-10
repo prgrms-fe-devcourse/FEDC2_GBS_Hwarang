@@ -28,6 +28,8 @@ const Common = {
   },
 
   fontSize: {
+    title: "3.5rem",
+
     h1: "2.4rem",
     h2: "2.1rem",
     h3: "1.9rem",

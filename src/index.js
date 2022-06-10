@@ -4,6 +4,7 @@ import { RecoilRoot } from "recoil";
 import { Global, css } from "@emotion/react";
 import emotionReset from "emotion-reset";
 import App from "./App";
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
