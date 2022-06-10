@@ -5,9 +5,9 @@ import React from "react";
 import SButton from "./Button.style";
 
 const propTypes = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  text: PropTypes.string,
   textSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   backgroundColor: PropTypes.string,
   color: PropTypes.string,
@@ -19,7 +19,6 @@ const propTypes = {
 const defaultProps = {
   width: 150,
   height: 50,
-  text: "Button",
   textSize: "$b3",
   backgroundColor: Common.colors.main,
   color: Common.colors.white,
@@ -29,9 +28,9 @@ const defaultProps = {
 };
 
 const Button = ({
+  children,
   width,
   height,
-  text,
   textSize,
   backgroundColor,
   color,
@@ -58,7 +57,7 @@ const Button = ({
   return (
     <SButton style={buttonStyle} type={type}>
       <Text size={textSize} color={color} strong>
-        {text}
+        {children}
       </Text>
     </SButton>
   );
