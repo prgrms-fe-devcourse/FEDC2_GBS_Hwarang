@@ -13,6 +13,7 @@ const propTypes = {
   alt: PropTypes.string,
   shape: PropTypes.string,
   mode: PropTypes.string,
+  style: PropTypes.instanceOf(Object),
 };
 
 const defaultProps = {
@@ -23,6 +24,7 @@ const defaultProps = {
   alt: "Image",
   shape: "circle",
   mode: "cover",
+  style: {},
 };
 
 const Avatar = ({
@@ -34,6 +36,7 @@ const Avatar = ({
   alt,
   shape,
   mode = "cover",
+  ...props
 }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -44,7 +47,7 @@ const Avatar = ({
   }, [src]);
 
   return (
-    <S.AvatarWrapper shape={shape}>
+    <S.AvatarWrapper shape={shape} style={{ ...props.style }}>
       <ImageComponent
         block
         lazy={lazy}
