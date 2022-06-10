@@ -18,8 +18,10 @@ const MainPage = () => {
       </S.Header>
       <S.Section>
         <div>
-          <h1>가봤슈 사용자들의 최고 인기 여행지</h1>
-          <MainGrid data={DummyData} />
+          <MainGrid
+            data={DummyData}
+            mainTitle="가봤슈 사용자들의 최고 인기 여행지"
+          />
           <S.Button type="button">더보기</S.Button>
         </div>
         <Image
@@ -29,7 +31,10 @@ const MainPage = () => {
         />
         <div>
           <h1>가봤슈에 올라온 최근 여행지</h1>
-          <MainGrid data={DummyData} />
+          <MainGrid
+            data={DummyData}
+            mainTitle="가봤슈 사용자들의 최고 인기 여행지"
+          />
           <S.Button type="button">더보기</S.Button>
         </div>
       </S.Section>

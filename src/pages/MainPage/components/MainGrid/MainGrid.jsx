@@ -4,30 +4,26 @@ import Text from "components/Text";
 import PropTypes from "prop-types";
 import MainGridWrapper from "./MainGrid.style";
 import MainGridCard from "./MainGridCard";
-/* 
-<FluxCol span={4}>
-  <MainGridCard
-    src="https://file.mk.co.kr/meet/neds/2020/05/image_readtop_2020_506007_15897737584203733.jpg"
-    textChildren={<Text strong>한국의 한옥 마을</Text>}
-  />
-</FluxCol>
-*/
 
 const propTypes = {
   data: PropTypes.instanceOf(Array).isRequired,
+  mainTitle: PropTypes.string.isRequired,
 };
 
-const MainGrid = ({ data }) => {
+const MainGrid = ({ data, mainTitle }) => {
   const { FluxRow, FluxCol } = Flux;
   return (
     <MainGridWrapper>
+      <Text strong size="$b1">
+        {mainTitle}
+      </Text>
       <FluxRow>
         {data.map((post) => {
           const { _id, image, title, author, createdAt } = post;
           return (
             <FluxCol key={_id}>
-              <MainGridCard src={image} textChildren={<Text>{title}</Text>} />
-              <Text>
+              <MainGridCard src={image} textChildren={title} textSize="$b2" />
+              <Text size="$c2">
                 {author}, {createdAt}
               </Text>
             </FluxCol>

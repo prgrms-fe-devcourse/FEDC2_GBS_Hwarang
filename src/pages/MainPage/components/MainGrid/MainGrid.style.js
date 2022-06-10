@@ -5,7 +5,7 @@ const MainGridWrapper = styled.div`
   width: 1200px;
   height: fit-content;
   border: 1px solid ${Common.colors.main_light};
-  margin: 0 auto;
+  margin: 20px auto;
 `;
 
 export default MainGridWrapper;

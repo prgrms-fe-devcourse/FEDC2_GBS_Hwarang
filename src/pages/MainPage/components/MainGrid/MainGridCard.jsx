@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import Image from "components/Image";
-import Common from "styles/common";
+import Text from "components/Text";
 import S from "./MainGridCard.style";
 
 const propTypes = {
@@ -14,7 +14,7 @@ const propTypes = {
 
 const defaultProps = {
   textChildren: "여행지",
-  textSize: "b3",
+  textSize: "h3",
   gap: 10,
   margin: 10,
 };
@@ -25,17 +25,14 @@ const MainGridCard = ({ src, textChildren, textSize, gap, margin }) => {
     margin,
   };
 
-  const textStyle = {
-    fontSize:
-      typeof textSize === "number" ? textSize : Common.fontSize[textSize],
-  };
-
   return (
     <S.CardWrapper style={wrapperStyle}>
       <S.ImageDiv>
-        <Image src={src} width="100%" height="100%" />
+        <Image src={src} width="100%" height={230} />
       </S.ImageDiv>
-      <S.TextDiv style={textStyle}>{textChildren}</S.TextDiv>
+      <Text size={textSize} strong>
+        {textChildren}
+      </Text>
     </S.CardWrapper>
   );
 };
