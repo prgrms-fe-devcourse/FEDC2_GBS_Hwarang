@@ -7,7 +7,7 @@ import MainPage from "./pages";
 
 function App() {
   return (
-    // test
+    // test 2
     <div>
       <Router>
         <Navigation />
