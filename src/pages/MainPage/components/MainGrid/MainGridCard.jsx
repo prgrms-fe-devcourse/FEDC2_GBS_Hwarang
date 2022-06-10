@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
-import Image from "../../../../components/Image";
-import Common from "../../../../styles/common";
+import Image from "components/Image";
+import Common from "styles/common";
 import S from "./MainGridCard.style";
 
 const propTypes = {

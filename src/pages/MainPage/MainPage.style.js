@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Common from "../../styles/common";
+import Common from "styles/common";
 
 const NavBar = styled.nav`
   position: fixed;

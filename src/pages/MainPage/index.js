@@ -1,7 +1,8 @@
 import React from "react";
+import Image from "components/Image";
 import S from "./MainPage.style";
-import Image from "../../components/Image";
 import MainGrid from "./components/MainGrid";
+import DummyData from "./dummyData";
 
 const MainPage = () => {
   return (
@@ -18,7 +19,7 @@ const MainPage = () => {
       <S.Section>
         <div>
           <h1>가봤슈 사용자들의 최고 인기 여행지</h1>
-          <MainGrid />
+          <MainGrid data={DummyData} />
           <S.Button type="button">더보기</S.Button>
         </div>
         <Image
@@ -28,7 +29,7 @@ const MainPage = () => {
         />
         <div>
           <h1>가봤슈에 올라온 최근 여행지</h1>
-          <MainGrid />
+          <MainGrid data={DummyData} />
           <S.Button type="button">더보기</S.Button>
         </div>
       </S.Section>

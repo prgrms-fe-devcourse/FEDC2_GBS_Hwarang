@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Common from "../../../../styles/common";
+import Common from "styles/common";
 
 const MainGridWrapper = styled.div`
   width: 1200px;
