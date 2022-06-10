@@ -14,18 +14,21 @@ const propTypes = {
   justify: PropTypes.string,
   align: PropTypes.string,
   gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
+  padding: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 const defaultProps = {
   justify: "top",
   align: "middle",
   gutter: 0,
+  padding: 0,
 };
 
-const FluxRow = ({ children, justify, align, gutter }) => {
+const FluxRow = ({ children, justify, align, gutter, padding }) => {
   const StyleRow = {
     justifyContent: justify,
     alignItems: AlignToCssValue[align],
+    padding,
   };
 
   const gutterStyle = useMemo(() => {
