@@ -6,7 +6,7 @@ import MainPage from "./pages";
 
 function App() {
   return (
-    // test
+    // test 2
     <div>
       <MainPage />
       <Router>{/* 여기에 react router dom code를 작성하시면 됩니다 */}</Router>
