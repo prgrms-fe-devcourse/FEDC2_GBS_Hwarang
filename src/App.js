@@ -1,17 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
+import { BrowserRouter as Router } from "react-router-dom";
+import MainPage from "./pages";
 
 function App() {
   return (
     <div>
-      <Router>
-        <Navigation />
-        {/* 여기에 react router dom code를 작성하시면 됩니다 */}
-        <Routes>
-          <Route path="/" />
-        </Routes>
-      </Router>
+      <MainPage />
+      <Router>{/* 여기에 react router dom code를 작성하시면 됩니다 */}</Router>
     </div>
   );
 }
