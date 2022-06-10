@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "components/Image";
+import { Button, Image } from "components";
 import S from "./MainPage.style";
 import MainGrid from "./components/MainGrid";
 import DummyData from "./dummyData";
@@ -22,20 +22,24 @@ const MainPage = () => {
             data={DummyData}
             mainTitle="가봤슈 사용자들의 최고 인기 여행지"
           />
-          <S.Button type="button">더보기</S.Button>
+          <Button color="white" type="button">
+            더보기
+          </Button>
         </div>
         <Image
-          /* Marketing Image */ src="https://user-images.githubusercontent.com/72294509/172774786-3db0d345-a7e9-4f30-99bc-adf56a82d87d.png"
+          /* Marketing Image */
+          src="https://user-images.githubusercontent.com/72294509/172774786-3db0d345-a7e9-4f30-99bc-adf56a82d87d.png"
           width="100%"
           height="100%"
         />
         <div>
-          <h1>가봤슈에 올라온 최근 여행지</h1>
           <MainGrid
             data={DummyData}
-            mainTitle="가봤슈 사용자들의 최고 인기 여행지"
+            mainTitle="가봤슈 사용자들의 최근 여행지"
           />
-          <S.Button type="button">더보기</S.Button>
+          <Button color="$main" backgroundColor="$white" type="button" border>
+            더보기
+          </Button>
         </div>
       </S.Section>
       <S.Footer>Footer</S.Footer>
