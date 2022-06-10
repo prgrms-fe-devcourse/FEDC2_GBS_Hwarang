@@ -5,10 +5,10 @@ import * as S from "./IconGroup.style";
 const propTypes = {
   children: PropTypes.node.isRequired,
 };
-const Input = ({ children, ...props }) => {
-  return <S.IconGroup {...props}>{children}</S.IconGroup>;
+const IconGroup = ({ children }) => {
+  return <S.IconGroup>{children}</S.IconGroup>;
 };
 
-Input.propTypes = propTypes;
+IconGroup.propTypes = propTypes;
 
-export default Input;
+export default IconGroup;

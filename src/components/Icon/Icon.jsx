@@ -16,20 +16,20 @@ const defaultProps = {
   name: "search",
 };
 
-const Input = ({ width, height, fontSize, name, ...props }) => {
+const Icon = ({ width, height, fontSize, name }) => {
   const sizeStyle = {
     width,
     height,
     fontSize,
   };
   return (
-    <S.Icon className="material-symbols-outlined" style={sizeStyle} {...props}>
+    <S.Icon className="material-symbols-outlined" style={sizeStyle}>
       {name}
     </S.Icon>
   );
 };
 
-Input.propTypes = propTypes;
-Input.defaultProps = defaultProps;
+Icon.propTypes = propTypes;
+Icon.defaultProps = defaultProps;
 
-export default Input;
+export default Icon;
