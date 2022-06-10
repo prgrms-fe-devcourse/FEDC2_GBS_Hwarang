@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const Button = styled.button`
   padding: 1em 2em;
-  margin: 2em 2em;
+  margin: 10px;
   color: blue;
   border-radius: 10px;
   border: 1px solid blue;
@@ -18,7 +18,10 @@ export const Button = styled.button`
 `;
 
 export const Center = styled.div`
-  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const SliderContainer = styled.div`

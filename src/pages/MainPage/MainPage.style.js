@@ -42,8 +42,8 @@ const HeaderInput = styled.input`
 const HeaderCarousel = styled.div`
   width: 100%;
   height: 100%;
-  background-image: url("https://user-images.githubusercontent.com/72294509/172775171-282deab4-2dc6-4246-98e7-0f35c862b70b.jpg");
-  background-repeat: no-repeat;
+  /* background-image: url("https://user-images.githubusercontent.com/72294509/172775171-282deab4-2dc6-4246-98e7-0f35c862b70b.jpg"); */
+  /* background-repeat: no-repeat; */
   background-size: cover;
 `;
 

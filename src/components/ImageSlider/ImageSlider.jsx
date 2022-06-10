@@ -38,10 +38,11 @@ const ImageSlider = ({ children, width, height }) => {
   }, [currentSlide]);
   return (
     <IS.Container style={{ ...sliderStyle }}>
-      {currentSlide}
       <IS.SliderContainer ref={slideRef}>{slides}</IS.SliderContainer>
       <IS.Center>
-        <IS.Button onClick={prevSlide}>이전</IS.Button>
+        <IS.Button style={{ left: 100 }} onClick={prevSlide}>
+          이전
+        </IS.Button>
         <IS.Button onClick={nextSlide}>다음</IS.Button>
       </IS.Center>
     </IS.Container>

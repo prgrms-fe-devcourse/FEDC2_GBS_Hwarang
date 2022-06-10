@@ -7,3 +7,5 @@ export { default as Image } from "./Image";
 export { default as Input } from "./Input";
 export { default as Text } from "./Text";
 export { default as ToggleButton } from "./ToggleButton";
+export { default as ImageSlider } from "./ImageSlider";
+export { default as Slide } from "./Slide";

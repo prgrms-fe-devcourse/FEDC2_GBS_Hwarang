@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Image } from "components";
+import { Button, Image, Slide, ImageSlider } from "components";
 import S from "./MainPage.style";
 import MainGrid from "./components/MainGrid";
 import DummyData from "./dummyData";
@@ -12,7 +12,31 @@ const MainPage = () => {
         가봤슈 Navigation Bar
       </S.NavBar>
       <S.Header>
-        <S.HeaderCarousel>{/* Main Carousel */}</S.HeaderCarousel>
+        <S.HeaderCarousel>
+          {/* Main Carousel */}
+          <ImageSlider width="100%" height="750px">
+            <Slide
+              width="100vw"
+              height="750px"
+              src="https://picsum.photos/200?1"
+            />
+            <Slide
+              width="100vw"
+              height="750px"
+              src="https://picsum.photos/200?2"
+            />
+            <Slide
+              width="100vw"
+              height="750px"
+              src="https://picsum.photos/200?3"
+            />
+            <Slide
+              width="100vw"
+              height="750px"
+              src="https://picsum.photos/200?4"
+            />
+          </ImageSlider>
+        </S.HeaderCarousel>
         <S.HeaderText>여기 가봤슈?</S.HeaderText>
         <S.HeaderInput /* absolute Position Input */ />
       </S.Header>
