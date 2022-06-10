@@ -16,7 +16,7 @@ const defaultProps = {
   name: "search",
 };
 
-const Icon = ({ width, height, fontSize, name }) => {
+const Icon = ({ width, height, fontSize, name, ...props }) => {
   const sizeStyle = {
     width,
     height,

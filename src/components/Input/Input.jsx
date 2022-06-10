@@ -17,7 +17,6 @@ const propTypes = {
   borderColor: PropTypes.string,
   fontColor: PropTypes.string,
   useIcon: PropTypes.bool,
-  style: PropTypes.instanceOf(Object),
 };
 
 const defaultProps = {
@@ -33,7 +32,6 @@ const defaultProps = {
   borderColor: "#ec5e58",
   fontColor: "#ffc2c0",
   useIcon: true,
-  style: {},
 };
 
 const Input = React.forwardRef(
@@ -74,7 +72,7 @@ const Input = React.forwardRef(
             required={required}
             disabled={disabled}
             readOnly={readOnly}
-            style={{ ...inputStyle, ...props.style }}
+            style={{ ...inputStyle }}
             {...props}
             ref={ref}
           />

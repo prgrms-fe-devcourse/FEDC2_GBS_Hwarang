@@ -30,7 +30,6 @@ export const loginProcess = selector({
     setCookie("token", newValue, {
       path: "/",
       expires: TOKEN_EXPIRE_TIME,
-      httpOnly: true,
     });
 
     set(jwtToken, newValue);

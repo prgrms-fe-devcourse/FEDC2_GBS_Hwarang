@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
@@ -10,6 +10,7 @@ import { userSignUp } from "../../api";
 function SignUp({ handleSignUp, onClose }) {
   const formIds = ["userName", "signUpId", "signUpPassWord", "checkPassWord"];
   const setToken = useSetRecoilState(loginProcess);
+  const [serverError, setServerError] = useState(null);
 
   const {
     register,
@@ -21,10 +22,16 @@ function SignUp({ handleSignUp, onClose }) {
 
   const onSubmit = async (data) => {
     const { userName, signUpId, signUpPassWord } = data;
-    const result = await userSignUp(signUpId, userName, signUpPassWord);
+    let result;
+
+    try {
+      result = await userSignUp(signUpId, userName, signUpPassWord);
+    } catch (error) {
+      setServerError(error.response.data);
+    }
 
     setToken(result.data.token);
-
+    setServerError(null);
     formIds.forEach((id) => setValue(id, ""));
     handleSignUp(true);
     onClose();
@@ -111,6 +118,9 @@ function SignUp({ handleSignUp, onClose }) {
         {errors.checkPassWord && (
           <Ns.ErrorMsg>{errors.checkPassWord.message}</Ns.ErrorMsg>
         )}
+      </div>
+      <div className="server-error">
+        {serverError && <Ns.ErrorMsg>{serverError}</Ns.ErrorMsg>}
       </div>
       <Ns.MainButton type="submit">Sign Up</Ns.MainButton>
     </Ns.Form>

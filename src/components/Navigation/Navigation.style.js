@@ -5,6 +5,20 @@ import Common from "styles/common";
 
 export const Navigation = styled.nav`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+`;
+
+export const NavLogoBlock = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  .imgWrapper {
+    width: 105px;
+  }
 `;
 
 export const LinkBlock = styled.div`
@@ -14,6 +28,7 @@ export const LinkBlock = styled.div`
 
 export const ButtonBlock = styled.div`
   display: flex;
+  gap: 10px;
 `;
 
 export const MainButton = styled.button`
@@ -71,6 +86,9 @@ export const Form = styled.form`
     flex-direction: column;
     align-items: center;
     gap: 10px;
+  }
+  .server-error {
+    align-self: center;
   }
 `;
 

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
+import Button from "components/Button";
+import Image from "components/Image";
+import Icon from "components/Icon";
 import {
   loginStatus,
   isTokenExist,
@@ -12,6 +16,10 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import { userLogout } from "../../api";
 
+const BUTTON_WIDTH = 90;
+const BUTTON_FONT_SIZE = "$n1";
+const BUTTON_HEIGHT = 45;
+
 const LoggedInedBlock = () => {
   const setLogOut = useSetRecoilState(logoutProcess);
 
@@ -22,11 +30,28 @@ const LoggedInedBlock = () => {
 
   return (
     <>
-      <button type="button">회원정보</button>
-      <button type="button">글쓰기</button>
-      <button type="button" onClick={handleLogOut}>
-        로그아웃
-      </button>
+      <Button
+        type="button"
+        width={BUTTON_WIDTH}
+        height={BUTTON_HEIGHT}
+        text="회원정보"
+        textSize={BUTTON_FONT_SIZE}
+      />
+      <Button
+        type="button"
+        width={BUTTON_WIDTH}
+        text="글쓰기"
+        textSize={BUTTON_FONT_SIZE}
+        height={BUTTON_HEIGHT}
+      />
+      <Button
+        type="button"
+        onClick={handleLogOut}
+        text="로그아웃"
+        width={BUTTON_WIDTH}
+        height={BUTTON_HEIGHT}
+        textSize={BUTTON_FONT_SIZE}
+      />
     </>
   );
 };
@@ -34,18 +59,22 @@ const LoggedInedBlock = () => {
 const LoggedOutBlock = ({ setModalStatus }) => {
   return (
     <>
-      <button
+      <Button
         type="button"
         onClick={() => setModalStatus({ visible: true, type: "login" })}
-      >
-        로그인
-      </button>
-      <button
+        text="로그인"
+        width={BUTTON_WIDTH}
+        height={BUTTON_HEIGHT}
+        textSize={BUTTON_FONT_SIZE}
+      />
+      <Button
         type="button"
         onClick={() => setModalStatus({ visible: true, type: "signup" })}
-      >
-        회원가입
-      </button>
+        text="회원가입"
+        width={BUTTON_WIDTH}
+        height={BUTTON_HEIGHT}
+        textSize={BUTTON_FONT_SIZE}
+      />
     </>
   );
 };
@@ -60,13 +89,13 @@ LoggedOutBlock.defaultProps = {
 
 const NavButtonBlock = ({ isLogined, setModalStatus }) => {
   return (
-    <div>
+    <Ns.ButtonBlock>
       {isLogined ? (
         <LoggedInedBlock />
       ) : (
         <LoggedOutBlock setModalStatus={setModalStatus} />
       )}
-    </div>
+    </Ns.ButtonBlock>
   );
 };
 
@@ -105,19 +134,25 @@ function Navigation() {
   return (
     <>
       <Ns.Navigation>
-        <div />
+        <Ns.NavLogoBlock>
+          <Icon name="menu" />
+          <div className="imgWrapper">
+            <NavLink to="/">
+              <Image
+                src="https://mygbs.s3.ap-northeast-2.amazonaws.com/logo.png"
+                width="100%"
+                height={40}
+              />
+            </NavLink>
+          </div>
+        </Ns.NavLogoBlock>
         <Ns.LinkBlock>
           <Ns.NavigationLink to="/travel-destination">여행지</Ns.NavigationLink>
           <Ns.NavigationLink to="/plan">일정 만들기</Ns.NavigationLink>
           <Ns.NavigationLink to="/hotel">호텔</Ns.NavigationLink>
           <Ns.NavigationLink to="/guide">이용방법</Ns.NavigationLink>
         </Ns.LinkBlock>
-        <Ns.ButtonBlock>
-          <NavButtonBlock
-            isLogined={isLogined}
-            setModalStatus={setModalStatus}
-          />
-        </Ns.ButtonBlock>
+        <NavButtonBlock isLogined={isLogined} setModalStatus={setModalStatus} />
       </Ns.Navigation>
       <Modal
         visible={modalStatus.visible}

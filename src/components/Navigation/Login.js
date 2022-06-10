@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import PropTypes from "prop-types";
@@ -15,9 +15,18 @@ function Login({ handleLogin, onClose, changeModalType }) {
   } = useForm();
   const setToken = useSetRecoilState(loginProcess);
 
+  const [serverError, setServerError] = useState(null);
+
   const onSubmit = async (data) => {
     const { loginId, loginPassWord } = data;
-    const result = await userLogin(loginId, loginPassWord);
+
+    let result;
+
+    try {
+      result = await userLogin(loginId, loginPassWord);
+    } catch (error) {
+      setServerError(error.response.data);
+    }
 
     setToken(result.data.token);
 
@@ -55,6 +64,9 @@ function Login({ handleLogin, onClose, changeModalType }) {
         {errors.loginPassWord && (
           <Ns.ErrorMsg>{errors.loginPassWord.message}</Ns.ErrorMsg>
         )}
+      </div>
+      <div className="server-error">
+        {serverError && <Ns.ErrorMsg>{serverError}</Ns.ErrorMsg>}
       </div>
       <Ns.MainButton type="submit">Login</Ns.MainButton>
       <Ns.SubButtonBlock>
