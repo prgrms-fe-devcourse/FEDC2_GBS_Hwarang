@@ -1,6 +1,5 @@
 import React from "react";
-import Flux from "components/Flux";
-import Text from "components/Text";
+import { Flux, Text, ToggleButton } from "components";
 import PropTypes from "prop-types";
 import MainGridWrapper from "./MainGrid.style";
 import MainGridCard from "./MainGridCard";
@@ -19,13 +18,24 @@ const MainGrid = ({ data, mainTitle }) => {
       </Text>
       <FluxRow>
         {data.map((post) => {
-          const { _id, image, title, author, createdAt } = post;
+          const { _id, image, title, author, createdAt, likes, comments } =
+            post;
           return (
             <FluxCol key={_id}>
               <MainGridCard src={image} textChildren={title} textSize="$b2" />
-              <Text size="$c2">
-                {author}, {createdAt}
-              </Text>
+              <FluxRow padding="0 10px">
+                <FluxCol span={8}>
+                  <Text size="$c1">
+                    {author}, {createdAt}
+                  </Text>
+                </FluxCol>
+                <FluxCol span={2}>
+                  <ToggleButton textSize="$c1">{likes.length}</ToggleButton>
+                </FluxCol>
+                <FluxCol span={2}>
+                  <ToggleButton textSize="$c1">{comments.length}</ToggleButton>
+                </FluxCol>
+              </FluxRow>
             </FluxCol>
           );
         })}
