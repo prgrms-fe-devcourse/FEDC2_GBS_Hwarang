@@ -38,7 +38,7 @@ function Modal({ children, width, height, visible, onClose, ...props }) {
 Modal.propTypes = {
   children: PropTypes.node,
   width: PropTypes.number,
-  height: PropTypes.number,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   visible: PropTypes.bool,
   onClose: PropTypes.func,
 };
@@ -46,7 +46,7 @@ Modal.propTypes = {
 Modal.defaultProps = {
   children: null,
   width: 600,
-  height: 600,
+  height: "auto",
   visible: false,
   onClose: null,
   style: null,
