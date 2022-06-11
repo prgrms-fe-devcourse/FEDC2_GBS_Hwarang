@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  margin: auto;
   overflow: hidden;
 `;
 
@@ -25,7 +24,5 @@ export const Center = styled.div`
 `;
 
 export const SliderContainer = styled.div`
-  margin: 0 auto;
-  margin-bottom: 2em;
   display: flex;
 `;

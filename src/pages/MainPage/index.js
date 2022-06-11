@@ -14,7 +14,7 @@ const MainPage = () => {
       <S.Header>
         <S.HeaderCarousel>
           {/* Main Carousel */}
-          <ImageSlider width="100%" height="750px">
+          <ImageSlider width="100vw" height="750px">
             <Slide
               width="100vw"
               height="750px"
