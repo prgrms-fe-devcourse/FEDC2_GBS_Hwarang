@@ -21,7 +21,7 @@ function useClickAway(handler) {
         document.removeEventListener(event, handleEvent)
       );
     };
-  }, []);
+  }, [ref]);
 
   return ref;
 }
