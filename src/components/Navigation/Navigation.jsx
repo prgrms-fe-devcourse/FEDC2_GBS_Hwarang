@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import Button from "components/Button";
 import Image from "components/Image";
 import Icon from "components/Icon";
+import Popup from "components/Popup";
 import {
   loginStatus,
   isTokenExist,
@@ -40,24 +41,27 @@ const LoggedInedBlock = () => {
         type="button"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
-        text="회원정보"
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        회원정보
+      </Button>
       <Button
         type="button"
         width={BUTTON_WIDTH}
-        text="글쓰기"
         textSize={BUTTON_FONT_SIZE}
         height={BUTTON_HEIGHT}
-      />
+      >
+        글쓰기
+      </Button>
       <Button
         type="button"
         onClick={handleLogOut}
-        text="로그아웃"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        로그아웃
+      </Button>
     </>
   );
 };
@@ -68,19 +72,21 @@ const LoggedOutBlock = ({ setModalStatus }) => {
       <Button
         type="button"
         onClick={() => setModalStatus({ visible: true, type: "login" })}
-        text="로그인"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        로그인
+      </Button>
       <Button
         type="button"
         onClick={() => setModalStatus({ visible: true, type: "signup" })}
-        text="회원가입"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        회원가입
+      </Button>
     </>
   );
 };
@@ -116,6 +122,8 @@ NavButtonBlock.defaultProps = {
 };
 
 function Navigation() {
+  // 사용자 리스트 사이드 바 hide / show flag
+  const [sideBarShow, setSideBarShow] = useState(false);
   const [modalStatus, setModalStatus] = useState({
     visible: false,
     type: "",
@@ -142,7 +150,7 @@ function Navigation() {
     <>
       <Ns.Navigation>
         <Ns.NavLogoBlock>
-          <Icon name="menu" />
+          <Icon name="menu" onClick={() => setSideBarShow((pre) => !pre)} />
           <div className="imgWrapper">
             <NavLink to="/">
               <Image
@@ -179,6 +187,13 @@ function Navigation() {
           />
         )}
       </Modal>
+      <Popup
+        size={250}
+        show={sideBarShow}
+        onClose={() => setSideBarShow((pre) => !pre)}
+      >
+        Hello world
+      </Popup>
     </>
   );
 }
