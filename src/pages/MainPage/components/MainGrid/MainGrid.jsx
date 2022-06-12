@@ -1,5 +1,5 @@
 import React from "react";
-import { Flux, Text, ToggleButton } from "components";
+import { Flux, Icon, Image, Text, ToggleButton } from "components";
 import PropTypes from "prop-types";
 import MainGridWrapper from "./MainGrid.style";
 import MainGridCard from "./MainGridCard";
@@ -30,10 +30,30 @@ const MainGrid = ({ data, mainTitle }) => {
                   </Text>
                 </FluxCol>
                 <FluxCol span={2}>
-                  <ToggleButton textSize="$c1">{likes.length}</ToggleButton>
+                  <ToggleButton
+                    disabled={false}
+                    onClick={() => {
+                      console.log("Clicked");
+                    }}
+                    replaceChildren={<Icon name="star" />}
+                    textSize="$c1"
+                    text={
+                      <Text color="#dd5555" size="$c1">
+                        {likes.length}
+                      </Text>
+                    }
+                  >
+                    <Icon name="favorite" />
+                  </ToggleButton>
                 </FluxCol>
                 <FluxCol span={2}>
-                  <ToggleButton textSize="$c1">{comments.length}</ToggleButton>
+                  <ToggleButton textSize="$c1" text={comments.length}>
+                    <Image
+                      src="https://avatars.githubusercontent.com/u/72294509?v=4"
+                      width={30}
+                      height={30}
+                    />
+                  </ToggleButton>
                 </FluxCol>
               </FluxRow>
             </FluxCol>
