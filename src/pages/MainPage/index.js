@@ -7,10 +7,6 @@ import DummyData from "./dummyData";
 const MainPage = () => {
   return (
     <div>
-      <S.NavBar>
-        {/* Navigation Bar */}
-        가봤슈 Navigation Bar
-      </S.NavBar>
       <S.Header>
         <S.HeaderCarousel>{/* Main Carousel */}</S.HeaderCarousel>
         <S.HeaderText>여기 가봤슈?</S.HeaderText>

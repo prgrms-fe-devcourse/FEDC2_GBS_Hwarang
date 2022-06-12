@@ -16,14 +16,14 @@ const defaultProps = {
   name: "search",
 };
 
-const Icon = ({ width, height, fontSize, name }) => {
+const Icon = ({ width, height, fontSize, name, ...props }) => {
   const sizeStyle = {
     width,
     height,
     fontSize,
   };
   return (
-    <S.Icon className="material-symbols-outlined" style={sizeStyle}>
+    <S.Icon className="material-symbols-outlined" style={sizeStyle} {...props}>
       {name}
     </S.Icon>
   );

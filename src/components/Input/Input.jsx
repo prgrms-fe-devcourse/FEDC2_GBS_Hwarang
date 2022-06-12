@@ -5,8 +5,8 @@ import Icon from "../Icon";
 import IconGroup from "../IconGroup";
 
 const propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   fontSize: PropTypes.number,
   label: PropTypes.string,
   block: PropTypes.bool,
@@ -17,7 +17,6 @@ const propTypes = {
   borderColor: PropTypes.string,
   fontColor: PropTypes.string,
   useIcon: PropTypes.bool,
-  style: PropTypes.instanceOf(Object),
 };
 
 const defaultProps = {
@@ -33,54 +32,60 @@ const defaultProps = {
   borderColor: "#ec5e58",
   fontColor: "#ffc2c0",
   useIcon: true,
-  style: {},
 };
 
-const Input = ({
-  width,
-  height,
-  fontSize,
-  label,
-  block,
-  invalid,
-  required,
-  disabled,
-  readOnly,
-  borderColor,
-  fontColor,
-  useIcon,
-  ...props
-}) => {
-  const wrapperStyle = {
-    width,
-    height,
-    color: fontColor,
-    fontSize,
-  };
-  const inputStyle = {
-    border: `1px solid ${borderColor}`,
-  };
+const Input = React.forwardRef(
+  (
+    {
+      width,
+      height,
+      fontSize,
+      label,
+      block,
+      invalid,
+      required,
+      disabled,
+      readOnly,
+      borderColor,
+      fontColor,
+      useIcon,
+      ...props
+    },
+    ref
+  ) => {
+    const wrapperStyle = {
+      width,
+      height,
+      color: fontColor,
+      fontSize,
+    };
+    const inputStyle = {
+      border: `1px solid ${borderColor}`,
+    };
 
-  return (
-    <S.Wrapper style={wrapperStyle} block={block}>
-      <S.Label>{label}</S.Label>
-      <S.InputWrapper>
-        <S.Input
-          invalid={invalid}
-          required={required}
-          disabled={disabled}
-          readOnly={readOnly}
-          style={{ ...inputStyle, ...props.style }}
-        />
-        {useIcon && (
-          <IconGroup>
-            <Icon />
-          </IconGroup>
-        )}
-      </S.InputWrapper>
-    </S.Wrapper>
-  );
-};
+    return (
+      <S.Wrapper style={wrapperStyle} block={block}>
+        <S.Label>{label}</S.Label>
+        <S.InputWrapper>
+          <S.Input
+            invalid={invalid}
+            required={required}
+            disabled={disabled}
+            readOnly={readOnly}
+            style={{ ...inputStyle }}
+            {...props}
+            ref={ref}
+          />
+          {useIcon && (
+            <IconGroup>
+              <Icon />
+            </IconGroup>
+          )}
+        </S.InputWrapper>
+      </S.Wrapper>
+    );
+  }
+);
 
 Input.propTypes = propTypes;
 Input.defaultProps = defaultProps;

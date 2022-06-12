@@ -14,6 +14,7 @@ const propTypes = {
   border: PropTypes.bool,
   borderRadius: PropTypes.number,
   type: PropTypes.string,
+  props: PropTypes.instanceOf(Object),
 };
 
 const defaultProps = {
@@ -25,6 +26,7 @@ const defaultProps = {
   border: false,
   borderRadius: 10,
   type: "button",
+  props: {},
 };
 
 const Button = ({
@@ -37,6 +39,7 @@ const Button = ({
   border,
   borderRadius,
   type,
+  ...props
 }) => {
   const bgColor =
     backgroundColor.slice(0, 1) === "$"
@@ -55,7 +58,7 @@ const Button = ({
   };
 
   return (
-    <SButton style={buttonStyle} type={type}>
+    <SButton style={buttonStyle} type={type} {...props}>
       <Text size={textSize} color={color} strong>
         {children}
       </Text>
