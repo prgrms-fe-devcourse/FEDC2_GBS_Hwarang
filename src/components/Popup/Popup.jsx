@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { PopupContainer, PopupWrapper, PopupCloseBtn } from "./Popup.style";
+import useClickAway from "hooks/useClickAway";
 
 const propTypes = {
   children: PropTypes.node,
@@ -20,6 +21,8 @@ const defaultProps = {
 };
 
 const Popup = ({ children, show, type, size, dim, onClose }) => {
+  const ref = useClickAway(handleOnClose)
+
   const handleOnClose = () => {
     if (onClose) onClose();
   };
@@ -27,7 +30,7 @@ const Popup = ({ children, show, type, size, dim, onClose }) => {
   return (
     <PopupWrapper className={show ? "popup__wrap_show" : ""} type={type}>
       {dim && <div id="dim" />}
-      <PopupContainer className="popup__container" type={type} size={size}>
+      <PopupContainer ref={ref} className="popup__container" type={type} size={size}>
         {children}
         <PopupCloseBtn
           type="button"
