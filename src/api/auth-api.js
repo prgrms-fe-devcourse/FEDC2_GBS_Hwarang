@@ -19,7 +19,7 @@ export const userSignUp = async (email, fullName, password) => {
 };
 
 export const userLogout = async () => {
-  await axios.post(`${API_END_POINT}${LOGOUT}`);
+  await axios.post(`${BASE_URL}${LOGOUT}`);
 };
 
 export const userAuth = async () => {
