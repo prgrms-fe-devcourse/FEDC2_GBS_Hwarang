@@ -20,7 +20,7 @@ import * as Ns from "./Navigation.style";
 import Modal from "../Modal";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import { userLogout } from "../../api";
+import { userLogout } from "../../api/auth-api";
 
 const BUTTON_WIDTH = 90;
 const BUTTON_FONT_SIZE = "$n1";

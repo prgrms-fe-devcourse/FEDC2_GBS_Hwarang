@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { loginProcess } from "../../recoil/authentication";
 import * as Ns from "./Navigation.style";
 import Divider from "../Divider";
-import { userSignUp } from "../../api";
+import { userSignUp } from "../../api/auth-api";
 
 function SignUp({ handleSignUp, onClose }) {
   const formIds = ["userName", "signUpId", "signUpPassWord", "checkPassWord"];

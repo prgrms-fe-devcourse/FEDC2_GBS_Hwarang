@@ -1,9 +1,8 @@
 import axios from "axios";
-
-const API_END_POINT = "http://kdt.frontend.2nd.programmers.co.kr:5001";
+import { AUTH_USER, BASE_URL, LOGIN, LOGOUT, SIGNUP } from "./url";
 
 export const userLogin = async (email, password) => {
-  const res = await axios.post(`${API_END_POINT}/login`, {
+  const res = await axios.post(`${BASE_URL}${LOGIN}`, {
     email,
     password,
   });
@@ -11,7 +10,7 @@ export const userLogin = async (email, password) => {
 };
 
 export const userSignUp = async (email, fullName, password) => {
-  const res = await axios.post(`${API_END_POINT}/signup`, {
+  const res = await axios.post(`${BASE_URL}${SIGNUP}`, {
     email,
     fullName,
     password,
@@ -20,13 +19,14 @@ export const userSignUp = async (email, fullName, password) => {
 };
 
 export const userLogout = async () => {
-  await axios.post(`${API_END_POINT}/logout`);
+  await axios.post(`${BASE_URL}${LOGOUT}`);
 };
 
-export const userAuth = (token) => {
-  return axios.get(`${API_END_POINT}/auth-user`, {
+export const userAuth = async () => {
+  const res = await axios.get(`${BASE_URL}${AUTH_USER}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  return res;
 };
