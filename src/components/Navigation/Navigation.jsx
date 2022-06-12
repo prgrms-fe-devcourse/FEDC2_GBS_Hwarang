@@ -150,7 +150,11 @@ function Navigation() {
     <>
       <Ns.Navigation>
         <Ns.NavLogoBlock>
-          <Icon name="menu" onClick={() => setSideBarShow((pre) => !pre)} />
+          <Icon
+            name="menu"
+            onClick={() => setSideBarShow(true)}
+            style={{ cursor: "pointer" }}
+          />
           <div className="imgWrapper">
             <NavLink to="/">
               <Image
@@ -190,7 +194,7 @@ function Navigation() {
       <Popup
         size={250}
         show={sideBarShow}
-        onClose={() => setSideBarShow((pre) => !pre)}
+        onClose={() => setSideBarShow(false)}
       >
         Hello world
       </Popup>
