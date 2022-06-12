@@ -1,5 +1,6 @@
 import { selector, atom } from "recoil";
 import { getCookie, removeCookie, setCookie } from "../utils/cookie";
+import { userAuth } from "../api/index";
 
 export const jwtToken = atom({
   key: "jwtToken",
@@ -45,5 +46,17 @@ export const logoutProcess = selector({
     removeCookie("token"); // 쿠키 삭제(token)
     set(jwtToken, ""); // 쿠키 삭제(jwtToken)
     set(loginStatus, false); // 로그인 상태 초기화
+  },
+});
+
+export const isUserAuthenticated = selector({
+  key: "isUserAuthenticated",
+  get: async ({ get }) => {
+    const token = get(jwtToken);
+    if (token) {
+      const res = await userAuth(token);
+      if (res.statusCode === "OK") return true;
+    }
+    return false;
   },
 });

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+  useRecoilValueLoadable,
+} from "recoil";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "components/Button";
@@ -9,6 +14,7 @@ import {
   loginStatus,
   isTokenExist,
   logoutProcess,
+  isUserAuthenticated,
 } from "../../recoil/authentication";
 import * as Ns from "./Navigation.style";
 import Modal from "../Modal";
@@ -117,6 +123,7 @@ function Navigation() {
 
   const [isLogined, setIsLogined] = useRecoilState(loginStatus);
   const TokenExist = useRecoilValue(isTokenExist);
+  const isTokenValid = useRecoilValueLoadable(isUserAuthenticated);
 
   const changeModalType = (type) => {
     setModalStatus({
@@ -126,10 +133,10 @@ function Navigation() {
   };
 
   useEffect(() => {
-    if (!isLogined) {
-      if (TokenExist) setIsLogined(true);
+    if (!isLogined && TokenExist) {
+      if (isTokenValid) setIsLogined(true);
     }
-  }, [isLogined, TokenExist]);
+  }, [isLogined, TokenExist, isTokenValid]);
 
   return (
     <>
