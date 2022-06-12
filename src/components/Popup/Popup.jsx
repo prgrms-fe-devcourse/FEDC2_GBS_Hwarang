@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { PopupContainer, PopupWrapper, PopupCloseBtn } from "./Popup.style";
-<<<<<<< HEAD
 import useClickAway from "hooks/useClickAway";
-=======
->>>>>>> f0406693a80749b3a832e438f903c43f9ff90b8f
 
 const propTypes = {
   children: PropTypes.node,
