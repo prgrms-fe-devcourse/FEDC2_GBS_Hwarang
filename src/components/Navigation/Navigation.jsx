@@ -11,6 +11,7 @@ import Button from "components/Button";
 import Image from "components/Image";
 import Icon from "components/Icon";
 import Popup from "components/Popup";
+import SideBar from "components/SideBar";
 import {
   loginStatus,
   isTokenExist,
@@ -192,11 +193,11 @@ function Navigation() {
         )}
       </Modal>
       <Popup
-        size={250}
+        size={300}
         show={sideBarShow}
         onClose={() => setSideBarShow(false)}
       >
-        Hello world
+        <SideBar margin={5} padding="36px 0 0 0" />
       </Popup>
     </>
   );
