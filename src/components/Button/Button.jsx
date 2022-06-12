@@ -61,7 +61,7 @@ const Button = ({
   };
 
   return (
-    <SButton style={buttonStyle} type={type} onClick={onClick}>
+    <SButton style={buttonStyle} type={type} onClick={onClick} {...props}>
       <Text size={textSize} color={color} strong>
         {children}
       </Text>

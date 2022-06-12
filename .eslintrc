@@ -12,7 +12,6 @@
     "react/jsx-props-no-spreading": "off",
     "consistent-return": "off",
     "no-undef": "off",
-    "import/no-unresolved": "off",
-    "react/jsx-props-no-spreading": "off"
+    "import/no-unresolved": "off"
   }
 }
