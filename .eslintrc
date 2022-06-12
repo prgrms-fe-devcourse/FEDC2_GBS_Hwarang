@@ -1,6 +1,9 @@
 {
   "extends": ["airbnb", "plugin:prettier/recommended"],
   "plugins": ["react", "jsx-a11y", "import"],
+  "parserOptions": {
+    "ecmaVersion": 2021
+  },
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/jsx-filename-extension": [

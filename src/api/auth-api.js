@@ -28,5 +28,22 @@ export const userAuth = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   });
+
+  return res;
+};
+
+export const uploadImage = async (image, isCover, token) => {
+  const res = await axios.post(
+    `${API_END_POINT}/users/upload-photo`,
+    {
+      isCover,
+      image,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return res;
 };
