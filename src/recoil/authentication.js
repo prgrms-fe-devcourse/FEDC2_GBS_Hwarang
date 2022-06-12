@@ -1,6 +1,6 @@
 import { selector, atom } from "recoil";
 import { getCookie, removeCookie, setCookie } from "../utils/cookie";
-import { userAuth } from "../api/index";
+import { userAuth } from "../api/auth-api";
 
 export const jwtToken = atom({
   key: "jwtToken",

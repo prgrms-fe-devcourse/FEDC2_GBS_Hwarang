@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import PropTypes from "prop-types";
 import * as Ns from "./Navigation.style";
-import { userLogin } from "../../api";
+import { userLogin } from "../../api/auth-api";
 import { loginProcess } from "../../recoil/authentication";
 import Divider from "../Divider";
 
