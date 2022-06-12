@@ -3,6 +3,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "components/Navigation";
+import UserPage from "pages/UserPage";
 import MainPage from "./pages";
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="mypage" element={<UserPage />} />
+          <Route path="*" element={<div>Not Found!</div>} />
         </Routes>
       </Router>
     </div>

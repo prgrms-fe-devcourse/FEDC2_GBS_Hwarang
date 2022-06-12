@@ -5,11 +5,12 @@ import {
   useSetRecoilState,
   useRecoilValueLoadable,
 } from "recoil";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "components/Button";
 import Image from "components/Image";
 import Icon from "components/Icon";
+import userInfo from "recoil/user";
 import {
   loginStatus,
   isTokenExist,
@@ -28,6 +29,7 @@ const BUTTON_HEIGHT = 45;
 
 const LoggedInedBlock = () => {
   const setLogOut = useSetRecoilState(logoutProcess);
+  const navigate = useNavigate();
 
   const handleLogOut = async () => {
     await userLogout();
@@ -40,24 +42,28 @@ const LoggedInedBlock = () => {
         type="button"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
-        text="회원정보"
         textSize={BUTTON_FONT_SIZE}
-      />
+        onClick={() => navigate("/mypage")}
+      >
+        회원정보
+      </Button>
       <Button
         type="button"
         width={BUTTON_WIDTH}
-        text="글쓰기"
         textSize={BUTTON_FONT_SIZE}
         height={BUTTON_HEIGHT}
-      />
+      >
+        글쓰기
+      </Button>
       <Button
         type="button"
         onClick={handleLogOut}
-        text="로그아웃"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        로그아웃
+      </Button>
     </>
   );
 };
@@ -68,19 +74,21 @@ const LoggedOutBlock = ({ setModalStatus }) => {
       <Button
         type="button"
         onClick={() => setModalStatus({ visible: true, type: "login" })}
-        text="로그인"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        로그인
+      </Button>
       <Button
         type="button"
         onClick={() => setModalStatus({ visible: true, type: "signup" })}
-        text="회원가입"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        회원가입
+      </Button>
     </>
   );
 };
@@ -123,7 +131,10 @@ function Navigation() {
 
   const [isLogined, setIsLogined] = useRecoilState(loginStatus);
   const TokenExist = useRecoilValue(isTokenExist);
-  const isTokenValid = useRecoilValueLoadable(isUserAuthenticated);
+  const {
+    contents: { isTokenValid, userData },
+  } = useRecoilValueLoadable(isUserAuthenticated);
+  const setUserInfo = useSetRecoilState(userInfo);
 
   const changeModalType = (type) => {
     setModalStatus({
@@ -134,9 +145,12 @@ function Navigation() {
 
   useEffect(() => {
     if (!isLogined && TokenExist) {
-      if (isTokenValid) setIsLogined(true);
+      if (isTokenValid) {
+        setIsLogined(true);
+        setUserInfo(userData);
+      }
     }
-  }, [isLogined, TokenExist, isTokenValid]);
+  }, [isLogined, TokenExist, isTokenValid, userData]);
 
   return (
     <>
