@@ -1,6 +1,5 @@
 import { atom, selector } from "recoil";
 
-// eslint-disable-next-line
 export const userInfo = atom({
   key: "userInfo",
   default: null,
