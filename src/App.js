@@ -30,6 +30,8 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/travel-destination" element={<PostListPage />} />
+          <Route path="mypage" element={<UserPage />} />
+          <Route path="*" element={<div>Not Found!</div>} />
         </Routes>
       </Router>
     </div>
