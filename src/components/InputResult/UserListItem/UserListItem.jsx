@@ -20,7 +20,8 @@ const defaultProps = {
 };
 
 const UserListItem = ({ width, user, ...props }) => {
-  const { _id, fullName, image, email, posts, followers, isOnline } = user;
+  const { _id, fullName, image, email, posts, followers, isOnline, isFollow } =
+    user;
   const sizeStyle = {
     width,
   };
@@ -39,13 +40,15 @@ const UserListItem = ({ width, user, ...props }) => {
     >
       <div style={{ position: "relative" }}>
         <Avatar src={image} style={{ marginRight: 24 }} />
-        <Image
-          src={likesClickedSvg}
-          width={25}
-          height={25}
-          mode="contain"
-          style={{ position: "absolute", top: 0, left: 0 }}
-        />
+        {isFollow && (
+          <Image
+            src={likesClickedSvg}
+            width={25}
+            height={25}
+            mode="contain"
+            style={{ position: "absolute", top: 0, left: 0 }}
+          />
+        )}
       </div>
       <S.Container>
         <Text size="$c1" strong>
