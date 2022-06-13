@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Input, InputResult } from "components";
+import Input from "components/Input";
+import InputResult from "components/InputResult";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
+import * as S from "./MainInput.style";
 
 const MainInput = () => {
   const [keyword, setKeyword] = useState("");
@@ -15,18 +17,18 @@ const MainInput = () => {
   };
 
   return (
-    <MainInput>
+    <S.MainInputContainer>
       <Input name="keyword" onChange={handleChange} width="100%" />
       <InputResult
-        inputType="user"
+        inputType="post"
         type="none"
         keyword={keyword}
         data={posts}
         options={["title"]}
         width="100%"
-        height="80vh"
+        height="175px"
       />
-    </MainInput>
+    </S.MainInputContainer>
   );
 };
 export default MainInput;

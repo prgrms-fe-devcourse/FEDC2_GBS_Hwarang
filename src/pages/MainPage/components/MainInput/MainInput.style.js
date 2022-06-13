@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
-export default MainInput = styled.div`
+// eslint-disable-next-line import/prefer-default-export
+export const MainInputContainer = styled.div`
   position: absolute;
   top: 430px;
   right: calc(50% - 400px);

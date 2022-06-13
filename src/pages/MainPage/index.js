@@ -6,6 +6,7 @@ import Common from "styles/common";
 import S from "./MainPage.style";
 // import ImageData from "./components/SliderImage/ImageData";
 import MainGrid from "./components/MainGrid";
+import MainInput from "./components/MainInput";
 
 const MainPage = () => {
   const { popularPost, latestPost } = useRecoilValue(mainPost);
@@ -39,7 +40,7 @@ const MainPage = () => {
           </ImageSlider>
         </S.HeaderCarousel>
         <S.HeaderText>여기 가봤슈?</S.HeaderText>
-        <S.HeaderInput /* absolute Position Input */ />
+        <MainInput />
       </S.Header>
       <S.Section>
         <S.SectionWrapper>
