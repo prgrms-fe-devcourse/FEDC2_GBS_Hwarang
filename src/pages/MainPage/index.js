@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Image, ImageSlider, Slide } from "components";
+import Common from "styles/common";
 import S from "./MainPage.style";
 // import ImageData from "./components/SliderImage/ImageData";
 import MainGrid from "./components/MainGrid";
@@ -45,7 +46,9 @@ const MainPage = () => {
             mainTitle="가봤슈 사용자들의 최고 인기 여행지"
           />
           <Button color="white" type="button">
-            더보기
+            <S.LinkButton to="/travel-destination" style={{ color: "white" }}>
+              더보기
+            </S.LinkButton>
           </Button>
         </S.SectionWrapper>
         <Image
@@ -60,7 +63,12 @@ const MainPage = () => {
             mainTitle="가봤슈 사용자들의 최근 여행지"
           />
           <Button color="$main" backgroundColor="$white" type="button" border>
-            더보기
+            <S.LinkButton
+              to="/travel-destination"
+              style={{ color: Common.colors.main }}
+            >
+              더보기
+            </S.LinkButton>
           </Button>
         </S.SectionWrapper>
       </S.Section>
