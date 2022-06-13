@@ -3,7 +3,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "components/Navigation";
-import MainPage from "./pages";
+import { MainPage, PostListPage } from "./pages";
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/travel-destination" element={<PostListPage />} />
         </Routes>
       </Router>
     </div>

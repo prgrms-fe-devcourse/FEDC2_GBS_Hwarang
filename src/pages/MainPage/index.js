@@ -1,11 +1,10 @@
 import React from "react";
-import { Button, Image, ImageSlider, Slide } from "components";
+import { Button, Image, ImageSlider, Slide, Footer } from "components";
 import Common from "styles/common";
 import S from "./MainPage.style";
 // import ImageData from "./components/SliderImage/ImageData";
 import MainGrid from "./components/MainGrid";
 import DummyData from "./dummyData";
-import Footer from "../../components/Footer";
 
 const MainPage = () => {
   return (
