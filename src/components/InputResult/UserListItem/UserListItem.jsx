@@ -20,7 +20,7 @@ const defaultProps = {
 };
 
 const UserListItem = ({ width, user, ...props }) => {
-  const { _id, fullName, image, email, posts, followers } = user;
+  const { _id, fullName, image, email, posts, followers, isOnline } = user;
   const sizeStyle = {
     width,
   };
@@ -58,7 +58,7 @@ const UserListItem = ({ width, user, ...props }) => {
           <Icon name="person" fontSize={14} />
           <Text size={12}>{followers.length}</Text>
         </IconGroup>
-        <S.OnlineDot />
+        {isOnline && <S.OnlineDot />}
       </S.Container>
     </S.ListItem>
   );
