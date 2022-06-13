@@ -5,17 +5,26 @@ export const postManager = atom({
   default: {},
 });
 
+export const getAllPost = selector({
+  key: "allPost",
+  get: ({ get }) => {
+    const state = get(postManager);
+    const data = Object.entries(state).reduce(
+      (result, [, post]) => [...result, ...post.posts],
+      []
+    );
+    return data;
+  },
+});
+
 export const mainPost = selector({
   key: "mainPost",
   get: ({ get }) => {
-    const state = get(postManager);
-    const data = Object.entries(state)
-      .reduce((result, [, post]) => [...result, ...post.posts], [])
-      .map((post) => ({
-        ...post,
-        comments: post.comments.length,
-        likes: post.likes.length,
-      }));
+    const data = get(getAllPost).map((post) => ({
+      ...post,
+      comments: post.comments.length,
+      likes: post.likes.length,
+    }));
     // 1. 인기순
     const popular = data
       .sort((a, b) => b.likes - a.likes)
