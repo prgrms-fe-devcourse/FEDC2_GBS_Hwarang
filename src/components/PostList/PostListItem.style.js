@@ -8,6 +8,13 @@ const ItemWrapper = styled.div`
   margin: 10px;
 `;
 
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+`;
+
 const titleWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,4 +34,10 @@ const numWrapper = styled.div`
   display: flex;
 `;
 
-export default { ItemWrapper, createdTextWrapper, numWrapper, titleWrapper };
+export default {
+  ItemWrapper,
+  createdTextWrapper,
+  ImageWrapper,
+  numWrapper,
+  titleWrapper,
+};

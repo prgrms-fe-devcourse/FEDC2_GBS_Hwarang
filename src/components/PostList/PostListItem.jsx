@@ -43,7 +43,9 @@ const PostListItem = ({
       </S.createdTextWrapper>
       <FluxRow gutter={20}>
         <FluxCol span={4}>
-          <Image src={src} width="100%" height="220px" />
+          <S.ImageWrapper>
+            <Image src={src} width="100%" height="220px" />
+          </S.ImageWrapper>
         </FluxCol>
         <FluxCol span={8}>
           <S.titleWrapper>

@@ -7,6 +7,10 @@ const PostListWrapper = styled.div`
   border: 1px solid;
 `;
 
+const listTitleWrapper = styled.div`
+  margin: 20px 0;
+`;
+
 const PostListItemWrapper = styled.div`
   box-sizing: border-box;
   position: relative;
@@ -20,4 +24,4 @@ const PostListItemWrapper = styled.div`
   }
 `;
 
-export default { PostListWrapper, PostListItemWrapper };
+export default { PostListWrapper, listTitleWrapper, PostListItemWrapper };
