@@ -3,6 +3,7 @@ import { Button, Image } from "components";
 import S from "./MainPage.style";
 import MainGrid from "./components/MainGrid";
 import DummyData from "./dummyData";
+import Footer from "../../components/Footer";
 
 const MainPage = () => {
   return (
@@ -38,7 +39,7 @@ const MainPage = () => {
           </Button>
         </div>
       </S.Section>
-      <S.Footer>Footer</S.Footer>
+      <Footer />
     </div>
   );
 };

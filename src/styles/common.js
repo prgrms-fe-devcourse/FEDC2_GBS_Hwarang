@@ -25,6 +25,8 @@ const Common = {
 
     bg_gray: "#F6F6F6",
     bg_white: "#FCFCFC",
+
+    footerText: "#666666",
   },
 
   fontSize: {
