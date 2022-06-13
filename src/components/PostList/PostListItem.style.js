@@ -16,14 +16,14 @@ const titleWrapper = styled.div`
 
 const createdTextWrapper = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
 `;
 
 const numWrapper = styled.div`
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 10px;
+  right: 10px;
   display: flex;
 `;
 

@@ -23,7 +23,7 @@ const defaultProps = {
   textSize: "$c2",
   gap: 10,
   margin: 10,
-  author: "",
+  author: "user",
   createdAt: "",
   likesNum: 0,
   commentsNum: 0,
