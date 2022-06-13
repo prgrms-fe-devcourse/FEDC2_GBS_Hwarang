@@ -1,6 +1,10 @@
-import { Flux, Image, Text } from "components";
+import { Flux, Image, Text, ToggleButton } from "components";
+import likesSvg from "assets/likes.svg";
+import likesClickedSvg from "assets/likes_clicked.svg";
+import commentSvg from "assets/comment.svg";
 import PropTypes from "prop-types";
 import React from "react";
+import S from "./PostListItem.style";
 
 const propTypes = {
   src: PropTypes.string.isRequired,
@@ -14,7 +18,7 @@ const propTypes = {
 
 const defaultProps = {
   title: "여행지",
-  textSize: "$b1",
+  textSize: "$b3",
   author: "user",
   createdAt: "",
   likesNum: 0,
@@ -33,20 +37,47 @@ const PostListItem = ({
   const { FluxRow, FluxCol } = Flux;
 
   return (
-    <FluxRow padding={20}>
-      <FluxCol span={4}>
-        <Image src={src} width="100%" height={180} />
-      </FluxCol>
-      <FluxCol span={8}>
-        <Text size={textSize}>{title}</Text>
-      </FluxCol>
-      <FluxCol span={8}>
-        {author}, {createdAt}
-      </FluxCol>
-      <FluxCol span={4}>
-        {likesNum}, {commentsNum}
-      </FluxCol>
-    </FluxRow>
+    <S.ItemWrapper>
+      <S.createdTextWrapper>
+        <Text size="$n1">{createdAt}</Text>
+      </S.createdTextWrapper>
+      <FluxRow gutter={20}>
+        <FluxCol span={4}>
+          <Image src={src} width="100%" height={200} />
+        </FluxCol>
+        <FluxCol span={8}>
+          <Text size={textSize} strong>
+            {title}
+          </Text>
+        </FluxCol>
+      </FluxRow>
+      <FluxRow>
+        <FluxCol span={10}>{author}</FluxCol>
+        <FluxCol span={1}>
+          <ToggleButton
+            disabled={false}
+            onClick={() => console.log("Clicked!")}
+            replaceChildren={
+              <Image
+                src={likesClickedSvg}
+                width={20}
+                height={20}
+                mode="contain"
+              />
+            }
+            textSize="$c1"
+            text={likesNum}
+          >
+            <Image src={likesSvg} width={20} height={20} mode="contain" />
+          </ToggleButton>
+        </FluxCol>
+        <FluxCol span={1}>
+          <ToggleButton textSize="$c1" text={commentsNum}>
+            <Image src={commentSvg} width={20} height={20} />
+          </ToggleButton>
+        </FluxCol>
+      </FluxRow>
+    </S.ItemWrapper>
   );
 };
 

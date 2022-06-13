@@ -6,12 +6,15 @@ import PostListItem from "./PostListItem";
 
 const propTypes = {
   data: PropTypes.instanceOf(Array).isRequired,
+  listTitle: PropTypes.string.isRequired,
 };
 
-const PostList = ({ data }) => {
+const PostList = ({ data, listTitle }) => {
   return (
     <S.PostListWrapper>
-      <Text>검색 결과</Text>
+      <Text strong size="$b1">
+        {listTitle}
+      </Text>
       {data.map((post) => {
         const { _id, image, title, author, createdAt, likes, comments } = post;
         return (

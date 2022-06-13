@@ -18,7 +18,7 @@ const PostListPage = () => {
         </buttonSection>
       </S.Header>
       <S.Section /* PostList 렌더링 */>
-        <PostList data={DummyData} />
+        <PostList data={DummyData} listTitle="검색 결과" />
       </S.Section>
       <Footer />
     </div>

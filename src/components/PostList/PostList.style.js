@@ -9,9 +9,10 @@ const PostListWrapper = styled.div`
 
 const PostListItemWrapper = styled.div`
   box-sizing: border-box;
+  position: relative;
   border: 1px solid;
-  height: 220px;
-  margin: 20px;
+  height: 240px;
+  margin: 10px 0;
   &:hover {
     background-color: ${Common.colors.gray06};
   }
