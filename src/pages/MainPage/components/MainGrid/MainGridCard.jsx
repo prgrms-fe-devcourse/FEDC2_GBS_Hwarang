@@ -14,7 +14,7 @@ const propTypes = {
 
 const defaultProps = {
   textChildren: "여행지",
-  textSize: "h3",
+  textSize: "$c2",
   gap: 10,
   margin: 10,
 };
@@ -28,7 +28,7 @@ const MainGridCard = ({ src, textChildren, textSize, gap, margin }) => {
   return (
     <S.CardWrapper style={wrapperStyle}>
       <S.ImageDiv>
-        <Image src={src} width="100%" height={230} />
+        <Image src={src} width="100%" height={180} />
       </S.ImageDiv>
       <Text size={textSize} strong>
         {textChildren}
