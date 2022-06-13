@@ -4,7 +4,6 @@ import Common from "styles/common";
 export const Container = styled.div`
   background-color: ${Common.colors.bg_gray};
   font-size: 12px;
-  color: #666666;
 `;
 
 export const TopContainer = styled.div`
@@ -15,7 +14,7 @@ export const TopContainer = styled.div`
   padding-bottom: 80px;
   padding-left: 80px;
   padding-right: 180px;
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1300px) {
     flex-direction: column;
     gap: 20px;
   }
@@ -28,13 +27,20 @@ export const ImageWrapper = styled.div`
 export const SubscribeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  .material-symbols-outlined {
-    padding: 3px;
-    background-color: #cecece;
-    border-radius: 50%;
-    font-weight: bold;
-    color: ${Common.colors.white};
+`;
+
+export const Form = styled.form`
+  margin-bottom: 10px;
+  input::placeholder {
+    color: ${Common.colors.footerText};
   }
+`;
+
+export const ReceptionCheck = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
 `;
 
 export const ContentContainer = styled.div`
@@ -50,6 +56,7 @@ export const Item = styled.div`
   width: 200px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 `;
 
 export const BottomContainer = styled.div`
@@ -59,15 +66,15 @@ export const BottomContainer = styled.div`
   padding: 20px 180px;
 `;
 
+export const InformaionContainer = styled.div`
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+`;
+
 export const IconContainer = styled.div`
   display: flex;
   gap: 5px;
-  & span {
-    padding: 3px;
-    background-color: ${Common.colors.gray02};
-    border-radius: 50%;
-    color: ${Common.colors.white};
-  }
 `;
 
 export const CopyrightWrapper = styled.div`
@@ -76,11 +83,4 @@ export const CopyrightWrapper = styled.div`
   padding: 15px 0;
   background-color: ${Common.colors.main};
   color: ${Common.colors.white};
-`;
-
-export const AlignCenter = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 5px;
 `;
