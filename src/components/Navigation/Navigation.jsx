@@ -193,7 +193,7 @@ function Navigation() {
         )}
       </Modal>
       <Popup
-        size={300}
+        size={350}
         show={sideBarShow}
         onClose={() => setSideBarShow(false)}
       >

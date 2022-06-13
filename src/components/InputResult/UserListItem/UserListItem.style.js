@@ -12,10 +12,18 @@ export const ListItem = styled.li`
   &:hover {
     background-color: #e6e6e6;
   }
+`;
 
-  &:not(:last-of-type) {
-    border-bottom: 1px solid black;
-  }
+export const OnlineDot = styled.div`
+  width: 10px;
+  height: 10px;
+  background-color: #53bf9d;
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 14px;
 `;
 
 export const Container = styled.div`

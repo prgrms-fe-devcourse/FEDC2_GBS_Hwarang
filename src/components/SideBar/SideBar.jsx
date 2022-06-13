@@ -4,7 +4,6 @@ import InputResult from "components/InputResult";
 import Text from "components/Text";
 import PropTypes from "prop-types";
 import { getUsers } from "api/user-api";
-import Divider from "components/Divider";
 
 const propTypes = {
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -46,12 +45,7 @@ const SideBar = ({ margin, padding }) => {
   return (
     <div style={containerStyle}>
       <Input name="user" onChange={handleChange} width="100%" />
-      <Divider
-        type="vertical"
-        size={10}
-        style={{ backgroundColor: undefined }}
-      />
-      <Text strong size="$b3" style={{ margin: "20px 0" }}>
+      <Text strong size="$b3" style={{ margin: "20px 15px" }}>
         사용자 검색 결과
       </Text>
       <InputResult
@@ -60,7 +54,7 @@ const SideBar = ({ margin, padding }) => {
         data={users}
         options={["fullName", "email"]}
         width="100%"
-        height="100vh"
+        height="80vh"
       />
     </div>
   );

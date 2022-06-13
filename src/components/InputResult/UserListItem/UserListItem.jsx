@@ -47,6 +47,7 @@ const UserListItem = ({ width, user, ...props }) => {
           <Icon name="person" fontSize={14} />
           <Text size={12}>{followers.length}</Text>
         </IconGroup>
+        <S.OnlineDot />
       </S.Container>
     </S.ListItem>
   );
