@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Common from "styles/common";
 
 const Header = styled.div`
   position: relative;
@@ -23,7 +22,6 @@ const Section = styled.div`
   box-sizing: border-box;
   height: auto;
   width: 100%;
-  background-color: ${Common.colors.main_light};
 `;
 
 export default { Header, HeaderInput, Section };
