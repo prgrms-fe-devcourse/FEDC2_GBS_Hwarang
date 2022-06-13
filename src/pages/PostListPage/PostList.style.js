@@ -11,11 +11,11 @@ const Header = styled.div`
 
 const HeaderInput = styled.input`
   position: absolute;
-  top: 200px;
-  right: calc(50% - 300px);
+  top: 150px;
+  right: calc(50% - 250px);
   font-size: 20px;
-  width: 600px;
-  height: 70px;
+  width: 500px;
+  height: 60px;
   border-radius: 20px;
 `;
 
