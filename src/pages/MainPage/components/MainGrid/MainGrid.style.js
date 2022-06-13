@@ -13,7 +13,7 @@ const CardWrapper = styled.div`
 
   &:hover {
     background-color: ${Common.colors.gray06};
-    transition: background-color 0.3s ease-out;
+    transition: background-color 0.1s ease-out;
   }
 `;
 
