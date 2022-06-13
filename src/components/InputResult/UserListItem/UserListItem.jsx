@@ -5,6 +5,8 @@ import Avatar from "components/Avatar";
 import Text from "components/Text";
 import IconGroup from "components/IconGroup";
 import Icon from "components/Icon";
+import Image from "components/Image";
+import likesClickedSvg from "assets/likes_clicked.svg";
 import * as S from "./UserListItem.style";
 
 const propTypes = {
@@ -35,7 +37,16 @@ const UserListItem = ({ width, user, ...props }) => {
       }}
       {...props}
     >
-      <Avatar src={image} style={{ marginRight: 24 }} />
+      <div style={{ position: "relative" }}>
+        <Avatar src={image} style={{ marginRight: 24 }} />
+        <Image
+          src={likesClickedSvg}
+          width={25}
+          height={25}
+          mode="contain"
+          style={{ position: "absolute", top: 0, left: 0 }}
+        />
+      </div>
       <S.Container>
         <Text size="$c1" strong>
           {fullName}
