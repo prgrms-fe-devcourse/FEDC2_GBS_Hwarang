@@ -3,8 +3,6 @@ import styled from "@emotion/styled";
 const ItemWrapper = styled.div`
   box-sizing: border-box;
   height: calc(100% - 20px);
-  display: flex;
-  flex-direction: column;
   margin: 10px;
 `;
 
