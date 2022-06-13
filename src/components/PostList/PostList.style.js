@@ -13,8 +13,10 @@ const PostListItemWrapper = styled.div`
   border: 1px solid;
   height: 240px;
   margin: 10px 0;
+
   &:hover {
     background-color: ${Common.colors.gray06};
+    transition: background-color 0.3s ease-out;
   }
 `;
 

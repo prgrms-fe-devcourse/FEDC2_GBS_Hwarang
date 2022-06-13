@@ -43,40 +43,38 @@ const PostListItem = ({
       </S.createdTextWrapper>
       <FluxRow gutter={20}>
         <FluxCol span={4}>
-          <Image src={src} width="100%" height={200} />
+          <Image src={src} width="100%" height="220px" />
         </FluxCol>
         <FluxCol span={8}>
-          <Text size={textSize} strong>
-            {title}
-          </Text>
+          <S.titleWrapper>
+            <Text size={textSize} strong>
+              {title}
+            </Text>
+            <Text size="$n1">작성자 : {author}</Text>
+          </S.titleWrapper>
         </FluxCol>
       </FluxRow>
-      <FluxRow>
-        <FluxCol span={10}>{author}</FluxCol>
-        <FluxCol span={1}>
-          <ToggleButton
-            disabled={false}
-            onClick={() => console.log("Clicked!")}
-            replaceChildren={
-              <Image
-                src={likesClickedSvg}
-                width={20}
-                height={20}
-                mode="contain"
-              />
-            }
-            textSize="$c1"
-            text={likesNum}
-          >
-            <Image src={likesSvg} width={20} height={20} mode="contain" />
-          </ToggleButton>
-        </FluxCol>
-        <FluxCol span={1}>
-          <ToggleButton textSize="$c1" text={commentsNum}>
-            <Image src={commentSvg} width={20} height={20} />
-          </ToggleButton>
-        </FluxCol>
-      </FluxRow>
+      <S.numWrapper>
+        <ToggleButton
+          disabled={false}
+          onClick={() => console.log("Clicked!")}
+          replaceChildren={
+            <Image
+              src={likesClickedSvg}
+              width={20}
+              height={20}
+              mode="contain"
+            />
+          }
+          textSize="$c1"
+          text={likesNum}
+        >
+          <Image src={likesSvg} width={20} height={20} mode="contain" />
+        </ToggleButton>
+        <ToggleButton textSize="$c1" text={commentsNum}>
+          <Image src={commentSvg} width={20} height={20} />
+        </ToggleButton>
+      </S.numWrapper>
     </S.ItemWrapper>
   );
 };
