@@ -5,7 +5,7 @@ export const postManager = atom({
   default: {},
 });
 
-export const getAllPost = selector({
+export const allPost = selector({
   key: "allPost",
   get: ({ get }) => {
     const state = get(postManager);
@@ -20,7 +20,7 @@ export const getAllPost = selector({
 export const mainPost = selector({
   key: "mainPost",
   get: ({ get }) => {
-    const data = get(getAllPost).map((post) => ({
+    const data = get(allPost).map((post) => ({
       ...post,
       comments: post.comments.length,
       likes: post.likes.length,
@@ -28,7 +28,7 @@ export const mainPost = selector({
     // 1. 인기순
     const popular = data
       .sort((a, b) => b.likes - a.likes)
-      .filter((_, index) => index < 9);
+      .filter((_, index) => index < 6);
     // 2. 최신순
     const latest = data
       .sort((a, b) => {
@@ -36,7 +36,7 @@ export const mainPost = selector({
         const dateB = new Date(b.createdAt);
         return dateB.getTime() - dateA.getTime();
       })
-      .filter((_, index) => index < 9);
+      .filter((_, index) => index < 6);
 
     return {
       popularPost: popular,
