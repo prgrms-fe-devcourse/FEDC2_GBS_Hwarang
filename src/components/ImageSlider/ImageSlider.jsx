@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 // import Slide from "components/Slide";
+// import Slide from "components/Slide";
+// import Button from "components/Button";
 import * as IS from "./ImageSlider.style";
 
 const ImageSlider = ({ children, width, height }) => {
@@ -8,12 +10,14 @@ const ImageSlider = ({ children, width, height }) => {
     width,
     height,
   };
+
   const slides = React.Children.toArray(children).filter((element) => {
     if (React.isValidElement(element)) {
       return true;
     }
     return false;
   });
+
   const TOTAL_SLIDES = children.length - 1;
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -45,12 +49,27 @@ const ImageSlider = ({ children, width, height }) => {
           <Slide src={item.src} style={{ ...sliderStyle }} />
         ))} */}
       </IS.SliderContainer>
-      <IS.Center>
-        <IS.Button style={{ left: 100 }} onClick={prevSlide}>
-          이전
-        </IS.Button>
-        <IS.Button onClick={nextSlide}>다음</IS.Button>
-      </IS.Center>
+      <IS.ButtonContainer>
+        <IS.Icon
+          role="button"
+          onClick={prevSlide}
+          className="material-symbols-outlined"
+          onKeyDown=""
+          tabIndex={0}
+        >
+          arrow_back_ios
+        </IS.Icon>
+        <IS.Icon
+          role="button"
+          style={{ right: 0 }}
+          onClick={nextSlide}
+          className="material-symbols-outlined"
+          onKeyDown=""
+          tabIndex={0}
+        >
+          arrow_forward_ios
+        </IS.Icon>
+      </IS.ButtonContainer>
     </IS.Container>
   );
 };

@@ -4,23 +4,18 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
-export const Button = styled.button`
-  padding: 1em 2em;
-  margin: 10px;
-  color: blue;
-  border-radius: 10px;
-  border: 1px solid blue;
-  &:hover {
-    background-color: blue;
-    color: #fff;
-  }
+export const Icon = styled.span`
+  /* position: absolute; */
+  position: absolute;
+  top: 300px;
+  font-size: 50px;
+  cursor: pointer;
 `;
 
-export const Center = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
+export const ButtonContainer = styled.div`
+  /* display: flex;
+  justify-content: space-between; */
+  padding: 20px;
 `;
 
 export const SliderContainer = styled.div`
