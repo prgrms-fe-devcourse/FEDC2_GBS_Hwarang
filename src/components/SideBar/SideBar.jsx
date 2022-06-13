@@ -50,6 +50,7 @@ const SideBar = ({ margin, padding }) => {
       </Text>
       <InputResult
         inputType="user"
+        type="all"
         keyword={userKeyword}
         data={users}
         options={["fullName", "email"]}
