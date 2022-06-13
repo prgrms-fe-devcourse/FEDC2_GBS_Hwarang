@@ -3,14 +3,11 @@ import { Button, Image } from "components";
 import S from "./MainPage.style";
 import MainGrid from "./components/MainGrid";
 import DummyData from "./dummyData";
+import Footer from "../../components/Footer";
 
 const MainPage = () => {
   return (
     <div>
-      <S.NavBar>
-        {/* Navigation Bar */}
-        가봤슈 Navigation Bar
-      </S.NavBar>
       <S.Header>
         <S.HeaderCarousel>{/* Main Carousel */}</S.HeaderCarousel>
         <S.HeaderText>여기 가봤슈?</S.HeaderText>
@@ -42,7 +39,7 @@ const MainPage = () => {
           </Button>
         </div>
       </S.Section>
-      <S.Footer>Footer</S.Footer>
+      <Footer />
     </div>
   );
 };
