@@ -49,7 +49,7 @@ export const PopupWrapper = styled.div`
 `;
 
 export const PopupContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: ${({ type }) => position[type].top};
   right: ${({ type }) => position[type].right};
   left: ${({ type }) => position[type].left};

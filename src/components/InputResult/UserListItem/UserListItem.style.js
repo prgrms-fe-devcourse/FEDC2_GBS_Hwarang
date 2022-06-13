@@ -12,6 +12,10 @@ export const ListItem = styled.li`
   &:hover {
     background-color: #e6e6e6;
   }
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid black;
+  }
 `;
 
 export const Container = styled.div`
