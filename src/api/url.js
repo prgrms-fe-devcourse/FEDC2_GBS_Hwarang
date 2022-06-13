@@ -1,5 +1,5 @@
 // base
-export const BASE_URL = "http://kdt.frontend.2nd.programmers.co.kr:5001";
+export const BASE_URL = "http://kdt.frontend.2nd.programmers.co.kr:5012";
 
 // authentication
 export const LOGIN = "/login";
