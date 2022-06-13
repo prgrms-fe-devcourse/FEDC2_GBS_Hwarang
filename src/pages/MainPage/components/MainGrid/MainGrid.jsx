@@ -15,6 +15,7 @@ const propTypes = {
 
 const MainGrid = ({ data, mainTitle }) => {
   const { FluxRow, FluxCol } = Flux;
+  console.log(data);
   return (
     <S.MainGridWrapper>
       <S.TextWrapper>
@@ -49,7 +50,7 @@ const MainGrid = ({ data, mainTitle }) => {
                         />
                       }
                       textSize="$n1"
-                      text={likes.length}
+                      text={likes}
                     >
                       <Image
                         src={likesSvg}
@@ -60,7 +61,7 @@ const MainGrid = ({ data, mainTitle }) => {
                     </ToggleButton>
                   </FluxCol>
                   <FluxCol span={1.5}>
-                    <ToggleButton textSize="$n1" text={comments.length}>
+                    <ToggleButton textSize="$n1" text={comments}>
                       <Image src={commentSvg} width={15} height={15} />
                     </ToggleButton>
                   </FluxCol>

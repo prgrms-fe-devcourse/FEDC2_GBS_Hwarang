@@ -10,7 +10,7 @@ import {
 } from "./url";
 
 import Channel from "../mock/channel.json";
-import Post from "../mock/post.json";
+import Post from "../mock/posts.json";
 
 // 채널 목록
 export const getChannels = async () => {
@@ -41,7 +41,7 @@ export const getPosts = async (channeld) => {
     setTimeout(resolve, 1000);
   });
   //   return res;
-  return Post.filter((post) => post.channelId === channeld);
+  return Post.filter((post) => post.channel === channeld);
 };
 
 // post 상세 정보

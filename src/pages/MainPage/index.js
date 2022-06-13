@@ -1,12 +1,15 @@
 import React from "react";
 import { Button, Image, ImageSlider, Slide } from "components";
+import { useRecoilValue } from "recoil";
+import { mainPost } from "recoil/post";
 import S from "./MainPage.style";
 // import ImageData from "./components/SliderImage/ImageData";
 import MainGrid from "./components/MainGrid";
-import DummyData from "./dummyData";
 import Footer from "../../components/Footer";
 
 const MainPage = () => {
+  const { popularPost, latestPost } = useRecoilValue(mainPost);
+
   return (
     <div>
       <S.Header>
@@ -41,7 +44,7 @@ const MainPage = () => {
       <S.Section>
         <S.SectionWrapper>
           <MainGrid
-            data={DummyData}
+            data={popularPost}
             mainTitle="가봤슈 사용자들의 최고 인기 여행지"
           />
           <Button color="white" type="button">
@@ -56,7 +59,7 @@ const MainPage = () => {
         />
         <S.SectionWrapper>
           <MainGrid
-            data={DummyData}
+            data={latestPost}
             mainTitle="가봤슈 사용자들의 최근 여행지"
           />
           <Button color="$main" backgroundColor="$white" type="button" border>
