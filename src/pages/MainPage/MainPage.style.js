@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Common from "styles/common";
+import { Link } from "react-router-dom";
 
 const Header = styled.div`
   position: relative;
@@ -46,6 +47,10 @@ const SectionWrapper = styled.div`
   padding: 80px 0;
 `;
 
+const LinkButton = styled(Link)`
+  text-decoration: none;
+`;
+
 const Footer = styled.div`
   width: 100%;
   height: 500px;
@@ -59,5 +64,6 @@ export default {
   HeaderCarousel,
   Section,
   SectionWrapper,
+  LinkButton,
   Footer,
 };
