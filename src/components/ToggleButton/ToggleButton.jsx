@@ -1,36 +1,87 @@
-import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Icon, Text } from "components";
+import { Text } from "components";
+import Common from "styles/common";
+import S from "./ToggleButton.style";
 
 const propTypes = {
-  children: PropTypes.number,
-  iconName: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
+  replaceChildren: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  text: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.node,
+  ]),
+  textColor: PropTypes.string,
   textSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  justify: PropTypes.string,
+  strong: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 const defaultProps = {
-  children: 10,
-  iconName: "favorite",
-  textSize: "$b3",
-  justify: "end",
+  replaceChildren: undefined,
+  text: "undefined",
+  textColor: Common.colors.black01,
+  textSize: "$c2",
+  strong: false,
+  disabled: true,
+  onClick: undefined,
+  gap: 10,
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
+const ToggleButton = ({
+  children,
+  replaceChildren,
+  onClick,
+  text,
+  textColor,
+  textSize,
+  strong,
+  disabled,
+  gap,
+}) => {
+  const [clicked, setClicked] = useState(false);
+  const [currentChild, setCurrentChild] = useState(children);
 
-const ToggleButton = ({ children, iconName, textSize, justify }) => {
-  const buttonStyle = {
-    justifyContent: justify,
+  const WrapperStyle = {
+    gap,
+    cursor: !disabled ? "pointer" : undefined,
   };
+
+  const textStyle = {
+    color: textColor,
+    fontWeight: strong ? "bold" : undefined,
+  };
+
+  const handleClicked = () => {
+    onClick();
+    setClicked(!clicked);
+  };
+
+  useEffect(() => {
+    if (!replaceChildren) return;
+
+    if (!clicked) {
+      setCurrentChild(children);
+      return;
+    }
+
+    setCurrentChild(replaceChildren);
+  }, [clicked]);
+
   return (
-    <Wrapper style={buttonStyle}>
-      <Icon name={iconName} width={30} height={30} />
-      <Text size={textSize}>{children}</Text>
-    </Wrapper>
+    <S.Wrapper onClick={handleClicked} disabled={disabled} style={WrapperStyle}>
+      <div>{currentChild}</div>
+      <S.TextWrapper style={textStyle}>
+        {typeof text === "string" || typeof text === "number" ? (
+          <Text size={textSize}>{text}</Text>
+        ) : (
+          text
+        )}
+      </S.TextWrapper>
+    </S.Wrapper>
   );
 };
 

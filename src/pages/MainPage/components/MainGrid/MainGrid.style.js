@@ -2,10 +2,21 @@ import styled from "@emotion/styled";
 import Common from "styles/common";
 
 const MainGridWrapper = styled.div`
-  width: 1200px;
-  height: fit-content;
-  border: 1px solid ${Common.colors.main_light};
+  width: 1000px;
+  height: auto;
   margin: 20px auto;
 `;
 
-export default MainGridWrapper;
+const CardWrapper = styled.div`
+  box-sizing: border-box;
+  padding: 5px;
+  &:hover {
+    background-color: ${Common.colors.gray06};
+  }
+`;
+
+const TextWrapper = styled.div`
+  margin: 20px 0;
+`;
+
+export default { MainGridWrapper, CardWrapper, TextWrapper };
