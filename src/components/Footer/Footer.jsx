@@ -50,9 +50,6 @@ const Footer = () => {
           </S.Form>
           <S.ReceptionCheck>
             <Icon
-              className={`material-symbols-outlined ${
-                checkIcon ? "active" : ""
-              }`}
               name="done"
               style={{
                 backgroundColor: `${
