@@ -5,23 +5,30 @@
 import { getChannels, getPosts } from "api/post-api";
 
 /**
- * 메인 페이지에서 사용되는 인기 순, 최신 순 게시글 요청
+ * 모든 post 요청
  */
-export default getAllPost = async () => {
+const getAllPost = async () => {
   try {
+    // 1. 채널 리스트 요청
     const channelResponse = await getChannels();
-    if (channelResponse.data) {
+    if (channelResponse) {
       const postByChannel = await Promise.all(
+        // 각 채널별 post 요청
         // eslint-disable-next-line no-underscore-dangle
-        channelResponse.data.map((channel) => getPosts(channel._id))
+        channelResponse.map((channel) => getPosts(channel._id))
       );
-      const posts = channelResponse.data.map((channel, index) => ({
-        ...channel,
-        posts: postByChannel[index],
-      }));
+      // { 채널 이름: 채널 정보 + 포스트 정보 } 객체 변환
+      const posts = channelResponse.reduce(
+        (result, channel, index) => ({
+          ...result,
+          [channel.name]: { ...channel, posts: postByChannel[index] },
+        }),
+        {}
+      );
       return posts;
     }
   } catch (exception) {
     console.error(exception);
   }
 };
+export default getAllPost;
