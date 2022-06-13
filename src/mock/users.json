@@ -1,0 +1,42 @@
+[
+  {
+    "image": "https://picsum.photos/200?1",
+    "posts": [1, 2, 3, 4, 5],
+    "followers": [1, 2, 3],
+    "_id": "1",
+    "fullName": "yongsang",
+    "email": "yongsang@gmail.com"
+  },
+  {
+    "image": "https://picsum.photos/200?2",
+    "posts": [1, 2, 3, 4, 5, 6, 7],
+    "followers": [1, 2, 3, 4, 5],
+    "_id": "2",
+    "fullName": "seungbeom",
+    "email": "seungbeom@gmail.com"
+  },
+  {
+    "image": "https://picsum.photos/200?3",
+    "posts": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "followers": [1, 2, 3, 4, 5, 6, 7],
+    "_id": "3",
+    "fullName": "seungyeon",
+    "email": "seungyeon@gmail.com"
+  },
+  {
+    "image": "https://picsum.photos/200?4",
+    "posts": [1, 2, 3, 4, 5, 6, 7],
+    "followers": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "_id": "4",
+    "fullName": "jiyeong",
+    "email": "jiyeong@gmail.com"
+  },
+  {
+    "image": "https://picsum.photos/200?5",
+    "posts": [1, 2, 3, 4, 5, 6, 7, 8],
+    "followers": [1, 2, 3, 4, 5],
+    "_id": "5",
+    "fullName": "yeonju",
+    "email": "yeonju@gmail.com"
+  }
+]

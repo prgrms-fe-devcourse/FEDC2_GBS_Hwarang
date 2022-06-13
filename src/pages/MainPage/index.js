@@ -4,14 +4,11 @@ import S from "./MainPage.style";
 // import ImageData from "./components/SliderImage/ImageData";
 import MainGrid from "./components/MainGrid";
 import DummyData from "./dummyData";
+import Footer from "../../components/Footer";
 
 const MainPage = () => {
   return (
     <div>
-      <S.NavBar>
-        {/* Navigation Bar */}
-        가봤슈 Navigation Bar
-      </S.NavBar>
       <S.Header>
         <S.HeaderCarousel>
           {/* Main Carousel */}
@@ -67,7 +64,7 @@ const MainPage = () => {
           </Button>
         </div>
       </S.Section>
-      <S.Footer>Footer</S.Footer>
+      <Footer />
     </div>
   );
 };

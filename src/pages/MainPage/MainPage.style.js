@@ -16,7 +16,6 @@ const Header = styled.div`
   display: block;
   width: 100%;
   height: 750px;
-  padding-top: 80px;
 `;
 
 const HeaderText = styled.div`
