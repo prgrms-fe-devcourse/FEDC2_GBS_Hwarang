@@ -13,7 +13,7 @@ const MainPage = () => {
         <S.HeaderInput /* absolute Position Input */ />
       </S.Header>
       <S.Section>
-        <div>
+        <S.SectionWrapper>
           <MainGrid
             data={DummyData}
             mainTitle="가봤슈 사용자들의 최고 인기 여행지"
@@ -21,14 +21,14 @@ const MainPage = () => {
           <Button color="white" type="button">
             더보기
           </Button>
-        </div>
+        </S.SectionWrapper>
         <Image
           /* Marketing Image */
           src="https://user-images.githubusercontent.com/72294509/172774786-3db0d345-a7e9-4f30-99bc-adf56a82d87d.png"
           width="100%"
           height="100%"
         />
-        <div>
+        <S.SectionWrapper>
           <MainGrid
             data={DummyData}
             mainTitle="가봤슈 사용자들의 최근 여행지"
@@ -36,7 +36,7 @@ const MainPage = () => {
           <Button color="$main" backgroundColor="$white" type="button" border>
             더보기
           </Button>
-        </div>
+        </S.SectionWrapper>
       </S.Section>
       <S.Footer>Footer</S.Footer>
     </div>

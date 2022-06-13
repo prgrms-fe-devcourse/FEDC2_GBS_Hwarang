@@ -47,6 +47,7 @@ const ToggleButton = ({
 
   const WrapperStyle = {
     gap,
+    cursor: !disabled ? "pointer" : undefined,
   };
 
   const textStyle = {

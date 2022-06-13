@@ -1,16 +1,6 @@
 import styled from "@emotion/styled";
 import Common from "styles/common";
 
-const NavBar = styled.nav`
-  position: fixed;
-  z-index: 1000;
-  background-color: ${Common.colors.white};
-  font-size: ${Common.fontSize.h1};
-  width: 100%;
-  height: 80px;
-  border: 1px solid black;
-`;
-
 const Header = styled.div`
   position: relative;
   display: block;
@@ -51,19 +41,9 @@ const Section = styled.div`
   align-items: center;
 `;
 
-const Button = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const SectionWrapper = styled.div`
   box-sizing: border-box;
-  width: 150px;
-  height: 50px;
-  font-size: ${Common.fontSize.b2};
-  color: ${Common.colors.main};
-  border: 1px solid ${Common.colors.main};
-  border-radius: 10px;
-  text-align: center;
-  margin: 0 auto;
+  padding: 80px 0;
 `;
 
 const Footer = styled.div`
@@ -73,12 +53,11 @@ const Footer = styled.div`
 `;
 
 export default {
-  NavBar,
   Header,
-  Button,
   HeaderInput,
   HeaderText,
   HeaderCarousel,
   Section,
+  SectionWrapper,
   Footer,
 };
