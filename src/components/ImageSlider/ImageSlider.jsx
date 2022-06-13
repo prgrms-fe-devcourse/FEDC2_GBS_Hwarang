@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
+// import Slide from "components/Slide";
 import * as IS from "./ImageSlider.style";
 
 const ImageSlider = ({ children, width, height }) => {
@@ -38,7 +39,12 @@ const ImageSlider = ({ children, width, height }) => {
   }, [currentSlide]);
   return (
     <IS.Container style={{ ...sliderStyle }}>
-      <IS.SliderContainer ref={slideRef}>{slides}</IS.SliderContainer>
+      <IS.SliderContainer ref={slideRef}>
+        {slides}
+        {/* {children.map((item) => (
+          <Slide src={item.src} style={{ ...sliderStyle }} />
+        ))} */}
+      </IS.SliderContainer>
       <IS.Center>
         <IS.Button style={{ left: 100 }} onClick={prevSlide}>
           이전

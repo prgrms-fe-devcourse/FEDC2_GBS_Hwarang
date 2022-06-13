@@ -1,6 +1,7 @@
 import React from "react";
-import { Button, Image, Slide, ImageSlider } from "components";
+import { Button, Image, ImageSlider, Slide } from "components";
 import S from "./MainPage.style";
+// import ImageData from "./components/SliderImage/ImageData";
 import MainGrid from "./components/MainGrid";
 import DummyData from "./dummyData";
 
@@ -14,26 +15,26 @@ const MainPage = () => {
       <S.Header>
         <S.HeaderCarousel>
           {/* Main Carousel */}
-          <ImageSlider width="100vw" height="750px">
+          <ImageSlider width="100vw" height="auto">
             <Slide
               width="100vw"
               height="750px"
-              src="https://picsum.photos/200?1"
+              src="https://mblogthumb-phinf.pstatic.net/20121112_70/lomi__1352646431472qslOl_JPEG/2560-1200%BF%B9%BB%DB%B9%D9%C5%C1%C8%AD%B8%E9%C0%CC%B9%CC%C1%F6.jpg?type=w2"
             />
             <Slide
               width="100vw"
               height="750px"
-              src="https://picsum.photos/200?2"
+              src="https://mblogthumb-phinf.pstatic.net/20121112_70/lomi__1352646431472qslOl_JPEG/2560-1200%BF%B9%BB%DB%B9%D9%C5%C1%C8%AD%B8%E9%C0%CC%B9%CC%C1%F6.jpg?type=w2"
             />
             <Slide
               width="100vw"
               height="750px"
-              src="https://picsum.photos/200?3"
+              src="https://mblogthumb-phinf.pstatic.net/20121112_70/lomi__1352646431472qslOl_JPEG/2560-1200%BF%B9%BB%DB%B9%D9%C5%C1%C8%AD%B8%E9%C0%CC%B9%CC%C1%F6.jpg?type=w2"
             />
             <Slide
               width="100vw"
               height="750px"
-              src="https://picsum.photos/200?4"
+              src="https://mblogthumb-phinf.pstatic.net/20121112_70/lomi__1352646431472qslOl_JPEG/2560-1200%BF%B9%BB%DB%B9%D9%C5%C1%C8%AD%B8%E9%C0%CC%B9%CC%C1%F6.jpg?type=w2"
             />
           </ImageSlider>
         </S.HeaderCarousel>
