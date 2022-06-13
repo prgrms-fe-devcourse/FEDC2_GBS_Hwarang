@@ -21,7 +21,7 @@ const HeaderInput = styled.input`
 
 const Section = styled.div`
   box-sizing: border-box;
-  height: 1500px;
+  height: auto;
   width: 100%;
   background-color: ${Common.colors.main_light};
 `;

@@ -1,5 +1,6 @@
-import { Footer } from "components";
+import { Footer, PostList } from "components";
 import React from "react";
+import DummyData from "pages/MainPage/dummyData";
 import S from "./PostList.style";
 
 const PostListPage = () => {
@@ -17,7 +18,7 @@ const PostListPage = () => {
         </buttonSection>
       </S.Header>
       <S.Section /* PostList 렌더링 */>
-        <postList /* 검색 결과에 따른 PostList */ />
+        <PostList data={DummyData} />
       </S.Section>
       <Footer />
     </div>
