@@ -5,7 +5,6 @@ export const Container = styled.div`
 `;
 
 export const Icon = styled.span`
-  /* position: absolute; */
   position: absolute;
   top: 300px;
   font-size: 50px;
@@ -13,8 +12,6 @@ export const Icon = styled.span`
 `;
 
 export const ButtonContainer = styled.div`
-  /* display: flex;
-  justify-content: space-between; */
   padding: 20px;
 `;
 
