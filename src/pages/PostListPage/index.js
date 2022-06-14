@@ -1,14 +1,39 @@
-import { Footer, PostList } from "components";
-import React from "react";
+import { PostList } from "components";
+import React, { useEffect, useState } from "react";
 import DummyData from "pages/MainPage/dummyData";
 import S from "./PostList.style";
 
 const PostListPage = () => {
+  const [folded, setFolded] = useState(false);
+
+  const handleHeader = () => {
+    if (window.pageYOffset > 800) {
+      setFolded(true);
+      return;
+    }
+
+    setFolded(false);
+  };
+
+  const handleScroll = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener("scroll", handleHeader);
+    };
+    watch();
+    return () => {
+      window.removeEventListener("scroll", handleHeader);
+    };
+  }, []);
+
   return (
-    <div>
-      <S.Header /* Header */>
+    <S.PageWrapper>
+      <S.Header /* Header */ className={folded ? "fold__header" : ""}>
         <S.HeaderInput
-          /* Input */
+          className={folded ? "fold__input" : ""}
           placeholder="가고 싶은 여행지를 입력해주세요!"
         />
         <div className="select-area">
@@ -20,8 +45,17 @@ const PostListPage = () => {
       <S.Section /* PostList 렌더링 */>
         <PostList data={DummyData} listTitle="검색 결과" />
       </S.Section>
-      <Footer />
-    </div>
+      <S.GotoTopButton
+        width={50}
+        height={50}
+        onClick={() => {
+          console.log("click");
+          handleScroll();
+        }}
+      >
+        Top
+      </S.GotoTopButton>
+    </S.PageWrapper>
   );
 };
 

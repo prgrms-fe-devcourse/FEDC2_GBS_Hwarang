@@ -17,6 +17,7 @@ export const allPost = selector({
   },
 });
 
+/* MainPage */
 export const mainPost = selector({
   key: "mainPost",
   get: ({ get }) => {
@@ -40,6 +41,45 @@ export const mainPost = selector({
 
     return {
       popularPost: popular,
+      latestPost: latest,
+    };
+  },
+});
+
+/* MainPage 더보기 버튼 -> postListPage */
+export const popularPost = selector({
+  key: "popularPost",
+  get: ({ get }) => {
+    const data = get(allPost).map((post) => ({
+      ...post,
+      comments: post.comments.length,
+      likes: post.likes.length,
+    }));
+
+    const popular = data.sort((a, b) => b.likes - a.likes);
+
+    return {
+      popularPost: popular,
+    };
+  },
+});
+
+export const latestPost = selector({
+  key: "latestPost",
+  get: ({ get }) => {
+    const data = get(allPost).map((post) => ({
+      ...post,
+      comments: post.comments.length,
+      likes: post.likes.length,
+    }));
+
+    const latest = data.sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+      return dateB.getTime() - dateA.getTime();
+    });
+
+    return {
       latestPost: latest,
     };
   },
