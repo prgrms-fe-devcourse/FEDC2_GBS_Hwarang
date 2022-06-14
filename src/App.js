@@ -6,11 +6,7 @@ import Navigation from "components/Navigation";
 import { useSetRecoilState } from "recoil";
 import { postManager } from "recoil/post";
 import getAllPost from "repository/postRepository";
-<<<<<<< HEAD
 import { MainPage, PostListPage } from "./pages";
-=======
-import MainPage from "./pages";
->>>>>>> 0e4ee6c ([feat]: recoil에 post 정보 저장 및 main post 리스트 연동 완료)
 
 function App() {
   const setPosts = useSetRecoilState(postManager);
