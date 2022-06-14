@@ -1,12 +1,16 @@
 import React from "react";
 import { Button, Image, ImageSlider, Footer } from "components";
+import { useRecoilValue } from "recoil";
+import { mainPost } from "recoil/post";
 import Common from "styles/common";
 import S from "./MainPage.style";
 import ImageData from "./components/SliderImage/ImageData";
 import MainGrid from "./components/MainGrid";
-import DummyData from "./dummyData";
+import MainInput from "./components/MainInput";
 
 const MainPage = () => {
+  const { popularPost, latestPost } = useRecoilValue(mainPost);
+
   return (
     <div>
       <S.Header>
@@ -16,12 +20,12 @@ const MainPage = () => {
           </ImageSlider>
         </S.HeaderCarousel>
         <S.HeaderText>여기 가봤슈?</S.HeaderText>
-        <S.HeaderInput /* absolute Position Input */ />
+        <MainInput />
       </S.Header>
       <S.Section>
         <S.SectionWrapper>
           <MainGrid
-            data={DummyData}
+            data={popularPost}
             mainTitle="가봤슈 사용자들의 최고 인기 여행지"
           />
           <Button color="white" type="button">
@@ -32,13 +36,13 @@ const MainPage = () => {
         </S.SectionWrapper>
         <Image
           /* Marketing Image */
-          src="https://user-images.githubusercontent.com/72294509/172774786-3db0d345-a7e9-4f30-99bc-adf56a82d87d.png"
+          src="https://mygbs.s3.ap-northeast-2.amazonaws.com/marketing/marketing_Image+(1).png"
           width="100%"
           height="100%"
         />
         <S.SectionWrapper>
           <MainGrid
-            data={DummyData}
+            data={latestPost}
             mainTitle="가봤슈 사용자들의 최근 여행지"
           />
           <Button color="$main" backgroundColor="$white" type="button" border>

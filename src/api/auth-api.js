@@ -22,10 +22,10 @@ export const userLogout = async () => {
   await axios.post(`${BASE_URL}${LOGOUT}`);
 };
 
-export const userAuth = async () => {
+export const userAuth = async (token) => {
   const res = await axios.get(`${BASE_URL}${AUTH_USER}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `${token}`,
     },
   });
   return res;

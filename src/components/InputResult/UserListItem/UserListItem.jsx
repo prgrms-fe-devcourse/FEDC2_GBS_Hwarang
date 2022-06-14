@@ -5,6 +5,8 @@ import Avatar from "components/Avatar";
 import Text from "components/Text";
 import IconGroup from "components/IconGroup";
 import Icon from "components/Icon";
+import Image from "components/Image";
+import likesClickedSvg from "assets/likes_clicked.svg";
 import * as S from "./UserListItem.style";
 
 const propTypes = {
@@ -18,7 +20,8 @@ const defaultProps = {
 };
 
 const UserListItem = ({ width, user, ...props }) => {
-  const { _id, fullName, image, email, posts, followers } = user;
+  const { _id, fullName, image, email, posts, followers, isOnline, isFollow } =
+    user;
   const sizeStyle = {
     width,
   };
@@ -35,7 +38,18 @@ const UserListItem = ({ width, user, ...props }) => {
       }}
       {...props}
     >
-      <Avatar src={image} style={{ marginRight: 24 }} />
+      <div style={{ position: "relative" }}>
+        <Avatar src={image} style={{ marginRight: 24 }} />
+        {isFollow && (
+          <Image
+            src={likesClickedSvg}
+            width={25}
+            height={25}
+            mode="contain"
+            style={{ position: "absolute", top: 0, left: 0 }}
+          />
+        )}
+      </div>
       <S.Container>
         <Text size="$c1" strong>
           {fullName}
@@ -47,6 +61,7 @@ const UserListItem = ({ width, user, ...props }) => {
           <Icon name="person" fontSize={14} />
           <Text size={12}>{followers.length}</Text>
         </IconGroup>
+        {isOnline && <S.OnlineDot />}
       </S.Container>
     </S.ListItem>
   );

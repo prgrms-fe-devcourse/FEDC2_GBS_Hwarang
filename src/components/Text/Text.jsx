@@ -10,6 +10,7 @@ const propTypes = {
   strong: PropTypes.bool,
   underline: PropTypes.bool,
   color: PropTypes.string,
+  style: PropTypes.instanceOf(Object),
 };
 
 const defaultProps = {
@@ -19,6 +20,7 @@ const defaultProps = {
   strong: false,
   underline: false,
   color: Common.colors.black01,
+  style: null,
 };
 
 const Text = ({
@@ -29,6 +31,7 @@ const Text = ({
   block,
   paragraph,
   color,
+  ...props
 }) => {
   const paragraphTag = paragraph ? "p" : "span";
   const Tag = block ? "div" : paragraphTag;
@@ -45,7 +48,7 @@ const Text = ({
     color: fontColor,
   };
 
-  return <Tag style={fontStyle}>{children}</Tag>;
+  return <Tag style={{ ...fontStyle, ...props.style }}>{children}</Tag>;
 };
 
 Text.propTypes = propTypes;

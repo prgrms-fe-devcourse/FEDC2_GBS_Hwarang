@@ -11,4 +11,5 @@ export { default as ImageSlider } from "./ImageSlider";
 export { default as Slide } from "./Slide";
 export { default as Popup } from "./Popup";
 export { default as Footer } from "./Footer";
+export { default as PostList } from "./PostList";
 export { default as PostListFilter } from "./PostListFilter";

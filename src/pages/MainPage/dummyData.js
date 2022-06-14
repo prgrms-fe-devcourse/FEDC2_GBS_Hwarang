@@ -178,6 +178,154 @@ const DummyData = [
     createdAt: "2022-06-08",
     updatedAt: "2022-06-08",
   },
+  {
+    likes: [
+      {
+        _id: "likeId7-1",
+        user: "UserId700", // 사용자 id
+        post: "postId7", // 포스트 id
+        createdAt: "2022-06-12",
+        updatedAt: "2022-06-12",
+      },
+    ],
+    comments: [
+      {
+        _id: "commentId7-1",
+        comment: "멋져용",
+        author: "UserId71",
+        post: "postId7", // 포스트 id
+        createdAt: "2022-06-09",
+        updatedAt: "2022-06-09",
+      },
+    ],
+    _id: "postId7",
+    image: "https://img.hankyung.com/photo/201809/AA.17827365.1.jpg",
+    imagePublicId: "imgPublicId",
+    title: "해남 땅끝마을 방문기",
+    channel: "한국",
+    author: "User7",
+    createdAt: "2022-06-11",
+    updatedAt: "2022-06-11",
+  },
+  {
+    likes: [
+      {
+        _id: "likeId8-1",
+        user: "UserId800", // 사용자 id
+        post: "postId8", // 포스트 id
+        createdAt: "2022-06-10",
+        updatedAt: "2022-06-10",
+      },
+    ],
+    comments: [
+      {
+        _id: "commentId8-1",
+        comment: "멋져용",
+        author: "UserId81",
+        post: "postId8", // 포스트 id
+        createdAt: "2022-06-09",
+        updatedAt: "2022-06-09",
+      },
+    ],
+    _id: "postId8",
+    image: "https://t1.daumcdn.net/cfile/tistory/990374445C3830C032",
+    imagePublicId: "imgPublicId",
+    title: "한국에서 작은 중국을 경험할 수 있다?",
+    channel: "한국",
+    author: "User8",
+    createdAt: "2022-06-09",
+    updatedAt: "2022-06-09",
+  },
+  {
+    likes: [
+      {
+        _id: "likeId9-1",
+        user: "UserId900", // 사용자 id
+        post: "postId9", // 포스트 id
+        createdAt: "2022-06-10",
+        updatedAt: "2022-06-10",
+      },
+    ],
+    comments: [
+      {
+        _id: "commentId9-1",
+        comment: "멋져용",
+        author: "UserId91",
+        post: "postId9", // 포스트 id
+        createdAt: "2022-06-09",
+        updatedAt: "2022-06-09",
+      },
+    ],
+    _id: "postId9",
+    image:
+      "https://post-phinf.pstatic.net/MjAyMDA5MjJfMjUw/MDAxNjAwNzYwNjU5NzM3.5gVw1WtTwHX11efyd905LyyC5t9Fj_WHqnWJ-sKMonwg.xda6ivv5MRVpSPEdoho99iTM30StgSm9ONTfZP3GH8og.JPEG/dcac7be6-cdfe-34b4-eed8-432a5a094e1a-1000.jpg?type=w1200",
+    imagePublicId: "imgPublicId",
+    title: "가평 글램핑장 추천",
+    channel: "한국",
+    author: "User9",
+    createdAt: "2022-06-08",
+    updatedAt: "2022-06-08",
+  },
+  {
+    likes: [
+      {
+        _id: "likeId10-1",
+        user: "UserId1000", // 사용자 id
+        post: "postId10", // 포스트 id
+        createdAt: "2022-06-10",
+        updatedAt: "2022-06-10",
+      },
+    ],
+    comments: [
+      {
+        _id: "commentId10-1",
+        comment: "멋져용",
+        author: "UserId101",
+        post: "postId10", // 포스트 id
+        createdAt: "2022-06-09",
+        updatedAt: "2022-06-09",
+      },
+    ],
+    _id: "postId10",
+    image:
+      "https://www.yongpyong.co.kr/images/kor/skiNboard/img_yongpyongski07.png",
+    imagePublicId: "imgPublicId",
+    title: "1박 2일 스키장 코스",
+    channel: "한국",
+    author: "User10",
+    createdAt: "2022-06-08",
+    updatedAt: "2022-06-08",
+  },
+  {
+    likes: [
+      {
+        _id: "likeId11-1",
+        user: "UserId1100", // 사용자 id
+        post: "postId11", // 포스트 id
+        createdAt: "2022-06-10",
+        updatedAt: "2022-06-10",
+      },
+    ],
+    comments: [
+      {
+        _id: "commentId11-1",
+        comment: "멋져용",
+        author: "UserId111",
+        post: "postId11", // 포스트 id
+        createdAt: "2022-06-09",
+        updatedAt: "2022-06-09",
+      },
+    ],
+    _id: "postId11",
+    image:
+      "https://file.mk.co.kr/meet/neds/2021/06/image_readtop_2021_533475_16226191374667420.png",
+    imagePublicId: "imgPublicId",
+    title: "오션월드로 떠나요",
+    channel: "한국",
+    author: "User11",
+    createdAt: "2022-06-08",
+    updatedAt: "2022-06-08",
+  },
 ];
 
 export default DummyData;

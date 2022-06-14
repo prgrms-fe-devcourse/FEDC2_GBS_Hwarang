@@ -22,9 +22,9 @@ const defaultProps = {
 
 const Popup = ({ children, show, type, size, dim, onClose }) => {
   const handleOnClose = () => {
-    if (onClose && show) onClose();
+    if (onClose) onClose();
   };
-  const ref = useClickAway(handleOnClose);
+  const ref = useClickAway(() => handleOnClose());
 
   return (
     <PopupWrapper className={show ? "popup__wrap_show" : ""} type={type}>

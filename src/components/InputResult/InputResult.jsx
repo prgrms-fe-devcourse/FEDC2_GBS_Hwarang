@@ -11,6 +11,7 @@ const propTypes = {
   keyword: PropTypes.string,
   options: PropTypes.instanceOf(Array),
   inputType: PropTypes.string,
+  type: PropTypes.oneOf(["all", "none"]),
 };
 
 const defaultProps = {
@@ -20,25 +21,36 @@ const defaultProps = {
   keyword: "",
   options: ["title"],
   inputType: "post",
+  type: "none",
 };
 
-const InputResult = ({ width, height, data, keyword, options, inputType }) => {
+const InputResult = ({
+  width,
+  height,
+  data,
+  keyword,
+  options,
+  inputType,
+  type,
+}) => {
   const sizeStyle = {
     width,
     height,
   };
 
+  const isNoneResult = !keyword && type === "none";
+
   return (
     <div>
-      {keyword && (
+      {!isNoneResult && (
         <S.Container style={sizeStyle}>
           {data
-            .filter((item) =>
-              options.some(
+            .filter((item) => {
+              return options.some(
                 (key) =>
                   item[key].toLowerCase().indexOf(keyword.toLowerCase()) >= 0
-              )
-            )
+              );
+            })
             .map((item) => {
               const { _id } = item;
               return (
