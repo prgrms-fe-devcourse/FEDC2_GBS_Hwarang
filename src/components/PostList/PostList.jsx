@@ -19,8 +19,13 @@ const PostList = ({ data, listTitle }) => {
       </S.ListTitleWrapper>
       {data.map((post) => {
         const { _id, image, title, author, createdAt, likes, comments } = post;
+
+        const handleOnClick = (id) => {
+          alert(id);
+        };
+
         return (
-          <S.PostListItemWrapper key={_id}>
+          <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
             <PostListItem
               src={image}
               title={title}

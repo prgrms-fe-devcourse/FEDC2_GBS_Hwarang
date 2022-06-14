@@ -59,7 +59,9 @@ const PostListItem = ({
       <S.numWrapper>
         <ToggleButton
           disabled={false}
-          onClick={() => console.log("Clicked!")}
+          onClick={() => {
+            console.log("Clicked!");
+          }}
           replaceChildren={
             <Image
               src={likesClickedSvg}
