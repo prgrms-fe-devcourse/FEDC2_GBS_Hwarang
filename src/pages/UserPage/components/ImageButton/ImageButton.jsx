@@ -6,7 +6,7 @@ import Input from "components/Input";
 import Image from "components/Image";
 import { jwtToken } from "recoil/authentication";
 import { profileImg, coverImg } from "recoil/user";
-import { uploadCoverImage, uploadProfileImage } from "api/auth-api";
+import { uploadCoverImage, uploadProfileImage } from "api/user-api";
 import * as S from "./ImageButton.style";
 
 const propType = {
