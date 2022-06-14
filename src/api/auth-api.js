@@ -1,5 +1,13 @@
 import axios from "axios";
-import { AUTH_USER, BASE_URL, LOGIN, LOGOUT, SIGNUP } from "./url";
+import {
+  AUTH_USER,
+  BASE_URL,
+  LOGIN,
+  LOGOUT,
+  SIGNUP,
+  UPLOAD_PROFILE,
+  UPLOAD_COVER,
+} from "./url";
 
 export const userLogin = async (email, password) => {
   const res = await axios.post(`${BASE_URL}${LOGIN}`, {
@@ -32,18 +40,22 @@ export const userAuth = async (token) => {
   return res;
 };
 
-export const uploadImage = async (image, isCover, token) => {
-  const res = await axios.post(
-    `${API_END_POINT}/users/upload-photo`,
-    {
-      isCover,
-      image,
+export const uploadCoverImage = async (file, token) => {
+  const res = await axios.post(`${BASE_URL}${UPLOAD_COVER}`, file, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "content-type": "multipart/form-data",
     },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  });
+  return res;
+};
+
+export const uploadProfileImage = async (file, token) => {
+  const res = await axios.post(`${BASE_URL}${UPLOAD_PROFILE}`, file, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return res;
 };

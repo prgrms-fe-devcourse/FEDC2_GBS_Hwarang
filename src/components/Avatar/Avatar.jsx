@@ -47,7 +47,7 @@ const Avatar = ({
   }, [src]);
 
   return (
-    <S.AvatarWrapper shape={shape} style={{ ...props.style }}>
+    <S.AvatarWrapper shape={shape} style={{ ...props.style }} {...props}>
       <ImageComponent
         block
         lazy={lazy}
