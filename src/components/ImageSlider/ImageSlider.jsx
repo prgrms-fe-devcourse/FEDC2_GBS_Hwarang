@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import * as IS from "./ImageSlider.style";
+import Slide from "../Slide";
 
 const ImageSlider = ({ children, width, height }) => {
   const sliderStyle = {
@@ -25,18 +26,7 @@ const ImageSlider = ({ children, width, height }) => {
     }, [delay]);
   };
 
-  const items = React.Children.toArray(children);
-  const TOTAL_SLIDES = items.length - 1;
-
-  // const setSlides = () => {
-  //   const addFront = [];
-  //   const addLast = [];
-  //   addLast.push(items[0]);
-  //   addFront.push(items[TOTAL_SLIDES]);
-  //   return [...addFront, ...items, ...addLast];
-  // };
-
-  // const slides = setSlides();
+  const TOTAL_SLIDES = children.length - 1;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
@@ -69,18 +59,17 @@ const ImageSlider = ({ children, width, height }) => {
 
   return (
     <IS.Container style={{ ...sliderStyle }}>
-      <IS.SliderContainer ref={slideRef}>
-        {items}
-        {/* {children.map((item) => (
-          <Slide src={item.src} style={{ ...sliderStyle }} />
-        ))} */}
+      <IS.SliderContainer className="hi" ref={slideRef}>
+        {children.map((item) => (
+          <Slide src={item.src} />
+        ))}
       </IS.SliderContainer>
       <IS.ButtonContainer>
         <IS.Icon
           role="button"
           onClick={prevSlide}
           className="material-symbols-outlined"
-          onKeyDown=""
+          onKeyDown={() => {}}
           tabIndex={0}
         >
           arrow_back_ios
@@ -90,7 +79,7 @@ const ImageSlider = ({ children, width, height }) => {
           style={{ right: 0 }}
           onClick={nextSlide}
           className="material-symbols-outlined"
-          onKeyDown=""
+          onKeyDown={() => {}}
           tabIndex={0}
         >
           arrow_forward_ios
@@ -110,8 +99,8 @@ ImageSlider.propTypes = {
 };
 
 ImageSlider.defaultProps = {
-  width: 400,
-  height: 400,
+  width: "100%",
+  height: "100%",
 };
 
 export default ImageSlider;

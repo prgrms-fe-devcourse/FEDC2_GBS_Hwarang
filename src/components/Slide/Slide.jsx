@@ -4,13 +4,8 @@ import * as S from "./Slide.style";
 import Image from "../Image";
 
 const Slide = ({ src, width, height }) => {
-  const slideStyle = {
-    width,
-    height,
-  };
-
   return (
-    <S.SlideWrapper style={{ ...slideStyle }}>
+    <S.SlideWrapper className="hhh">
       <Image src={src} width={width} height={height} />
     </S.SlideWrapper>
   );

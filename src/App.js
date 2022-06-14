@@ -1,6 +1,5 @@
 /** @format */
 
-// import { PostListFilter } from "components";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "components/Navigation";
@@ -19,11 +18,6 @@ function App() {
       </Router>
     </div>
   );
-  // return (
-  //   <div>
-  //     <PostListFilter />
-  //   </div>
-  // );
 }
 
 export default App;
