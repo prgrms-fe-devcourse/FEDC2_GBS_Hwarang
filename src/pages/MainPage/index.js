@@ -1,12 +1,16 @@
 import React from "react";
 import { Button, Image, ImageSlider, Slide, Footer } from "components";
+import { useRecoilValue } from "recoil";
+import { mainPost } from "recoil/post";
 import Common from "styles/common";
 import S from "./MainPage.style";
 // import ImageData from "./components/SliderImage/ImageData";
 import MainGrid from "./components/MainGrid";
-import DummyData from "./dummyData";
+import MainInput from "./components/MainInput";
 
 const MainPage = () => {
+  const { popularPost, latestPost } = useRecoilValue(mainPost);
+
   return (
     <div>
       <S.Header>
@@ -16,32 +20,32 @@ const MainPage = () => {
             <Slide
               width="100vw"
               height="750px"
-              src="https://mblogthumb-phinf.pstatic.net/20121112_70/lomi__1352646431472qslOl_JPEG/2560-1200%BF%B9%BB%DB%B9%D9%C5%C1%C8%AD%B8%E9%C0%CC%B9%CC%C1%F6.jpg?type=w2"
+              src="https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg"
             />
             <Slide
               width="100vw"
               height="750px"
-              src="https://mblogthumb-phinf.pstatic.net/20121112_70/lomi__1352646431472qslOl_JPEG/2560-1200%BF%B9%BB%DB%B9%D9%C5%C1%C8%AD%B8%E9%C0%CC%B9%CC%C1%F6.jpg?type=w2"
+              src="https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg"
             />
             <Slide
               width="100vw"
               height="750px"
-              src="https://mblogthumb-phinf.pstatic.net/20121112_70/lomi__1352646431472qslOl_JPEG/2560-1200%BF%B9%BB%DB%B9%D9%C5%C1%C8%AD%B8%E9%C0%CC%B9%CC%C1%F6.jpg?type=w2"
+              src="https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg"
             />
             <Slide
               width="100vw"
               height="750px"
-              src="https://mblogthumb-phinf.pstatic.net/20121112_70/lomi__1352646431472qslOl_JPEG/2560-1200%BF%B9%BB%DB%B9%D9%C5%C1%C8%AD%B8%E9%C0%CC%B9%CC%C1%F6.jpg?type=w2"
+              src="https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg"
             />
           </ImageSlider>
         </S.HeaderCarousel>
         <S.HeaderText>여기 가봤슈?</S.HeaderText>
-        <S.HeaderInput /* absolute Position Input */ />
+        <MainInput />
       </S.Header>
       <S.Section>
         <S.SectionWrapper>
           <MainGrid
-            data={DummyData.slice(0, 6)}
+            data={popularPost}
             mainTitle="가봤슈 사용자들의 최고 인기 여행지"
           />
           <Button color="white" type="button">
@@ -58,7 +62,7 @@ const MainPage = () => {
         />
         <S.SectionWrapper>
           <MainGrid
-            data={DummyData.slice(0, 6)}
+            data={latestPost}
             mainTitle="가봤슈 사용자들의 최근 여행지"
           />
           <Button color="$main" backgroundColor="$white" type="button" border>

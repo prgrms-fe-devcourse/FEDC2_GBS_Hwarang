@@ -11,6 +11,7 @@ const propTypes = {
   alt: PropTypes.string,
   mode: PropTypes.string,
   block: PropTypes.bool,
+  style: PropTypes.instanceOf(Object),
 };
 
 const defaultProps = {
@@ -22,6 +23,7 @@ const defaultProps = {
   alt: "Image",
   mode: "cover",
   block: true,
+  style: {},
 };
 
 let observer = null;
@@ -45,6 +47,7 @@ const Image = ({
   alt,
   mode,
   block,
+  ...props
 }) => {
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef(null);
@@ -85,7 +88,7 @@ const Image = ({
       ref={imgRef}
       src={loaded ? src : placeholder}
       alt={alt}
-      style={{ ...imageStyle }}
+      style={{ ...imageStyle, ...props.style }}
     />
   );
 };
