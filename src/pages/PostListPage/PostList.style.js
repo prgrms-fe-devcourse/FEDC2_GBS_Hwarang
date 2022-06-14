@@ -22,6 +22,7 @@ const Section = styled.div`
   box-sizing: border-box;
   height: auto;
   width: 100%;
+  padding: 80px 0;
 `;
 
 export default { Header, HeaderInput, Section };

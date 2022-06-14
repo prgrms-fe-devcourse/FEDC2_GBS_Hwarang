@@ -12,11 +12,11 @@ const propTypes = {
 const PostList = ({ data, listTitle }) => {
   return (
     <S.PostListWrapper>
-      <S.listTitleWrapper>
+      <S.ListTitleWrapper>
         <Text strong size="$b1">
           {listTitle}
         </Text>
-      </S.listTitleWrapper>
+      </S.ListTitleWrapper>
       {data.map((post) => {
         const { _id, image, title, author, createdAt, likes, comments } = post;
         return (

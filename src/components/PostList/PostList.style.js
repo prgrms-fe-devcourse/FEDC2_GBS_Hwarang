@@ -6,7 +6,7 @@ const PostListWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const listTitleWrapper = styled.div`
+const ListTitleWrapper = styled.div`
   margin: 20px 0;
 `;
 
@@ -18,6 +18,7 @@ const PostListItemWrapper = styled.div`
   position: relative;
   height: 240px;
   padding: auto 0;
+  cursor: pointer;
 
   &:hover {
     background-color: ${Common.colors.gray06};
@@ -25,4 +26,4 @@ const PostListItemWrapper = styled.div`
   }
 `;
 
-export default { PostListWrapper, listTitleWrapper, PostListItemWrapper };
+export default { PostListWrapper, ListTitleWrapper, PostListItemWrapper };
