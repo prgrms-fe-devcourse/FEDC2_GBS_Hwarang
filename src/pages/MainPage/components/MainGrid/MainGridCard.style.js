@@ -12,6 +12,8 @@ const ImageDiv = styled.div`
   width: 100%;
   height: 100%;
   flex-shrink: 1;
+  border-radius: 5px;
+  overflow: hidden;
 `;
 
 const TextDiv = styled.div`

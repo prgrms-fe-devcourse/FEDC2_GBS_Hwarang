@@ -56,7 +56,7 @@ const MainPage = () => {
         </S.SectionWrapper>
         <Image
           /* Marketing Image */
-          src="https://user-images.githubusercontent.com/72294509/172774786-3db0d345-a7e9-4f30-99bc-adf56a82d87d.png"
+          src="https://mygbs.s3.ap-northeast-2.amazonaws.com/marketing/marketing_Image+(1).png"
           width="100%"
           height="100%"
         />

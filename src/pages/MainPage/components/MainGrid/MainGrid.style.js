@@ -10,8 +10,10 @@ const MainGridWrapper = styled.div`
 const CardWrapper = styled.div`
   box-sizing: border-box;
   padding: 5px;
+
   &:hover {
     background-color: ${Common.colors.gray06};
+    transition: background-color 0.1s ease-out;
   }
 `;
 
