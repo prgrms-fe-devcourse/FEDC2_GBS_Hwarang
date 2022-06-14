@@ -1,13 +1,5 @@
 import axios from "axios";
-import {
-  AUTH_USER,
-  BASE_URL,
-  LOGIN,
-  LOGOUT,
-  SIGNUP,
-  UPLOAD_PROFILE,
-  UPLOAD_COVER,
-} from "./url";
+import { AUTH_USER, BASE_URL, LOGIN, LOGOUT, SIGNUP } from "./url";
 
 export const userLogin = async (email, password) => {
   const res = await axios.post(`${BASE_URL}${LOGIN}`, {
