@@ -27,7 +27,6 @@ function Login({ handleLogin, onClose, changeModalType }) {
     } catch (error) {
       setServerError(error.response.data);
     }
-
     setToken(result.data.token);
 
     handleLogin(true);

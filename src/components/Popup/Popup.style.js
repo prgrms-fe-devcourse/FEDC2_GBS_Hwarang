@@ -24,12 +24,12 @@ const position = {
 };
 
 export const PopupWrapper = styled.div`
-  opacity: 0;
+  /* opacity: 0;
   transition-property: opacity;
-  transition-duration: 0.9s;
+  transition-duration: 0.9s; */
 
   &.popup__wrap_show {
-    opacity: 1;
+    /* opacity: 1; */
   }
   &.popup__wrap_show #dim {
     position: fixed;
@@ -49,7 +49,7 @@ export const PopupWrapper = styled.div`
 `;
 
 export const PopupContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: ${({ type }) => position[type].top};
   right: ${({ type }) => position[type].right};
   left: ${({ type }) => position[type].left};
@@ -66,6 +66,7 @@ export const PopupContainer = styled.div`
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   transition-property: transform;
   transition-duration: 0.9s;
+  z-index: 1000;
 `;
 
 export const PopupCloseBtn = styled.button`
