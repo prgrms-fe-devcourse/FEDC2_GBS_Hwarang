@@ -1,4 +1,4 @@
-import { Footer } from "components";
+import { Footer, PostListFilter } from "components";
 import React from "react";
 import S from "./PostList.style";
 
@@ -6,10 +6,7 @@ const PostListPage = () => {
   return (
     <div>
       <S.Header /* Header */>
-        <S.HeaderInput
-          /* Input */
-          placeholder="가고 싶은 여행지를 입력해주세요!"
-        />
+        <PostListFilter />
         <buttonSection>
           {/* 검색 기준 */}
           <searchOptionsSelected /* 고른 options */ />
