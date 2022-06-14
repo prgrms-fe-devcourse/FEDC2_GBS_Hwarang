@@ -27,6 +27,7 @@ export const CREATE_POST = "/posts/create";
 export const GET_POST = "/posts";
 export const UPDATE_POST = "/posts/update";
 export const DELETE_POST = "/posts/delete";
+export const GET_POST_BY_ID = "/posts/author";
 
 // search
 export const SEARCH_USER = "/search/users";
