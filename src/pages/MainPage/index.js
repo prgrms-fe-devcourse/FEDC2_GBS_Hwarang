@@ -1,10 +1,10 @@
 import React from "react";
-import { Button, Image, ImageSlider, Slide, Footer } from "components";
+import { Button, Image, ImageSlider, Footer } from "components";
 import { useRecoilValue } from "recoil";
 import { mainPost } from "recoil/post";
 import Common from "styles/common";
 import S from "./MainPage.style";
-// import ImageData from "./components/SliderImage/ImageData";
+import ImageData from "./components/SliderImage/ImageData";
 import MainGrid from "./components/MainGrid";
 import MainInput from "./components/MainInput";
 
@@ -15,28 +15,8 @@ const MainPage = () => {
     <div>
       <S.Header>
         <S.HeaderCarousel>
-          {/* Main Carousel */}
-          <ImageSlider width="100vw" height="auto">
-            <Slide
-              width="100vw"
-              height="750px"
-              src="https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg"
-            />
-            <Slide
-              width="100vw"
-              height="750px"
-              src="https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg"
-            />
-            <Slide
-              width="100vw"
-              height="750px"
-              src="https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg"
-            />
-            <Slide
-              width="100vw"
-              height="750px"
-              src="https://www.kagoshima-kankou.com/storage/tourism_themes/12/responsive_images/ElwnvZ2u5uZda7Pjcwlk4mMtr08kLNydT8zXA6Ie__1673_1115.jpeg"
-            />
+          <ImageSlider width="100%" height="auto">
+            {ImageData}
           </ImageSlider>
         </S.HeaderCarousel>
         <S.HeaderText>여기 가봤슈?</S.HeaderText>
