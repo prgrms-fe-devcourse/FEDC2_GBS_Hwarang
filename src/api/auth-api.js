@@ -60,23 +60,3 @@ export const uploadProfileImage = async (file, token) => {
 
   return res;
 };
-
-export const uploadCoverImage = async (file, token) => {
-  const res = await axios.post(`${BASE_URL}${UPLOAD_COVER}`, file, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "content-type": "multipart/form-data",
-    },
-  });
-  return res;
-};
-
-export const uploadProfileImage = async (file, token) => {
-  const res = await axios.post(`${BASE_URL}${UPLOAD_PROFILE}`, file, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data",
-    },
-  });
-  return res;
-};
