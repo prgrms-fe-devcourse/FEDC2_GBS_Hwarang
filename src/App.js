@@ -34,11 +34,6 @@ function App() {
       </Router>
     </div>
   );
-  // return (
-  //   <div>
-  //     <PostListFilter />
-  //   </div>
-  // );
 }
 
 export default App;
