@@ -11,11 +11,11 @@ const PostListPage = () => {
           /* Input */
           placeholder="가고 싶은 여행지를 입력해주세요!"
         />
-        <buttonSection>
+        <div className="select-area">
           {/* 검색 기준 */}
-          <searchOptionsSelected /* 고른 options */ />
-          <searchOptions /* 고를 수 있는 options */ />
-        </buttonSection>
+          <div className="selected-options" /* 고른 options */ />
+          <div className="options" /* 고를 수 있는 options */ />
+        </div>
       </S.Header>
       <S.Section /* PostList 렌더링 */>
         <PostList data={DummyData} listTitle="검색 결과" />
