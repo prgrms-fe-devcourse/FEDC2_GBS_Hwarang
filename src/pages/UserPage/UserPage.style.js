@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const ImageWrapper = styled.div`
   position: relative;
+  margin-bottom: 12rem;
 `;
 
 export const UserInfoWrapper = styled.div`
@@ -48,3 +49,5 @@ export const ExtraInfo = styled.div`
   align-items: center;
   gap: 10px;
 `;
+
+export const Main = styled.div``;

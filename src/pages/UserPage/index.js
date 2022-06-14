@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import Image from "components/Image";
-import Avatar from "components/Avatar";
-import Text from "components/Text";
+import { Image, Text, Avatar, PostList } from "components";
 import { userInfo, profileImg, coverImg } from "recoil/user";
+import { getPostByUserId } from "api/post-api";
 import ImageButton from "./components/ImageButton";
+import NoPostWrapper from "./components/NoPostList";
 import * as S from "./UserPage.style";
 
 const FONT_COLOR = "$white";
@@ -16,9 +16,19 @@ function UserPage() {
   const cover = useRecoilValue(coverImg);
 
   const [profileImgHover, setProfileImgHover] = useState(false);
+  const [myPost, setMyPost] = useState([]);
+
+  useEffect(() => {
+    const getMyPost = async (id) => {
+      const res = await getPostByUserId(id);
+      setMyPost(res.data);
+    };
+    // eslint-disable-next-line
+    if (myInfo) getMyPost(myInfo._id);
+  }, [myInfo]);
 
   return (
-    <div>
+    <>
       <S.ImageWrapper>
         <Image src={cover} width="100%" height={400} />
         <ImageButton isCover />
@@ -68,7 +78,17 @@ function UserPage() {
           </S.ExtraInfo>
         </S.ExtraInfoWrapper>
       </S.ImageWrapper>
-    </div>
+      <S.Main>
+        {myPost.length ? (
+          <PostList
+            data={myPost}
+            listTitle={`${myInfo?.fullName}의 여행 리스트`}
+          />
+        ) : (
+          <NoPostWrapper />
+        )}
+      </S.Main>
+    </>
   );
 }
 

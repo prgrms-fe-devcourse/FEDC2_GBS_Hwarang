@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Image, ImageSlider, Slide, Footer } from "components";
+import { Button, Image, ImageSlider, Slide } from "components";
 import { useRecoilValue } from "recoil";
 import { mainPost } from "recoil/post";
 import Common from "styles/common";
@@ -75,7 +75,6 @@ const MainPage = () => {
           </Button>
         </S.SectionWrapper>
       </S.Section>
-      <Footer />
     </div>
   );
 };
