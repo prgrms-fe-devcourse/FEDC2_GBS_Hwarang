@@ -6,6 +6,7 @@ export const ImageButtonWrapper = styled.div`
   top: ${({ isCover }) => (isCover ? "8%" : "50%")};
   left: ${({ isCover }) => (isCover ? "92%" : "50%")};
   transform: ${({ isCover }) => (isCover ? "none" : "translate(-50%, -50%)")};
+  z-index: 10;
   &:hover {
     cursor: pointer;
   }
