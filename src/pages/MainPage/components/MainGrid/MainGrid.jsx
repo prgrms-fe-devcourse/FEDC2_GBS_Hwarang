@@ -15,7 +15,6 @@ const propTypes = {
 
 const MainGrid = ({ data, mainTitle }) => {
   const { FluxRow, FluxCol } = Flux;
-  console.log(data);
   return (
     <S.MainGridWrapper>
       <S.TextWrapper>
