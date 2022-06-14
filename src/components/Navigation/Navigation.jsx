@@ -38,6 +38,7 @@ const LoggedInedBlock = () => {
   const handleLogOut = async () => {
     await userLogout();
     setLogOut();
+    navigate("/");
   };
 
   return (
