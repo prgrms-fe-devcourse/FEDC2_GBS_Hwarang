@@ -40,24 +40,27 @@ const LoggedInedBlock = () => {
         type="button"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
-        text="회원정보"
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        회원정보
+      </Button>
       <Button
         type="button"
         width={BUTTON_WIDTH}
-        text="글쓰기"
         textSize={BUTTON_FONT_SIZE}
         height={BUTTON_HEIGHT}
-      />
+      >
+        글쓰기
+      </Button>
       <Button
         type="button"
         onClick={handleLogOut}
-        text="로그아웃"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        로그아웃
+      </Button>
     </>
   );
 };
@@ -68,19 +71,21 @@ const LoggedOutBlock = ({ setModalStatus }) => {
       <Button
         type="button"
         onClick={() => setModalStatus({ visible: true, type: "login" })}
-        text="로그인"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        로그인
+      </Button>
       <Button
         type="button"
         onClick={() => setModalStatus({ visible: true, type: "signup" })}
-        text="회원가입"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
         textSize={BUTTON_FONT_SIZE}
-      />
+      >
+        회원가입
+      </Button>
     </>
   );
 };
