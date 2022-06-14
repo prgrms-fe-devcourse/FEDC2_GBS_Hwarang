@@ -6,7 +6,7 @@ import Navigation from "components/Navigation";
 import { useSetRecoilState } from "recoil";
 import { postManager } from "recoil/post";
 import getAllPost from "repository/postRepository";
-import { MainPage, PostListPage } from "./pages";
+import { MainPage, PostListPage, UserPage } from "./pages";
 
 function App() {
   const setPosts = useSetRecoilState(postManager);
