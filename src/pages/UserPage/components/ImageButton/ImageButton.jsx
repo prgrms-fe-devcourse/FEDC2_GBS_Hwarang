@@ -45,7 +45,7 @@ function ImageButton({ isCover }) {
   };
 
   return (
-    <S.ImageButtonWrapper isCover={isCover} isCoverHover={isCoverHover}>
+    <S.ImageButtonWrapper isCover={isCover}>
       <Input
         type="file"
         accept="image/*"
