@@ -12,6 +12,7 @@ import Image from "components/Image";
 import Icon from "components/Icon";
 import Popup from "components/Popup";
 import SideBar from "components/SideBar";
+import Alarm from "components/Alarm";
 import {
   loginStatus,
   isTokenExist,
@@ -38,6 +39,7 @@ const LoggedInedBlock = () => {
 
   return (
     <>
+      <Alarm />
       <Button
         type="button"
         width={BUTTON_WIDTH}

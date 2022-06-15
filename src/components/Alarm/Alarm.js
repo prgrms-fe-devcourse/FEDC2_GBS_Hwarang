@@ -3,15 +3,35 @@
  */
 import Avatar from "components/Avatar";
 import Dot from "components/Dot";
+import Divider from "components/Divider";
 import Text from "components/Text";
 import Image from "components/Image";
-import Divider from "components/Divider";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getAlarms } from "api/alarm-api";
 import * as S from "./Alarm.style";
+// import CommentAlaram from "./components/CommentAlarm";
+
+// const AlarmComponentByType = {
+//   "COMMENT": () => (<CommentAlaram />),
+// };
 
 const Alarm = () => {
+  const [notification, setNotification] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await getAlarms();
+        setNotification(response);
+      } catch (exception) {
+        console.error(exception);
+      }
+    }
+    fetchData();
+  }, [setNotification]);
+
   return (
-    <div style={{ display: "inline-block", position: "relative" }}>
+    <div style={{ display: "inline-block", position: "relative", zIndex: 998 }}>
       <Avatar src="https://picsum.photos/200?1" size={45} />
       <Dot size={15} color="#D43737" style={{ top: 0, right: 0 }} />
       <S.AlarmWrapper>
@@ -19,25 +39,6 @@ const Alarm = () => {
           알림 왔슈📌
         </Text>
         <ul style={{ listStyle: "none", padding: 0 }}>
-          <li style={{ display: "flex" }}>
-            <div>
-              <Text strong size="$c1" style={{ display: "inline-block" }}>
-                신승연
-              </Text>
-              님이
-              <Text strong size="$c1" style={{ display: "inline-block" }}>
-                {`"`}멋저용{`"`}
-              </Text>
-              댓글을 달았습니다.
-            </div>
-            <Image
-              src="https://via.placeholder.com/300"
-              width="50px"
-              height="auto"
-              mode="contain"
-              style={{ marginLeft: 10 }}
-            />
-          </li>
           <Divider style={{ opacity: 0.1 }} size={15} />
           <li style={{ display: "flex" }}>
             <div>
