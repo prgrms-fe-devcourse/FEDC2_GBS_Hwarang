@@ -59,6 +59,7 @@ const Avatar = ({
         alt={alt}
         mode={mode}
         style={{ opacity: loaded ? 1 : 0 }}
+        {...props}
       />
     </S.AvatarWrapper>
   );
