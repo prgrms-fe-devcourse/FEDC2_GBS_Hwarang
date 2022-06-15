@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "components/Navigation";
 import { useSetRecoilState } from "recoil";
 import { postManager } from "recoil/post";
+import { Footer } from "components";
 import getAllPost from "repository/postRepository";
 import { MainPage, PostListPage, UserPage } from "./pages";
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="mypage" element={<UserPage />} />
           <Route path="*" element={<div>Not Found!</div>} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
