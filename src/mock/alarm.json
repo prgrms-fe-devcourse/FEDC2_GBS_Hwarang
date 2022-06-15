@@ -4,7 +4,7 @@
         "author": "신승연",
         "post": "1",
         "createdAt": "2022-06-15",
-        "notificaitonType": "COMMENT",
+        "notificationType": "COMMENT",
         "comment": {
             "comment": "안녕하세요!"
         }
@@ -13,7 +13,7 @@
         "_id": 2,
         "author": "유승범",
         "createdAt": "2022-06-16",
-        "notificaitonType": "FOLLOW"
+        "notificationType": "FOLLOW"
     },
     {
         "_id": 3,
