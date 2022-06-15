@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 // eslint-disable-next-line import/prefer-default-export
 export const AlarmWrapper = styled.div`
   position: absolute;
-  width: 250px;
+  width: 300px;
   padding: 15px;
   top: 100%;
   right: 0;
