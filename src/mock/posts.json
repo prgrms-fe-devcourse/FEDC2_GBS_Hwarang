@@ -292,6 +292,35 @@
   {
     "likes": [
       {
+        "_id": "likeId11-1",
+        "user": "UserId1100",
+        "post": "postId11",
+        "createdAt": "2022-06-15",
+        "updatedAt": "2022-06-15"
+      }
+    ],
+    "comments": [
+      {
+        "_id": "commentId11-1",
+        "comment": "멋져용",
+        "author": "UserId111",
+        "post": "postId11",
+        "createdAt": "2022-06-11",
+        "updatedAt": "2022-06-11"
+      }
+    ],
+    "_id": "postId11",
+    "image": "https://content.r9cdn.net/rimg/dimg/ef/e1/1ff45244-city-48734-17e92bd538d.jpg?crop=true&width=568&height=320&xhint=1416&yhint=931",
+    "imagePublicId": "imgPublicId",
+    "title": "속초 바닷가 1박 2일",
+    "channel": 1,
+    "author": "User11",
+    "createdAt": "2022-06-11",
+    "updatedAt": "2022-06-11"
+  },
+  {
+    "likes": [
+      {
         "_id": "likeId12-1",
         "user": "UserId1200",
         "post": "postId12",

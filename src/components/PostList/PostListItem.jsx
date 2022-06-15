@@ -3,7 +3,7 @@ import likesSvg from "assets/likes.svg";
 import likesClickedSvg from "assets/likes_clicked.svg";
 import commentSvg from "assets/comment.svg";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { forwardRef } from "react";
 import S from "./PostListItem.style";
 
 const propTypes = {
@@ -25,63 +25,57 @@ const defaultProps = {
   commentsNum: 0,
 };
 
-const PostListItem = ({
-  src,
-  title,
-  textSize,
-  author,
-  createdAt,
-  likesNum,
-  commentsNum,
-}) => {
-  const { FluxRow, FluxCol } = Flux;
+const PostListItem = forwardRef(
+  ({ src, title, textSize, author, createdAt, likesNum, commentsNum }, ref) => {
+    const { FluxRow, FluxCol } = Flux;
 
-  return (
-    <S.ItemWrapper>
-      <S.createdTextWrapper>
-        <Text size="$n1">{createdAt}</Text>
-      </S.createdTextWrapper>
-      <FluxRow gutter={20}>
-        <FluxCol span={4}>
-          <S.ImageWrapper>
-            <Image src={src} width="100%" height="220px" />
-          </S.ImageWrapper>
-        </FluxCol>
-        <FluxCol span={8}>
-          <S.titleWrapper>
-            <Text size={textSize} strong>
-              {title}
-            </Text>
-            <Text size="$n1">작성자 : {author}</Text>
-          </S.titleWrapper>
-        </FluxCol>
-      </FluxRow>
-      <S.numWrapper>
-        <ToggleButton
-          disabled={false}
-          onClick={() => {
-            console.log("Clicked!");
-          }}
-          replaceChildren={
-            <Image
-              src={likesClickedSvg}
-              width={20}
-              height={20}
-              mode="contain"
-            />
-          }
-          textSize="$c1"
-          text={likesNum}
-        >
-          <Image src={likesSvg} width={20} height={20} mode="contain" />
-        </ToggleButton>
-        <ToggleButton textSize="$c1" text={commentsNum}>
-          <Image src={commentSvg} width={20} height={20} />
-        </ToggleButton>
-      </S.numWrapper>
-    </S.ItemWrapper>
-  );
-};
+    return (
+      <S.ItemWrapper ref={ref}>
+        <S.createdTextWrapper>
+          <Text size="$n1">{createdAt}</Text>
+        </S.createdTextWrapper>
+        <FluxRow gutter={20}>
+          <FluxCol span={4}>
+            <S.ImageWrapper>
+              <Image src={src} width="100%" height="220px" />
+            </S.ImageWrapper>
+          </FluxCol>
+          <FluxCol span={8}>
+            <S.titleWrapper>
+              <Text size={textSize} strong>
+                {title}
+              </Text>
+              <Text size="$n1">작성자 : {author}</Text>
+            </S.titleWrapper>
+          </FluxCol>
+        </FluxRow>
+        <S.numWrapper>
+          <ToggleButton
+            disabled={false}
+            onClick={() => {
+              console.log("Clicked!");
+            }}
+            replaceChildren={
+              <Image
+                src={likesClickedSvg}
+                width={20}
+                height={20}
+                mode="contain"
+              />
+            }
+            textSize="$c1"
+            text={likesNum}
+          >
+            <Image src={likesSvg} width={20} height={20} mode="contain" />
+          </ToggleButton>
+          <ToggleButton textSize="$c1" text={commentsNum}>
+            <Image src={commentSvg} width={20} height={20} />
+          </ToggleButton>
+        </S.numWrapper>
+      </S.ItemWrapper>
+    );
+  }
+);
 
 PostListItem.propTypes = propTypes;
 PostListItem.defaultProps = defaultProps;
