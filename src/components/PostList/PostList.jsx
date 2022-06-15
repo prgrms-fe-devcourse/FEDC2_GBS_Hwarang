@@ -1,4 +1,4 @@
-import { Text } from "components";
+import { Text, Spinner } from "components";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import S from "./PostList.style";
@@ -13,16 +13,24 @@ const PostList = ({ data, listTitle }) => {
   const [renderData, setRenderData] = useState([]);
   const [page, setPage] = useState(0);
   const [lastIntersectingItem, setLastIntersectionItem] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [completeData, setCompleteData] = useState(false);
 
   const getRenderData = () => {
     if (renderData.length === 0) return;
 
-    const renderScrollData = [
-      ...renderData,
-      ...data.slice(page * 10, page * 10 + 10),
-    ];
+    setLoading(true);
+    const addData = data.slice(page * 10, page * 10 + 10);
+
+    if (addData.length === 0) {
+      setLoading(false);
+      setCompleteData(true);
+    }
+
+    const renderScrollData = [...renderData, ...addData];
 
     setRenderData(renderScrollData);
+    setLoading(false);
   };
 
   const onIntersect = (entries, observer) => {
@@ -35,7 +43,10 @@ const PostList = ({ data, listTitle }) => {
   };
 
   useEffect(() => {
-    setRenderData(data.slice(0, 10));
+    if (data.length === 0) return;
+
+    setRenderData(data.slice(page * 10, page * 10 + 10));
+    setLoading(false);
   }, [data]);
 
   useEffect(() => {
@@ -92,6 +103,18 @@ const PostList = ({ data, listTitle }) => {
           </S.PostListItemWrapper>
         );
       })}
+      <S.LoadingWrapper>{loading ? <Spinner /> : null}</S.LoadingWrapper>
+      {completeData ? (
+        <S.NoDataWrapper>
+          <Text
+            strong
+            style={{ width: "fit-content", margin: "0 auto" }}
+            size="$c2"
+          >
+            😔 더 이상 불러올 데이터가 없습니다.
+          </Text>
+        </S.NoDataWrapper>
+      ) : null}
     </S.PostListWrapper>
   );
 };
