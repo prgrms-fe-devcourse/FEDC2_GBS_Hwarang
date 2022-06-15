@@ -11,12 +11,11 @@ const PageWrapper = styled.div`
     position: fixed;
     top: 0;
     height: 70px;
-    background-color: ${Common.colors.white};
+    background-color: ${Common.colors.main};
     opacity: 0.95;
     z-index: 500;
     animation-delay: 1s;
     animation: fadeIn 0.3s;
-    border-bottom: 1px solid ${Common.colors.main};
   }
 
   .fold__input {
@@ -35,12 +34,18 @@ const PageWrapper = styled.div`
   }
 `;
 
+const HeaderWrapper = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 550px;
+  background-color: ${Common.colors.main_light};
+`;
+
 const Header = styled.div`
   box-sizing: border-box;
   position: relative;
   width: 100%;
-  height: 550px;
-  background-color: ${Common.colors.main_light};
+  height: 100%;
 `;
 
 const HeaderInput = styled.input`
@@ -68,6 +73,7 @@ const GotoTopButton = styled(Button)`
 
 export default {
   PageWrapper,
+  HeaderWrapper,
   Header,
   HeaderInput,
   Section,
