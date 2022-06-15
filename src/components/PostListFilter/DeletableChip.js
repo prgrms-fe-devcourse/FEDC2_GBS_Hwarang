@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { useTasks } from "contexts/TaskProvider";
 import PropTypes from "prop-types";
+import Common from "styles/common";
 
 const List = styled.li`
   list-style: none;
@@ -14,7 +15,7 @@ const Container = styled.div`
   width: 100px;
   margin-right: 10px;
   box-sizing: border-box;
-  border: 1px solid #cecece;
+  border: 1px solid ${Common.colors.gray04};
   border-radius: 18px;
   padding: 7px;
   background-color: white;
@@ -28,8 +29,12 @@ const Content = styled.span`
 `;
 const RemoveBtn = styled.button`
   font-size: 5px;
-  border: none;
+  border: 1px solid ${Common.colors.main_light};
   border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    background-color: ${Common.colors.main};
+  }
 `;
 
 const DeletableChip = ({ id, content }) => {

@@ -20,12 +20,11 @@ const PostFilterItem = ({ width, filter, ...props }) => {
   const { addTask } = useTasks();
   const { _id, title } = filter;
   const handleonClick = (id, tit) => {
-    addTask(id, tit);
     // 이미 context에 있는 id는 추가하고 싶지 않다.
-    // tasks.map((item) =>
-    //   // if(item.id === id)return
-    // );
-    // context 에 들어있는 배열로 qpi 요청
+    // 코드를 모르겠어요ㅜ
+    // if (tasks.filter((item) => item.id !== id)) return;
+    addTask(id, tit);
+    // context 에 들어있는 배열로 post 가져오기 요청
   };
 
   return (

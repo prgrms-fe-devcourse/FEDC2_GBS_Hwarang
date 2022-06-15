@@ -9,6 +9,11 @@ export const useTasks = () => useContext(TaskContext);
 const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const addTask = (_id, title) => {
+    const isInclude = tasks.some((task) => task.id === _id);
+    if (isInclude) {
+      console.log("이미 존재하는 검색어입니다.");
+      return;
+    }
     setTasks([
       ...tasks,
       {

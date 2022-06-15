@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Common from "styles/common";
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -52,4 +53,9 @@ export const styledButton = styled.button`
   margin-right: 15px;
   background-color: white;
   display: inline-block;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: ${Common.colors.main};
+  }
 `;
