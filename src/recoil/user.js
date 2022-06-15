@@ -2,7 +2,7 @@ import { atom, selector } from "recoil";
 
 export const userInfo = atom({
   key: "userInfo",
-  default: null,
+  default: {},
 });
 
 export const profileImg = selector({

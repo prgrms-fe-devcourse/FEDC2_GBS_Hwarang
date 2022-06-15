@@ -5,6 +5,8 @@ import {
   GET_USERS,
   UPLOAD_PROFILE,
   UPLOAD_COVER,
+  GET_USER_DATA_BY_ID,
+  FOLLOW_USER,
 } from "./url";
 
 export const getUsers = async (offset, limit) => {
@@ -18,6 +20,12 @@ export const getUsers = async (offset, limit) => {
 
 export const getOnlineUsers = async () => {
   const res = await axios.get(`${BASE_URL}${GET_ONLINE_USERS}`);
+  return res;
+};
+
+export const getUserInfoById = async (id) => {
+  if (!id) return {};
+  const res = await axios.get(`${BASE_URL}${GET_USER_DATA_BY_ID}/${id}`);
   return res;
 };
 
@@ -39,5 +47,21 @@ export const uploadProfileImage = async (file, token) => {
     },
   });
 
+  return res;
+};
+
+export const followUser = async (id, token) => {
+  if (!id) return {};
+  const res = await axios.post(
+    `${BASE_URL}${FOLLOW_USER}`,
+    {
+      userId: id,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return res;
 };

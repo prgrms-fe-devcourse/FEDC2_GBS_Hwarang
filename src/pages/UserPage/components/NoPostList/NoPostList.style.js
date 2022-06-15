@@ -15,7 +15,7 @@ export const NoPostWrapper = styled.div`
   justify-content: center;
   gap: 3rem;
   .navigate-block {
-    display: flex;
+    display: ${({ isOwner }) => (isOwner ? "flex" : "none")};
     flex-direction: column;
     align-items: center;
     gap: 10px;

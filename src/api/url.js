@@ -9,9 +9,11 @@ export const AUTH_USER = "/auth-user";
 
 // user
 export const GET_USERS = "/users/get-users";
+export const GET_USER_DATA_BY_ID = "/users";
 export const GET_ONLINE_USERS = "/users/online-users";
 export const UPLOAD_PROFILE = "/users/upload-photo";
 export const UPLOAD_COVER = "/users/upload-photo";
+export const FOLLOW_USER = "/follow/create";
 
 // 사용자 정보 변경
 export const UPDATE_USER = "/settings/upload-user";

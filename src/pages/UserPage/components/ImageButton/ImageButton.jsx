@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import Icon from "components/Icon";
@@ -11,18 +11,19 @@ import * as S from "./ImageButton.style";
 
 const propType = {
   isCover: PropTypes.bool,
+  isCoverHover: PropTypes.bool,
 };
 
 const defaultProp = {
   isCover: false,
+  isCoverHover: false,
 };
 
-function ImageButton({ isCover }) {
+function ImageButton({ isCover, isCoverHover }) {
   const inputRef = useRef(null);
   const setProfileImg = useSetRecoilState(profileImg);
   const setCoverImg = useSetRecoilState(coverImg);
   const token = useRecoilValue(jwtToken);
-  const [isCoverHover, setIsCoverHover] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -55,22 +56,12 @@ function ImageButton({ isCover }) {
         ref={inputRef}
       />
       {isCover ? (
-        <S.CameraWrapper
-          onClick={handleClick}
-          onMouseEnter={() => setIsCoverHover(true)}
-          onMouseLeave={() => setIsCoverHover(false)}
-        >
-          {isCoverHover ? (
+        <S.CameraWrapper onClick={handleClick}>
+          {isCoverHover && (
             <Image
               src="https://mygbs.s3.ap-northeast-2.amazonaws.com/user/camera_hover.svg"
               width="100%"
               height="100%"
-            />
-          ) : (
-            <Image
-              src="https://mygbs.s3.ap-northeast-2.amazonaws.com/user/camera.svg"
-              width="60%"
-              height="60%"
             />
           )}
         </S.CameraWrapper>

@@ -1,45 +1,94 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilValue } from "recoil";
 import { Image, Text, Avatar, PostList } from "components";
-import { userInfo, profileImg, coverImg } from "recoil/user";
+import { useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { jwtToken } from "recoil/authentication";
+import { userInfo } from "recoil/user";
 import { getPostByUserId } from "api/post-api";
+import { getUserInfoById, followUser } from "api/user-api";
 import ImageButton from "./components/ImageButton";
 import NoPostWrapper from "./components/NoPostList";
+import FollowButton from "./components/FollowButton";
 import * as S from "./UserPage.style";
 
 const FONT_COLOR = "$white";
 const FONT_SIZE = 14;
+const DEFAULT_COVER_IMAGE =
+  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Default+Cover+Image.png";
+const DEFAULT_PROFILE_IMAGE =
+  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Profile_Image.png";
 
 function UserPage() {
-  const myInfo = useRecoilValue(userInfo);
-  const profile = useRecoilValue(profileImg);
-  const cover = useRecoilValue(coverImg);
-
+  const { ID } = useParams();
+  const [isOwner, setIsOwner] = useState(false);
+  const [userData, setUserData] = useState({});
   const [profileImgHover, setProfileImgHover] = useState(false);
+  const [coverImageHover, setCoverImageHover] = useState(false);
   const [myPost, setMyPost] = useState([]);
+
+  const myInfo = useRecoilValue(userInfo);
+  const token = useRecoilValue(jwtToken);
+
+  const getUserData = async (id) => {
+    const res = await getUserInfoById(id);
+    setUserData(res.data);
+  };
+
+  useEffect(() => {}, [isOwner]);
+
+  useEffect(() => {
+    if (ID) {
+      getUserData(ID);
+      // eslint-disable-next-line
+      setIsOwner(myInfo._id === ID);
+    }
+  }, [ID, myInfo]);
 
   useEffect(() => {
     const getMyPost = async (id) => {
       const res = await getPostByUserId(id);
       setMyPost(res.data);
     };
-    // eslint-disable-next-line
-    if (myInfo) getMyPost(myInfo._id);
-  }, [myInfo]);
+    if (userData) {
+      // eslint-disable-next-line
+      getMyPost(userData._id);
+    }
+  }, [userData]);
+
+  const handleFollowClick = async (id) => {
+    if (!id) return;
+    await followUser(id, token);
+    // data 업데이트
+    await getUserData(id);
+  };
 
   return (
     <>
       <S.ImageWrapper>
-        <Image src={cover} width="100%" height={400} />
-        <ImageButton isCover />
+        <div
+          onMouseEnter={() => setCoverImageHover(true)}
+          onMouseLeave={() => setCoverImageHover(false)}
+        >
+          <Image
+            src={
+              userData.coverImage ? userData.coverImage : DEFAULT_COVER_IMAGE
+            }
+            width="100%"
+            height={400}
+          />
+          {isOwner && <ImageButton isCover isCoverHover={coverImageHover} />}
+        </div>
         <S.UserInfoWrapper>
           <div
             className="image-wrapper"
             onMouseEnter={() => setProfileImgHover(true)}
             onMouseLeave={() => setProfileImgHover(false)}
           >
-            <Avatar src={profile} size={150} />
-            {profileImgHover && (
+            <Avatar
+              src={userData.image ? userData.image : DEFAULT_PROFILE_IMAGE}
+              size={150}
+            />
+            {isOwner && profileImgHover && (
               <>
                 <ImageButton isCover={false} />
                 <S.Dim />
@@ -47,8 +96,12 @@ function UserPage() {
             )}
           </div>
           <div className="text-wrapper">
-            <Text color={FONT_COLOR}>{myInfo?.email || ""}</Text>
-            <Text color="$black01">{myInfo?.fullName || ""}</Text>
+            <Text color={FONT_COLOR} strong size={FONT_SIZE}>
+              {userData?.email || ""}
+            </Text>
+            <Text color="$black01" strong>
+              {userData?.fullName || ""}
+            </Text>
           </div>
         </S.UserInfoWrapper>
         <S.ExtraInfoWrapper>
@@ -57,7 +110,7 @@ function UserPage() {
               게시물
             </Text>
             <Text color={FONT_COLOR} size={FONT_SIZE}>
-              {myInfo?.posts.length || 0}
+              {myPost?.length || 0}
             </Text>
           </S.ExtraInfo>
           <S.ExtraInfo>
@@ -65,7 +118,7 @@ function UserPage() {
               팔로잉
             </Text>
             <Text color={FONT_COLOR} size={FONT_SIZE}>
-              {myInfo?.following.length || 0}
+              {userData?.following?.length || 0}
             </Text>
           </S.ExtraInfo>
           <S.ExtraInfo>
@@ -73,19 +126,25 @@ function UserPage() {
               팔로워
             </Text>
             <Text color={FONT_COLOR} size={FONT_SIZE}>
-              {myInfo?.followers.length || 0}
+              {userData?.followers?.length || 0}
             </Text>
           </S.ExtraInfo>
         </S.ExtraInfoWrapper>
+        {!isOwner && (
+          <S.FollowBlock>
+            <FollowButton handleClick={() => handleFollowClick(ID)} />
+          </S.FollowBlock>
+        )}
       </S.ImageWrapper>
       <S.Main>
-        {myPost.length ? (
+        {myPost?.length ? (
           <PostList
             data={myPost}
-            listTitle={`${myInfo?.fullName}의 여행 리스트`}
+            listTitle={`${userData?.fullName}의 여행 리스트`}
           />
         ) : (
-          <NoPostWrapper />
+          // eslint-disable-next-line
+          <NoPostWrapper isOwner={isOwner} />
         )}
       </S.Main>
     </>

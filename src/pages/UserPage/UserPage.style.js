@@ -50,4 +50,10 @@ export const ExtraInfo = styled.div`
   gap: 10px;
 `;
 
+export const FollowBlock = styled.div`
+  margin-top: 10px;
+  position: absolute;
+  right: 11%;
+`;
+
 export const Main = styled.div``;
