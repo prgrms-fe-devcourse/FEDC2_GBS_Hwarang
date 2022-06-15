@@ -2,18 +2,14 @@ import React from "react";
 import Text from "components/Text";
 import Image from "components/Image";
 
-const CommentAlaram = () => {
+const LikeAlarm = () => {
   return (
     <>
       <div>
         <Text strong size="$c1" style={{ display: "inline-block" }}>
-          신승연
+          👍유용상
         </Text>
-        님이
-        <Text strong size="$c1" style={{ display: "inline-block" }}>
-          {`"`}멋저용{`"`}
-        </Text>
-        댓글을 달았습니다.
+        님이 {`"`}멋진 한국의 한옥마....{`" `} 일정을 좋아합니다.
       </div>
       <Image
         src="https://via.placeholder.com/300"
@@ -25,4 +21,4 @@ const CommentAlaram = () => {
     </>
   );
 };
-export default CommentAlaram;
+export default LikeAlarm;

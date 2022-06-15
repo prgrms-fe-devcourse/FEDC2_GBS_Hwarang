@@ -5,15 +5,24 @@ import Avatar from "components/Avatar";
 import Dot from "components/Dot";
 import Divider from "components/Divider";
 import Text from "components/Text";
-import Image from "components/Image";
 import React, { useEffect, useState } from "react";
 import { getAlarms } from "api/alarm-api";
+import Item from "./components";
 import * as S from "./Alarm.style";
-// import CommentAlaram from "./components/CommentAlarm";
 
-// const AlarmComponentByType = {
-//   "COMMENT": () => (<CommentAlaram />),
-// };
+const AlarmComponentByType = (type) => {
+  console.log(type);
+  if (type === "COMMENT") {
+    return Item.CommentAlaram;
+  }
+  if (type === "FOLLOW") {
+    return Item.FollowAlarm;
+  }
+  if (type === "LIKE") {
+    return Item.LikeAlarm;
+  }
+  return undefined;
+};
 
 const Alarm = () => {
   const profile = useRecoilValue(profileImg);
@@ -39,40 +48,23 @@ const Alarm = () => {
         <Text size="$c1" strong>
           알림 왔슈📌
         </Text>
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          <Divider style={{ opacity: 0.1 }} size={15} />
-          <li style={{ display: "flex" }}>
-            <div>
-              <Text strong size="$c1" style={{ display: "inline-block" }}>
-                유승범
-              </Text>
-              님이
-              <Text strong size="$c1" style={{ display: "inline-block" }}>
-                진연주
-              </Text>
-              님을 구독했습니다.
-            </div>
-          </li>
-          <Divider style={{ opacity: 0.1 }} size={15} />
-          <li style={{ display: "flex" }}>
-            <div>
-              <Text strong size="$c1" style={{ display: "inline-block" }}>
-                유용상
-              </Text>
-              님이
-              <Text strong size="$c1" style={{ display: "inline-block" }}>
-                {`"`}멋진 한국의 한옥마....{`" `}
-              </Text>
-              일정을 좋아합니다.
-            </div>
-            <Image
-              src="https://via.placeholder.com/300"
-              width="50px"
-              height="auto"
-              mode="contain"
-              style={{ marginLeft: 10 }}
-            />
-          </li>
+        <ul style={{ listStyle: "none", padding: 0, marginTop: 20 }}>
+          <Divider size={15} />
+          {notification &&
+            notification.map((noti) =>
+              AlarmComponentByType(noti.notificationType) ? (
+                <>
+                  <li style={{ display: "flex" }}>
+                    {React.createElement(
+                      AlarmComponentByType(noti.notificationType)
+                    )}
+                  </li>
+                  <Divider size={15} />
+                </>
+              ) : (
+                "hello world"
+              )
+            )}
         </ul>
       </S.AlarmWrapper>
     </div>
