@@ -6,6 +6,7 @@ import Text from "components/Text";
 import IconGroup from "components/IconGroup";
 import Icon from "components/Icon";
 import Image from "components/Image";
+import Dot from "components/Dot/Dot";
 import likesClickedSvg from "assets/likes_clicked.svg";
 import * as S from "./UserListItem.style";
 
@@ -61,7 +62,13 @@ const UserListItem = ({ width, user, ...props }) => {
           <Icon name="person" fontSize={14} />
           <Text size={12}>{followers.length}</Text>
         </IconGroup>
-        {isOnline && <S.OnlineDot />}
+        {isOnline && (
+          <Dot
+            size={10}
+            color="#53bf9d"
+            style={{ top: 0, right: 0, margin: "14px" }}
+          />
+        )}
       </S.Container>
     </S.ListItem>
   );
