@@ -1,12 +1,15 @@
 import { PostList } from "components";
 import React, { useEffect, useState } from "react";
-import DummyData from "pages/MainPage/dummyData";
+import { useRecoilValue } from "recoil";
 import Common from "styles/common";
+import { allPost } from "recoil/post";
 import S from "./PostListPage.style";
 
 const PostListPage = () => {
+  const data = useRecoilValue(allPost);
   const [folded, setFolded] = useState(false);
 
+  /* Header fold */
   const handleHeader = () => {
     if (window.pageYOffset > 700) {
       setFolded(true);
@@ -46,7 +49,7 @@ const PostListPage = () => {
         </S.Header>
       </S.HeaderWrapper>
       <S.Section /* PostList 렌더링 */>
-        <PostList data={DummyData} listTitle="검색 결과" />
+        <PostList data={data} listTitle="검색 결과" />
       </S.Section>
       <S.GotoTopButton
         width={50}
