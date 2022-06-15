@@ -11,7 +11,6 @@ import Item from "./components";
 import * as S from "./Alarm.style";
 
 const AlarmComponentByType = (type) => {
-  console.log(type);
   if (type === "COMMENT") {
     return Item.CommentAlaram;
   }
@@ -52,14 +51,18 @@ const Alarm = () => {
           {notification &&
             notification.map((noti) =>
               AlarmComponentByType(noti.notificationType) ? (
-                <>
+                // eslint-disable-next-line no-underscore-dangle
+                <div key={noti._id}>
                   <li style={{ display: "flex" }}>
                     {React.createElement(
-                      AlarmComponentByType(noti.notificationType)
+                      AlarmComponentByType(noti.notificationType),
+                      {
+                        info: noti,
+                      }
                     )}
                   </li>
                   <Divider size={15} />
-                </>
+                </div>
               ) : (
                 "hello world"
               )

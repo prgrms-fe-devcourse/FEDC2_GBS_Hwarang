@@ -2,7 +2,7 @@
     {
         "_id": 1,
         "author": "신승연",
-        "post": "1",
+        "post": "postId1",
         "createdAt": "2022-06-15",
         "notificationType": "COMMENT",
         "comment": {
@@ -18,7 +18,7 @@
     {
         "_id": 3,
         "author": "유용상",
-        "post": "1",
+        "post": "postId3",
         "createdAt": "2022-06-10",
         "notificationType": "LIKE"
     }
