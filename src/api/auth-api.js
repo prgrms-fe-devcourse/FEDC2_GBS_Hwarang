@@ -25,7 +25,7 @@ export const userLogout = async () => {
 export const userAuth = async (token) => {
   const res = await axios.get(`${BASE_URL}${AUTH_USER}`, {
     headers: {
-      Authorization: `${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
