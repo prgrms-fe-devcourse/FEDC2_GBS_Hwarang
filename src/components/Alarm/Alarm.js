@@ -1,20 +1,16 @@
 /**
  * 사용자의 프로필 사진과 알람 리스트를 관리하는 component
  */
-<<<<<<< HEAD
 import { Avatar, Dot, Divider, Text } from "components";
 import React, { useEffect, useState } from "react";
 import { getAlarms } from "api/alarm-api";
 import Item from "./components";
-=======
-import Avatar from "components/Avatar";
-import Dot from "components/Dot";
-import Text from "components/Text";
-import Image from "components/Image";
-import Divider from "components/Divider";
-import React from "react";
->>>>>>> e310e19 ([feat]: 알림 타입별 element 구성 완료)
 import * as S from "./Alarm.style";
+// import CommentAlaram from "./components/CommentAlarm";
+
+// const AlarmComponentByType = {
+//   "COMMENT": () => (<CommentAlaram />),
+// };
 
 const AlarmComponentByType = (type) => {
   if (type === "COMMENT") {
@@ -49,7 +45,7 @@ const Alarm = () => {
   return (
     <div style={{ display: "inline-block", position: "relative", zIndex: 998 }}>
       <S.ProfileWrapper onClick={() => setShowAlarm((pre) => !pre)}>
-        <Avatar src="https://picsum.photos/200?1" size={45} />
+        <Avatar src={profile} size={45} />
         {notification && notification.length > 0 && (
           <Dot size={15} color="#D43737" style={{ top: 0, right: 0 }} />
         )}
