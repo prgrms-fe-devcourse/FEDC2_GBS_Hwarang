@@ -1,9 +1,9 @@
 import { PostList } from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import Common from "styles/common";
 import { allPost } from "recoil/post";
 import S from "./PostListPage.style";
+import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
   const data = useRecoilValue(allPost);
@@ -11,16 +11,12 @@ const PostListPage = () => {
 
   /* Header fold */
   const handleHeader = () => {
-    if (window.pageYOffset > 700) {
+    if (window.pageYOffset > 700 && folded === false) {
       setFolded(true);
       return;
     }
 
     setFolded(false);
-  };
-
-  const handleScroll = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -51,19 +47,7 @@ const PostListPage = () => {
       <S.Section /* PostList 렌더링 */>
         <PostList data={data} listTitle="검색 결과" />
       </S.Section>
-      <S.GotoTopButton
-        width={50}
-        height={50}
-        backgroundColor={Common.colors.white}
-        border
-        color={Common.colors.main}
-        onClick={() => {
-          console.log("click");
-          handleScroll();
-        }}
-      >
-        Top
-      </S.GotoTopButton>
+      <ScrollTopButton />
     </S.PageWrapper>
   );
 };

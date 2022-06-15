@@ -9,6 +9,7 @@ const propTypes = {
   listTitle: PropTypes.string.isRequired,
 };
 
+/* "검색 결과가 없을 때"에 대한 예외 처리 필요 */
 const PostList = ({ data, listTitle }) => {
   const [renderData, setRenderData] = useState([]);
   const [page, setPage] = useState(0);
