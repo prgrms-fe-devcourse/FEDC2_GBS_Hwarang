@@ -1,23 +1,25 @@
 import React from "react";
-import Input from "components/Input";
+import PostListInput from "components/PostListInput";
+import { useTasks } from "contexts/TaskProvider";
+
 import * as S from "./PostListFilter.style";
+import DeletableChip from "./DeletableChip";
 // import InputResult from "components/InputResult";
 
 const PostListFilter = () => {
   // const [filterBtn, setFilterBtn] = useState(false);
   // const onBtnClick = () => setFilterBtn(!filterBtn);
+  const { tasks } = useTasks();
   return (
     <div>
       <S.Wrapper>
-        <Input
-          style={{ fontSize: "15px", borderColor: "#ec5e58" }}
-          placeholder="가고 싶은 여행지를 입력해보세요!"
-          width="500px"
-          height="60px"
-        />
+        <PostListInput />
         <S.filterContainer>
-          <S.searchSelected />
-
+          <S.searchSelected>
+            {tasks.map((item) => (
+              <DeletableChip key={item.id} id={item.id} content={item.title} />
+            ))}
+          </S.searchSelected>
           <S.searchOptions>
             <S.channel>
               <S.styledButton>아시아</S.styledButton>

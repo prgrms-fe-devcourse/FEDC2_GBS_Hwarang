@@ -14,12 +14,15 @@ export const filterContainer = styled.div`
   grid-template-rows: 1fr 3fr;
   width: 700px;
   height: 200px;
-  margin-top: 80px;
-  border: 1px solid #ffc2c0;
+  margin-top: 50px;
 `;
 
 export const searchSelected = styled.div`
-  border-bottom: 1px solid #ffc2c0;
+  background-color: #f5f5f5;
+  padding: 10px;
+  /* 가로 스크롤 */
+  /* white-space: nowrap;
+  overflow-x: auto; */
 `;
 
 export const searchOptions = styled.div`
