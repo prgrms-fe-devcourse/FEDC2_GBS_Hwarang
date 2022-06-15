@@ -13,8 +13,15 @@ const defaultProps = {
 };
 
 const Dot = ({ size, color, ...props }) => {
-  console.log(props);
-  return <div>hello world</div>;
+  const DotStyle = {
+    width: `${typeof size === "string" ? `${size}` : `${size}px`}`,
+    height: `${typeof size === "string" ? `${size}` : `${size}px`}`,
+    backgroundColor: color,
+    borderRadius: "50%",
+    border: "none",
+    position: "absolute",
+  };
+  return <div style={{ ...DotStyle, ...props.style }} />;
 };
 
 Dot.propTypes = propTypes;
