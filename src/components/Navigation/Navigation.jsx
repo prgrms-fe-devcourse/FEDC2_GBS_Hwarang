@@ -12,6 +12,7 @@ import Image from "components/Image";
 import Icon from "components/Icon";
 import Popup from "components/Popup";
 import SideBar from "components/SideBar";
+import Avatar from "components/Avatar";
 import {
   loginStatus,
   isTokenExist,
@@ -38,6 +39,7 @@ const LoggedInedBlock = () => {
 
   return (
     <>
+      <Avatar src="https://picsum.photos/200?1" size={45} />
       <Button
         type="button"
         width={BUTTON_WIDTH}
