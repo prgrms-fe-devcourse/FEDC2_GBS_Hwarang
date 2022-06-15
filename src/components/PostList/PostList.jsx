@@ -11,14 +11,14 @@ const propTypes = {
 
 /* "검색 결과가 없을 때"에 대한 예외 처리 필요 */
 const PostList = ({ data, listTitle }) => {
-  const [renderData, setRenderData] = useState([]);
+  const [renderData, setRenderData] = useState(undefined);
   const [page, setPage] = useState(0);
   const [lastIntersectingItem, setLastIntersectionItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [completeData, setCompleteData] = useState(false);
 
   const getRenderData = () => {
-    if (renderData.length === 0) return;
+    if (!renderData) return;
 
     setLoading(true);
     const addData = data.slice(page * 10, page * 10 + 10);
@@ -72,38 +72,40 @@ const PostList = ({ data, listTitle }) => {
           {listTitle}
         </Text>
       </S.ListTitleWrapper>
-      {renderData.map((post, index) => {
-        const { _id, image, title, author, createdAt, likes, comments } = post;
+      {renderData &&
+        renderData.map((post, index) => {
+          const { _id, image, title, author, createdAt, likes, comments } =
+            post;
 
-        const handleOnClick = (id) => {
-          alert(id);
-        };
+          const handleOnClick = (id) => {
+            alert(id);
+          };
 
-        return index === renderData.length - 1 ? (
-          <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
-            <PostListItem
-              src={image}
-              title={title}
-              author={author}
-              createdAt={createdAt}
-              likesNum={likes.length}
-              commentsNum={comments.length}
-              ref={setLastIntersectionItem}
-            />
-          </S.PostListItemWrapper>
-        ) : (
-          <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
-            <PostListItem
-              src={image}
-              title={title}
-              author={author}
-              createdAt={createdAt}
-              likesNum={likes.length}
-              commentsNum={comments.length}
-            />
-          </S.PostListItemWrapper>
-        );
-      })}
+          return index === renderData.length - 1 ? (
+            <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
+              <PostListItem
+                src={image}
+                title={title}
+                author={author}
+                createdAt={createdAt}
+                likesNum={likes.length}
+                commentsNum={comments.length}
+                ref={setLastIntersectionItem}
+              />
+            </S.PostListItemWrapper>
+          ) : (
+            <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
+              <PostListItem
+                src={image}
+                title={title}
+                author={author}
+                createdAt={createdAt}
+                likesNum={likes.length}
+                commentsNum={comments.length}
+              />
+            </S.PostListItemWrapper>
+          );
+        })}
       <S.LoadingWrapper>{loading ? <Spinner /> : null}</S.LoadingWrapper>
       {completeData ? (
         <S.NoDataWrapper>
