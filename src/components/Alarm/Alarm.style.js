@@ -11,3 +11,10 @@ export const AlarmWrapper = styled.div`
   background-color: white;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 `;
+
+export const ProfileWrapper = styled.div`
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+`;
