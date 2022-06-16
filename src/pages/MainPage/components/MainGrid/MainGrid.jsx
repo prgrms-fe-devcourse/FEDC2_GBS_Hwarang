@@ -36,8 +36,8 @@ const MainGrid = ({ data, mainTitle }) => {
                   textChildren={title}
                   author={author}
                   createdAt={createdAt}
-                  likesNum={likes.length}
-                  commentsNum={comments.length}
+                  likesNum={likes}
+                  commentsNum={comments}
                 />
               </S.CardWrapper>
             </FluxCol>

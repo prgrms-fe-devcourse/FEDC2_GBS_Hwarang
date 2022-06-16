@@ -326,6 +326,13 @@
         "post": "postId12",
         "createdAt": "2022-06-15",
         "updatedAt": "2022-06-15"
+      },
+      {
+        "_id": "likeId12-2",
+        "user": "UserId1200",
+        "post": "postId12",
+        "createdAt": "2022-06-16",
+        "updatedAt": "2022-06-16"
       }
     ],
     "comments": [
@@ -409,6 +416,20 @@
     "likes": [
       {
         "_id": "likeId15-1",
+        "user": "UserId1500",
+        "post": "postId15",
+        "createdAt": "2022-06-15",
+        "updatedAt": "2022-06-15"
+      },
+      {
+        "_id": "likeId15-2",
+        "user": "UserId1500",
+        "post": "postId15",
+        "createdAt": "2022-06-15",
+        "updatedAt": "2022-06-15"
+      },
+      {
+        "_id": "likeId15-3",
         "user": "UserId1500",
         "post": "postId15",
         "createdAt": "2022-06-15",

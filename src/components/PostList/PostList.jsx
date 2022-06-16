@@ -97,8 +97,8 @@ const PostList = ({ data, listTitle }) => {
                 title={title}
                 author={author}
                 createdAt={createdAt}
-                likesNum={likes.length}
-                commentsNum={comments.length}
+                likesNum={likes}
+                commentsNum={comments}
                 {...ItemProps}
               />
             </S.PostListItemWrapper>
@@ -112,7 +112,7 @@ const PostList = ({ data, listTitle }) => {
             style={{ width: "fit-content", margin: "0 auto" }}
             size="$c2"
           >
-            😔 더 이상 불러올 데이터가 없습니다.
+            😔 더 이상 불러올 여행지가 없습니다.
           </Text>
         </S.NoDataWrapper>
       ) : null}
