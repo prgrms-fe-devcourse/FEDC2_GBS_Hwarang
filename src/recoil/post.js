@@ -44,3 +44,35 @@ export const mainPost = selector({
     };
   },
 });
+
+export const PostListFilter = selector({
+  key: "mainPost",
+  get: ({ get }) => {
+    const data = get(allPost).map((post) => ({
+      ...post,
+      comments: post.comments.length,
+      likes: post.likes.length,
+    }));
+    // 1. 인기순
+    const popular = data.sort((a, b) => b.likes - a.likes);
+    // 2. 최신순
+    const latest = data.sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+      return dateB.getTime() - dateA.getTime();
+    });
+    // 3. 오래된 순
+    const oldest = data.sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+      return dateA.getTime() - dateB.getTime();
+    });
+    // 4. 가봤슈 추천순
+    // 5. 댓글 많은 순
+    return {
+      popularPost: popular,
+      latestPost: latest,
+      oldestPost: oldest,
+    };
+  },
+});
