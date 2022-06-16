@@ -57,8 +57,11 @@ export const styledButton = styled.button`
     color: white;
     background-color: ${Common.colors.main};
   }
+<<<<<<< HEAD
   &.select {
     background-color: ${Common.colors.main};
     color: ${Common.colors.white};
   }
+=======
+>>>>>>> 6e784ff (feat:같은 검색어 추가 방지 코드 추가)
 `;
