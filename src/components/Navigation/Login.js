@@ -13,7 +13,9 @@ function Login({ handleLogin, onClose, changeModalType }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
   const setToken = useSetRecoilState(loginProcess);
   const setUser = useSetRecoilState(userInfo);
 
@@ -43,7 +45,7 @@ function Login({ handleLogin, onClose, changeModalType }) {
           {...register("loginId", {
             required: { value: true, message: "이메일을 입력해 주세요!" },
           })}
-          placeholder="ID"
+          placeholder="Email"
           useIcon={false}
           width="100%"
           invalid={!!errors.loginId}

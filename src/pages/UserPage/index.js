@@ -162,7 +162,7 @@ function UserPage() {
               <FollowButton
                 handleClick={() => handleUnFollowClick(ID)}
                 isUnFollow
-                options={unFollowButtonOptions}
+                buttonOption={unFollowButtonOptions}
               />
             </S.FollowBlock>
           ) : (

@@ -68,8 +68,8 @@ export const followUser = async (id, token) => {
 };
 
 export const unFollowUser = async (id, token) => {
-  if (!id) return {};
-  const res = axios.delete(`${BASE_URL}${UN_FOLLOW_USER}`, {
+  if (!id) return;
+  const res = await axios.delete(`${BASE_URL}${UN_FOLLOW_USER}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
