@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Image, Text, Avatar, PostList } from "components";
 import { useParams, useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { userInfo } from "recoil/user";
 import { getPostByUserId } from "api/post-api";
@@ -18,13 +18,6 @@ const DEFAULT_COVER_IMAGE =
 const DEFAULT_PROFILE_IMAGE =
   "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Profile_Image.png";
 
-const unFollowButtonOptions = {
-  width: 130,
-  textSize: "$n1",
-  backgroundColor: "$main",
-  color: "$white",
-};
-
 function UserPage() {
   const { ID } = useParams();
   const navigate = useNavigate();
@@ -36,6 +29,7 @@ function UserPage() {
   const [myPost, setMyPost] = useState([]);
 
   const myInfo = useRecoilValue(userInfo);
+  const setMyInfo = useSetRecoilState(userInfo);
   const token = useRecoilValue(jwtToken);
 
   const getUserData = async (id) => {
@@ -70,16 +64,14 @@ function UserPage() {
     if (myInfo.following && !isOwner) {
       const isFollow =
         myInfo.following.filter((follower) => follower.user === ID).length >= 1;
+      console.log(isFollow);
       setIsFollowing(isFollow);
     }
-  }, [ID, myInfo, isOwner, userData]);
+  }, [ID, myInfo, isOwner]);
 
   const handleFollowClick = async (id) => {
     if (!id) return;
     await followUser(id, token);
-    // data 업데이트
-    await getUserData(id);
-    setIsFollowing(true);
   };
 
   const handleUnFollowClick = async (id) => {
@@ -92,9 +84,19 @@ function UserPage() {
     if (!unFollowId) return;
 
     await unFollowUser(unFollowId, token);
-    // data refetch
+  };
+
+  const handleButtonClick = async (id, isFollow) => {
+    if (isFollow) await handleUnFollowClick(id);
+    else await handleFollowClick(id);
+    // refetch data
     await getUserData(id);
-    setIsFollowing(false);
+
+    const newMyData = await getUserInfoById(myInfo._id);
+
+    setMyInfo(newMyData.data);
+
+    // setIsFollowing((prev) => !prev);
   };
 
   return (
@@ -166,14 +168,11 @@ function UserPage() {
           </S.ExtraInfo>
         </S.ExtraInfoWrapper>
         <S.FollowBlock>
-          {!isOwner && isFollowing ? (
+          {!isOwner && (
             <FollowButton
-              handleClick={() => handleUnFollowClick(ID)}
-              isUnFollow
-              buttonOption={unFollowButtonOptions}
+              handleClick={() => handleButtonClick(ID, isFollowing)}
+              isUnFollow={isFollowing}
             />
-          ) : (
-            <FollowButton handleClick={() => handleFollowClick(ID)} />
           )}
         </S.FollowBlock>
       </S.ImageWrapper>

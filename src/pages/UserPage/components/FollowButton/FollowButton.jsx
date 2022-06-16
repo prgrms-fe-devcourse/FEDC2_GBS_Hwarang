@@ -1,29 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Button } from "components";
 
 const proptype = {
-  buttonOption: PropTypes.instanceOf(Object),
   handleClick: PropTypes.func,
   isUnFollow: PropTypes.bool,
 };
 
 const defaultProps = {
-  buttonOption: {
+  handleClick: () => {},
+  isUnFollow: false,
+};
+
+function FollowButton({ handleClick, isUnFollow }) {
+  const [buttonOptions, setButtonOptions] = useState({});
+
+  const followButtonOptions = {
     width: 130,
     textSize: "$n1",
     backgroundColor: "$white",
     color: "$main",
     border: true,
     textColor: "$main",
-  },
-  handleClick: () => {},
-  isUnFollow: false,
-};
+  };
 
-function FollowButton({ buttonOption, handleClick, isUnFollow }) {
+  const unFollowButtonOptions = {
+    width: 130,
+    textSize: "$n1",
+    backgroundColor: "$main",
+    color: "$white",
+  };
+
+  useEffect(() => {
+    if (isUnFollow) {
+      setButtonOptions(unFollowButtonOptions);
+    } else {
+      setButtonOptions(followButtonOptions);
+    }
+  }, [isUnFollow]);
+
   return (
-    <Button {...buttonOption} onClick={handleClick}>
+    <Button {...buttonOptions} onClick={handleClick}>
       {isUnFollow ? "구독중" : "구독"}
     </Button>
   );
