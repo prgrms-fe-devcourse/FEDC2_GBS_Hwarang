@@ -6,17 +6,15 @@ import S from "./PostList.style";
 
 const PostListPage = () => {
   return (
-    <div>
-      <TaskProvider>
-        <S.Header /* Header */>
-          <PostListFilter />
-        </S.Header>
-        <S.Section /* PostList 렌더링 */>
-          <PostList data={DummyData} listTitle="검색 결과" />
-        </S.Section>
-        <Footer />
-      </TaskProvider>
-    </div>
+    <TaskProvider>
+      <S.Header /* Header */>
+        <PostListFilter />
+      </S.Header>
+      <S.Section /* PostList 렌더링 */>
+        <PostList data={DummyData} listTitle="검색 결과" />
+      </S.Section>
+      <Footer />
+    </TaskProvider>
   );
 };
 
