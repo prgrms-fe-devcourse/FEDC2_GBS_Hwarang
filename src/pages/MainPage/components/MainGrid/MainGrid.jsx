@@ -23,9 +23,14 @@ const MainGrid = ({ data, mainTitle }) => {
         {data.map((post) => {
           const { _id, image, title, author, createdAt, likes, comments } =
             post;
+
+          const handleOnClick = (id) => {
+            alert(id);
+          };
+
           return (
             <FluxCol key={_id}>
-              <S.CardWrapper>
+              <S.CardWrapper onClick={() => handleOnClick(_id)}>
                 <MainGridCard
                   src={image}
                   textChildren={title}

@@ -4,9 +4,7 @@ import { useRecoilValue } from "recoil";
 import { mainPost } from "recoil/post";
 import Common from "styles/common";
 import S from "./MainPage.style";
-import ImageData from "./components/SliderImage/ImageData";
-import MainGrid from "./components/MainGrid";
-import MainInput from "./components/MainInput";
+import { MainGrid, MainInput, ImageData } from "./components";
 
 const MainPage = () => {
   const { popularPost, latestPost } = useRecoilValue(mainPost);

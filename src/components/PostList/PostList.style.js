@@ -26,4 +26,23 @@ const PostListItemWrapper = styled.div`
   }
 `;
 
-export default { PostListWrapper, ListTitleWrapper, PostListItemWrapper };
+const LoadingWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const NoDataWrapper = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  height: 240px;
+  padding-top: 110px;
+`;
+
+export default {
+  PostListWrapper,
+  ListTitleWrapper,
+  PostListItemWrapper,
+  LoadingWrapper,
+  NoDataWrapper,
+};

@@ -295,8 +295,8 @@
         "_id": "likeId11-1",
         "user": "UserId1100",
         "post": "postId11",
-        "createdAt": "2022-06-10",
-        "updatedAt": "2022-06-10"
+        "createdAt": "2022-06-15",
+        "updatedAt": "2022-06-15"
       }
     ],
     "comments": [
@@ -305,17 +305,191 @@
         "comment": "멋져용",
         "author": "UserId111",
         "post": "postId11",
+        "createdAt": "2022-06-11",
+        "updatedAt": "2022-06-11"
+      }
+    ],
+    "_id": "postId11",
+    "image": "https://content.r9cdn.net/rimg/dimg/ef/e1/1ff45244-city-48734-17e92bd538d.jpg?crop=true&width=568&height=320&xhint=1416&yhint=931",
+    "imagePublicId": "imgPublicId",
+    "title": "속초 바닷가 1박 2일",
+    "channel": 1,
+    "author": "User11",
+    "createdAt": "2022-06-11",
+    "updatedAt": "2022-06-11"
+  },
+  {
+    "likes": [
+      {
+        "_id": "likeId12-1",
+        "user": "UserId1200",
+        "post": "postId12",
+        "createdAt": "2022-06-15",
+        "updatedAt": "2022-06-15"
+      }
+    ],
+    "comments": [
+      {
+        "_id": "commentId12-1",
+        "comment": "멋져용",
+        "author": "UserId121",
+        "post": "postId12",
+        "createdAt": "2022-06-11",
+        "updatedAt": "2022-06-11"
+      }
+    ],
+    "_id": "postId12",
+    "image": "https://file.mk.co.kr/meet/neds/2018/07/image_readtop_2018_460439_15322442563396615.jpg",
+    "imagePublicId": "imgPublicId",
+    "title": "나만의 버킷리스트 유럽여행",
+    "channel": 2,
+    "author": "User12",
+    "createdAt": "2022-06-11",
+    "updatedAt": "2022-06-11"
+  },
+  {
+    "likes": [
+      {
+        "_id": "likeId13-1",
+        "user": "UserId1300",
+        "post": "postId13",
+        "createdAt": "2022-06-12",
+        "updatedAt": "2022-06-12"
+      }
+    ],
+    "comments": [
+      {
+        "_id": "commentId13-1",
+        "comment": "멋져용",
+        "author": "UserId131",
+        "post": "postId13",
+        "createdAt": "2022-06-12",
+        "updatedAt": "2022-06-12"
+      }
+    ],
+    "_id": "postId13",
+    "image": "https://wishbeen-seoul.s3.ap-northeast-2.amazonaws.com/plan/1452362223341_44442.jpg",
+    "imagePublicId": "imgPublicId",
+    "title": "10박 11일 유럽여행",
+    "channel": 2,
+    "author": "User13",
+    "createdAt": "2022-06-09",
+    "updatedAt": "2022-06-09"
+  },
+  {
+    "likes": [
+      {
+        "_id": "likeId14-1",
+        "user": "UserId1400",
+        "post": "postId14",
+        "createdAt": "2022-06-10",
+        "updatedAt": "2022-06-10"
+      }
+    ],
+    "comments": [
+      {
+        "_id": "commentId14-1",
+        "comment": "멋져용",
+        "author": "UserId141",
+        "post": "postId14",
+        "createdAt": "2022-06-12",
+        "updatedAt": "2022-06-12"
+      }
+    ],
+    "_id": "postId14",
+    "image": "https://post-phinf.pstatic.net/MjAxODA0MDhfNCAg/MDAxNTIzMTE0NTM1Mjc5.VPYtVR6VFTRUb5Bd5TSrucmTqjkIK6YpXQLBAs5D99cg.mAM1gBElz_GsJ-9gcNXbAWbO5wpyxnvoGx1lpp20vHYg.JPEG/Gyeongju-travel-information-intro.jpg?type=w1200",
+    "imagePublicId": "imgPublicId",
+    "title": "봄에는 경주 꼭 가봐야 한다구요",
+    "channel": 1,
+    "author": "User14",
+    "createdAt": "2022-06-13",
+    "updatedAt": "2022-06-13"
+  },
+  {
+    "likes": [
+      {
+        "_id": "likeId15-1",
+        "user": "UserId1500",
+        "post": "postId15",
+        "createdAt": "2022-06-15",
+        "updatedAt": "2022-06-15"
+      }
+    ],
+    "comments": [
+      {
+        "_id": "commentId15-1",
+        "comment": "멋져용",
+        "author": "UserId151",
+        "post": "postId15",
         "createdAt": "2022-06-09",
         "updatedAt": "2022-06-09"
       }
     ],
-    "_id": "postId11",
-    "image": "https://file.mk.co.kr/meet/neds/2021/06/image_readtop_2021_533475_16226191374667420.png",
+    "_id": "postId15",
+    "image": "https://t1.daumcdn.net/cfile/tistory/999954335A0D6A212D",
     "imagePublicId": "imgPublicId",
-    "title": "오션월드로 떠나요",
+    "title": "자전거 전국 일주 여행기",
     "channel": 1,
-    "author": "User11",
-    "createdAt": "2022-06-02",
-    "updatedAt": "2022-06-02"
+    "author": "User15",
+    "createdAt": "2022-06-08",
+    "updatedAt": "2022-06-08"
+  },
+  {
+    "likes": [
+      {
+        "_id": "likeId16-1",
+        "user": "UserId1600",
+        "post": "postId16",
+        "createdAt": "2022-06-10",
+        "updatedAt": "2022-06-10"
+      }
+    ],
+    "comments": [
+      {
+        "_id": "commentId16-1",
+        "comment": "멋져용",
+        "author": "UserId161",
+        "post": "postId16",
+        "createdAt": "2022-06-09",
+        "updatedAt": "2022-06-09"
+      }
+    ],
+    "_id": "postId16",
+    "image": "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202110/19/1d456e1b-0b5f-4de9-b340-96b5eae18bcf.jpg",
+    "imagePublicId": "imgPublicId",
+    "title": "서울 롯데월드 타워",
+    "channel": 1,
+    "author": "User16",
+    "createdAt": "2022-06-04",
+    "updatedAt": "2022-06-04"
+  },
+  {
+    "likes": [
+      {
+        "_id": "likeId17-1",
+        "user": "UserId1700",
+        "post": "postId17",
+        "createdAt": "2022-06-10",
+        "updatedAt": "2022-06-10"
+      }
+    ],
+    "comments": [
+      {
+        "_id": "commentId17-1",
+        "comment": "멋져용",
+        "author": "UserId171",
+        "post": "postId17",
+        "createdAt": "2022-06-09",
+        "updatedAt": "2022-06-09"
+      }
+    ],
+    "_id": "postId17",
+    "image": "http://www.jamill.kr/news/photo/202203/282670_110852_3918.jpg",
+    "imagePublicId": "imgPublicId",
+    "title": "충북 전망대 + 케이블카",
+    "channel": 1,
+    "author": "User17",
+    "createdAt": "2022-06-01",
+    "updatedAt": "2022-06-01"
   }
 ]
