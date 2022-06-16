@@ -81,7 +81,12 @@ const PostList = ({ data, listTitle }) => {
             alert(id);
           };
 
-          return index === renderData.length - 1 ? (
+          const ItemProps = {};
+          if (index === renderData.length - 1) {
+            ItemProps.ref = setLastIntersectionItem;
+          }
+
+          return (
             <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
               <PostListItem
                 src={image}
@@ -90,18 +95,7 @@ const PostList = ({ data, listTitle }) => {
                 createdAt={createdAt}
                 likesNum={likes.length}
                 commentsNum={comments.length}
-                ref={setLastIntersectionItem}
-              />
-            </S.PostListItemWrapper>
-          ) : (
-            <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
-              <PostListItem
-                src={image}
-                title={title}
-                author={author}
-                createdAt={createdAt}
-                likesNum={likes.length}
-                commentsNum={comments.length}
+                {...ItemProps}
               />
             </S.PostListItemWrapper>
           );

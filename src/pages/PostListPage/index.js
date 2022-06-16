@@ -20,10 +20,8 @@ const PostListPage = () => {
   };
 
   useEffect(() => {
-    const watch = () => {
-      window.addEventListener("scroll", handleHeader);
-    };
-    watch();
+    window.addEventListener("scroll", handleHeader);
+
     return () => {
       window.removeEventListener("scroll", handleHeader);
     };
