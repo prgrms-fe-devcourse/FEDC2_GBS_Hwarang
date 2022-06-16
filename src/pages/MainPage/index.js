@@ -27,7 +27,10 @@ const MainPage = () => {
             mainTitle="가봤슈 사용자들의 최고 인기 여행지"
           />
           <Button color="white" type="button">
-            <S.LinkButton to="/travel-destination" style={{ color: "white" }}>
+            <S.LinkButton
+              to="/travel-destination/popular"
+              style={{ color: "white" }}
+            >
               더보기
             </S.LinkButton>
           </Button>
@@ -45,7 +48,7 @@ const MainPage = () => {
           />
           <Button color="$main" backgroundColor="$white" type="button" border>
             <S.LinkButton
-              to="/travel-destination"
+              to="/travel-destination/latest"
               style={{ color: Common.colors.main }}
             >
               더보기

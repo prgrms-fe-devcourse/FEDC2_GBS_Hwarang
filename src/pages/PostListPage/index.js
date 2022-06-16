@@ -2,7 +2,8 @@ import { PostList, PostListFilter } from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useTasks } from "contexts/TaskProvider";
-import { allPost } from "recoil/post";
+import { allPost, postList } from "recoil/post";
+import { useParams } from "react-router-dom";
 import S from "./PostListPage.style";
 import ScrollTopButton from "./components/ScrollTopButton";
 
@@ -10,7 +11,11 @@ const PostListPage = () => {
   const data = useRecoilValue(allPost);
   const { tasks } = useTasks();
   const [renderData, setRenderData] = useState([]);
+  const { Options } = useParams();
+  const [optionData, setOptionData] = useState([]);
+  console.log(optionData);
   const [folded, setFolded] = useState(false);
+  const postListData = useRecoilValue(postList);
 
   useEffect(() => {
     if (tasks.length !== 0) {
@@ -41,6 +46,13 @@ const PostListPage = () => {
       window.removeEventListener("scroll", handleHeader);
     };
   }, []);
+
+  useEffect(() => {
+    if (Options) {
+      setOptionData(postListData[Options]);
+      console.log(postListData[Options]);
+    }
+  }, [Options]);
 
   return (
     <div>

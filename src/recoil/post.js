@@ -46,33 +46,18 @@ export const mainPost = selector({
   },
 });
 
-/* MainPage 더보기 버튼 -> postListPage */
-export const popularPost = selector({
-  key: "popularPost",
+/* postListPage */
+export const postList = selector({
+  key: "postList",
   get: ({ get }) => {
     const data = get(allPost).map((post) => ({
       ...post,
       comments: post.comments.length,
       likes: post.likes.length,
     }));
-
+    // 1. 인기순
     const popular = data.sort((a, b) => b.likes - a.likes);
-
-    return {
-      popularPost: popular,
-    };
-  },
-});
-
-export const latestPost = selector({
-  key: "latestPost",
-  get: ({ get }) => {
-    const data = get(allPost).map((post) => ({
-      ...post,
-      comments: post.comments.length,
-      likes: post.likes.length,
-    }));
-
+    // 2. 최신순
     const latest = data.sort((a, b) => {
       const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
@@ -80,7 +65,9 @@ export const latestPost = selector({
     });
 
     return {
-      latestPost: latest,
+      all: data,
+      popular,
+      latest,
     };
   },
 });

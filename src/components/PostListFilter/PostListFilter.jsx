@@ -11,7 +11,6 @@ const propTypes = {
 };
 
 const PostListFilter = ({ folded }) => {
-  console.log(folded);
   const { tasks } = useTasks();
   const [isChannelSelect, setIsChannelSelect] = useState([false]);
   const [isStandardSelect, setIsStandardSelect] = useState([false]);
