@@ -58,4 +58,8 @@ export const styledButton = styled.button`
     color: white;
     background-color: ${Common.colors.main};
   }
+  &.select {
+    background-color: ${Common.colors.main};
+    color: ${Common.colors.white};
+  }
 `;
