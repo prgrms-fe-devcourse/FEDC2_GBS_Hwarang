@@ -8,7 +8,6 @@ import * as S from "./PostListInput.style";
 const PostListInput = () => {
   const [keyword, setKeyword] = useState("");
   const posts = useRecoilValue(allPost);
-
   const handleChange = (e) => {
     const { value, name } = e.target;
     if (name === "keyword") {
