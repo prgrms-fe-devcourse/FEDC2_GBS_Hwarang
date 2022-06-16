@@ -72,20 +72,29 @@ function UserPage() {
         myInfo.following.filter((follower) => follower.user === ID).length >= 1;
       setIsFollowing(isFollow);
     }
-  }, [ID, myInfo, isFollowing, isOwner]);
+  }, [ID, myInfo, isOwner, userData]);
 
   const handleFollowClick = async (id) => {
     if (!id) return;
     await followUser(id, token);
     // data 업데이트
     await getUserData(id);
+    setIsFollowing(true);
   };
 
   const handleUnFollowClick = async (id) => {
     if (!id) return;
-    await unFollowUser(id, token);
+
+    const unFollowId = myInfo.following.find(
+      (follower) => follower.user === id
+    )._id;
+
+    if (!unFollowId) return;
+
+    await unFollowUser(unFollowId, token);
     // data refetch
     await getUserData(id);
+    setIsFollowing(false);
   };
 
   return (
@@ -156,20 +165,17 @@ function UserPage() {
             </Text>
           </S.ExtraInfo>
         </S.ExtraInfoWrapper>
-        {!isOwner &&
-          (isFollowing ? (
-            <S.FollowBlock>
-              <FollowButton
-                handleClick={() => handleUnFollowClick(ID)}
-                isUnFollow
-                buttonOption={unFollowButtonOptions}
-              />
-            </S.FollowBlock>
+        <S.FollowBlock>
+          {!isOwner && isFollowing ? (
+            <FollowButton
+              handleClick={() => handleUnFollowClick(ID)}
+              isUnFollow
+              buttonOption={unFollowButtonOptions}
+            />
           ) : (
-            <S.FollowBlock>
-              <FollowButton handleClick={() => handleFollowClick(ID)} />
-            </S.FollowBlock>
-          ))}
+            <FollowButton handleClick={() => handleFollowClick(ID)} />
+          )}
+        </S.FollowBlock>
       </S.ImageWrapper>
       <S.Main>
         {myPost?.length ? (
