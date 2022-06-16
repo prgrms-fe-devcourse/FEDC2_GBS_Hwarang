@@ -14,8 +14,18 @@ export const filterContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr 3fr;
   width: 700px;
+<<<<<<< HEAD
   height: 200px;
   margin-top: 50px;
+=======
+  height: 250px;
+  margin-top: 80px;
+  border: 1px solid #ffc2c0;
+`;
+
+export const searchSelected = styled.div`
+  border-bottom: 1px solid #ffc2c0;
+>>>>>>> 89d238a (feat:postListFilter 컴포넌트 생성)
 `;
 
 export const searchSelected = styled.div`
