@@ -1,5 +1,7 @@
+/* eslint-disable no-nested-ternary */
 import React from "react";
 import PropTypes from "prop-types";
+import PostListFilterItem from "./PostListFilterItem";
 import * as S from "./InputResult.style";
 import PostListItem from "./PostListItem";
 import UserListItem from "./UserListItem";
@@ -57,8 +59,10 @@ const InputResult = ({
                 <div key={_id}>
                   {inputType === "post" ? (
                     <PostListItem post={item} />
-                  ) : (
+                  ) : inputType === "user" ? (
                     <UserListItem user={item} />
+                  ) : (
+                    <PostListFilterItem filter={item} />
                   )}
                 </div>
               );

@@ -37,7 +37,7 @@ const ImageSlider = ({ children, width, height }) => {
     } else {
       setCurrentSlide(currentSlide + 1);
     }
-  }, 3000);
+  }, 6000);
   const nextSlide = () => {
     if (currentSlide >= TOTAL_SLIDES) {
       setCurrentSlide(0);
@@ -53,7 +53,7 @@ const ImageSlider = ({ children, width, height }) => {
     }
   };
   useEffect(() => {
-    slideRef.current.style.transition = "all 1s ease-in-out";
+    slideRef.current.style.transition = "all 2s ease-in-out";
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
   }, [currentSlide]);
 

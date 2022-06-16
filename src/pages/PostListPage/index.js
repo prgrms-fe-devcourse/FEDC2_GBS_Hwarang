@@ -1,8 +1,9 @@
-import { PostList } from "components";
+import { PostList, PostListFilter } from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
 import S from "./PostListPage.style";
+import TaskProvider from "contexts/TaskProvider";
 import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
@@ -28,25 +29,19 @@ const PostListPage = () => {
   }, []);
 
   return (
-    <S.PageWrapper>
-      <S.HeaderWrapper>
-        <S.Header /* Header */ className={folded ? "fold__header" : ""}>
-          <S.HeaderInput
-            className={folded ? "fold__input" : ""}
-            placeholder="가고 싶은 여행지를 입력해주세요!"
-          />
-          <div className="select-area">
-            {/* 검색 기준 */}
-            <div className="selected-options" /* 고른 options */ />
-            <div className="options" /* 고를 수 있는 options */ />
-          </div>
-        </S.Header>
-      </S.HeaderWrapper>
+    <TaskProvider>
+      <S.PageWrapper>
+        <S.HeaderWrapper>
+          <S.Header /* Header */ className={folded ? "fold__header" : "">
+            <PostListFilter />
+          </S.Header>
+        </S.HeaderWrapper>
       <S.Section /* PostList 렌더링 */>
         <PostList data={data} listTitle="검색 결과" />
       </S.Section>
       <ScrollTopButton />
     </S.PageWrapper>
+   </TaskProvider>
   );
 };
 
