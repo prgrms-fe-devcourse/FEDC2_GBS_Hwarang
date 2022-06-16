@@ -7,6 +7,7 @@ import {
   UPLOAD_COVER,
   GET_USER_DATA_BY_ID,
   FOLLOW_USER,
+  UN_FOLLOW_USER,
 } from "./url";
 
 export const getUsers = async (offset, limit) => {
@@ -63,5 +64,18 @@ export const followUser = async (id, token) => {
       },
     }
   );
+  return res;
+};
+
+export const unFollowUser = async (id, token) => {
+  if (!id) return {};
+  const res = axios.delete(`${BASE_URL}${UN_FOLLOW_USER}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: {
+      id,
+    },
+  });
   return res;
 };

@@ -7,7 +7,6 @@ export const jwtToken = atom({
   default: getCookie("token"),
 });
 
-// eslint-disable-next-line
 export const loginStatus = atom({
   key: "LoginStatus",
   default: false,

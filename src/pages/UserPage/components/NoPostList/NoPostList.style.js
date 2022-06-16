@@ -14,10 +14,11 @@ export const NoPostWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  .navigate-block {
-    display: ${({ isOwner }) => (isOwner ? "flex" : "none")};
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
+`;
+
+export const NavigateBlock = styled.div`
+  display: ${({ isOwner }) => (isOwner ? "flex" : "none")};
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 `;

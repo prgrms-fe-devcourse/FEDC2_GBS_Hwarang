@@ -23,7 +23,7 @@ function NoPostList({ isOwner }) {
   return (
     <S.NoPostWrapper>
       <Text size="$b1">😥 등록된 여행 일정이 없어요!</Text>
-      <div className="navigate-block" isOwner={isOwner}>
+      <S.NavigateBlock isOwner={isOwner}>
         <Text size="$n1">멋진 여행 일정 입력하러 가기</Text>
         <Button
           size="$b1"
@@ -36,7 +36,7 @@ function NoPostList({ isOwner }) {
         >
           여행 일정 입력
         </Button>
-      </div>
+      </S.NavigateBlock>
     </S.NoPostWrapper>
   );
 }

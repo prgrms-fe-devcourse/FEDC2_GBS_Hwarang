@@ -14,6 +14,7 @@ export const GET_ONLINE_USERS = "/users/online-users";
 export const UPLOAD_PROFILE = "/users/upload-photo";
 export const UPLOAD_COVER = "/users/upload-photo";
 export const FOLLOW_USER = "/follow/create";
+export const UN_FOLLOW_USER = "/follow/delete";
 
 // 사용자 정보 변경
 export const UPDATE_USER = "/settings/upload-user";

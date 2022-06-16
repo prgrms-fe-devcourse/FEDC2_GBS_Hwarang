@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Image, Text, Avatar, PostList } from "components";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { userInfo } from "recoil/user";
 import { getPostByUserId } from "api/post-api";
-import { getUserInfoById, followUser } from "api/user-api";
+import { getUserInfoById, followUser, unFollowUser } from "api/user-api";
 import ImageButton from "./components/ImageButton";
 import NoPostWrapper from "./components/NoPostList";
 import FollowButton from "./components/FollowButton";
@@ -18,29 +18,40 @@ const DEFAULT_COVER_IMAGE =
 const DEFAULT_PROFILE_IMAGE =
   "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Profile_Image.png";
 
+const unFollowButtonOptions = {
+  width: 130,
+  textSize: "$n1",
+  backgroundColor: "$main",
+  color: "$white",
+};
+
 function UserPage() {
   const { ID } = useParams();
+  const navigate = useNavigate();
   const [isOwner, setIsOwner] = useState(false);
   const [userData, setUserData] = useState({});
   const [profileImgHover, setProfileImgHover] = useState(false);
   const [coverImageHover, setCoverImageHover] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
   const [myPost, setMyPost] = useState([]);
 
   const myInfo = useRecoilValue(userInfo);
   const token = useRecoilValue(jwtToken);
 
   const getUserData = async (id) => {
+    if (!id) return;
     const res = await getUserInfoById(id);
     setUserData(res.data);
   };
-
-  useEffect(() => {}, [isOwner]);
 
   useEffect(() => {
     if (ID) {
       getUserData(ID);
       // eslint-disable-next-line
       setIsOwner(myInfo._id === ID);
+    } else {
+      alert("error!");
+      navigate("/");
     }
   }, [ID, myInfo]);
 
@@ -55,10 +66,25 @@ function UserPage() {
     }
   }, [userData]);
 
+  useEffect(() => {
+    if (myInfo.following && !isOwner) {
+      const isFollow =
+        myInfo.following.filter((follower) => follower.user === ID).length >= 1;
+      setIsFollowing(isFollow);
+    }
+  }, [ID, myInfo, isFollowing, isOwner]);
+
   const handleFollowClick = async (id) => {
     if (!id) return;
     await followUser(id, token);
     // data 업데이트
+    await getUserData(id);
+  };
+
+  const handleUnFollowClick = async (id) => {
+    if (!id) return;
+    await unFollowUser(id, token);
+    // data refetch
     await getUserData(id);
   };
 
@@ -130,11 +156,20 @@ function UserPage() {
             </Text>
           </S.ExtraInfo>
         </S.ExtraInfoWrapper>
-        {!isOwner && (
-          <S.FollowBlock>
-            <FollowButton handleClick={() => handleFollowClick(ID)} />
-          </S.FollowBlock>
-        )}
+        {!isOwner &&
+          (isFollowing ? (
+            <S.FollowBlock>
+              <FollowButton
+                handleClick={() => handleUnFollowClick(ID)}
+                isUnFollow
+                options={unFollowButtonOptions}
+              />
+            </S.FollowBlock>
+          ) : (
+            <S.FollowBlock>
+              <FollowButton handleClick={() => handleFollowClick(ID)} />
+            </S.FollowBlock>
+          ))}
       </S.ImageWrapper>
       <S.Main>
         {myPost?.length ? (

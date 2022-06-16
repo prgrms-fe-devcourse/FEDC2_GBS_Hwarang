@@ -5,6 +5,7 @@ import { Button } from "components";
 const proptype = {
   buttonOption: PropTypes.instanceOf(Object),
   handleClick: PropTypes.func,
+  isUnFollow: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -17,12 +18,13 @@ const defaultProps = {
     textColor: "$main",
   },
   handleClick: () => {},
+  isUnFollow: false,
 };
 
-function FollowButton({ buttonOption, handleClick }) {
+function FollowButton({ buttonOption, handleClick, isUnFollow }) {
   return (
     <Button {...buttonOption} onClick={handleClick}>
-      Follow
+      {isUnFollow ? "구독중" : "구독"}
     </Button>
   );
 }
