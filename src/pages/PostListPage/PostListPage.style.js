@@ -14,22 +14,28 @@ const PageWrapper = styled.div`
     background-color: ${Common.colors.main};
     opacity: 0.95;
     z-index: 500;
-    animation-delay: 1s;
-    animation: fadeIn 0.3s;
+    animation: fadeInHeader 0.2s;
   }
 
   .fold__input {
-    top: 10px;
-    width: 500px;
-    height: 45px;
+    animation: fadeInInput 0.2s;
   }
 
-  @keyframes fadeIn {
+  @keyframes fadeInHeader {
     from {
       top: -80px;
     }
     to {
       top: 0;
+    }
+  }
+
+  @keyframes fadeInInput {
+    from {
+      top: -75px;
+    }
+    to {
+      top: 5px;
     }
   }
 `;

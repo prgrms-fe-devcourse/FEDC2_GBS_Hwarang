@@ -47,7 +47,7 @@ const PostListPage = () => {
       <S.PageWrapper>
         <S.HeaderWrapper>
           <S.Header /* Header */ className={folded ? "fold__header" : ""}>
-            <PostListFilter />
+            <PostListFilter folded={folded} />
           </S.Header>
         </S.HeaderWrapper>
         <S.Section /* PostList 렌더링 */>

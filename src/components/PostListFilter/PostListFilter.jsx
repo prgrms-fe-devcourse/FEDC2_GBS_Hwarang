@@ -2,10 +2,16 @@
 import React, { useState } from "react";
 import PostListInput from "components/PostListInput";
 import { useTasks } from "contexts/TaskProvider";
+import PropTypes from "prop-types";
 import * as S from "./PostListFilter.style";
 import DeletableChip from "./DeletableChip";
 
-const PostListFilter = () => {
+const propTypes = {
+  folded: PropTypes.bool.isRequired,
+};
+
+const PostListFilter = ({ folded }) => {
+  console.log(folded);
   const { tasks } = useTasks();
   const [isChannelSelect, setIsChannelSelect] = useState([false]);
   const [isStandardSelect, setIsStandardSelect] = useState([false]);
@@ -36,8 +42,10 @@ const PostListFilter = () => {
   return (
     <div>
       <S.Wrapper>
-        <PostListInput />
-        <S.filterContainer>
+        <S.InputWrapper className={folded ? "fold__input" : ""}>
+          <PostListInput />
+        </S.InputWrapper>
+        <S.filterContainer className={folded ? "fold__filter-div" : ""}>
           <S.searchSelected>
             {tasks.map((item) => (
               <DeletableChip key={item.id} id={item.id} content={item.title} />
@@ -72,4 +80,7 @@ const PostListFilter = () => {
     </div>
   );
 };
+
+PostListFilter.propTypes = propTypes;
+
 export default PostListFilter;

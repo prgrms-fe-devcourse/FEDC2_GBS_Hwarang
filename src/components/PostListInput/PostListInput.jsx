@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Input from "components/Input";
-import InputResult from "components/InputResult";
+import { Input, InputResult } from "components";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
 import * as S from "./PostListInput.style";
