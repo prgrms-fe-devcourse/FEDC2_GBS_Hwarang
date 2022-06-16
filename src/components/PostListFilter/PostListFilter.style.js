@@ -51,7 +51,6 @@ export const styledButton = styled.button`
   border-radius: 18px;
   padding: 8px;
   margin-right: 15px;
-  background-color: white;
   display: inline-block;
   cursor: pointer;
   &:hover {
