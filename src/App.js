@@ -6,6 +6,7 @@ import Navigation from "components/Navigation";
 import { useSetRecoilState } from "recoil";
 import { postManager } from "recoil/post";
 import getAllPost from "repository/postRepository";
+import TaskProvider from "contexts/TaskProvider";
 import { MainPage, PostListPage } from "./pages";
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
 
   return (
     // test 2
-    <div>
+    <TaskProvider>
       <Router>
         <Navigation />
         <Routes>
@@ -32,7 +33,7 @@ function App() {
           <Route path="/travel-destination" element={<PostListPage />} />
         </Routes>
       </Router>
-    </div>
+    </TaskProvider>
   );
 }
 
