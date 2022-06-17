@@ -41,7 +41,7 @@ const LoggedInedBlock = () => {
   const handleLogOut = async () => {
     await userLogout();
     LogOut();
-    removeCookie("token");
+    removeCookie("token", { path: "/" });
     navigate("/");
   };
 
@@ -63,6 +63,7 @@ const LoggedInedBlock = () => {
         width={BUTTON_WIDTH}
         textSize={BUTTON_FONT_SIZE}
         height={BUTTON_HEIGHT}
+        onClick={() => navigate("/post/create")}
       >
         글쓰기
       </Button>

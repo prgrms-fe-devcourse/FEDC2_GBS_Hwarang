@@ -42,6 +42,15 @@ function App() {
   const setUserInfo = useSetRecoilState(userInfo);
 
   useEffect(() => {
+    if (!isLogined && TokenExist) {
+      if (isTokenValid) {
+        setIsLogined(true);
+        setUserInfo(userData);
+      }
+    }
+  }, [isLogined, TokenExist, isTokenValid, userData]);
+
+  useEffect(() => {
     async function fetchData() {
       try {
         const posts = await getAllPosts();
