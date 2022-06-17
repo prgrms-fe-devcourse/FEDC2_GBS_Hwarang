@@ -181,7 +181,7 @@ function UserPage() {
             >
               <FollowButton
                 handleClick={() => handleButtonClick(ID, isFollowing)}
-                isUnFollow={isFollowing}
+                isUnFollow={isLogin && isFollowing}
               />
             </PrivateRoute>
           )}
