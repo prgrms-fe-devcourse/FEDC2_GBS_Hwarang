@@ -1,13 +1,25 @@
-import React from "react";
-import { Button, Image, ImageSlider, Footer } from "components";
+import React, { useEffect, useState } from "react";
+import { Button, Image, ImageSlider } from "components";
 import { useRecoilValue } from "recoil";
 import { mainPost } from "recoil/post";
 import Common from "styles/common";
 import S from "./MainPage.style";
-import { MainGrid, MainInput, ImageData } from "./components";
+import { MainGrid, MainInput, ImageData, MainSkeleton } from "./components";
 
 const MainPage = () => {
   const { popularPost, latestPost } = useRecoilValue(mainPost);
+  const [loadingPopular, setLoadingPopular] = useState(true);
+  const [loadingLatest, setLoadingLatest] = useState(true);
+
+  useEffect(() => {
+    if (popularPost.length !== 0) {
+      setLoadingPopular(false);
+    }
+
+    if (latestPost.length !== 0) {
+      setLoadingLatest(false);
+    }
+  }, [popularPost, latestPost]);
 
   return (
     <div>
@@ -22,10 +34,14 @@ const MainPage = () => {
       </S.Header>
       <S.Section>
         <S.SectionWrapper>
-          <MainGrid
-            data={popularPost}
-            mainTitle="가봤슈 사용자들의 최고 인기 여행지"
-          />
+          {loadingPopular ? (
+            <MainSkeleton />
+          ) : (
+            <MainGrid
+              data={popularPost}
+              mainTitle="가봤슈 사용자들의 최고 인기 여행지"
+            />
+          )}
           <Button color="white" type="button">
             <S.LinkButton
               to="/travel-destination/popular"
@@ -42,10 +58,14 @@ const MainPage = () => {
           height="100%"
         />
         <S.SectionWrapper>
-          <MainGrid
-            data={latestPost}
-            mainTitle="가봤슈 사용자들의 최근 여행지"
-          />
+          {loadingLatest ? (
+            <MainSkeleton />
+          ) : (
+            <MainGrid
+              data={latestPost}
+              mainTitle="가봤슈 사용자들의 최근 여행지"
+            />
+          )}
           <Button color="$main" backgroundColor="$white" type="button" border>
             <S.LinkButton
               to="/travel-destination/latest"
@@ -56,7 +76,6 @@ const MainPage = () => {
           </Button>
         </S.SectionWrapper>
       </S.Section>
-      <Footer />
     </div>
   );
 };
