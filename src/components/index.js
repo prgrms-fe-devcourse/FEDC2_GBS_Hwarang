@@ -17,3 +17,5 @@ export { default as Spinner } from "./Spinner";
 export { default as PostListInput } from "./PostListInput";
 export { default as Dot } from "./Dot";
 export { default as Divider } from "./Divider";
+export { default as PrivateRoute } from "./PrivateRoute";
+export { default as Modal } from "./Modal";

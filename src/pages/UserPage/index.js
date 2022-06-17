@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Image, Text, Avatar, PostList } from "components";
+import { Image, Text, Avatar, PostList, PrivateRoute } from "components";
 import { useParams, useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { jwtToken } from "recoil/authentication";
+import { jwtToken, loginStatus } from "recoil/authentication";
 import { userInfo } from "recoil/user";
 import { getPostByUserId } from "api/post-api";
 import { getUserInfoById, followUser, unFollowUser } from "api/user-api";
@@ -26,9 +26,11 @@ function UserPage() {
   const [profileImgHover, setProfileImgHover] = useState(false);
   const [coverImageHover, setCoverImageHover] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [FollowAuthTrigger, setFollowAuthTrigger] = useState(false);
   const [myPost, setMyPost] = useState([]);
 
   const myInfo = useRecoilValue(userInfo);
+  const isLogin = useRecoilValue(loginStatus);
   const setMyInfo = useSetRecoilState(userInfo);
   const token = useRecoilValue(jwtToken);
 
@@ -64,7 +66,6 @@ function UserPage() {
     if (myInfo.following && !isOwner) {
       const isFollow =
         myInfo.following.filter((follower) => follower.user === ID).length >= 1;
-      console.log(isFollow);
       setIsFollowing(isFollow);
     }
   }, [ID, myInfo, isOwner]);
@@ -87,6 +88,10 @@ function UserPage() {
   };
 
   const handleButtonClick = async (id, isFollow) => {
+    setFollowAuthTrigger(true);
+
+    if (!isLogin) return;
+
     if (isFollow) await handleUnFollowClick(id);
     else await handleFollowClick(id);
     // refetch data
@@ -169,10 +174,16 @@ function UserPage() {
         </S.ExtraInfoWrapper>
         <S.FollowBlock>
           {!isOwner && (
-            <FollowButton
-              handleClick={() => handleButtonClick(ID, isFollowing)}
-              isUnFollow={isFollowing}
-            />
+            <PrivateRoute
+              trigger={FollowAuthTrigger}
+              setTrigger={setFollowAuthTrigger}
+              isAutoTrigger={false}
+            >
+              <FollowButton
+                handleClick={() => handleButtonClick(ID, isFollowing)}
+                isUnFollow={isFollowing}
+              />
+            </PrivateRoute>
           )}
         </S.FollowBlock>
       </S.ImageWrapper>
