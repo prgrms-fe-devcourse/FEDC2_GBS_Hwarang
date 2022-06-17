@@ -20,6 +20,7 @@ import { allPost, setLikePost } from "recoil/post";
 import TaskProvider from "contexts/TaskProvider";
 // eslint-disable-next-line import/named
 import { Footer } from "components";
+import uploadImageToS3 from "utils/uploadImageToS3";
 import { MainPage, PostListPage, UserPage } from "./pages";
 import Auth from "./hoc";
 import "./utils/date";
@@ -39,6 +40,9 @@ function App() {
     contents: { isTokenValid, userData },
   } = useRecoilValueLoadable(isUserAuthenticated);
   const setUserInfo = useSetRecoilState(userInfo);
+
+  const res = uploadImageToS3(null);
+  console.log(res);
 
   useEffect(() => {
     if (!isLogined && TokenExist) {
