@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 
 export const postManager = atom({
   key: "posts",
@@ -83,4 +83,16 @@ export const latestPost = selector({
       latestPost: latest,
     };
   },
+export const postImage = selectorFamily({
+  key: "postImage",
+  get:
+    (postId) =>
+    ({ get }) => {
+      const data = get(allPost).filter((post) => {
+        // eslint-disable-next-line no-underscore-dangle
+        return post._id === postId;
+      });
+
+      return data.length > 0 && data[0].image ? data[0].image : undefined;
+    },
 });
