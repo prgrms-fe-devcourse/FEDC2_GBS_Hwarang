@@ -2,13 +2,31 @@ import { PostList, PostListFilter } from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useTasks } from "contexts/TaskProvider";
-import { allPost } from "recoil/post";
+import { allPost, latestPost } from "recoil/post";
 import S from "./PostListPage.style";
 import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
-  const data = useRecoilValue(allPost);
+  const data2 = useRecoilValue(allPost);
+  console.log(data2);
+  let data = useRecoilValue(latestPost);
+  data = data.latestPost;
   const { tasks } = useTasks();
+
+  // const standardFilter = (data) => {
+  //   if (standard.length !== 0) {
+  //     //
+  //   }
+  // }
+
+  // const channelFilter = (data) => {
+  //   let temp = [];
+  //   if (channel.length !== 0) {
+  //     temp = data.filter((item) => item.channel === channel);
+
+  //   }
+
+  // };
   let result = null;
   if (tasks.length !== 0) {
     const titleSet = tasks.map((item) => item.title);
@@ -16,6 +34,7 @@ const PostListPage = () => {
   } else {
     result = data;
   }
+  console.log(result);
 
   const [folded, setFolded] = useState(false);
 
