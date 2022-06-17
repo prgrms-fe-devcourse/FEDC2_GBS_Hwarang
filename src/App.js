@@ -40,9 +40,6 @@ function App() {
   } = useRecoilValueLoadable(isUserAuthenticated);
   const setUserInfo = useSetRecoilState(userInfo);
 
-  const res = uploadImageToS3(null);
-  console.log(res);
-
   useEffect(() => {
     if (!isLogined && TokenExist) {
       if (isTokenValid) {
