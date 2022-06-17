@@ -1,4 +1,4 @@
-import { uploadFile } from "react-s3";
+import ReactS3Client from "react-aws-s3-typescript";
 // eslint-disable-next-line
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
@@ -11,7 +11,9 @@ const uploadImageToS3 = async (file, directory = "") => {
     secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY,
   };
 
-  const res = await uploadFile(file, config);
+  const s3 = new ReactS3Client(config);
+
+  const res = await s3.uploadFile(file, config);
   return res;
 };
 
