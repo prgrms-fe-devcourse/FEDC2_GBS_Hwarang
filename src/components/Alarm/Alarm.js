@@ -1,10 +1,7 @@
 /**
  * 사용자의 프로필 사진과 알람 리스트를 관리하는 component
  */
-import Avatar from "components/Avatar";
-import Dot from "components/Dot";
-import Divider from "components/Divider";
-import Text from "components/Text";
+import { Avatar, Dot, Divider, Text } from "components";
 import React, { useEffect, useState } from "react";
 import { getAlarms } from "api/alarm-api";
 import Item from "./components";
