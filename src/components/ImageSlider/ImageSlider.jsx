@@ -61,7 +61,7 @@ const ImageSlider = ({ children, width, height }) => {
     <IS.Container style={{ ...sliderStyle }}>
       <IS.SliderContainer className="hi" ref={slideRef}>
         {children.map((item) => (
-          <Slide src={item.src} />
+          <Slide key={item.id} src={item.src} />
         ))}
       </IS.SliderContainer>
       <IS.ButtonContainer>

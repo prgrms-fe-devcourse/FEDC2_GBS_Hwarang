@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import PostListInput from "components/PostListInput";
 import { useTasks } from "contexts/TaskProvider";
+import { getChannels } from "api/post-api";
 import * as S from "./PostListFilter.style";
 import DeletableChip from "./DeletableChip";
 
@@ -9,13 +10,16 @@ const PostListFilter = () => {
   const { tasks, selectStandard, selectChannel } = useTasks();
   const [isChannelSelect, setIsChannelSelect] = useState([false]);
   const [isStandardSelect, setIsStandardSelect] = useState([false]);
+
+  const channelResponse = getChannels().then((res) => console.log(res));
+  console.log(typeof channelResponse);
+
   const channel = [
-    "아시아",
-    "유럽",
-    "아프리카",
-    "북아메리카",
-    "남아메리카",
-    "오세아니아",
+    "인기순",
+    "최신순",
+    "오래된 순",
+    "가봤슈 추천순",
+    "댓글 많은 순",
   ];
   const standard = [
     "인기순",
