@@ -16,7 +16,7 @@ import {
 } from "recoil/authentication";
 import { userInfo } from "recoil/user";
 import { postManager } from "recoil/post";
-import { Footer } from "components";
+import { Footer, PrivateRoute } from "components";
 import getAllPost from "repository/postRepository";
 import { MainPage, PostListPage, UserPage } from "./pages";
 
@@ -60,6 +60,14 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/travel-destination" element={<PostListPage />} />
           <Route path="userpage/:ID" element={<UserPage />} />
+          <Route
+            path="/post/create"
+            element={
+              <PrivateRoute isAutoTrigger>
+                <div>Post 작성</div>
+              </PrivateRoute>
+            }
+          />
           <Route path="*" element={<div>Not Found!</div>} />
         </Routes>
         <Footer />

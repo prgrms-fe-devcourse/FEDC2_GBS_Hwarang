@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 const Button = styled.button`
   display: block;
   padding: 8px 6px;
-  margin: 0 auto;
+  margin: ${({ margin }) => margin};
   outline: none;
   box-sizing: border-box;
   cursor: pointer;
