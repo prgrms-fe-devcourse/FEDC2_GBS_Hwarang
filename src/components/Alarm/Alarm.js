@@ -1,10 +1,19 @@
 /**
  * 사용자의 프로필 사진과 알람 리스트를 관리하는 component
  */
+<<<<<<< HEAD
 import { Avatar, Dot, Divider, Text } from "components";
 import React, { useEffect, useState } from "react";
 import { getAlarms } from "api/alarm-api";
 import Item from "./components";
+=======
+import Avatar from "components/Avatar";
+import Dot from "components/Dot";
+import Text from "components/Text";
+import Image from "components/Image";
+import Divider from "components/Divider";
+import React from "react";
+>>>>>>> e310e19 ([feat]: 알림 타입별 element 구성 완료)
 import * as S from "./Alarm.style";
 
 const AlarmComponentByType = (type) => {
