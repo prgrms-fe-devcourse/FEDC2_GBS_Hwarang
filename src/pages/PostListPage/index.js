@@ -1,5 +1,5 @@
 import { PostList, PostListFilter } from "components";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
 import S from "./PostListPage.style";
@@ -8,16 +8,18 @@ import FilteredResult from "./components/FilteredResult";
 
 const PostListPage = () => {
   const data = useRecoilValue(allPost);
-  const [renderData, setRenderData] = useState([]);
+  const renderData = useRef([]);
   const [folded, setFolded] = useState(false);
 
+  const result = FilteredResult(data);
+
   useEffect(() => {
-    if (FilteredResult(data)) {
-      setRenderData(FilteredResult);
+    if (result.length !== 0) {
+      renderData.current = result;
       return;
     }
-    setRenderData(data);
-  }, []);
+    renderData.current = data;
+  }, [result]);
 
   /* Header fold */
   const handleHeader = () => {
@@ -46,7 +48,7 @@ const PostListPage = () => {
           </S.Header>
         </S.HeaderWrapper>
         <S.Section>
-          <PostList data={renderData} listTitle="검색 결과" />
+          <PostList data={renderData.current} listTitle="검색 결과" />
         </S.Section>
         <ScrollTopButton />
       </S.PageWrapper>
