@@ -18,7 +18,6 @@ import { userInfo } from "recoil/user";
 import { postManager } from "recoil/post";
 import { Footer, PrivateRoute } from "components";
 import getAllPost from "repository/postRepository";
-import uploadImageToS3 from "utils/uploadImageToS3";
 import { MainPage, PostListPage, UserPage } from "./pages";
 
 function App() {
@@ -29,9 +28,6 @@ function App() {
     contents: { isTokenValid, userData },
   } = useRecoilValueLoadable(isUserAuthenticated);
   const setUserInfo = useSetRecoilState(userInfo);
-
-  const res = uploadImageToS3(null);
-  console.log(res);
 
   useEffect(() => {
     if (!isLogined && TokenExist) {
