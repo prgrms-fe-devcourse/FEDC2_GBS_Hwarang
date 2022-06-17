@@ -9,7 +9,6 @@ import FilteredResult from "./components/FilteredResult";
 const PostListPage = () => {
   const data = useRecoilValue(allPost);
   const renderData = useRef([]);
-  // const result = useRef([]);
   const [folded, setFolded] = useState(false);
 
   const result = FilteredResult(data);
@@ -55,7 +54,7 @@ const PostListPage = () => {
           </S.Header>
         </S.HeaderWrapper>
         <S.Section>
-          <PostList data={renderData} listTitle="검색 결과" />
+          <PostList data={renderData.current} listTitle="검색 결과" />
         </S.Section>
         <ScrollTopButton />
       </S.PageWrapper>
