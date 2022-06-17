@@ -7,6 +7,8 @@ import {
   GET_POST,
   //   GET_POSTS,
   UPDATE_POST,
+  GET_POST_BY_ID,
+  CREATE_POST,
 } from "./url";
 
 import Channel from "../mock/channel.json";
@@ -70,4 +72,25 @@ export const removePost = async (postId, token) => {
       },
     }
   );
+};
+
+export const getPostByUserId = async (userId, offset = 6, limit = 6) => {
+  if (!userId) return []; // 방어 코드
+  const res = await axios.get(`${BASE_URL}${GET_POST_BY_ID}/${userId}`, {
+    params: {
+      offset,
+      limit,
+    },
+  });
+  return res;
+};
+
+export const createPost = async (post, token) => {
+  const res = await axios.post(`${BASE_URL}${CREATE_POST}`, post, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "content-type": "multipart/form-data",
+    },
+  });
+  return res;
 };

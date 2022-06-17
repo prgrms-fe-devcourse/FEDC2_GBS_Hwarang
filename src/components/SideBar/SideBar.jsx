@@ -3,7 +3,7 @@ import Input from "components/Input";
 import InputResult from "components/InputResult";
 import Text from "components/Text";
 import PropTypes from "prop-types";
-import getAllUsers from "repository/userRepository";
+import { getUsers } from "api/user-api";
 
 const propTypes = {
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -32,8 +32,8 @@ const SideBar = ({ margin, padding }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await getAllUsers();
-        setUsers(response);
+        const response = await getUsers();
+        setUsers(response.data);
       } catch (exception) {
         console.error(exception);
       }

@@ -28,5 +28,6 @@ export const userAuth = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   });
+
   return res;
 };

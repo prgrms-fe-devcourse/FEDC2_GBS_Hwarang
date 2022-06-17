@@ -1,23 +1,15 @@
-import React, { useState, useEffect } from "react";
-import {
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-  useRecoilValueLoadable,
-} from "recoil";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { NavLink, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "components/Button";
 import Image from "components/Image";
 import Icon from "components/Icon";
 import Popup from "components/Popup";
 import SideBar from "components/SideBar";
-import {
-  loginStatus,
-  isTokenExist,
-  logoutProcess,
-  isUserAuthenticated,
-} from "../../recoil/authentication";
+import Avatar from "components/Avatar";
+import { userInfo, profileImg } from "recoil/user";
+import { loginStatus, logoutProcess } from "../../recoil/authentication";
 import * as Ns from "./Navigation.style";
 import Modal from "../Modal";
 import Login from "./Login";
@@ -30,19 +22,26 @@ const BUTTON_HEIGHT = 45;
 
 const LoggedInedBlock = () => {
   const setLogOut = useSetRecoilState(logoutProcess);
+  const profile = useRecoilValue(profileImg);
+  const myInfo = useRecoilValue(userInfo);
+  const navigate = useNavigate();
 
   const handleLogOut = async () => {
     await userLogout();
     setLogOut();
+    navigate("/");
   };
 
   return (
     <>
+      <Avatar src={profile} size={40} />
       <Button
         type="button"
         width={BUTTON_WIDTH}
         height={BUTTON_HEIGHT}
         textSize={BUTTON_FONT_SIZE}
+        // eslint-disable-next-line
+        onClick={() => navigate(`userpage/${myInfo._id}`)}
       >
         회원정보
       </Button>
@@ -131,8 +130,6 @@ function Navigation() {
   });
 
   const [isLogined, setIsLogined] = useRecoilState(loginStatus);
-  const TokenExist = useRecoilValue(isTokenExist);
-  const isTokenValid = useRecoilValueLoadable(isUserAuthenticated);
 
   const changeModalType = (type) => {
     setModalStatus({
@@ -140,12 +137,6 @@ function Navigation() {
       type,
     });
   };
-
-  useEffect(() => {
-    if (!isLogined && TokenExist) {
-      if (isTokenValid) setIsLogined(true);
-    }
-  }, [isLogined, TokenExist, isTokenValid]);
 
   return (
     <>

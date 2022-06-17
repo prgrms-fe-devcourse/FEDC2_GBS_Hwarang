@@ -1,4 +1,5 @@
 import React from "react";
+// import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import * as S from "./PostListItem.style";
 
@@ -13,11 +14,13 @@ const defaultProps = {
 };
 
 const PostListItem = ({ width, post, ...props }) => {
+  // const navigate = useNavigate();
   const sizeStyle = {
     width,
   };
   const handleonClick = (id) => {
     // TODO: 해당 id를 가진 post로 이동
+    // navigate(`/userpage/${id}`);
     console.log(id);
   };
   const { _id } = post;

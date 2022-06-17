@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 import Avatar from "components/Avatar";
 import Text from "components/Text";
 import IconGroup from "components/IconGroup";
@@ -20,6 +20,7 @@ const defaultProps = {
 };
 
 const UserListItem = ({ width, user, ...props }) => {
+  const navigate = useNavigate();
   const { _id, fullName, image, email, posts, followers, isOnline, isFollow } =
     user;
   const sizeStyle = {
@@ -27,7 +28,7 @@ const UserListItem = ({ width, user, ...props }) => {
   };
   const handleonClick = (id) => {
     // TODO: 해당 id를 가진 userPage로 이동
-    alert(id);
+    navigate(`/userpage/${id}`);
   };
 
   return (
