@@ -6,7 +6,7 @@ import * as S from "./PostListFilter.style";
 import DeletableChip from "./DeletableChip";
 
 const PostListFilter = () => {
-  const { tasks } = useTasks();
+  const { tasks, selectStandard, selectChannel } = useTasks();
   const [isChannelSelect, setIsChannelSelect] = useState([false]);
   const [isStandardSelect, setIsStandardSelect] = useState([false]);
   const channel = [
@@ -29,8 +29,10 @@ const PostListFilter = () => {
     newArr[idx] = true;
     if (arr === "channel") {
       setIsChannelSelect(newArr);
+      selectChannel(idx);
     } else {
       setIsStandardSelect(newArr);
+      selectStandard(standard[idx]);
     }
   };
   return (
