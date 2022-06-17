@@ -13,7 +13,6 @@ import Icon from "components/Icon";
 import Popup from "components/Popup";
 import Alarm from "components/Alarm";
 import SideBar from "components/SideBar";
-// import Avatar from "components/Avatar";
 import { userInfo } from "recoil/user";
 import { useCookies } from "react-cookie";
 import { loginStatus, jwtToken } from "../../recoil/authentication";
@@ -28,7 +27,6 @@ const BUTTON_FONT_SIZE = "$n1";
 const BUTTON_HEIGHT = 45;
 
 const LoggedInedBlock = () => {
-  // const profile = useRecoilValue(profileImg);
   const myInfo = useRecoilValue(userInfo);
   const navigate = useNavigate();
   const [, , removeCookie] = useCookies(["token"]);
