@@ -17,11 +17,10 @@ import {
 import { userInfo } from "recoil/user";
 import { getAllPosts } from "api/post-api";
 import { allPost, setLikePost } from "recoil/post";
-import { Footer } from "components";
 import TaskProvider from "contexts/TaskProvider";
 // eslint-disable-next-line import/named
-
-import { MainPage, PostListPage, UserPage } from "./pages";
+import { Footer } from "components";
+import { MainPage, PostListPage } from "./pages";
 import Auth from "./hoc";
 
 import "./utils/date";
