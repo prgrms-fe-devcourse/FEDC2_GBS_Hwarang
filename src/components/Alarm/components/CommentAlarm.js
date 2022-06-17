@@ -26,6 +26,7 @@ const CommentAlaram = ({ info }) => {
         </Text>
         댓글을 달았습니다.
       </div>
+<<<<<<< HEAD
       {image && (
         <Image
           src={image}
@@ -35,6 +36,15 @@ const CommentAlaram = ({ info }) => {
           style={{ marginLeft: 10 }}
         />
       )}
+=======
+      <Image
+        src="https://via.placeholder.com/300"
+        width="50px"
+        height="auto"
+        mode="contain"
+        style={{ marginLeft: 10 }}
+      />
+>>>>>>> 851a066 ([feat]: 알림 type에 따른 동적 component 분기 처리)
     </>
   );
 };
