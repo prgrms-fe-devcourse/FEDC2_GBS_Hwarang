@@ -56,7 +56,7 @@ export const getPost = async (postId) => {
 export const updatePost = async (post, token) => {
   await axios.put(`${BASE_URL}${UPDATE_POST}`, post, {
     headers: {
-      Authorization: `${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 };
@@ -68,7 +68,7 @@ export const removePost = async (postId, token) => {
     { id: postId },
     {
       headers: {
-        Authorization: `${token}`,
+        Authorization: `Bearer ${token}`,
       },
     }
   );

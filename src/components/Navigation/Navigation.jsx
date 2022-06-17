@@ -6,9 +6,9 @@ import Button from "components/Button";
 import Image from "components/Image";
 import Icon from "components/Icon";
 import Popup from "components/Popup";
+import Alarm from "components/Alarm";
 import SideBar from "components/SideBar";
-import Avatar from "components/Avatar";
-import { userInfo, profileImg } from "recoil/user";
+import { userInfo } from "recoil/user";
 import { loginStatus, logoutProcess } from "../../recoil/authentication";
 import * as Ns from "./Navigation.style";
 import Modal from "../Modal";
@@ -22,7 +22,6 @@ const BUTTON_HEIGHT = 45;
 
 const LoggedInedBlock = () => {
   const setLogOut = useSetRecoilState(logoutProcess);
-  const profile = useRecoilValue(profileImg);
   const myInfo = useRecoilValue(userInfo);
   const navigate = useNavigate();
 
@@ -34,7 +33,7 @@ const LoggedInedBlock = () => {
 
   return (
     <>
-      <Avatar src={profile} size={40} />
+      <Alarm />
       <Button
         type="button"
         width={BUTTON_WIDTH}
