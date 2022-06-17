@@ -20,9 +20,8 @@ import { allPost, setLikePost } from "recoil/post";
 import TaskProvider from "contexts/TaskProvider";
 // eslint-disable-next-line import/named
 import { Footer } from "components";
-import { MainPage, PostListPage } from "./pages";
+import { MainPage, PostListPage, UserPage } from "./pages";
 import Auth from "./hoc";
-
 import "./utils/date";
 
 function App() {
