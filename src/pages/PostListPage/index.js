@@ -9,15 +9,20 @@ import ScrollTopButton from "./components/ScrollTopButton";
 const PostListPage = () => {
   const data = useRecoilValue(allPost);
   const { tasks } = useTasks();
-  let result = null;
-  if (tasks.length !== 0) {
-    const titleSet = tasks.map((item) => item.title);
-    result = data.filter((item) => titleSet.includes(item.title));
-  } else {
-    result = data;
-  }
-
+  const [renderData, setRenderData] = useState([]);
   const [folded, setFolded] = useState(false);
+
+  useEffect(() => {
+    if (tasks.length !== 0) {
+      const titleSet = tasks.map((item) => item.title);
+      const result = data.filter((item) => titleSet.includes(item.title));
+
+      setRenderData(result);
+      return;
+    }
+
+    setRenderData(data);
+  }, [tasks, data]);
 
   /* Header fold */
   const handleHeader = () => {
@@ -46,7 +51,7 @@ const PostListPage = () => {
           </S.Header>
         </S.HeaderWrapper>
         <S.Section>
-          <PostList data={result} listTitle="검색 결과" />
+          <PostList data={renderData} listTitle="검색 결과" />
         </S.Section>
         <ScrollTopButton />
       </S.PageWrapper>
