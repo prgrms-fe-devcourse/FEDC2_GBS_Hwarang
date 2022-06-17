@@ -25,6 +25,7 @@ const AlarmComponentByType = (type) => {
 
 const Alarm = () => {
   const profile = useRecoilValue(profileImg);
+  const [showAlarm, setShowAlarm] = useState(false);
   const [notification, setNotification] = useState([]);
 
   useEffect(() => {
@@ -41,35 +42,41 @@ const Alarm = () => {
 
   return (
     <div style={{ display: "inline-block", position: "relative", zIndex: 998 }}>
-      <Avatar src={profile} size={45} />
-      <Dot size={15} color="#D43737" style={{ top: 0, right: 0 }} />
-      <S.AlarmWrapper>
-        <Text size="$c1" strong>
-          알림 왔슈📌
-        </Text>
-        <ul style={{ listStyle: "none", padding: 0, marginTop: 20 }}>
-          <Divider size={15} />
-          {notification &&
-            notification.map((noti) =>
-              AlarmComponentByType(noti.notificationType) ? (
-                // eslint-disable-next-line no-underscore-dangle
-                <div key={noti._id}>
-                  <li style={{ display: "flex" }}>
-                    {React.createElement(
-                      AlarmComponentByType(noti.notificationType),
-                      {
-                        info: noti,
-                      }
-                    )}
-                  </li>
-                  <Divider size={15} />
-                </div>
-              ) : (
-                "hello world"
-              )
-            )}
-        </ul>
-      </S.AlarmWrapper>
+      <S.ProfileWrapper onClick={() => setShowAlarm((pre) => !pre)}>
+        <Avatar src="https://picsum.photos/200?1" size={45} />
+        {notification && notification.length > 0 && (
+          <Dot size={15} color="#D43737" style={{ top: 0, right: 0 }} />
+        )}
+      </S.ProfileWrapper>
+      {showAlarm && (
+        <S.AlarmWrapper>
+          <Text size="$c1" strong>
+            알림 왔슈📌
+          </Text>
+          <ul style={{ listStyle: "none", padding: 0, marginTop: 20 }}>
+            <Divider size={15} />
+            {notification &&
+              notification.map((noti) =>
+                AlarmComponentByType(noti.notificationType) ? (
+                  // eslint-disable-next-line no-underscore-dangle
+                  <div key={noti._id}>
+                    <li style={{ display: "flex" }}>
+                      {React.createElement(
+                        AlarmComponentByType(noti.notificationType),
+                        {
+                          info: noti,
+                        }
+                      )}
+                    </li>
+                    <Divider size={15} />
+                  </div>
+                ) : (
+                  "hello world"
+                )
+              )}
+          </ul>
+        </S.AlarmWrapper>
+      )}
     </div>
   );
 };
