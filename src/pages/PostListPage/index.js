@@ -55,7 +55,7 @@ const PostListPage = () => {
           </S.Header>
         </S.HeaderWrapper>
         <S.Section>
-          <PostList data={renderData.current} listTitle="검색 결과" />
+          <PostList data={renderData} listTitle="검색 결과" />
         </S.Section>
         <ScrollTopButton />
       </S.PageWrapper>
