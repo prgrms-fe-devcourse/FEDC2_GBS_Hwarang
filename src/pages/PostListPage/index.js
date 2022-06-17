@@ -50,7 +50,7 @@ const PostListPage = () => {
             <PostListFilter />
           </S.Header>
         </S.HeaderWrapper>
-        <S.Section>
+        <S.Section /* PostList 렌더링 */>
           <PostList data={renderData} listTitle="검색 결과" />
         </S.Section>
         <ScrollTopButton />

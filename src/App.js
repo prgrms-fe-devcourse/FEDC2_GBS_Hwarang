@@ -30,7 +30,10 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/travel-destination" element={<PostListPage />} />
+          <Route
+            path="/travel-destination/:Options"
+            element={<PostListPage />}
+          />
         </Routes>
       </Router>
     </TaskProvider>

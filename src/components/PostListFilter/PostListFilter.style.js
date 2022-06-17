@@ -53,6 +53,7 @@ export const styledButton = styled.button`
   margin-right: 15px;
   display: inline-block;
   cursor: pointer;
+
   &:hover {
     color: white;
     background-color: ${Common.colors.main};
