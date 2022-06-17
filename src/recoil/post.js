@@ -17,6 +17,19 @@ export const allPost = selector({
   },
 });
 
+export const allData = selector({
+  key: "allData",
+  get: ({ get }) => {
+    const data = get(allPost).map((post) => ({
+      ...post,
+      comments: post.comments.length,
+      likes: post.likes.length,
+    }));
+
+    return data;
+  },
+});
+
 /* MainPage */
 export const mainPost = selector({
   key: "mainPost",
@@ -56,13 +69,19 @@ export const postList = selector({
       likes: post.likes.length,
     }));
     // 1. 인기순
-    const popular = data.sort((a, b) => b.likes - a.likes);
+    const popular = [
+      ...data.sort((a, b) => {
+        return b.likes - a.likes;
+      }),
+    ];
     // 2. 최신순
-    const latest = data.sort((a, b) => {
-      const dateA = new Date(a.createdAt);
-      const dateB = new Date(b.createdAt);
-      return dateB.getTime() - dateA.getTime();
-    });
+    const latest = [
+      ...data.sort((a, b) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+        return dateB.getTime() - dateA.getTime();
+      }),
+    ];
 
     return {
       all: data,

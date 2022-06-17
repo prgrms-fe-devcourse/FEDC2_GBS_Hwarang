@@ -2,33 +2,39 @@ import { PostList, PostListFilter } from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useTasks } from "contexts/TaskProvider";
-import { allPost, postList } from "recoil/post";
+import { allData, postList } from "recoil/post";
 import { useParams } from "react-router-dom";
 import S from "./PostListPage.style";
 import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
-  const data = useRecoilValue(allPost);
-  /* 1. 검색 options */
-  const { tasks } = useTasks();
-  /* 2. Params 이용한 검색 Sorting options */
-  const { Options } = useParams();
-  const [renderData, setRenderData] = useState([]);
-  const [optionData, setOptionData] = useState([]);
-  const [folded, setFolded] = useState(false);
+  const data = useRecoilValue(allData);
   const postListData = useRecoilValue(postList);
 
+  /* 1. 검색 options */
+  const { tasks } = useTasks();
+
+  /* 2. Params 이용한 검색 Sorting options */
+  const { Options } = useParams();
+  const [optionData, setOptionData] = useState([]);
+
+  /* 3. 최종적으로 보여지는 필터링 된 데이터 */
+  const [renderData, setRenderData] = useState([]);
+
+  /* Header Fold */
+  const [folded, setFolded] = useState(false);
+
   useEffect(() => {
-    if (tasks.length !== 0) {
+    if (tasks.length !== 0 && optionData) {
       const titleSet = tasks.map((item) => item.title);
-      const result = data.filter((item) => titleSet.includes(item.title));
+      const result = optionData.filter((item) => titleSet.includes(item.title));
 
       setRenderData(result);
       return;
     }
 
-    setRenderData(data);
-  }, [tasks, data]);
+    setRenderData(optionData);
+  }, [tasks, optionData]);
 
   /* Header fold */
   const handleHeader = () => {
@@ -49,13 +55,13 @@ const PostListPage = () => {
   }, []);
 
   useEffect(() => {
-    if (Options) {
-      setOptionData(postListData[Options]);
-      console.log(postListData[Options]);
+    if (!Options) {
+      setOptionData(data);
+      return;
     }
 
-    console.log(optionData);
-  }, [Options]);
+    setOptionData(postListData[Options]);
+  }, [Options, postListData]);
 
   return (
     <div>
