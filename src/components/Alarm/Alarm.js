@@ -4,6 +4,8 @@
 import { Avatar, Dot, Divider, Text } from "components";
 import React, { useEffect, useState } from "react";
 import { getAlarms } from "api/alarm-api";
+import { useRecoilValue } from "recoil";
+import { profileImg } from "recoil/user";
 import Item from "./components";
 import * as S from "./Alarm.style";
 
