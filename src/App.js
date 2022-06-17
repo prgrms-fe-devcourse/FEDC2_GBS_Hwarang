@@ -18,8 +18,8 @@ import { userInfo } from "recoil/user";
 import { getAllPosts } from "api/post-api";
 import { allPost, setLikePost } from "recoil/post";
 import TaskProvider from "contexts/TaskProvider";
-// eslint-disable-next-line import/named
 import { Footer } from "components";
+// eslint-disable-next-line import/named
 import { MainPage, PostListPage, UserPage } from "./pages";
 import Auth from "./hoc";
 import "./utils/date";
