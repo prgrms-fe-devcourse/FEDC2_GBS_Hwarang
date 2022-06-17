@@ -16,6 +16,7 @@ const propTypes = {
   type: PropTypes.string,
   props: PropTypes.instanceOf(Object),
   onClick: PropTypes.func,
+  style: PropTypes.instanceOf(Object),
 };
 
 const defaultProps = {
@@ -29,6 +30,7 @@ const defaultProps = {
   type: "button",
   props: {},
   onClick: () => {},
+  style: {},
 };
 
 const Button = ({
@@ -61,7 +63,12 @@ const Button = ({
   };
 
   return (
-    <SButton style={buttonStyle} type={type} onClick={onClick} {...props}>
+    <SButton
+      {...props}
+      style={{ ...buttonStyle, ...props.style }}
+      type={type}
+      onClick={onClick}
+    >
       <Text size={textSize} color={color} strong>
         {children}
       </Text>
