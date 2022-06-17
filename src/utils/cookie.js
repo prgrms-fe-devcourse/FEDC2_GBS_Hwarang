@@ -11,5 +11,5 @@ export const getCookie = (key) => {
 };
 
 export const removeCookie = (key) => {
-  return cookie.remove(key);
+  cookie.remove(key);
 };
