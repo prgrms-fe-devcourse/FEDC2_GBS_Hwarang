@@ -1,32 +1,11 @@
 /**
  * 사용자의 프로필 사진과 알람 리스트를 관리하는 component
  */
-<<<<<<< HEAD
 import { Avatar, Dot, Divider, Text } from "components";
-=======
-import Avatar from "components/Avatar";
-import Dot from "components/Dot";
-import Divider from "components/Divider";
-import Text from "components/Text";
->>>>>>> 851a066 ([feat]: 알림 type에 따른 동적 component 분기 처리)
 import React, { useEffect, useState } from "react";
 import { getAlarms } from "api/alarm-api";
 import Item from "./components";
 import * as S from "./Alarm.style";
-
-const AlarmComponentByType = (type) => {
-  console.log(type);
-  if (type === "COMMENT") {
-    return Item.CommentAlaram;
-  }
-  if (type === "FOLLOW") {
-    return Item.FollowAlarm;
-  }
-  if (type === "LIKE") {
-    return Item.LikeAlarm;
-  }
-  return undefined;
-};
 
 const AlarmComponentByType = (type) => {
   if (type === "COMMENT") {
@@ -60,7 +39,6 @@ const Alarm = () => {
 
   return (
     <div style={{ display: "inline-block", position: "relative", zIndex: 998 }}>
-<<<<<<< HEAD
       <S.ProfileWrapper onClick={() => setShowAlarm((pre) => !pre)}>
         <Avatar src={profile} size={45} />
         {notification && notification.length > 0 && (
@@ -96,33 +74,6 @@ const Alarm = () => {
           </ul>
         </S.AlarmWrapper>
       )}
-=======
-      <Avatar src="https://picsum.photos/200?1" size={45} />
-      <Dot size={15} color="#D43737" style={{ top: 0, right: 0 }} />
-      <S.AlarmWrapper>
-        <Text size="$c1" strong>
-          알림 왔슈📌
-        </Text>
-        <ul style={{ listStyle: "none", padding: 0, marginTop: 20 }}>
-          <Divider size={15} />
-          {notification &&
-            notification.map((noti) =>
-              AlarmComponentByType(noti.notificationType) ? (
-                <>
-                  <li style={{ display: "flex" }}>
-                    {React.createElement(
-                      AlarmComponentByType(noti.notificationType)
-                    )}
-                  </li>
-                  <Divider size={15} />
-                </>
-              ) : (
-                "hello world"
-              )
-            )}
-        </ul>
-      </S.AlarmWrapper>
->>>>>>> 851a066 ([feat]: 알림 type에 따른 동적 component 분기 처리)
     </div>
   );
 };
