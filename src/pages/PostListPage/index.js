@@ -9,11 +9,12 @@ import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
   const data = useRecoilValue(allPost);
+  /* 1. 검색 options */
   const { tasks } = useTasks();
-  const [renderData, setRenderData] = useState([]);
+  /* 2. Params 이용한 검색 Sorting options */
   const { Options } = useParams();
+  const [renderData, setRenderData] = useState([]);
   const [optionData, setOptionData] = useState([]);
-  console.log(optionData);
   const [folded, setFolded] = useState(false);
   const postListData = useRecoilValue(postList);
 
@@ -52,6 +53,8 @@ const PostListPage = () => {
       setOptionData(postListData[Options]);
       console.log(postListData[Options]);
     }
+
+    console.log(optionData);
   }, [Options]);
 
   return (
