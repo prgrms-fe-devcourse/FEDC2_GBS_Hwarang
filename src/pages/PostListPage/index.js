@@ -1,31 +1,23 @@
 import { PostList, PostListFilter } from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { useTasks } from "contexts/TaskProvider";
-import { allPost, latestPost } from "recoil/post";
+import { allPost } from "recoil/post";
 import S from "./PostListPage.style";
 import ScrollTopButton from "./components/ScrollTopButton";
+import FilteredResult from "./components/FilteredResult";
 
 const PostListPage = () => {
-  const data2 = useRecoilValue(allPost);
-  console.log(data2);
-  let data = useRecoilValue(latestPost);
-  data = data.latestPost;
-  const { tasks } = useTasks();
+  const data = useRecoilValue(allPost);
   const [renderData, setRenderData] = useState([]);
   const [folded, setFolded] = useState(false);
 
   useEffect(() => {
-    if (tasks.length !== 0) {
-      const titleSet = tasks.map((item) => item.title);
-      const result = data.filter((item) => titleSet.includes(item.title));
-
-      setRenderData(result);
+    if (FilteredResult(data)) {
+      setRenderData(FilteredResult);
       return;
     }
-
     setRenderData(data);
-  }, [tasks, data]);
+  }, []);
 
   /* Header fold */
   const handleHeader = () => {
