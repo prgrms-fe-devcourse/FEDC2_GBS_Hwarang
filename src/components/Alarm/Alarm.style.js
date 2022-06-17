@@ -14,7 +14,7 @@ export const AlarmWrapper = styled.div`
 
 export const ProfileWrapper = styled.div`
   cursor: pointer;
-  &:hover {
+  /* &:hover {
     background-color: rgba(0, 0, 0, 0.1);
-  }
+  } */
 `;

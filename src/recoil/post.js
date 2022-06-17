@@ -83,6 +83,8 @@ export const latestPost = selector({
       latestPost: latest,
     };
   },
+});
+
 export const postImage = selectorFamily({
   key: "postImage",
   get:
