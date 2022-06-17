@@ -28,7 +28,6 @@ const BUTTON_FONT_SIZE = "$n1";
 const BUTTON_HEIGHT = 45;
 
 const LoggedInedBlock = () => {
-  // const profile = useRecoilValue(profileImg);
   const myInfo = useRecoilValue(userInfo);
   const navigate = useNavigate();
   const [, , removeCookie] = useCookies(["token"]);
