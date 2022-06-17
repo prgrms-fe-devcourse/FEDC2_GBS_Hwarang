@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  useRecoilState,
+  useRecoilValue,
+  // eslint-disable-next-line
+  useRecoilTransaction_UNSTABLE,
+} from "recoil";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "components/Button";
@@ -10,7 +15,8 @@ import Alarm from "components/Alarm";
 import SideBar from "components/SideBar";
 import useQuery from "hooks/useQuery";
 import { userInfo } from "recoil/user";
-import { loginStatus, logoutProcess } from "../../recoil/authentication";
+import { useCookies } from "react-cookie";
+import { loginStatus, jwtToken } from "../../recoil/authentication";
 import * as Ns from "./Navigation.style";
 import Modal from "../Modal";
 import Login from "./Login";
@@ -22,13 +28,20 @@ const BUTTON_FONT_SIZE = "$n1";
 const BUTTON_HEIGHT = 45;
 
 const LoggedInedBlock = () => {
-  const setLogOut = useSetRecoilState(logoutProcess);
+  // const profile = useRecoilValue(profileImg);
   const myInfo = useRecoilValue(userInfo);
   const navigate = useNavigate();
+  const [, , removeCookie] = useCookies(["token"]);
+
+  const LogOut = useRecoilTransaction_UNSTABLE(({ set }) => () => {
+    set(loginStatus, false);
+    set(jwtToken, "");
+  });
 
   const handleLogOut = async () => {
     await userLogout();
-    setLogOut();
+    LogOut();
+    removeCookie("token");
     navigate("/");
   };
 
