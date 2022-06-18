@@ -31,11 +31,11 @@ function Login({ handleLogin, onClose, changeModalType }) {
       setToken(result.data.token);
       setUser(result.data.user);
       setLikePosts(result.data.user._id);
+      handleLogin(true);
     } catch (error) {
       setServerError(error.response.data);
     }
 
-    handleLogin(true);
     onClose();
   };
 
