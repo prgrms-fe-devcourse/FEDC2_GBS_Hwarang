@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Image, Text, Avatar, PostList } from "components";
 import { useParams, useNavigate } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState, useRecoilCallback } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { userInfo } from "recoil/user";
+import { unSeenNotifications } from "recoil/notification";
 import { getPostByUserId } from "api/post-api";
 import { getUserInfoById, followUser, unFollowUser } from "api/user-api";
+import { createAlarm, getAlarms } from "api/alarm-api";
 import ImageButton from "./components/ImageButton";
 import NoPostWrapper from "./components/NoPostList";
 import FollowButton from "./components/FollowButton";
@@ -31,6 +33,11 @@ function UserPage() {
   const myInfo = useRecoilValue(userInfo);
   const setMyInfo = useSetRecoilState(userInfo);
   const token = useRecoilValue(jwtToken);
+
+  const updateNotifications = useRecoilCallback(({ set }) => async () => {
+    const res = await getAlarms(token);
+    set(unSeenNotifications, res.data);
+  });
 
   const getUserData = async (id) => {
     if (!id) return;
@@ -64,14 +71,14 @@ function UserPage() {
     if (myInfo.following && !isOwner) {
       const isFollow =
         myInfo.following.filter((follower) => follower.user === ID).length >= 1;
-      console.log(isFollow);
       setIsFollowing(isFollow);
     }
   }, [ID, myInfo, isOwner]);
 
   const handleFollowClick = async (id) => {
     if (!id) return;
-    await followUser(id, token);
+    const res = await followUser(id, token);
+    return res.data;
   };
 
   const handleUnFollowClick = async (id) => {
@@ -88,7 +95,19 @@ function UserPage() {
 
   const handleButtonClick = async (id, isFollow) => {
     if (isFollow) await handleUnFollowClick(id);
-    else await handleFollowClick(id);
+    else {
+      const followResult = await handleFollowClick(id);
+      if (followResult) {
+        await createAlarm(
+          "FOLLOW",
+          followResult._id,
+          followResult.user,
+          null,
+          token
+        );
+        await updateNotifications();
+      }
+    }
     // refetch data
     await getUserData(id);
 
