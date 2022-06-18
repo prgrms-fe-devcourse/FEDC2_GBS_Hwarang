@@ -28,11 +28,11 @@ function Login({ handleLogin, onClose, changeModalType }) {
       const result = await userLogin(loginId, loginPassWord);
       setToken(result.data.token);
       setUser(result.data.user);
+      handleLogin(true);
     } catch (error) {
       setServerError(error.response.data);
     }
 
-    handleLogin(true);
     onClose();
   };
 

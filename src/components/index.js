@@ -18,3 +18,5 @@ export { default as PostListInput } from "./PostListInput";
 export { default as Dot } from "./Dot";
 export { default as Divider } from "./Divider";
 export { default as Modal } from "./Modal";
+export { default as Alarm } from "./Alarm";
+export { default as SideBar } from "./SideBar";

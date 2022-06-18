@@ -2,10 +2,10 @@
  * 사용자의 프로필 사진과 알람 리스트를 관리하는 component
  */
 import { Avatar, Dot, Divider, Text } from "components";
-import React, { useEffect, useState } from "react";
-import { getAlarms } from "api/alarm-api";
-import { useRecoilValue } from "recoil";
+import React, { useState } from "react";
+import { useRecoilValue, useRecoilValueLoadable } from "recoil";
 import { profileImg } from "recoil/user";
+import { unSeenNotifications } from "recoil/notification";
 import Item from "./components";
 import * as S from "./Alarm.style";
 
@@ -25,19 +25,8 @@ const AlarmComponentByType = (type) => {
 const Alarm = () => {
   const profile = useRecoilValue(profileImg);
   const [showAlarm, setShowAlarm] = useState(false);
-  const [notification, setNotification] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await getAlarms();
-        setNotification(response);
-      } catch (exception) {
-        console.error(exception);
-      }
-    }
-    fetchData();
-  }, [setNotification]);
+  const { contents: notification } =
+    useRecoilValueLoadable(unSeenNotifications);
 
   return (
     <div style={{ display: "inline-block", position: "relative", zIndex: 998 }}>
