@@ -19,7 +19,7 @@ const PostListPage = () => {
       return;
     }
     renderData.current = data;
-  }, [result]);
+  }, []);
 
   /* Header fold */
   const handleHeader = () => {
