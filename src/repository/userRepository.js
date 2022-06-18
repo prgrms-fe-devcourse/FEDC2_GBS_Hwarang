@@ -8,7 +8,7 @@ import { getUsers } from "api/user-api";
 // mock data
 // import users from "../mock/users.json";
 
-const getAllUsers = async (userId, offset, limit) => {
+const getAllUsers = async (following, offset, limit) => {
   // const getAllUsers = async (userId) => {
   try {
     // 1. 사용자 리스트 받아오기
@@ -18,7 +18,9 @@ const getAllUsers = async (userId, offset, limit) => {
       const response = users.data.map((user) => {
         return {
           ...user,
-          isFollow: user.following.includes(userId),
+          isFollow:
+            following.filter((follower) => follower.user === user._id).length >
+            0,
         };
       });
       return response;

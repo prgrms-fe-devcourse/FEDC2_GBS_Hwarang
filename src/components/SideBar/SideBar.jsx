@@ -35,7 +35,7 @@ const SideBar = ({ margin, padding }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await getAllUsers(myData._id);
+        const response = await getAllUsers(myData.following);
         setUsers(response);
       } catch (exception) {
         console.error(exception);
