@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import PropTypes from "prop-types";
 import * as S from "./Input.style";
@@ -96,14 +95,3 @@ Input.propTypes = propTypes;
 Input.defaultProps = defaultProps;
 
 export default Input;
-=======
-import * as S from './Input.style.js';
-
-const Input = ({}) => {
-  return (
-    <div></div>
-  )
-}
-
-export default Input;
->>>>>>> 3bb8e6b (pick feat: Input 컴포넌트 베이스코드를 생성했다)
