@@ -8,7 +8,7 @@ const MainGridWrapper = styled.div`
 
 const CardWrapper = styled.div`
   box-sizing: border-box;
-  padding: 5px;
+  padding: 10px;
   display: flex;
   gap: 10px;
   flex-direction: column;

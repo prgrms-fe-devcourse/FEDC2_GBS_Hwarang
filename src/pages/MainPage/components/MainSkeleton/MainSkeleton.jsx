@@ -11,7 +11,7 @@ const MainSkeleton = () => {
       result.push(
         <FluxCol>
           <S.CardWrapper>
-            <Skeleton.Box width={300} height={180} />
+            <Skeleton.Box width="100%" height={180} />
             <Skeleton.Paragraph />
           </S.CardWrapper>
         </FluxCol>
