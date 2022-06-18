@@ -19,11 +19,18 @@ import { getAllPosts } from "api/post-api";
 import { allPost } from "recoil/post";
 import { Footer } from "components";
 import { MainPage, PostListPage, UserPage } from "./pages";
+import Auth from "./hoc";
 
 import "./utils/date";
 
 function App() {
   const setPosts = useSetRecoilState(allPost);
+  
+  // component
+  const MainPageComponent = Auth(MainPage);
+  const PostListPageComponent = Auth(PostListPage);
+  const UserPageComponent = Auth(UserPage);
+
   const [isLogined, setIsLogined] = useRecoilState(loginStatus);
   const TokenExist = useRecoilValue(isTokenExist);
   const {
@@ -58,9 +65,12 @@ function App() {
       <Router>
         <Navigation />
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/travel-destination" element={<PostListPage />} />
-          <Route path="userpage/:ID" element={<UserPage />} />
+          <Route path="/" element={<MainPageComponent />} />
+          <Route
+            path="/travel-destination"
+            element={<PostListPageComponent />}
+          />
+          <Route path="userpage/:ID" element={<UserPageComponent />} />
           <Route path="*" element={<div>Not Found!</div>} />
         </Routes>
         <Footer />
