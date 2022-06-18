@@ -63,18 +63,20 @@ export const mainPost = selector({
 export const postList = selector({
   key: "postList",
   get: ({ get }) => {
+    // 1. 기본순
     const data = get(allPost).map((post) => ({
       ...post,
       comments: post.comments.length,
       likes: post.likes.length,
     }));
-    // 1. 인기순
+
+    // 2. 인기순
     const popular = [
       ...data.sort((a, b) => {
         return b.likes - a.likes;
       }),
     ];
-    // 2. 최신순
+    // 3. 최신순
     const latest = [
       ...data.sort((a, b) => {
         const dateA = new Date(a.createdAt);
@@ -83,10 +85,28 @@ export const postList = selector({
       }),
     ];
 
+    // 4. 오래된 순
+    const old = [
+      ...data.sort((a, b) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+        return dateA.getTime() - dateB.getTime();
+      }),
+    ];
+
+    // 5. 댓글 많은 순
+    const comments = [
+      ...data.sort((a, b) => {
+        return b.comments - a.comments;
+      }),
+    ];
+
     return {
       all: data,
       popular,
       latest,
+      old,
+      comments,
     };
   },
 });
