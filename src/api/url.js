@@ -17,7 +17,7 @@ export const FOLLOW_USER = "/follow/create";
 export const UN_FOLLOW_USER = "/follow/delete";
 
 // 사용자 정보 변경
-export const UPDATE_USER = "/settings/upload-user";
+export const UPDATE_USER = "/settings/update-user";
 export const UPDATE_PASSWORD = "/settings/update-password";
 
 // 채널
@@ -58,3 +58,9 @@ export const GET_CONVERSATION = "/messages/conversations";
 export const GET_MESSAGES = "/messages";
 export const CREATE_MESSAGES = "/messages/create";
 export const SEEN_MESSAGES = "/messages/update-seen";
+
+// 공통 default url
+export const DEFAULT_COVER_IMAGE =
+  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Default+Cover+Image.png";
+export const DEFAULT_PROFILE_IMAGE =
+  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Profile_Image.png";
