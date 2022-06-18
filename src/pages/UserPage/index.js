@@ -5,6 +5,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { userInfo } from "recoil/user";
 import { getPostByUserId } from "api/post-api";
+import { DEFAULT_COVER_IMAGE, DEFAULT_PROFILE_IMAGE } from "api/url";
 import { getUserInfoById, followUser, unFollowUser } from "api/user-api";
 import ImageButton from "./components/ImageButton";
 import NoPostWrapper from "./components/NoPostList";

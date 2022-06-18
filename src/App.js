@@ -33,7 +33,6 @@ function App() {
     if (!isLogined && TokenExist) {
       if (isTokenValid) {
         setIsLogined(true);
-        console.log(userData);
         setUserInfo(userData);
       }
     }
