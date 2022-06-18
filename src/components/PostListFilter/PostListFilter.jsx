@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import PostListInput from "components/PostListInput";
 import { useTasks } from "contexts/TaskProvider";
-import { getChannels } from "api/post-api";
+// import { getChannels } from "api/post-api";
 import * as S from "./PostListFilter.style";
 import DeletableChip from "./DeletableChip";
 
@@ -11,8 +11,8 @@ const PostListFilter = () => {
   const [isChannelSelect, setIsChannelSelect] = useState([false]);
   const [isStandardSelect, setIsStandardSelect] = useState([false]);
 
-  const channelResponse = getChannels().then((res) => console.log(res));
-  console.log(typeof channelResponse);
+  // const channelResponse = getChannels().then((res) => console.log(res));
+  // console.log(typeof channelResponse);
 
   const channel = [
     "인기순",
