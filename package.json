@@ -72,6 +72,10 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "2.6.2",
+<<<<<<< HEAD
     "webpack": "^5.73.0"
+=======
+    "prop-types": "^15.8.1"
+>>>>>>> 3bb8e6b (pick feat: Input 컴포넌트 베이스코드를 생성했다)
   }
 }

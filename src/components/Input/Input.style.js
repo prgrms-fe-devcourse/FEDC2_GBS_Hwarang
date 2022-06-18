@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
@@ -32,3 +33,6 @@ export const InputWrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
+=======
+import styled from '@emotion/styled';
+>>>>>>> 3bb8e6b (pick feat: Input 컴포넌트 베이스코드를 생성했다)
