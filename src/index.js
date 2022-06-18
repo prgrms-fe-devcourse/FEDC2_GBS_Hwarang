@@ -10,16 +10,14 @@ import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
-    <CookiesProvider>
-      <RecoilRoot>
-        <Global
-          styles={css`
-            ${emotionReset}
-          `}
-        />
-        <App />
-      </RecoilRoot>
-    </CookiesProvider>
-  </React.StrictMode>
+  <CookiesProvider>
+    <RecoilRoot>
+      <Global
+        styles={css`
+          ${emotionReset}
+        `}
+      />
+      <App />
+    </RecoilRoot>
+  </CookiesProvider>
 );

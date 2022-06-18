@@ -9,17 +9,24 @@ import FilteredResult from "./components/FilteredResult";
 const PostListPage = () => {
   const data = useRecoilValue(allPost);
   const renderData = useRef([]);
+  // const result = useRef([]);
   const [folded, setFolded] = useState(false);
 
   const result = FilteredResult(data);
 
+  // useEffect(() => {
+  //   result.current = getFiltered;
+  //   console.log(result.current);
+  // }, [data, getFiltered]);
+
   useEffect(() => {
     if (result.length !== 0) {
       renderData.current = result;
+      console.log(data);
       return;
     }
     renderData.current = data;
-  }, []);
+  }, [result, renderData.current]);
 
   /* Header fold */
   const handleHeader = () => {

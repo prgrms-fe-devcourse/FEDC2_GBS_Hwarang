@@ -14,13 +14,7 @@ const PostListFilter = () => {
   // const channelResponse = getChannels().then((res) => console.log(res));
   // console.log(typeof channelResponse);
 
-  const channel = [
-    "인기순",
-    "최신순",
-    "오래된 순",
-    "가봤슈 추천순",
-    "댓글 많은 순",
-  ];
+  const channel = [];
   const standard = [
     "인기순",
     "최신순",
