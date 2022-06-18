@@ -40,8 +40,8 @@ const UserListItem = ({ width, user, ...props }) => {
       }}
       {...props}
     >
-      <div style={{ position: "relative" }}>
-        <Avatar src={image} style={{ marginRight: 24 }} />
+      <div style={{ position: "relative", marginRight: 24 }}>
+        <Avatar src={image} />
         {isFollow && (
           <Image
             src={likesClickedSvg}

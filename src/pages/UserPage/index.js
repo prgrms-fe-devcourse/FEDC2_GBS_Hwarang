@@ -13,10 +13,6 @@ import * as S from "./UserPage.style";
 
 const FONT_COLOR = "$white";
 const FONT_SIZE = 14;
-const DEFAULT_COVER_IMAGE =
-  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Default+Cover+Image.png";
-const DEFAULT_PROFILE_IMAGE =
-  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Profile_Image.png";
 
 function UserPage() {
   const { ID } = useParams();

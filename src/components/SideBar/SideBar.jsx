@@ -4,6 +4,7 @@ import InputResult from "components/InputResult";
 import Text from "components/Text";
 import PropTypes from "prop-types";
 import { getUsers } from "api/user-api";
+import Button from "components/Button";
 
 const propTypes = {
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -45,9 +46,14 @@ const SideBar = ({ margin, padding }) => {
   return (
     <div style={containerStyle}>
       <Input name="user" onChange={handleChange} width="100%" />
-      <Text strong size="$b3" style={{ margin: "20px 15px" }}>
-        사용자 검색 결과
-      </Text>
+      <div style={{ margin: "20px 15px" }}>
+        <Text strong size="$b3" style={{ display: "inline-block" }}>
+          사용자 검색 결과
+        </Text>
+        <Button width={70} height={30} textSize="$n1">
+          새로고침
+        </Button>
+      </div>
       <InputResult
         inputType="user"
         type="all"

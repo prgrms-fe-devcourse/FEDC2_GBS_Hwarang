@@ -58,3 +58,8 @@ export const GET_CONVERSATION = "/messages/conversations";
 export const GET_MESSAGES = "/messages";
 export const CREATE_MESSAGES = "/messages/create";
 export const SEEN_MESSAGES = "/messages/update-seen";
+
+export const DEFAULT_COVER_IMAGE =
+  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Default+Cover+Image.png";
+export const DEFAULT_PROFILE_IMAGE =
+  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Profile_Image.png";
