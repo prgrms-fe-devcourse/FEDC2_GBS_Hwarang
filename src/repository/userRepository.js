@@ -3,24 +3,27 @@
  */
 // import { getUsers } from "api/user-api";
 
-// mock data
-import users from "../mock/users.json";
+import { getUsers } from "api/user-api";
 
-// const getAllUsers = async (offset, limit) => {
-const getAllUsers = async () => {
+// mock data
+// import users from "../mock/users.json";
+
+const getAllUsers = async (userId, offset, limit) => {
+  // const getAllUsers = async (userId) => {
   try {
     // 1. 사용자 리스트 받아오기
-    // const users = await getUsers(offset, limit);
+    const users = await getUsers(offset, limit);
     // 2. 내가 팔로워하고 있는 사용자인지 확인하는 isFollow flag 추가
-    const response = users.map((user) => {
-      // eslint-disable-next-line no-underscore-dangle
-      const followers = user.followers.map((follower) => follower._id);
-      return {
-        ...user,
-        isFollow: followers.includes("62a5f647d298d0396d7e756c"),
-      };
-    });
-    return response;
+    if (users && users.data) {
+      const response = users.data.map((user) => {
+        return {
+          ...user,
+          isFollow: user.following.includes(userId),
+        };
+      });
+      return response;
+    }
+    return [];
   } catch (exception) {
     console.error(exception);
   }

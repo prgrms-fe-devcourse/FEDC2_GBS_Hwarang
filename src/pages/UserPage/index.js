@@ -5,6 +5,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { userInfo } from "recoil/user";
 import { getPostByUserId } from "api/post-api";
+import { DEFAULT_COVER_IMAGE, DEFAULT_PROFILE_IMAGE } from "api/url";
 import { getUserInfoById, followUser, unFollowUser } from "api/user-api";
 import ImageButton from "./components/ImageButton";
 import NoPostWrapper from "./components/NoPostList";
@@ -13,10 +14,6 @@ import * as S from "./UserPage.style";
 
 const FONT_COLOR = "$white";
 const FONT_SIZE = 14;
-const DEFAULT_COVER_IMAGE =
-  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Default+Cover+Image.png";
-const DEFAULT_PROFILE_IMAGE =
-  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Profile_Image.png";
 
 function UserPage() {
   const { ID } = useParams();
@@ -64,7 +61,6 @@ function UserPage() {
     if (myInfo.following && !isOwner) {
       const isFollow =
         myInfo.following.filter((follower) => follower.user === ID).length >= 1;
-      console.log(isFollow);
       setIsFollowing(isFollow);
     }
   }, [ID, myInfo, isOwner]);

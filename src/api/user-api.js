@@ -51,6 +51,12 @@ export const uploadProfileImage = async (file, token) => {
   return res;
 };
 
+/**
+ * 팔로우
+ * @param {*} id 팔로워 당할 사용자
+ * @param {*} token 나
+ * @returns Follow model
+ */
 export const followUser = async (id, token) => {
   if (!id) return {};
   const res = await axios.post(

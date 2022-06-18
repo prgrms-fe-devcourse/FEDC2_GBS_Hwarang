@@ -3,7 +3,9 @@ import Input from "components/Input";
 import InputResult from "components/InputResult";
 import Text from "components/Text";
 import PropTypes from "prop-types";
-import { getUsers } from "api/user-api";
+import getAllUsers from "repository/userRepository";
+import { useRecoilValue } from "recoil";
+import { userInfo } from "recoil/user";
 
 const propTypes = {
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -15,6 +17,7 @@ const defaultProps = {
 };
 
 const SideBar = ({ margin, padding }) => {
+  const myData = useRecoilValue(userInfo);
   const [userKeyword, setUserKeyword] = useState("");
   const [users, setUsers] = useState([]);
   const handleChange = (e) => {
@@ -32,15 +35,15 @@ const SideBar = ({ margin, padding }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await getUsers();
-        setUsers(response.data);
+        const response = await getAllUsers(myData._id);
+        setUsers(response);
       } catch (exception) {
         console.error(exception);
       }
     }
 
     fetchData();
-  }, []);
+  }, [myData]);
 
   return (
     <div style={containerStyle}>
