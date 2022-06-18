@@ -1,0 +1,25 @@
+[
+    {
+        "_id": 1,
+        "author": "신승연",
+        "post": "postId1",
+        "createdAt": "2022-06-15",
+        "notificationType": "COMMENT",
+        "comment": {
+            "comment": "안녕하세요!"
+        }
+    },
+    {
+        "_id": 2,
+        "author": "유승범",
+        "createdAt": "2022-06-16",
+        "notificationType": "FOLLOW"
+    },
+    {
+        "_id": 3,
+        "author": "유용상",
+        "post": "postId2",
+        "createdAt": "2022-06-10",
+        "notificationType": "LIKE"
+    }
+]

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import PropTypes from "prop-types";
+import { userInfo } from "recoil/user";
 import * as Ns from "./Navigation.style";
 import { userLogin } from "../../api/auth-api";
 import { loginProcess } from "../../recoil/authentication";
@@ -12,22 +13,24 @@ function Login({ handleLogin, onClose, changeModalType }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
   const setToken = useSetRecoilState(loginProcess);
+  const setUser = useSetRecoilState(userInfo);
 
   const [serverError, setServerError] = useState(null);
 
   const onSubmit = async (data) => {
     const { loginId, loginPassWord } = data;
 
-    let result;
-
     try {
-      result = await userLogin(loginId, loginPassWord);
+      const result = await userLogin(loginId, loginPassWord);
+      setToken(result.data.token);
+      setUser(result.data.user);
     } catch (error) {
       setServerError(error.response.data);
     }
-    setToken(result.data.token);
 
     handleLogin(true);
     onClose();
@@ -42,7 +45,7 @@ function Login({ handleLogin, onClose, changeModalType }) {
           {...register("loginId", {
             required: { value: true, message: "이메일을 입력해 주세요!" },
           })}
-          placeholder="ID"
+          placeholder="Email"
           useIcon={false}
           width="100%"
           invalid={!!errors.loginId}

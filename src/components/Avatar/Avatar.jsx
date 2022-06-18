@@ -47,7 +47,7 @@ const Avatar = ({
   }, [src]);
 
   return (
-    <S.AvatarWrapper shape={shape} style={{ ...props.style }}>
+    <S.AvatarWrapper shape={shape} style={{ ...props.style }} {...props}>
       <ImageComponent
         block
         lazy={lazy}
@@ -59,6 +59,7 @@ const Avatar = ({
         alt={alt}
         mode={mode}
         style={{ opacity: loaded ? 1 : 0 }}
+        {...props}
       />
     </S.AvatarWrapper>
   );

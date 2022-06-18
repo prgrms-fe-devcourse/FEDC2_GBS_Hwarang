@@ -1,6 +1,9 @@
 {
   "extends": ["airbnb", "plugin:prettier/recommended"],
   "plugins": ["react", "jsx-a11y", "import"],
+  "parserOptions": {
+    "ecmaVersion": 2021
+  },
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/jsx-filename-extension": [
@@ -12,6 +15,7 @@
     "react/jsx-props-no-spreading": "off",
     "consistent-return": "off",
     "no-undef": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "no-underscore-dangle": "off"
   }
 }
