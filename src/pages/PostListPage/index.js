@@ -1,13 +1,22 @@
 import { PostList, PostListFilter } from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
+import { useTasks } from "contexts/TaskProvider";
 import { allPost } from "recoil/post";
-import TaskProvider from "contexts/TaskProvider";
 import S from "./PostListPage.style";
 import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
   const data = useRecoilValue(allPost);
+  const { tasks } = useTasks();
+  let result = null;
+  if (tasks.length !== 0) {
+    const titleSet = tasks.map((item) => item.title);
+    result = data.filter((item) => titleSet.includes(item.title));
+  } else {
+    result = data;
+  }
+
   const [folded, setFolded] = useState(false);
 
   /* Header fold */
@@ -29,19 +38,19 @@ const PostListPage = () => {
   }, []);
 
   return (
-    <TaskProvider>
+    <div>
       <S.PageWrapper>
         <S.HeaderWrapper>
           <S.Header /* Header */ className={folded ? "fold__header" : ""}>
             <PostListFilter />
           </S.Header>
         </S.HeaderWrapper>
-        <S.Section /* PostList 렌더링 */>
-          <PostList data={data} listTitle="검색 결과" />
+        <S.Section>
+          <PostList data={result} listTitle="검색 결과" />
         </S.Section>
         <ScrollTopButton />
       </S.PageWrapper>
-    </TaskProvider>
+    </div>
   );
 };
 

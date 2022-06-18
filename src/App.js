@@ -18,6 +18,7 @@ import { userInfo } from "recoil/user";
 import { postManager } from "recoil/post";
 import { Footer } from "components";
 import getAllPost from "repository/postRepository";
+import TaskProvider from "contexts/TaskProvider";
 import { MainPage, PostListPage, UserPage } from "./pages";
 
 function App() {
@@ -53,7 +54,7 @@ function App() {
 
   return (
     // test 2
-    <div>
+    <TaskProvider>
       <Router>
         <Navigation />
         <Routes>
@@ -64,7 +65,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-    </div>
+    </TaskProvider>
   );
 }
 
