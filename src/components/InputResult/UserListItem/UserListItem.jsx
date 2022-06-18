@@ -8,6 +8,7 @@ import Icon from "components/Icon";
 import Image from "components/Image";
 import Dot from "components/Dot/Dot";
 import likesClickedSvg from "assets/likes_clicked.svg";
+import { DEFAULT_PROFILE_IMAGE } from "api/url";
 import * as S from "./UserListItem.style";
 
 const propTypes = {
@@ -41,7 +42,7 @@ const UserListItem = ({ width, user, ...props }) => {
       {...props}
     >
       <div style={{ position: "relative", marginRight: 24 }}>
-        <Avatar src={image} />
+        <Avatar src={image || DEFAULT_PROFILE_IMAGE} />
         {isFollow && (
           <Image
             src={likesClickedSvg}
