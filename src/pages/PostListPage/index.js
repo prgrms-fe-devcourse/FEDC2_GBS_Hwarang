@@ -89,7 +89,7 @@ const PostListPage = () => {
       <S.PageWrapper>
         <S.HeaderWrapper>
           <S.Header /* Header */ className={folded ? "fold__header" : ""}>
-            <PostListFilter folded={folded} />
+            <PostListFilter folded={folded} options={Options} />
           </S.Header>
         </S.HeaderWrapper>
         <S.Section>

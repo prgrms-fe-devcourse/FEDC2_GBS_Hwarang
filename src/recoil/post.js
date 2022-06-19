@@ -105,7 +105,7 @@ export const postList = selector({
     ];
 
     // 4. 오래된 순
-    const old = [
+    const oldest = [
       ...data.sort((a, b) => {
         const dateA = new Date(a.createdAt);
         const dateB = new Date(b.createdAt);
@@ -124,7 +124,7 @@ export const postList = selector({
       all: data,
       popular,
       latest,
-      old,
+      oldest,
       comments,
     };
   },

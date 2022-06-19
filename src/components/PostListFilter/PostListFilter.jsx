@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState } from "react";
+import React from "react";
 import PostListInput from "components/PostListInput";
 import { useTasks } from "contexts/TaskProvider";
 import PropTypes from "prop-types";
@@ -8,34 +8,40 @@ import DeletableChip from "./DeletableChip";
 
 const propTypes = {
   folded: PropTypes.bool.isRequired,
+  options: PropTypes.string.isRequired,
 };
 
-const PostListFilter = ({ folded }) => {
+const PostListFilter = ({ folded, options }) => {
   const { tasks } = useTasks();
-  const [isStandardSelect, setIsStandardSelect] = useState([false]);
-  // const { Options } = useParams();
-
   const standard = [
-    "인기순", // popular
-    "최신순", // latest
-    "오래된 순", // oldest
-    "가봤슈 추천순", // gbsrecommend
-    "댓글 많은 순", // comment
+    {
+      title: "기본순",
+      path: "all",
+    },
+    {
+      title: "인기순",
+      path: "popular",
+    },
+    {
+      title: "최신순",
+      path: "latest",
+    },
+    {
+      title: "오래된 순",
+      path: "oldest",
+    },
+    {
+      title: "댓글 많은 순",
+      path: "comments",
+    },
   ];
-  const handleClick = (arr, idx) => {
-    const newArr = Array(arr.length).fill(false);
-    newArr[idx] = true;
-    setIsStandardSelect(newArr);
-    // selectStandard(standard[idx]);
-    // switch (idx) {
-    //   case 0:
 
-    //   case 1:
-    //     setOption(1);
-    //   case 2:
-    //     setOption(2);
-    // }
-  };
+  // const handleClick = (arr, idx) => {
+  //   const newArr = Array(arr.length).fill(false);
+  //   newArr[idx] = true;
+  //   setIsStandardSelect(newArr);
+  // };
+
   return (
     <div>
       <S.Wrapper>
@@ -50,14 +56,15 @@ const PostListFilter = ({ folded }) => {
           </S.searchSelected>
           <S.searchOptions>
             <S.filterStandard>
-              {standard.map((item, index) => (
+              {standard.map(({ title, path }, index) => (
                 <S.LinkButton
                   key={index}
-                  to="/travel-destination/latest"
+                  to={`/travel-destination/${path}`}
                   onClick={() => handleClick("standard", index)}
-                  className={isStandardSelect[index] ? "select" : "deselect"}
+                  className={options === path ? "select" : "deselect"}
+                  disabled
                 >
-                  {item}
+                  {title}
                 </S.LinkButton>
               ))}
             </S.filterStandard>
