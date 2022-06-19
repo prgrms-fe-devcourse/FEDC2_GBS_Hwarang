@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Input, Text, Icon } from "components";
 import InputResult from "components/InputResult";
 import PropTypes from "prop-types";
-import { getUsers } from "api/user-api";
-import * as S from "./Sidebar.style";
+import getAllUsers from "repository/userRepository";
+import { useRecoilValue } from "recoil";
+import { userInfo } from "recoil/user";
 
 const propTypes = {
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -15,6 +16,7 @@ const defaultProps = {
 };
 
 const SideBar = ({ margin, padding }) => {
+  const myData = useRecoilValue(userInfo);
   const [userKeyword, setUserKeyword] = useState("");
   const [users, setUsers] = useState([]);
   const handleChange = (e) => {
@@ -66,7 +68,7 @@ const SideBar = ({ margin, padding }) => {
 
   useEffect(() => {
     fetchData();
-
+    
     return () => {
       if (timer.current) clearInterval(timer.current);
     };

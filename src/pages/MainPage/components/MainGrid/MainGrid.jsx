@@ -21,8 +21,15 @@ const MainGrid = ({ data, mainTitle }) => {
       </S.TextWrapper>
       <FluxRow>
         {data.map((post) => {
-          const { _id, image, title, author, createdAt, likes, comments } =
-            post;
+          const {
+            _id,
+            image,
+            content,
+            author,
+            createdAt,
+            likesNum,
+            commentsNum,
+          } = post;
 
           const handleOnClick = (id) => {
             alert(id);
@@ -33,11 +40,11 @@ const MainGrid = ({ data, mainTitle }) => {
               <S.CardWrapper onClick={() => handleOnClick(_id)}>
                 <MainGridCard
                   src={image}
-                  textChildren={title}
-                  author={author}
+                  textChildren={content.title}
+                  author={author.fullName}
                   createdAt={createdAt}
-                  likesNum={likes.length}
-                  commentsNum={comments.length}
+                  likesNum={likesNum}
+                  commentsNum={commentsNum}
                 />
               </S.CardWrapper>
             </FluxCol>
