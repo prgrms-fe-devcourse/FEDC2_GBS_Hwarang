@@ -127,7 +127,7 @@ export const setLikePost = selector({
   },
 });
 
-// 특정 post 좋아요 처리
+// 특정 post의 좋아요 id 요청
 export const getLikeId = selectorFamily({
   key: "like",
   get:
@@ -152,9 +152,29 @@ export const addLike = selector({
     const target = {
       ...posts[targetId],
       likes: [...posts[targetId].likes, like],
+      isLiked: true,
     };
     posts[targetId] = target;
 
+    set(allPost, posts);
+  },
+});
+export const removeLike = selector({
+  key: "removeLike",
+  get: () => {},
+  set: ({ set, get }, { postId, likeId }) => {
+    const posts = [...get(allPost)];
+    const targetId = posts.findIndex((post) => post._id === postId);
+
+    const newLike = [...posts[targetId].likes];
+    const targetLikeId = newLike.findIndex((like) => like._id === likeId);
+    newLike.splice(targetLikeId, 1);
+    const target = {
+      ...posts[targetId],
+      likes: newLike,
+      isLiked: false,
+    };
+    posts[targetId] = target;
     set(allPost, posts);
   },
 });

@@ -73,6 +73,10 @@ const ToggleButton = ({
     setCurrentChild(replaceChildren);
   }, [clicked]);
 
+  useEffect(() => {
+    setClicked(initialState);
+  }, [initialState]);
+
   return (
     <S.Wrapper onClick={handleClicked} disabled={disabled} style={WrapperStyle}>
       <div>{currentChild}</div>

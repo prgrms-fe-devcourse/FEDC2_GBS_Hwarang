@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { setLikePost, setUnLikePost } from "api/post-api";
-import { addLike, getLikeId } from "recoil/post";
+import { addLike, getLikeId, removeLike } from "recoil/post";
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -21,7 +21,8 @@ const defaultProps = {
 const LikeButton = ({ id, isLiked, likesNum }) => {
   const token = useRecoilValue(jwtToken);
   const likeId = useRecoilValue(getLikeId(id));
-  const setLike = useSetRecoilState(addLike);
+  const addLikeState = useSetRecoilState(addLike);
+  const removeLikeState = useSetRecoilState(removeLike);
 
   const handleOnClick = async () => {
     try {
@@ -29,9 +30,9 @@ const LikeButton = ({ id, isLiked, likesNum }) => {
         ? await setUnLikePost(likeId, token)
         : await setLikePost(id, token);
       if (response && response.data) {
-        // setLiked((pre) => !pre);
         const { data } = response;
-        if (!isLiked) setLike({ postId: id, like: data });
+        if (!isLiked) addLikeState({ postId: id, like: data });
+        else removeLikeState({ postId: id, likeId });
         return true;
       }
     } catch (exception) {
