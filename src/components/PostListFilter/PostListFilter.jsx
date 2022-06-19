@@ -10,11 +10,14 @@ const PostListFilter = () => {
   const { tasks, selectStandard, selectChannel } = useTasks();
   const [isChannelSelect, setIsChannelSelect] = useState([false]);
   const [isStandardSelect, setIsStandardSelect] = useState([false]);
-
-  // const channelResponse = getChannels().then((res) => console.log(res));
-  // console.log(typeof channelResponse);
-
-  const channel = [];
+  const channel = [
+    "아시아",
+    "유럽",
+    "아프리카",
+    "북아메리카",
+    "남아메리카",
+    "오세아니아",
+  ];
   const standard = [
     "인기순",
     "최신순",
