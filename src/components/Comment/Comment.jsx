@@ -10,9 +10,13 @@ import CommentsWrap from "./Comment.style";
 const propTypes = {
   postId: PropTypes.string.isRequired,
   comments: PropTypes.instanceOf(Array).isRequired,
+  maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
+const defaultProps = {
+  maxHeight: 100,
 };
 
-const Comment = ({ postId, comments }) => {
+const Comment = ({ postId, comments, maxHeight }) => {
   const token = useRecoilValue(jwtToken);
 
   const handleAddComment = async (comment) => {
@@ -46,11 +50,12 @@ const Comment = ({ postId, comments }) => {
             />
           ))}
       </CommentsWrap>
-      <CommentInput onAddComment={handleAddComment} />
+      <CommentInput maxHeight={maxHeight} onAddComment={handleAddComment} />
     </div>
   );
 };
 
 Comment.propTypes = propTypes;
+Comment.defaultProps = defaultProps;
 
 export default Comment;
