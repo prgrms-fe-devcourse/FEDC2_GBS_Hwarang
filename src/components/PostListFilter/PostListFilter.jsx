@@ -2,7 +2,11 @@
 import React, { useState } from "react";
 import PostListInput from "components/PostListInput";
 import { useTasks } from "contexts/TaskProvider";
+<<<<<<< HEAD
 // import { getChannels } from "api/post-api";
+=======
+import { getChannels } from "api/post-api";
+>>>>>>> 709cfd528da89faf069430caef42e8c12863ebb4
 import * as S from "./PostListFilter.style";
 import DeletableChip from "./DeletableChip";
 
@@ -11,10 +15,23 @@ const PostListFilter = () => {
   const [isChannelSelect, setIsChannelSelect] = useState([false]);
   const [isStandardSelect, setIsStandardSelect] = useState([false]);
 
+<<<<<<< HEAD
   // const channelResponse = getChannels().then((res) => console.log(res));
   // console.log(typeof channelResponse);
 
   const channel = [];
+=======
+  const channelResponse = getChannels().then((res) => console.log(res));
+  console.log(typeof channelResponse);
+
+  const channel = [
+    "인기순",
+    "최신순",
+    "오래된 순",
+    "가봤슈 추천순",
+    "댓글 많은 순",
+  ];
+>>>>>>> 709cfd528da89faf069430caef42e8c12863ebb4
   const standard = [
     "인기순",
     "최신순",

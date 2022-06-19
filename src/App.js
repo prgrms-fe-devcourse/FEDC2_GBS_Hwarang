@@ -19,7 +19,11 @@ import { postManager } from "recoil/post";
 import { Footer } from "components";
 import getAllPost from "repository/postRepository";
 import TaskProvider from "contexts/TaskProvider";
+<<<<<<< HEAD
 import { MainPage, PostListPage, UserPage } from "./pages";
+=======
+import { MainPage, PostListPage } from "./pages";
+>>>>>>> 709cfd528da89faf069430caef42e8c12863ebb4
 
 function App() {
   const setPosts = useSetRecoilState(postManager);
