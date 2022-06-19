@@ -12,13 +12,29 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   isLiked: PropTypes.bool,
   likesNum: PropTypes.number,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  textSize: PropTypes.string,
+  style: PropTypes.instanceOf(Object),
 };
 const defaultProps = {
   isLiked: false,
   likesNum: 0,
+  width: 15,
+  height: 15,
+  textSize: "$h1",
+  style: {},
 };
 
-const LikeButton = ({ id, isLiked, likesNum }) => {
+const LikeButton = ({
+  id,
+  isLiked,
+  likesNum,
+  width,
+  height,
+  textSize,
+  ...props
+}) => {
   const token = useRecoilValue(jwtToken);
   const likeId = useRecoilValue(getLikeId(id));
   const addLikeState = useSetRecoilState(addLike);
@@ -45,13 +61,19 @@ const LikeButton = ({ id, isLiked, likesNum }) => {
       disabled={false}
       onClick={handleOnClick}
       replaceChildren={
-        <Image src={likesClickedSvg} width={15} height={15} mode="contain" />
+        <Image
+          src={likesClickedSvg}
+          width={width}
+          height={height}
+          mode="contain"
+        />
       }
-      textSize="$n1"
+      textSize={textSize}
       text={likesNum}
       initialState={token && isLiked}
+      style={{ ...props.style }}
     >
-      <Image src={likesSvg} width={15} height={15} mode="contain" />
+      <Image src={likesSvg} width={width} height={height} mode="contain" />
     </ToggleButton>
   );
 };
