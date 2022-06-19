@@ -46,7 +46,10 @@ const Alarm = () => {
               state === "hasValue" &&
               notification
                 .filter((noti) => !noti.seen)
-                .map((item) => <AlarmItem key={item._id} item={item} />)}
+                .map((item) => {
+                  console.log(item);
+                  return <AlarmItem key={item._id} item={item} />;
+                })}
           </ul>
         </S.AlarmWrapper>
       )}
