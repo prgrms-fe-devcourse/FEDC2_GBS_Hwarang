@@ -1,6 +1,7 @@
 import React from "react";
 // import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Image } from "components";
 import * as S from "./PostListItem.style";
 
 const propTypes = {
@@ -14,25 +15,27 @@ const defaultProps = {
 };
 
 const PostListItem = ({ width, post, ...props }) => {
+  const { _id } = post;
   // const navigate = useNavigate();
   const sizeStyle = {
     width,
   };
-  const handleonClick = (id) => {
+  const handleonClick = () => {
     // TODO: 해당 id를 가진 post로 이동
     // navigate(`/userpage/${id}`);
-    console.log(id);
   };
-  const { _id } = post;
   return (
-    <S.ListItem
-      style={sizeStyle}
-      onClick={() => {
-        handleonClick(_id);
-      }}
-      {...props}
-    >
+    <S.ListItem style={sizeStyle} onClick={handleonClick(_id)} {...props}>
       {post.title}
+      {post.image && (
+        <Image
+          src={post.image}
+          width="220px"
+          height="auto"
+          mode="contain"
+          style={{ marginRight: 10 }}
+        />
+      )}
     </S.ListItem>
   );
 };

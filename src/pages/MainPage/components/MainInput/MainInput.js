@@ -36,9 +36,9 @@ const MainInput = () => {
         inputType="post"
         type="none"
         keyword={keyword}
-        data={posts.map((post, index) => {
+        data={posts.map((post) => {
           const { content } = post;
-          return { ...content, _id: index };
+          return { ...content, _id: post._id, image: post.image };
         })}
         options={["title"]}
         width="100%"
