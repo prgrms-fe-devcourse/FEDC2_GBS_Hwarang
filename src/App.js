@@ -16,7 +16,7 @@ import {
 } from "recoil/authentication";
 import { userInfo } from "recoil/user";
 import { getAllPosts } from "api/post-api";
-import { allPost } from "recoil/post";
+import { allPost, setLikePost } from "recoil/post";
 import { Footer } from "components";
 import { MainPage, PostListPage, UserPage } from "./pages";
 import Auth from "./hoc";
@@ -25,6 +25,7 @@ import "./utils/date";
 
 function App() {
   const setPosts = useSetRecoilState(allPost);
+  const setLikePosts = useSetRecoilState(setLikePost);
 
   // component
   const MainPageComponent = Auth(MainPage);
@@ -39,25 +40,23 @@ function App() {
   const setUserInfo = useSetRecoilState(userInfo);
 
   useEffect(() => {
-    if (!isLogined && TokenExist) {
-      if (isTokenValid) {
-        setIsLogined(true);
-        setUserInfo(userData);
-      }
-    }
-  }, [isLogined, TokenExist, isTokenValid, userData]);
-
-  useEffect(() => {
     async function fetchData() {
       try {
         const posts = await getAllPosts();
-        setPosts(posts);
+        await setPosts(posts);
+        if (!isLogined && TokenExist) {
+          if (isTokenValid) {
+            setIsLogined(true);
+            setUserInfo(userData);
+            setLikePosts(userData._id);
+          }
+        }
       } catch (exception) {
-        console.log("error", exception);
+        console.error("error", exception);
       }
     }
     fetchData();
-  }, []);
+  }, [isTokenValid]);
 
   return (
     // test 2

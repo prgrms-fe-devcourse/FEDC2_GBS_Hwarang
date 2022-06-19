@@ -108,3 +108,17 @@ export const postImage = selectorFamily({
       return data.length > 0 && data[0].image ? data[0].image : undefined;
     },
 });
+
+// 각 post like 처리
+export const setLikePost = selector({
+  key: "likePost",
+  get: () => {},
+  set: ({ set, get }, userId) => {
+    const newPosts = get(allPost).map((post) => ({
+      ...post,
+      isLiked: post.likes.filter((like) => like.user === userId) >= 0,
+    }));
+
+    set(postManager, newPosts);
+  },
+});
