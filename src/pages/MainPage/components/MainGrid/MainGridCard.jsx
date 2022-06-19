@@ -41,7 +41,6 @@ const MainGridCard = ({
   commentsNum,
 }) => {
   const { FluxRow, FluxCol } = Flux;
-
   const wrapperStyle = {
     gap,
     margin,
@@ -60,7 +59,7 @@ const MainGridCard = ({
       <FluxRow padding="0 10px">
         <FluxCol span={9}>
           <Text size="$n1">
-            {author}, {createdAt}
+            {author} / {createdAt.formatDate()}
           </Text>
         </FluxCol>
         <FluxCol span={1.5}>

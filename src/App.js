@@ -15,21 +15,26 @@ import {
   isUserAuthenticated,
 } from "recoil/authentication";
 import { userInfo } from "recoil/user";
-import { postManager } from "recoil/post";
+import { getAllPosts } from "api/post-api";
+import { allPost } from "recoil/post";
 import { Footer } from "components";
 import getAllPost from "repository/postRepository";
 import TaskProvider from "contexts/TaskProvider";
 // eslint-disable-next-line import/named
+
 import { MainPage, PostListPage, UserPage } from "./pages";
 import Auth from "./hoc";
 
+import "./utils/date";
+
 function App() {
+  const setPosts = useSetRecoilState(allPost);
+
   // component
   const MainPageComponent = Auth(MainPage);
   const PostListPageComponent = Auth(PostListPage);
   const UserPageComponent = Auth(UserPage);
 
-  const setPosts = useSetRecoilState(postManager);
   const [isLogined, setIsLogined] = useRecoilState(loginStatus);
   const TokenExist = useRecoilValue(isTokenExist);
   const {
@@ -41,7 +46,6 @@ function App() {
     if (!isLogined && TokenExist) {
       if (isTokenValid) {
         setIsLogined(true);
-        console.log(userData);
         setUserInfo(userData);
       }
     }
@@ -50,7 +54,7 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const posts = await getAllPost();
+        const posts = await getAllPosts();
         setPosts(posts);
       } catch (exception) {
         console.log("error", exception);

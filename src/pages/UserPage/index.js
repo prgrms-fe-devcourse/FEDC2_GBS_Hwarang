@@ -66,7 +66,6 @@ function UserPage() {
     if (myInfo.following && !isOwner) {
       const isFollow =
         myInfo.following.filter((follower) => follower.user === ID).length >= 1;
-      console.log(isFollow);
       setIsFollowing(isFollow);
     }
   }, [ID, myInfo, isOwner]);

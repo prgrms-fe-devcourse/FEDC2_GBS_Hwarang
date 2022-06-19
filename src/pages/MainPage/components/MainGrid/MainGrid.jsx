@@ -2,6 +2,7 @@
 import React from "react";
 import { Flux, Text } from "components";
 import PropTypes from "prop-types";
+import { DEFAULT_COVER_IMAGE } from "api/url";
 import S from "./MainGrid.style";
 import MainGridCard from "./MainGridCard";
 
@@ -22,8 +23,15 @@ const MainGrid = ({ data, mainTitle }) => {
       </S.TextWrapper>
       <FluxRow>
         {data.map((post) => {
-          const { _id, image, title, author, createdAt, likes, comments } =
-            post;
+          const {
+            _id,
+            image,
+            content,
+            author,
+            createdAt,
+            likesNum,
+            commentsNum,
+          } = post;
 
           const handleOnClick = (id) => {
             alert(id);
@@ -33,9 +41,9 @@ const MainGrid = ({ data, mainTitle }) => {
             <FluxCol key={_id}>
               <S.CardWrapper onClick={() => handleOnClick(_id)}>
                 <MainGridCard
-                  src={image}
-                  textChildren={title}
-                  author={author}
+                  src={image || DEFAULT_COVER_IMAGE}
+                  textChildren={content.title}
+                  author={author.fullName}
                   createdAt={createdAt}
                   likesNum={likes}
                   commentsNum={comments}

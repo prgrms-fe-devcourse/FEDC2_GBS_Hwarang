@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "components/Button";
 import Image from "components/Image";
@@ -122,6 +122,7 @@ NavButtonBlock.defaultProps = {
 };
 
 function Navigation() {
+  const location = useLocation();
   // 사용자 리스트 사이드 바 hide / show flag
   const query = useQuery();
   const [sideBarShow, setSideBarShow] = useState(false);
@@ -139,6 +140,14 @@ function Navigation() {
     });
   };
 
+  // navigation 변경될 때마다, 모든 popup 닫기
+  useEffect(() => {
+    setSideBarShow(false);
+    setModalStatus({
+      visible: false,
+      type: "",
+    });
+  }, [location]);
   useEffect(() => {
     if (query.get("needLogin") != null) {
       setModalStatus({

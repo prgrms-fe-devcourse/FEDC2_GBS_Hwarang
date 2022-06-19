@@ -2,25 +2,25 @@ import axios from "axios";
 import {
   BASE_URL,
   DELETE_POST,
-  //   GET_CHANNELS,
+  // GET_CHANNELS,
   GET_CHANNEL_BY_NAME,
   GET_POST,
-  //   GET_POSTS,
+  GET_POSTS,
   UPDATE_POST,
   GET_POST_BY_ID,
   CREATE_POST,
 } from "./url";
 
 import Channel from "../mock/channel.json";
-import Post from "../mock/posts.json";
+// import Post from "../mock/posts.json";
 
 // 채널 목록
 export const getChannels = async () => {
-  //   const res = await axios.get(`${BASE_URL}${GET_CHANNELS}`);
+  // const res = await axios.get(`${BASE_URL}${GET_CHANNELS}`);
   await new Promise((resolve) => {
     setTimeout(resolve, 1000);
   });
-  //   return res
+  // return res;
   return Channel;
 };
 
@@ -32,18 +32,23 @@ export const getChannelsByName = async (channelName) => {
   return res;
 };
 
+// 모든 포스트 목록 요청
+export const getAllPosts = async () => {
+  const res = await axios.get(`${BASE_URL}${GET_POST}`);
+  return res.data ? res.data : res;
+};
+
 // 특정 채널의 포스트 목록
-// export const getPosts = async (channelId, offset, limit) => {
-export const getPosts = async (channeld) => {
-  //   const res = await axios.get(`${BASE_URL}${GET_POSTS}/${channelId}`, {
-  //     offset,
-  //     limit,
-  //   });
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1000);
+export const getPostsByChannel = async (channelId, offset, limit) => {
+  const res = await axios.get(`${BASE_URL}${GET_POSTS}/${channelId}`, {
+    offset,
+    limit,
   });
-  //   return res;
-  return Post.filter((post) => post.channel === channeld);
+  // await new Promise((resolve) => {
+  //   setTimeout(resolve, 1000);
+  // });
+  return res;
+  // return Post.filter((post) => post.channel === channeld);
 };
 
 // post 상세 정보
