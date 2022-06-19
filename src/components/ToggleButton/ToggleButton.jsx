@@ -58,9 +58,9 @@ const ToggleButton = ({
     fontWeight: strong ? "bold" : undefined,
   };
 
-  const handleClicked = () => {
-    onClick();
-    setClicked(!clicked);
+  const handleClicked = async () => {
+    const response = await onClick();
+    if (response) setClicked(!clicked);
   };
 
   useEffect(() => {

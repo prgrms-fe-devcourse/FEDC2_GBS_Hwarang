@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import likesSvg from "assets/likes.svg";
 import { Image, ToggleButton } from "components";
 import likesClickedSvg from "assets/likes_clicked.svg";
 import PropTypes from "prop-types";
+import { useRecoilValue } from "recoil";
+import { jwtToken } from "recoil/authentication";
+import { setLikePost, setUnLikePost } from "api/post-api";
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -15,8 +18,21 @@ const defaultProps = {
 };
 
 const LikeButton = ({ id, isLiked, likesNum }) => {
-  const handleOnClick = () => {
-    console.log(id);
+  const token = useRecoilValue(jwtToken);
+  const [liked, setLiked] = useState(isLiked);
+
+  const handleOnClick = async () => {
+    try {
+      const response = liked
+        ? await setUnLikePost(id, token)
+        : await setLikePost(id, token);
+      if (response && response.data) {
+        setLiked((pre) => !pre);
+        return true;
+      }
+    } catch (exception) {
+      console.error(exception);
+    }
   };
 
   return (
@@ -28,7 +44,7 @@ const LikeButton = ({ id, isLiked, likesNum }) => {
       }
       textSize="$n1"
       text={likesNum}
-      initialState={isLiked}
+      initialState={token && liked}
     >
       <Image src={likesSvg} width={15} height={15} mode="contain" />
     </ToggleButton>

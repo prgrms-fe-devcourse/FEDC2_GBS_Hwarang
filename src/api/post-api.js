@@ -135,7 +135,7 @@ export const setLikePost = async (postId, token) => {
 export const setUnLikePost = async (postId, token) => {
   if (!token) throw Error("token 정보가 올바르지 않습니다.");
 
-  const res = await axios.post(
+  const res = await axios.delete(
     `${BASE_URL}${DELETE_LIKE}`,
     {
       id: postId,

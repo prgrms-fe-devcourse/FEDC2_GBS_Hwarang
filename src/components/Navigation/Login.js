@@ -30,7 +30,7 @@ function Login({ handleLogin, onClose, changeModalType }) {
       const result = await userLogin(loginId, loginPassWord);
       setToken(result.data.token);
       setUser(result.data.user);
-      setLikePosts(result.data.user.id);
+      setLikePosts(result.data.user._id);
     } catch (error) {
       setServerError(error.response.data);
     }
