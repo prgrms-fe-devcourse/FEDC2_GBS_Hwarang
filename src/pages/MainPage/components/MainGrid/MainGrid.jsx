@@ -47,6 +47,7 @@ const MainGrid = ({ data, mainTitle }) => {
                     likesNum={likesNum}
                     commentsNum={commentsNum}
                     isLiked={isLiked}
+                    id={_id}
                   />
                 </S.CardWrapper>
               </FluxCol>

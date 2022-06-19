@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Flux, Image, Text, ToggleButton } from "components";
-import likesSvg from "assets/likes.svg";
-import likesClickedSvg from "assets/likes_clicked.svg";
 import commentSvg from "assets/comment.svg";
+import LikeButton from "components/LikeButton";
 import S from "./MainGridCard.style";
 
 const propTypes = {
@@ -17,6 +16,7 @@ const propTypes = {
   likesNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   commentsNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   isLiked: PropTypes.bool,
+  id: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
@@ -42,6 +42,7 @@ const MainGridCard = ({
   likesNum,
   commentsNum,
   isLiked,
+  id,
 }) => {
   const { FluxRow, FluxCol } = Flux;
   const wrapperStyle = {
@@ -66,23 +67,7 @@ const MainGridCard = ({
           </Text>
         </FluxCol>
         <FluxCol span={1.5}>
-          <ToggleButton
-            disabled={false}
-            onClick={() => console.log("Clicked")}
-            replaceChildren={
-              <Image
-                src={likesClickedSvg}
-                width={15}
-                height={15}
-                mode="contain"
-              />
-            }
-            textSize="$n1"
-            text={likesNum}
-            initialState={isLiked}
-          >
-            <Image src={likesSvg} width={15} height={15} mode="contain" />
-          </ToggleButton>
+          <LikeButton id={id} isLiked={isLiked} likesNum={likesNum} />
         </FluxCol>
         <FluxCol span={1.5}>
           <ToggleButton textSize="$n1" text={commentsNum}>
