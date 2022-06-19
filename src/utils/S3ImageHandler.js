@@ -13,7 +13,7 @@ export const uploadImageToS3 = async (file, directory = "") => {
 
   const s3 = new ReactS3Client(config);
 
-  const res = await s3.uploadFile(file, config);
+  const res = await s3.uploadFile(file, file.name);
   return res;
 };
 
