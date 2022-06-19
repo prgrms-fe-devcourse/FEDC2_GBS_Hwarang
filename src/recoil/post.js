@@ -52,13 +52,18 @@ export const allData = selector({
 export const mainPost = selector({
   key: "mainPost",
   get: ({ get }) => {
-    const posts = [...get(allPost)];
+    const data = get(allPost).map((post) => ({
+      ...post,
+      comments: post.comments.length,
+      likes: post.likes.length,
+    }));
     // 1. 인기순
-    const popular = posts
-      .sort((a, b) => b.likesNum - a.likesNum)
+    const popular = data
+      .sort((a, b) => b.likes - a.likes)
       .filter((_, index) => index < 6);
+
     // 2. 최신순
-    const latest = posts
+    const latest = data
       .sort((a, b) => {
         const dateA = new Date(a.createdAt);
         const dateB = new Date(b.createdAt);

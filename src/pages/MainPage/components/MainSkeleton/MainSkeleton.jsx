@@ -9,7 +9,7 @@ const MainSkeleton = () => {
     const result = [];
     for (let i = 0; i < 6; i += 1) {
       result.push(
-        <FluxCol>
+        <FluxCol key={i}>
           <S.CardWrapper>
             <Skeleton.Box width="100%" height={180} />
             <Skeleton.Paragraph />
