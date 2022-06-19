@@ -6,7 +6,6 @@ export const CommentInputWrapper = styled.div`
   display: flex;
   width: 100%;
   border: none;
-  border-radius: 5px;
 `;
 
 export const CommentInputButton = styled(Button)`
