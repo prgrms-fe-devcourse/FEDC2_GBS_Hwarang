@@ -17,7 +17,7 @@ const proptype = {
   color: PropTypes.string,
   borderRadius: PropTypes.number,
   border: PropTypes.bool,
-  id: PropTypes.number,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 const defaultProp = {
