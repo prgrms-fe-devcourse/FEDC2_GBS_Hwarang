@@ -52,12 +52,10 @@ const ImageInner = ({
           />
         </S.ButtonWrapper>
       )}
-      {type === "detail" ? (
-        <S.InnerWrapper position="left">
+      <S.InnerWrapper position="left">
+        {type === "detail" ? (
           <Text color="$white">{post.title}</Text>
-        </S.InnerWrapper>
-      ) : (
-        <S.InnerWrapper position="left">
+        ) : (
           <Input
             placeholder="일정 제목을 입력해주세요"
             defaultValue={post.title || null}
@@ -72,8 +70,8 @@ const ImageInner = ({
               color: `${Common.colors.gray04}`,
             }}
           />
-        </S.InnerWrapper>
-      )}
+        )}
+      </S.InnerWrapper>
       <S.InnerWrapper position="right">
         {type === "detail" ? (
           <div style={{ display: "flex" }}>
