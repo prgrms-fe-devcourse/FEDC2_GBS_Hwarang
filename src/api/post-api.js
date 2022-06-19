@@ -118,7 +118,7 @@ export const setLikePost = async (postId, token) => {
     },
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `bearer ${token}`,
       },
     }
   );
@@ -128,24 +128,22 @@ export const setLikePost = async (postId, token) => {
 
 /**
  * 특정 포스트 좋아요
- * @param {*} postId 포스트 id
+ * @param {*} likeId 좋아요 Id
  * @param {*} token 현재 로그인 user의 token
  * @returns Like model
  */
-export const setUnLikePost = async (postId, token) => {
+export const setUnLikePost = async (likeId, token) => {
   if (!token) throw Error("token 정보가 올바르지 않습니다.");
 
-  const res = await axios.delete(
-    `${BASE_URL}${DELETE_LIKE}`,
-    {
-      id: postId,
+  console.log(likeId, token);
+  const res = await axios.delete(`${BASE_URL}${DELETE_LIKE}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+    data: {
+      id: likeId,
+    },
+  });
 
   return res;
 };

@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import likesSvg from "assets/likes.svg";
 import { Image, ToggleButton } from "components";
 import likesClickedSvg from "assets/likes_clicked.svg";
 import PropTypes from "prop-types";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { setLikePost, setUnLikePost } from "api/post-api";
+import { addLike, getLikeId } from "recoil/post";
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -19,15 +20,18 @@ const defaultProps = {
 
 const LikeButton = ({ id, isLiked, likesNum }) => {
   const token = useRecoilValue(jwtToken);
-  const [liked, setLiked] = useState(isLiked);
+  const likeId = useRecoilValue(getLikeId(id));
+  const setLike = useSetRecoilState(addLike);
 
   const handleOnClick = async () => {
     try {
-      const response = liked
-        ? await setUnLikePost(id, token)
+      const response = isLiked
+        ? await setUnLikePost(likeId, token)
         : await setLikePost(id, token);
       if (response && response.data) {
-        setLiked((pre) => !pre);
+        // setLiked((pre) => !pre);
+        const { data } = response;
+        if (!isLiked) setLike({ postId: id, like: data });
         return true;
       }
     } catch (exception) {
@@ -44,7 +48,7 @@ const LikeButton = ({ id, isLiked, likesNum }) => {
       }
       textSize="$n1"
       text={likesNum}
-      initialState={token && liked}
+      initialState={token && isLiked}
     >
       <Image src={likesSvg} width={15} height={15} mode="contain" />
     </ToggleButton>

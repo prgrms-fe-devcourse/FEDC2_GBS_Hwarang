@@ -1,4 +1,5 @@
 import { atom, selector, selectorFamily } from "recoil";
+import { userInfo } from "./user";
 
 export const postManager = atom({
   key: "posts",
@@ -13,12 +14,16 @@ export const allPost = selector({
   },
   set: ({ set }, newPosts) => {
     const data = newPosts.map((post) => {
-      let postContent = null;
-      try {
-        postContent = JSON.parse(post.title);
-      } catch (exception) {
-        postContent = "test";
+      let postContent = post.content;
+
+      if (post.title) {
+        try {
+          postContent = JSON.parse(post.title);
+        } catch (exception) {
+          postContent = "test";
+        }
       }
+
       return {
         ...post,
         commentsNum: post.comments.length,
@@ -119,5 +124,37 @@ export const setLikePost = selector({
       isLiked: post.likes.filter((like) => like.user === userId).length > 0,
     }));
     set(postManager, newPosts);
+  },
+});
+
+// 특정 post 좋아요 처리
+export const getLikeId = selectorFamily({
+  key: "like",
+  get:
+    (postId) =>
+    // eslint-disable-next-line react/prop-types
+    ({ get }) => {
+      const userId = get(userInfo)._id;
+      const targetPost = get(allPost).filter((post) => post._id === postId);
+      const targetLike = targetPost[0].likes.filter(
+        (like) => like.user === userId
+      );
+      return targetLike.length > 0 ? targetLike[0]._id : null;
+    },
+});
+
+export const addLike = selector({
+  key: "setLike",
+  get: () => {},
+  set: ({ set, get }, { postId, like }) => {
+    const posts = [...get(allPost)];
+    const targetId = posts.findIndex((post) => post._id === postId);
+    const target = {
+      ...posts[targetId],
+      likes: [...posts[targetId].likes, like],
+    };
+    posts[targetId] = target;
+
+    set(allPost, posts);
   },
 });
