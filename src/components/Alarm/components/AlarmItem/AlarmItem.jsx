@@ -1,0 +1,36 @@
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import FollowItem from "../FollowItem";
+import * as S from "./AlarmItem.style";
+
+const proptype = {
+  item: PropTypes.instanceOf(Object),
+};
+
+const defaultProp = {
+  item: {},
+};
+
+function AlarmItem({ item }) {
+  const [type, setType] = useState("");
+
+  const notifications = {
+    Follow: <FollowItem author={item.author} follow={item.follow} />,
+  };
+
+  useEffect(() => {
+    if (item?._id) {
+      if (!item.post && item.follow._id) setType("Follow");
+      else if (item.comment) setType("Comment");
+      else if (item.message) setType("Message");
+      else setType("none");
+    }
+  }, [item]);
+
+  return <S.AlarmItemWrapper>{notifications[type]}</S.AlarmItemWrapper>;
+}
+
+AlarmItem.propTypes = proptype;
+AlarmItem.defaultProps = defaultProp;
+
+export default AlarmItem;
