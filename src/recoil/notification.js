@@ -10,7 +10,7 @@ export const unSeenNotifications = atom({
     key: "unSeenNotifications/Default",
     get: async ({ get }) => {
       const token = get(jwtToken) || getCookie("token");
-      console.log(token);
+      if (!token) return [];
       const res = await getAlarms(token);
       return res.data;
     },

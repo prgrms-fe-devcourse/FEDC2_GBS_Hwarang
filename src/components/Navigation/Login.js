@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import PropTypes from "prop-types";
 import { userInfo } from "recoil/user";
+import { unSeenNotifications } from "recoil/notification";
 import * as Ns from "./Navigation.style";
 import { userLogin } from "../../api/auth-api";
 import { loginProcess } from "../../recoil/authentication";
@@ -18,6 +19,7 @@ function Login({ handleLogin, onClose, changeModalType }) {
   });
   const setToken = useSetRecoilState(loginProcess);
   const setUser = useSetRecoilState(userInfo);
+  const setNotification = useSetRecoilState(unSeenNotifications);
 
   const [serverError, setServerError] = useState(null);
 
@@ -28,6 +30,7 @@ function Login({ handleLogin, onClose, changeModalType }) {
       const result = await userLogin(loginId, loginPassWord);
       setToken(result.data.token);
       setUser(result.data.user);
+      setNotification(result.data.user.notifications);
       handleLogin(true);
     } catch (error) {
       setServerError(error.response.data);
