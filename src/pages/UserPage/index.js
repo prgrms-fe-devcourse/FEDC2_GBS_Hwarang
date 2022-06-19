@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Image, Text, Avatar, PostList } from "components";
+import { Image, Text, Avatar, PostList, Button, Icon, Modal } from "components";
 import { useParams, useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { userInfo } from "recoil/user";
 import { getPostByUserId } from "api/post-api";
+import { DEFAULT_COVER_IMAGE, DEFAULT_PROFILE_IMAGE } from "api/url";
 import { getUserInfoById, followUser, unFollowUser } from "api/user-api";
 import ImageButton from "./components/ImageButton";
 import NoPostWrapper from "./components/NoPostList";
 import FollowButton from "./components/FollowButton";
 import * as S from "./UserPage.style";
+import { ModifyUserName, ModifyPassword } from "./components/ModifyUserInfo";
 
 const FONT_COLOR = "$white";
 const FONT_SIZE = 14;
-const DEFAULT_COVER_IMAGE =
-  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Default+Cover+Image.png";
-const DEFAULT_PROFILE_IMAGE =
-  "https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Profile_Image.png";
 
 function UserPage() {
   const { ID } = useParams();
@@ -27,6 +25,10 @@ function UserPage() {
   const [coverImageHover, setCoverImageHover] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const [myPost, setMyPost] = useState([]);
+
+  // yeoonju-jane 사용자 정보 변경
+  const [showModifyUserNameModal, setShowModifyUserNameModel] = useState(false);
+  const [showModifyPasswordModal, setModifyPasswordModal] = useState(false);
 
   const myInfo = useRecoilValue(userInfo);
   const setMyInfo = useSetRecoilState(userInfo);
@@ -136,9 +138,16 @@ function UserPage() {
             <Text color={FONT_COLOR} strong size={FONT_SIZE}>
               {userData?.email || ""}
             </Text>
-            <Text color="$black01" strong>
-              {userData?.fullName || ""}
-            </Text>
+            <S.UserNameWrapper>
+              <Text color="$black01" strong>
+                {userData?.fullName || ""}
+              </Text>
+              <Icon
+                name="edit"
+                style={{ marginLeft: 10 }}
+                onClick={() => setShowModifyUserNameModel(true)}
+              />
+            </S.UserNameWrapper>
           </div>
         </S.UserInfoWrapper>
         <S.ExtraInfoWrapper>
@@ -174,6 +183,11 @@ function UserPage() {
               isUnFollow={isFollowing}
             />
           )}
+          {isOwner && (
+            <Button onClick={() => setModifyPasswordModal(true)}>
+              비밀번호 변경
+            </Button>
+          )}
         </S.FollowBlock>
       </S.ImageWrapper>
       <S.Main>
@@ -186,6 +200,28 @@ function UserPage() {
           // eslint-disable-next-line
           <NoPostWrapper isOwner={isOwner} />
         )}
+        <Modal
+          visible={showModifyUserNameModal}
+          onClose={() => setShowModifyUserNameModel(false)}
+          height="auto"
+        >
+          <ModifyUserName
+            token={token}
+            user={userData}
+            onClose={() => setShowModifyUserNameModel(false)}
+          />
+        </Modal>
+        <Modal
+          visible={showModifyPasswordModal}
+          onClose={() => setModifyPasswordModal(false)}
+          height="auto"
+        >
+          <ModifyPassword
+            token={token}
+            user={userData}
+            onClose={() => setModifyPasswordModal(false)}
+          />
+        </Modal>
       </S.Main>
     </>
   );

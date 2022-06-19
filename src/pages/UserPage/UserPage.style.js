@@ -57,3 +57,17 @@ export const FollowBlock = styled.div`
 `;
 
 export const Main = styled.div``;
+
+export const UserNameWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  .material-symbols-outlined {
+    display: none;
+    cursor: pointer;
+  }
+
+  &:hover .material-symbols-outlined {
+    display: block;
+  }
+`;
