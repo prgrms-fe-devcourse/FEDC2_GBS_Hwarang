@@ -116,7 +116,7 @@ export const setLikePost = selector({
   set: ({ set, get }, userId) => {
     const newPosts = get(allPost).map((post) => ({
       ...post,
-      isLiked: post.likes.filter((like) => like.user === userId) >= 0,
+      isLiked: post.likes.filter((like) => like.user === userId) > 0,
     }));
 
     set(postManager, newPosts);

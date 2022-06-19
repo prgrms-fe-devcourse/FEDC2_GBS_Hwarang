@@ -21,8 +21,8 @@ const MainGrid = ({ data, mainTitle }) => {
         </Text>
       </S.TextWrapper>
       <FluxRow>
-        {data.map((post) => {
-          const {
+        {data.map(
+          ({
             _id,
             image,
             content,
@@ -30,27 +30,29 @@ const MainGrid = ({ data, mainTitle }) => {
             createdAt,
             likesNum,
             commentsNum,
-          } = post;
+            isLiked,
+          }) => {
+            const handleOnClick = (id) => {
+              alert(id);
+            };
 
-          const handleOnClick = (id) => {
-            alert(id);
-          };
-
-          return (
-            <FluxCol key={_id}>
-              <S.CardWrapper onClick={() => handleOnClick(_id)}>
-                <MainGridCard
-                  src={image || DEFAULT_COVER_IMAGE}
-                  textChildren={content.title}
-                  author={author.fullName}
-                  createdAt={createdAt}
-                  likesNum={likesNum}
-                  commentsNum={commentsNum}
-                />
-              </S.CardWrapper>
-            </FluxCol>
-          );
-        })}
+            return (
+              <FluxCol key={_id}>
+                <S.CardWrapper onClick={() => handleOnClick(_id)}>
+                  <MainGridCard
+                    src={image || DEFAULT_COVER_IMAGE}
+                    textChildren={content.title}
+                    author={author.fullName}
+                    createdAt={createdAt}
+                    likesNum={likesNum}
+                    commentsNum={commentsNum}
+                    isLiked={isLiked}
+                  />
+                </S.CardWrapper>
+              </FluxCol>
+            );
+          }
+        )}
       </FluxRow>
     </S.MainGridWrapper>
   );

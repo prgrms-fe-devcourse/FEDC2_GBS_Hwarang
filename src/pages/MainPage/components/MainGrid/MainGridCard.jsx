@@ -16,6 +16,7 @@ const propTypes = {
   createdAt: PropTypes.string,
   likesNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   commentsNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  isLiked: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -27,6 +28,7 @@ const defaultProps = {
   createdAt: "",
   likesNum: 0,
   commentsNum: 0,
+  isLiked: false,
 };
 
 const MainGridCard = ({
@@ -39,6 +41,7 @@ const MainGridCard = ({
   createdAt,
   likesNum,
   commentsNum,
+  isLiked,
 }) => {
   const { FluxRow, FluxCol } = Flux;
   const wrapperStyle = {
@@ -76,6 +79,7 @@ const MainGridCard = ({
             }
             textSize="$n1"
             text={likesNum}
+            initialState={isLiked}
           >
             <Image src={likesSvg} width={15} height={15} mode="contain" />
           </ToggleButton>
