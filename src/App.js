@@ -67,7 +67,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPageComponent />} />
             <Route
-              path="/travel-destination"
+              path="/travel-destination/:Options"
               element={<PostListPageComponent />}
             />
             <Route path="userpage/:ID" element={<UserPageComponent />} />

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Common from "styles/common";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -56,11 +57,14 @@ export const filterStandard = styled.div`
   align-items: flex-start;
 `;
 
-export const styledButton = styled.button`
+export const LinkButton = styled(Link)`
+  text-decoration: none;
   border: 1px solid #cecece;
   border-radius: 18px;
+  color: ${Common.colors.gray01};
   padding: 8px;
   margin-right: 15px;
+  background-color: ${Common.colors.white};
   display: inline-block;
   cursor: pointer;
   &:hover {

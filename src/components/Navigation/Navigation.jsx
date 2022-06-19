@@ -168,7 +168,9 @@ function Navigation() {
           </div>
         </Ns.NavLogoBlock>
         <Ns.LinkBlock>
-          <Ns.NavigationLink to="/travel-destination">여행지</Ns.NavigationLink>
+          <Ns.NavigationLink to="/travel-destination/all">
+            여행지
+          </Ns.NavigationLink>
           <Ns.NavigationLink to="/plan">일정 만들기</Ns.NavigationLink>
           <Ns.NavigationLink to="/hotel">호텔</Ns.NavigationLink>
           <Ns.NavigationLink to="/guide">이용방법</Ns.NavigationLink>
