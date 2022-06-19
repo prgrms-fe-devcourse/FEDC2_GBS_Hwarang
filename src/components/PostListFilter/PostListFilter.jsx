@@ -36,12 +36,6 @@ const PostListFilter = ({ folded, options }) => {
     },
   ];
 
-  // const handleClick = (arr, idx) => {
-  //   const newArr = Array(arr.length).fill(false);
-  //   newArr[idx] = true;
-  //   setIsStandardSelect(newArr);
-  // };
-
   return (
     <div>
       <S.Wrapper>
@@ -60,7 +54,6 @@ const PostListFilter = ({ folded, options }) => {
                 <S.LinkButton
                   key={index}
                   to={`/travel-destination/${path}`}
-                  onClick={() => handleClick("standard", index)}
                   className={options === path ? "select" : "deselect"}
                   disabled
                 >
