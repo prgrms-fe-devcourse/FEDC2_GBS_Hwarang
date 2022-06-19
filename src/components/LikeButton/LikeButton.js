@@ -22,7 +22,7 @@ const defaultProps = {
   likesNum: 0,
   width: 15,
   height: 15,
-  textSize: "$h1",
+  textSize: "$n1",
   style: {},
 };
 
