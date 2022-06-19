@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Image from "components/Image";
-import Icon from "components/Icon";
-import Button from "components/Button";
-import Text from "components/Text";
-import Input from "components/Input";
+import { Image, Icon, Button, Text, Input } from "components";
 import Common from "styles/common";
 import * as S from "./Footer.style";
 

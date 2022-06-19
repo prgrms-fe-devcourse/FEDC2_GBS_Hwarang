@@ -61,10 +61,10 @@ export const filterStandard = styled.div`
 
 export const LinkButton = styled(Link)`
   text-decoration: none;
-  border: 1px solid #cecece;
+  border: 1px solid ${Common.colors.gray05};
   border-radius: 18px;
   color: ${Common.colors.gray01};
-  padding: 8px;
+  padding: 10px;
   margin-right: 15px;
   background-color: ${Common.colors.white};
   display: inline-block;
@@ -74,8 +74,10 @@ export const LinkButton = styled(Link)`
     color: white;
     background-color: ${Common.colors.main};
   }
+
   &.select {
     background-color: ${Common.colors.main};
     color: ${Common.colors.white};
+    border: 1px solid ${Common.colors.main};
   }
 `;

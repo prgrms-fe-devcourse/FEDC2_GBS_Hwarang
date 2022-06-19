@@ -43,8 +43,7 @@ const PageWrapper = styled.div`
 const HeaderWrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 550px;
-  background-color: ${Common.colors.main_light};
+  height: 500px;
 `;
 
 const Header = styled.div`
