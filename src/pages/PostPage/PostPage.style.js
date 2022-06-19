@@ -14,6 +14,14 @@ const HeadeContainer = styled.div`
   }
 `;
 
+const Cover = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: ${Common.colors.black01};
+  opacity: 0.2;
+`;
+
 const InnerWrapper = styled.div`
   position: absolute;
   bottom: 24px;
@@ -73,6 +81,7 @@ const ActionsContainer = styled.div`
 export default {
   Container,
   HeadeContainer,
+  Cover,
   InnerWrapper,
   ButtonWrapper,
   ContentContainer,
