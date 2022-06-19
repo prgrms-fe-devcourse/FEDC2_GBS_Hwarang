@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Input from "components/Input";
-import InputResult from "components/InputResult";
+import { Input, InputResult } from "components";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
 import * as S from "./PostListInput.style";
@@ -8,7 +7,6 @@ import * as S from "./PostListInput.style";
 const PostListInput = () => {
   const [keyword, setKeyword] = useState("");
   const posts = useRecoilValue(allPost);
-
   const handleChange = (e) => {
     const { value, name } = e.target;
     if (name === "keyword") {
@@ -24,6 +22,7 @@ const PostListInput = () => {
         placeholder="가고 싶은 여행지를 입력해보세요!"
         width="500px"
         height="60px"
+        // onSubmit={console.log("hello")}
       />
       <InputResult
         inputType="filter"

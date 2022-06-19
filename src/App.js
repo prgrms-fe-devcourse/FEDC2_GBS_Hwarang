@@ -18,6 +18,10 @@ import { userInfo } from "recoil/user";
 import { getAllPosts } from "api/post-api";
 import { allPost } from "recoil/post";
 import { Footer } from "components";
+import getAllPost from "repository/postRepository";
+import TaskProvider from "contexts/TaskProvider";
+// eslint-disable-next-line import/named
+
 import { MainPage, PostListPage, UserPage } from "./pages";
 import Auth from "./hoc";
 
@@ -62,19 +66,21 @@ function App() {
   return (
     // test 2
     <div>
-      <Router>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<MainPageComponent />} />
-          <Route
-            path="/travel-destination"
-            element={<PostListPageComponent />}
-          />
-          <Route path="userpage/:ID" element={<UserPageComponent />} />
-          <Route path="*" element={<div>Not Found!</div>} />
-        </Routes>
-        <Footer />
-      </Router>
+      <TaskProvider>
+        <Router>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<MainPageComponent />} />
+            <Route
+              path="/travel-destination/:Options"
+              element={<PostListPageComponent />}
+            />
+            <Route path="userpage/:ID" element={<UserPageComponent />} />
+            <Route path="*" element={<div>Not Found!</div>} />
+          </Routes>
+          <Footer />
+        </Router>
+      </TaskProvider>
     </div>
   );
 }

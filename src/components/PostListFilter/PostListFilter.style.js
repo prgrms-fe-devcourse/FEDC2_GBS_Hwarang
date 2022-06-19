@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Common from "styles/common";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -8,7 +9,19 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .fold__filter-div {
+    display: none;
+  }
+
+  .fold__input {
+    position: fixed;
+    top: 5px;
+    right: calc(50% - 250px);
+  }
 `;
+
+export const InputWrapper = styled.div``;
 
 export const filterContainer = styled.div`
   display: grid;
@@ -46,19 +59,25 @@ export const filterStandard = styled.div`
   align-items: flex-start;
 `;
 
-export const styledButton = styled.button`
-  border: 1px solid #cecece;
+export const LinkButton = styled(Link)`
+  text-decoration: none;
+  border: 1px solid ${Common.colors.gray05};
   border-radius: 18px;
-  padding: 8px;
+  color: ${Common.colors.gray01};
+  padding: 10px;
   margin-right: 15px;
+  background-color: ${Common.colors.white};
   display: inline-block;
   cursor: pointer;
+
   &:hover {
     color: white;
     background-color: ${Common.colors.main};
   }
+
   &.select {
     background-color: ${Common.colors.main};
     color: ${Common.colors.white};
+    border: 1px solid ${Common.colors.main};
   }
 `;

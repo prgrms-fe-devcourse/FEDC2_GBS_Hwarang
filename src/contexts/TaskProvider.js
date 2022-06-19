@@ -8,6 +8,8 @@ export const useTasks = () => useContext(TaskContext);
 // eslint-disable-next-line react/prop-types
 const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
+  const [channel, setChannel] = useState("");
+  const [standard, setStandard] = useState("");
   const addTask = (_id, title) => {
     const isInclude = tasks.some((task) => task.id === _id);
     if (isInclude) {
@@ -22,15 +24,30 @@ const TaskProvider = ({ children }) => {
       },
     ]);
   };
-  const updateTask = (id) => {
-    setTasks(tasks.map((item) => (item.id === id ? { ...item } : item)));
-  };
   const removeTask = (id) => {
     setTasks(tasks.filter((item) => item.id !== id));
   };
 
+  const selectChannel = (id) => {
+    setChannel(id);
+  };
+
+  const selectStandard = (str) => {
+    setStandard(str);
+  };
+
   return (
-    <TaskContext.Provider value={{ tasks, addTask, updateTask, removeTask }}>
+    <TaskContext.Provider
+      value={{
+        tasks,
+        addTask,
+        removeTask,
+        channel,
+        standard,
+        selectChannel,
+        selectStandard,
+      }}
+    >
       {children}
     </TaskContext.Provider>
   );

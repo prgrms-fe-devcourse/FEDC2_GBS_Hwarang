@@ -19,18 +19,17 @@ const PostList = ({ data, listTitle }) => {
 
   const getRenderData = () => {
     if (!renderData) return;
-
     setLoading(true);
-    const addData = data.slice(page * 10, page * 10 + 10);
 
+    const addData = data.slice(page * 10, page * 10 + 10);
     if (addData.length === 0) {
       setLoading(false);
       setCompleteData(true);
     }
 
     const renderScrollData = [...renderData, ...addData];
-
     setRenderData(renderScrollData);
+
     setLoading(false);
   };
 
@@ -43,14 +42,19 @@ const PostList = ({ data, listTitle }) => {
     });
   };
 
+  /* data 변경 */
   useEffect(() => {
     if (data.length === 0) return;
+    setLoading(true);
 
-    setRenderData(data.slice(page * 10, page * 10 + 10));
+    setRenderData(data.slice(0, 10));
+    setPage(0);
+
     setLoading(false);
   }, [data]);
 
   useEffect(() => {
+    if (page === 0) return;
     getRenderData();
   }, [page]);
 
@@ -93,8 +97,8 @@ const PostList = ({ data, listTitle }) => {
                 title={title}
                 author={author}
                 createdAt={createdAt}
-                likesNum={likes.length}
-                commentsNum={comments.length}
+                likesNum={likes}
+                commentsNum={comments}
                 {...ItemProps}
               />
             </S.PostListItemWrapper>
@@ -108,7 +112,7 @@ const PostList = ({ data, listTitle }) => {
             style={{ width: "fit-content", margin: "0 auto" }}
             size="$c2"
           >
-            😔 더 이상 불러올 데이터가 없습니다.
+            😔 더 이상 불러올 여행지가 없습니다.
           </Text>
         </S.NoDataWrapper>
       ) : null}

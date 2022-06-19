@@ -13,6 +13,7 @@ const propTypes = {
 
 const MainGrid = ({ data, mainTitle }) => {
   const { FluxRow, FluxCol } = Flux;
+
   return (
     <S.MainGridWrapper>
       <S.TextWrapper>
@@ -44,8 +45,8 @@ const MainGrid = ({ data, mainTitle }) => {
                   textChildren={content.title}
                   author={author.fullName}
                   createdAt={createdAt}
-                  likesNum={likesNum}
-                  commentsNum={commentsNum}
+                  likesNum={likes}
+                  commentsNum={comments}
                 />
               </S.CardWrapper>
             </FluxCol>
