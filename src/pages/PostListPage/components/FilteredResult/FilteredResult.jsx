@@ -25,7 +25,10 @@ const FilteredResult = (data) => {
     }
     return temp;
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4157fb8b8e7a1b0e938fbabd94e910df55428eda
   let result = data;
   result = standardFilter(result);
   result = titleFilter(result);

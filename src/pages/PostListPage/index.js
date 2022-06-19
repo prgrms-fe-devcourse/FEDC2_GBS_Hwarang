@@ -1,13 +1,19 @@
 import { PostList, PostListFilter } from "components";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRecoilValue } from "recoil";
+<<<<<<< HEAD
 import { useTasks } from "contexts/TaskProvider";
 import { allData, postList } from "recoil/post";
 import { useParams } from "react-router-dom";
+=======
+import { allPost } from "recoil/post";
+>>>>>>> 4157fb8b8e7a1b0e938fbabd94e910df55428eda
 import S from "./PostListPage.style";
 import ScrollTopButton from "./components/ScrollTopButton";
+import FilteredResult from "./components/FilteredResult";
 
 const PostListPage = () => {
+<<<<<<< HEAD
   const data = useRecoilValue(allData);
   const postListData = useRecoilValue(postList);
 
@@ -35,6 +41,28 @@ const PostListPage = () => {
 
     setRenderData(optionData);
   }, [tasks, optionData]);
+=======
+  const data = useRecoilValue(allPost);
+  const renderData = useRef([]);
+  // const result = useRef([]);
+  const [folded, setFolded] = useState(false);
+
+  const result = FilteredResult(data);
+
+  // useEffect(() => {
+  //   result.current = getFiltered;
+  //   console.log(result.current);
+  // }, [data, getFiltered]);
+
+  useEffect(() => {
+    if (result.length !== 0) {
+      renderData.current = result;
+      console.log(data);
+      return;
+    }
+    renderData.current = data;
+  }, [result, renderData.current]);
+>>>>>>> 4157fb8b8e7a1b0e938fbabd94e910df55428eda
 
   /* Header fold */
   const handleHeader = () => {
@@ -71,8 +99,13 @@ const PostListPage = () => {
             <PostListFilter folded={folded} />
           </S.Header>
         </S.HeaderWrapper>
+<<<<<<< HEAD
         <S.Section /* PostList 렌더링 */>
           <PostList data={renderData} listTitle="검색 결과" />
+=======
+        <S.Section>
+          <PostList data={renderData.current} listTitle="검색 결과" />
+>>>>>>> 4157fb8b8e7a1b0e938fbabd94e910df55428eda
         </S.Section>
         <ScrollTopButton />
       </S.PageWrapper>

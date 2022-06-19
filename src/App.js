@@ -19,6 +19,7 @@ import { postManager } from "recoil/post";
 import { Footer } from "components";
 import getAllPost from "repository/postRepository";
 import TaskProvider from "contexts/TaskProvider";
+// eslint-disable-next-line import/named
 import { MainPage, PostListPage, UserPage } from "./pages";
 import Auth from "./hoc";
 
