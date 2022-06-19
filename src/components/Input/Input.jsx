@@ -17,6 +17,7 @@ const propTypes = {
   borderColor: PropTypes.string,
   fontColor: PropTypes.string,
   useIcon: PropTypes.bool,
+  isFileUploadInput: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -32,6 +33,7 @@ const defaultProps = {
   borderColor: "#ec5e58",
   fontColor: "#ffc2c0",
   useIcon: true,
+  isFileUploadInput: false,
 };
 
 const Input = React.forwardRef(
@@ -49,6 +51,7 @@ const Input = React.forwardRef(
       borderColor,
       fontColor,
       useIcon,
+      isFileUploadInput,
       ...props
     },
     ref
@@ -58,6 +61,7 @@ const Input = React.forwardRef(
       height,
       color: fontColor,
       fontSize,
+      display: isFileUploadInput ? "none" : "block",
     };
     const inputStyle = {
       border: `1px solid ${borderColor}`,

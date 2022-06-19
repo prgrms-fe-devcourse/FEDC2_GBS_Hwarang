@@ -1,8 +1,8 @@
-import { atom, selector } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 
 export const postManager = atom({
   key: "posts",
-  default: {},
+  default: [],
 });
 
 export const allPost = selector({
@@ -14,6 +14,24 @@ export const allPost = selector({
       []
     );
     return data;
+  },
+  set: ({ set }, newPosts) => {
+    const data = newPosts.map((post) => {
+      let postContent = null;
+      try {
+        postContent = JSON.parse(post.title);
+      } catch (exception) {
+        postContent = "test";
+      }
+      return {
+        ...post,
+        commentsNum: post.comments.length,
+        likesNum: post.likes.length,
+        content: postContent,
+        title: null,
+      };
+    });
+    set(postManager, data);
   },
 });
 
@@ -34,17 +52,13 @@ export const allData = selector({
 export const mainPost = selector({
   key: "mainPost",
   get: ({ get }) => {
-    const data = get(allPost).map((post) => ({
-      ...post,
-      comments: post.comments.length,
-      likes: post.likes.length,
-    }));
+    const posts = [...get(allPost)];
     // 1. 인기순
-    const popular = data
-      .sort((a, b) => b.likes - a.likes)
+    const popular = posts
+      .sort((a, b) => b.likesNum - a.likesNum)
       .filter((_, index) => index < 6);
     // 2. 최신순
-    const latest = data
+    const latest = posts
       .sort((a, b) => {
         const dateA = new Date(a.createdAt);
         const dateB = new Date(b.createdAt);
@@ -109,4 +123,18 @@ export const postList = selector({
       comments,
     };
   },
+});
+
+export const postImage = selectorFamily({
+  key: "postImage",
+  get:
+    (postId) =>
+    ({ get }) => {
+      const data = get(allPost).filter((post) => {
+        // eslint-disable-next-line no-underscore-dangle
+        return post._id === postId;
+      });
+
+      return data.length > 0 && data[0].image ? data[0].image : undefined;
+    },
 });

@@ -22,6 +22,7 @@ const PostListInput = () => {
         placeholder="가고 싶은 여행지를 입력해보세요!"
         width="500px"
         height="60px"
+        // onSubmit={console.log("hello")}
       />
       <InputResult
         inputType="filter"

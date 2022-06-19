@@ -18,7 +18,9 @@ function SignUp({ handleSignUp, onClose }) {
     formState: { errors },
     watch,
     setValue,
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
 
   const onSubmit = async (data) => {
     const { userName, signUpId, signUpPassWord } = data;
@@ -57,14 +59,14 @@ function SignUp({ handleSignUp, onClose }) {
       <div className="inputBlock">
         <Ns.ModalInput
           {...register("signUpId", {
-            required: { value: true, message: "아이디를 입력해 주세요!" },
+            required: { value: true, message: "이메일을 입력해 주세요!" },
             pattern: {
               value:
                 /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
               message: "이메일 형식이 올바르지 않습니다!",
             },
           })}
-          placeholder="Id"
+          placeholder="Email"
           useIcon={false}
           width="100%"
         />

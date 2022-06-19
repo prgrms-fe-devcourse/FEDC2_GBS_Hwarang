@@ -21,7 +21,6 @@ const PostFilterItem = ({ width, filter, ...props }) => {
   const { _id, title } = filter;
   const handleonClick = (id, tit) => {
     addTask(id, tit);
-    // context 에 들어있는 배열로 post 가져오기 요청
   };
 
   return (

@@ -12,31 +12,29 @@ const propTypes = {
 
 const PostListFilter = ({ folded }) => {
   const { tasks } = useTasks();
-  const [isChannelSelect, setIsChannelSelect] = useState([false]);
   const [isStandardSelect, setIsStandardSelect] = useState([false]);
-  const channel = [
-    "아시아",
-    "유럽",
-    "아프리카",
-    "북아메리카",
-    "남아메리카",
-    "오세아니아",
-  ];
+  // const { Options } = useParams();
+
   const standard = [
-    "인기순",
-    "최신순",
-    "오래된 순",
-    "가봤슈 추천순",
-    "댓글 많은 순",
+    "인기순", // popular
+    "최신순", // latest
+    "오래된 순", // oldest
+    "가봤슈 추천순", // gbsrecommend
+    "댓글 많은 순", // comment
   ];
   const handleClick = (arr, idx) => {
     const newArr = Array(arr.length).fill(false);
     newArr[idx] = true;
-    if (arr === "channel") {
-      setIsChannelSelect(newArr);
-    } else {
-      setIsStandardSelect(newArr);
-    }
+    setIsStandardSelect(newArr);
+    // selectStandard(standard[idx]);
+    // switch (idx) {
+    //   case 0:
+
+    //   case 1:
+    //     setOption(1);
+    //   case 2:
+    //     setOption(2);
+    // }
   };
   return (
     <div>
@@ -51,26 +49,16 @@ const PostListFilter = ({ folded }) => {
             ))}
           </S.searchSelected>
           <S.searchOptions>
-            <S.channel>
-              {channel.map((item, index) => (
-                <S.styledButton
-                  key={index}
-                  onClick={() => handleClick("channel", index)}
-                  className={isChannelSelect[index] ? "select" : "deselect"}
-                >
-                  {item}
-                </S.styledButton>
-              ))}
-            </S.channel>
             <S.filterStandard>
               {standard.map((item, index) => (
-                <S.styledButton
+                <S.LinkButton
                   key={index}
+                  to="/travel-destination/latest"
                   onClick={() => handleClick("standard", index)}
                   className={isStandardSelect[index] ? "select" : "deselect"}
                 >
                   {item}
-                </S.styledButton>
+                </S.LinkButton>
               ))}
             </S.filterStandard>
           </S.searchOptions>

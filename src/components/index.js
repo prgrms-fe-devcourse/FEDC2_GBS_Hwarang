@@ -16,4 +16,7 @@ export { default as PostListFilter } from "./PostListFilter";
 export { default as Spinner } from "./Spinner";
 export { default as PostListInput } from "./PostListInput";
 export { default as InputResult } from "./InputResult";
+export { default as Dot } from "./Dot";
+export { default as Divider } from "./Divider";
+export { default as Modal } from "./Modal";
 export { default as Skeleton } from "./Skeleton";

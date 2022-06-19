@@ -6,6 +6,7 @@ import { allData, postList } from "recoil/post";
 import { useParams } from "react-router-dom";
 import S from "./PostListPage.style";
 import ScrollTopButton from "./components/ScrollTopButton";
+// import FilteredResult from "./components/FilteredResult";
 
 const PostListPage = () => {
   const data = useRecoilValue(allData);
@@ -35,6 +36,26 @@ const PostListPage = () => {
 
     setRenderData(optionData);
   }, [tasks, optionData]);
+
+  // const data = useRecoilValue(allPost);
+  // const renderData = useRef([]);
+  // const result = useRef([]);
+
+  // const result = FilteredResult(data);
+
+  // useEffect(() => {
+  //   result.current = getFiltered;
+  //   console.log(result.current);
+  // }, [data, getFiltered]);
+
+  // useEffect(() => {
+  //   if (result.length !== 0) {
+  //     renderData.current = result;
+  //     console.log(data);
+  //     return;
+  //   }
+  //   renderData.current = data;
+  // }, [result, renderData.current]);
 
   /* Header fold */
   const handleHeader = () => {
@@ -71,7 +92,7 @@ const PostListPage = () => {
             <PostListFilter folded={folded} />
           </S.Header>
         </S.HeaderWrapper>
-        <S.Section /* PostList 렌더링 */>
+        <S.Section>
           <PostList data={renderData} listTitle="검색 결과" />
         </S.Section>
         <ScrollTopButton />
