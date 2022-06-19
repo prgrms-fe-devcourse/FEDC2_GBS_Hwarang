@@ -9,15 +9,11 @@ import FilteredResult from "./components/FilteredResult";
 const PostListPage = () => {
   const data = useRecoilValue(allPost);
   const renderData = useRef([]);
-<<<<<<< HEAD
   // const result = useRef([]);
-=======
->>>>>>> 709cfd528da89faf069430caef42e8c12863ebb4
   const [folded, setFolded] = useState(false);
 
   const result = FilteredResult(data);
 
-<<<<<<< HEAD
   // useEffect(() => {
   //   result.current = getFiltered;
   //   console.log(result.current);
@@ -31,15 +27,6 @@ const PostListPage = () => {
     }
     renderData.current = data;
   }, [result, renderData.current]);
-=======
-  useEffect(() => {
-    if (result.length !== 0) {
-      renderData.current = result;
-      return;
-    }
-    renderData.current = data;
-  }, [result]);
->>>>>>> 709cfd528da89faf069430caef42e8c12863ebb4
 
   /* Header fold */
   const handleHeader = () => {

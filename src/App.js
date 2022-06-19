@@ -18,14 +18,15 @@ import { userInfo } from "recoil/user";
 import { postManager } from "recoil/post";
 import { Footer } from "components";
 import getAllPost from "repository/postRepository";
-import TaskProvider from "contexts/TaskProvider";
-<<<<<<< HEAD
 import { MainPage, PostListPage, UserPage } from "./pages";
-=======
-import { MainPage, PostListPage } from "./pages";
->>>>>>> 709cfd528da89faf069430caef42e8c12863ebb4
+// import Auth from "./hoc";
 
 function App() {
+  // component
+  const MainPageComponent = Auth(MainPage);
+  const PostListPageComponent = Auth(PostListPage);
+  const UserPageComponent = Auth(UserPage);
+
   const setPosts = useSetRecoilState(postManager);
   const [isLogined, setIsLogined] = useRecoilState(loginStatus);
   const TokenExist = useRecoilValue(isTokenExist);
@@ -58,18 +59,21 @@ function App() {
 
   return (
     // test 2
-    <TaskProvider>
+    <div>
       <Router>
         <Navigation />
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/travel-destination" element={<PostListPage />} />
-          <Route path="userpage/:ID" element={<UserPage />} />
+          <Route path="/" element={<MainPageComponent />} />
+          <Route
+            path="/travel-destination"
+            element={<PostListPageComponent />}
+          />
+          <Route path="userpage/:ID" element={<UserPageComponent />} />
           <Route path="*" element={<div>Not Found!</div>} />
         </Routes>
         <Footer />
       </Router>
-    </TaskProvider>
+    </div>
   );
 }
 

@@ -8,7 +8,17 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  .fold__filter-div {
+    display: none;
+  }
+  .fold__input {
+    position: fixed;
+    top: 5px;
+    right: calc(50% - 250px);
+  }
 `;
+
+export const InputWrapper = styled.div``;
 
 export const filterContainer = styled.div`
   display: grid;
