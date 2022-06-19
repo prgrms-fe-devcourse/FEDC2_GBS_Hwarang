@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Image, Input, Icon, ImageUploader } from "components";
+import { Image, Input, Icon, ImageUploader, Text } from "components";
 import Common from "styles/common";
 import useHover from "hooks/useHover";
 import S from "./PlanForm.style";
@@ -26,7 +26,6 @@ const defaultProps = {
 
 const PlanForm = ({
   plan,
-  // eslint-disable-next-line no-unused-vars
   type,
   onChangeHandler,
   removePlan,
@@ -34,15 +33,19 @@ const PlanForm = ({
   removePlanImage,
 }) => {
   const { _id, image, title, content } = plan;
-  const [isHovering, handleMouseEnter, handleMouseLeave] = useHover({
-    content: false,
-    image: false,
-  });
+  const [isHovering, handleMouseEnter, handleMouseLeave] = useHover(
+    {
+      content: false,
+      image: false,
+    },
+    type
+  );
 
   return (
     <S.Content
       key={_id}
       name="content"
+      type={type}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -64,7 +67,6 @@ const PlanForm = ({
             styled={{ borderRadius: 6 }}
           />
         </S.ImageWrapper>
-        {/* Todo: 파일 불러오기 */}
         <S.ButtonWrapper isHovering={isHovering.image}>
           <ImageUploader
             id={_id}
@@ -78,29 +80,42 @@ const PlanForm = ({
         </S.IconWrapper>
       </S.ImageContainer>
       <S.Info>
-        <Input
-          placeholder="여행지 이름을 입력해 주세요."
-          defaultValue={title}
-          onChange={(e) => onChangeHandler(_id, "title", e.target.value)}
-          useIcon={false}
-          maxLength="30"
-          width="100%"
-          style={{
-            backgroundColor: "transparent",
-            border: "none",
-            fontSize: `${Common.fontSize.b1}`,
-            fontWeight: 600,
-            padding: 0,
-          }}
-        />
-        <Textarea
-          placeholder="해당 일정에 대해 설명해 주세요!"
-          defaultValue={content}
-          onChange={(e) => onChangeHandler(_id, "content", e.target.value)}
-          maxLength="120"
-          height={100}
-          backgroundColor="transparent"
-        />
+        {type === "detail" ? (
+          <>
+            <S.TextWrapper>
+              <Text size="$b1" strong>
+                {title}
+              </Text>
+            </S.TextWrapper>
+            <Text size="$c1">{content}</Text>
+          </>
+        ) : (
+          <>
+            <Input
+              placeholder="여행지 이름을 입력해 주세요."
+              defaultValue={title}
+              onChange={(e) => onChangeHandler(_id, "title", e.target.value)}
+              useIcon={false}
+              maxLength="30"
+              width="100%"
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+                fontSize: `${Common.fontSize.b1}`,
+                fontWeight: 600,
+                padding: 0,
+              }}
+            />
+            <Textarea
+              placeholder="해당 일정에 대해 설명해 주세요!"
+              defaultValue={content}
+              onChange={(e) => onChangeHandler(_id, "content", e.target.value)}
+              maxLength="120"
+              height={100}
+              backgroundColor="transparent"
+            />
+          </>
+        )}
       </S.Info>
     </S.Content>
   );
