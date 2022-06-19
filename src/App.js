@@ -18,7 +18,6 @@ import { userInfo } from "recoil/user";
 import { getAllPosts } from "api/post-api";
 import { allPost } from "recoil/post";
 import { Footer } from "components";
-import getAllPost from "repository/postRepository";
 import TaskProvider from "contexts/TaskProvider";
 // eslint-disable-next-line import/named
 

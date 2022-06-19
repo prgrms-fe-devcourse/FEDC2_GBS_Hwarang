@@ -29,24 +29,6 @@ export const allPost = selector({
     });
     set(postManager, data);
   },
-  set: ({ set }, newPosts) => {
-    const data = newPosts.map((post) => {
-      let postContent = null;
-      try {
-        postContent = JSON.parse(post.title);
-      } catch (exception) {
-        postContent = "test";
-      }
-      return {
-        ...post,
-        commentsNum: post.comments.length,
-        likesNum: post.likes.length,
-        content: postContent,
-        title: null,
-      };
-    });
-    set(postManager, data);
-  },
 });
 
 export const allData = selector({
@@ -93,21 +75,17 @@ export const postList = selector({
   key: "postList",
   get: ({ get }) => {
     // 1. 기본순
-    const data = get(allPost).map((post) => ({
-      ...post,
-      comments: post.comments.length,
-      likes: post.likes.length,
-    }));
+    const posts = [...get(allPost)];
 
     // 2. 인기순
     const popular = [
-      ...data.sort((a, b) => {
-        return b.likes - a.likes;
+      ...posts.sort((a, b) => {
+        return b.likesNum - a.likesNum;
       }),
     ];
     // 3. 최신순
     const latest = [
-      ...data.sort((a, b) => {
+      ...posts.sort((a, b) => {
         const dateA = new Date(a.createdAt);
         const dateB = new Date(b.createdAt);
         return dateB.getTime() - dateA.getTime();
@@ -116,7 +94,7 @@ export const postList = selector({
 
     // 4. 오래된 순
     const oldest = [
-      ...data.sort((a, b) => {
+      ...posts.sort((a, b) => {
         const dateA = new Date(a.createdAt);
         const dateB = new Date(b.createdAt);
         return dateA.getTime() - dateB.getTime();
@@ -125,13 +103,13 @@ export const postList = selector({
 
     // 5. 댓글 많은 순
     const comments = [
-      ...data.sort((a, b) => {
-        return b.comments - a.comments;
+      ...posts.sort((a, b) => {
+        return b.commentsNum - a.commentsNum;
       }),
     ];
 
     return {
-      all: data,
+      all: posts,
       popular,
       latest,
       oldest,

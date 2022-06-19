@@ -78,8 +78,15 @@ const PostList = ({ data, listTitle }) => {
       </S.ListTitleWrapper>
       {renderData &&
         renderData.map((post, index) => {
-          const { _id, image, title, author, createdAt, likes, comments } =
-            post;
+          const {
+            _id,
+            image,
+            title,
+            author,
+            createdAt,
+            likesNum,
+            commentsNum,
+          } = post;
 
           const handleOnClick = (id) => {
             alert(id);
@@ -97,8 +104,8 @@ const PostList = ({ data, listTitle }) => {
                 title={title}
                 author={author}
                 createdAt={createdAt}
-                likesNum={likes}
-                commentsNum={comments}
+                likesNum={likesNum}
+                commentsNum={commentsNum}
                 {...ItemProps}
               />
             </S.PostListItemWrapper>
