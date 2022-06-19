@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import PostListInput from "components/PostListInput";
 import { useTasks } from "contexts/TaskProvider";
+import PropTypes from "prop-types";
 // import { useParams } from "react-router-dom";
 import * as S from "./PostListFilter.style";
 import DeletableChip from "./DeletableChip";
