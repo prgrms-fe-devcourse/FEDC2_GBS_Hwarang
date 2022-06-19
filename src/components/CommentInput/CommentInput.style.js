@@ -4,8 +4,9 @@ import Common from "styles/common";
 
 export const CommentInputWrapper = styled.div`
   display: flex;
-  width: 100%;
+  /* width: 100%; */
   border: none;
+  padding: 10px;
 `;
 
 export const CommentInputButton = styled(Button)`

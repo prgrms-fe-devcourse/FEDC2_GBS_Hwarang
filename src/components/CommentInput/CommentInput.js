@@ -3,21 +3,19 @@ import Avatar from "components/Avatar";
 import React, { useCallback, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { useRecoilValue } from "recoil";
-import { jwtToken } from "recoil/authentication";
 import { userInfo } from "recoil/user";
-import { addComment } from "api/comment-api";
 import * as S from "./CommentInput.style";
 
 const propTypes = {
-  postId: PropTypes.string.isRequired,
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onAddComment: PropTypes.func,
 };
 const defaultProps = {
   maxHeight: 100,
+  onAddComment: null,
 };
 
-const CommentInput = ({ postId, maxHeight }) => {
-  const token = useRecoilValue(jwtToken);
+const CommentInput = ({ maxHeight, onAddComment }) => {
   const userData = useRecoilValue(userInfo);
   const [inputFocus, setInputFocus] = useState(false);
   const [comment, setComment] = useState("");
@@ -41,14 +39,8 @@ const CommentInput = ({ postId, maxHeight }) => {
     setInputFocus(false);
   };
 
-  const handleOnConfirm = async () => {
-    try {
-      const response = await addComment(comment, postId, token);
-      handleOnCancel();
-      console.log(response);
-    } catch (exception) {
-      console.error(exception);
-    }
+  const handleOnConfirm = () => {
+    if (onAddComment) onAddComment(comment);
   };
 
   return (
@@ -56,7 +48,7 @@ const CommentInput = ({ postId, maxHeight }) => {
       <Avatar
         src={userData.image || DEFAULT_PROFILE_IMAGE}
         size={50}
-        style={{ width: 55, height: 50 }}
+        style={{ width: 50, height: 50 }}
       />
       <div style={{ width: "100%", marginLeft: 10 }}>
         <S.CommentInputTextArea
