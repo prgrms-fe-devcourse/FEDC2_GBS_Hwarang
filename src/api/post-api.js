@@ -55,7 +55,7 @@ export const getPostsByChannel = async (channelId, offset, limit) => {
 
 // post 상세 정보
 export const getPost = async (postId) => {
-  const res = await axios.post(`${BASE_URL}${GET_POST}/${postId}`);
+  const res = await axios.get(`${BASE_URL}${GET_POST}/${postId}`);
   return res;
 };
 
