@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Common from "styles/common";
 
-const CommentWrap = styled.div`
+export const CommentWrap = styled.div`
   display: flex;
   position: relative;
   /* width: 100%; */
@@ -12,5 +12,16 @@ const CommentWrap = styled.div`
   &:hover {
     background-color: ${Common.colors.gray06};
   }
+  &:hover .del__btn {
+    display: block;
+  }
 `;
-export default CommentWrap;
+
+export const CommentDelButton = styled.div`
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  cursor: pointer;
+`;

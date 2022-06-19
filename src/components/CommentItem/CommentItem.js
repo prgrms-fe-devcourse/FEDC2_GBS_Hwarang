@@ -4,8 +4,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { deleteComment } from "api/comment-api";
 import { useRecoilValue } from "recoil";
+import { userInfo } from "recoil/user";
 import { jwtToken } from "recoil/authentication";
-import CommentWrap from "./Comment.style";
+import * as S from "./CommentItem.style";
 
 const propTypes = {
   commentData: PropTypes.instanceOf(Object).isRequired,
@@ -13,6 +14,7 @@ const propTypes = {
 
 const Comment = ({ commentData }) => {
   const token = useRecoilValue(jwtToken);
+  const userData = useRecoilValue(userInfo);
   const { _id, author, comment } = commentData;
 
   // eslint-disable-next-line no-unused-vars
@@ -26,7 +28,7 @@ const Comment = ({ commentData }) => {
   };
 
   return (
-    <CommentWrap>
+    <S.CommentWrap>
       <Avatar
         src={author.image || DEFAULT_PROFILE_IMAGE}
         size={50}
@@ -40,12 +42,12 @@ const Comment = ({ commentData }) => {
           {comment}
         </Text>
       </div>
-      <Icon
-        name="delete"
-        onClick={handleOnDelete}
-        style={{ cursor: "pointer" }}
-      />
-    </CommentWrap>
+      {userData._id === author.__id && (
+        <S.CommentDelButton className="del__btn">
+          <Icon name="delete" onClick={handleOnDelete} />
+        </S.CommentDelButton>
+      )}
+    </S.CommentWrap>
   );
 };
 

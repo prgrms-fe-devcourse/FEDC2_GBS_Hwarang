@@ -1,5 +1,5 @@
 import React from "react";
-import Comment from "components/Comment/Comment";
+import Comment from "components/CommentItem/CommentItem";
 import { RecoilRoot } from "recoil";
 
 export default {
