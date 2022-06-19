@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import getAllUsers from "repository/userRepository";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "recoil/user";
+import * as S from "./Sidebar.style";
 
 const propTypes = {
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -38,12 +39,14 @@ const SideBar = ({ margin, padding }) => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await getUsers();
-      setUsers(response.data);
+      if (myData) {
+        const response = await getAllUsers(myData.following);
+        setUsers(response);
+      }
     } catch (exception) {
       console.error(exception);
     }
-  }, []);
+  }, [myData]);
 
   const handleRefresh = async () => {
     const refresh = isRefresh.current;
@@ -68,7 +71,7 @@ const SideBar = ({ margin, padding }) => {
 
   useEffect(() => {
     fetchData();
-    
+
     return () => {
       if (timer.current) clearInterval(timer.current);
     };

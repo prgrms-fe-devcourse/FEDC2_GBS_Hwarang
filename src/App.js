@@ -25,7 +25,7 @@ import "./utils/date";
 
 function App() {
   const setPosts = useSetRecoilState(allPost);
-  
+
   // component
   const MainPageComponent = Auth(MainPage);
   const PostListPageComponent = Auth(PostListPage);

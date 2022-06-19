@@ -19,8 +19,9 @@ const getAllUsers = async (following, offset, limit) => {
         return {
           ...user,
           isFollow:
+            following &&
             following.filter((follower) => follower.user === user._id).length >
-            0,
+              0,
         };
       });
       return response;

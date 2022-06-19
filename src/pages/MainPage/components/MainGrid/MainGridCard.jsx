@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Flux, Image, Text, ToggleButton } from "components";
 import likesSvg from "assets/likes.svg";
-import { DEFAULT_COVER_IMAGE } from "api/url";
 import likesClickedSvg from "assets/likes_clicked.svg";
 import commentSvg from "assets/comment.svg";
 import S from "./MainGridCard.style";
@@ -51,7 +50,7 @@ const MainGridCard = ({
     <>
       <S.CardWrapper style={wrapperStyle}>
         <S.ImageDiv>
-          <Image src={src || DEFAULT_COVER_IMAGE} width="100%" height={180} />
+          <Image src={src} width="100%" height={180} />
         </S.ImageDiv>
         <Text size={textSize} strong>
           {textChildren}

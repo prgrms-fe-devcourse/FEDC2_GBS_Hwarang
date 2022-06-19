@@ -2,6 +2,7 @@
 import React from "react";
 import { Flux, Text } from "components";
 import PropTypes from "prop-types";
+import { DEFAULT_COVER_IMAGE } from "api/url";
 import S from "./MainGrid.style";
 import MainGridCard from "./MainGridCard";
 
@@ -39,7 +40,7 @@ const MainGrid = ({ data, mainTitle }) => {
             <FluxCol key={_id}>
               <S.CardWrapper onClick={() => handleOnClick(_id)}>
                 <MainGridCard
-                  src={image}
+                  src={image || DEFAULT_COVER_IMAGE}
                   textChildren={content.title}
                   author={author.fullName}
                   createdAt={createdAt}
