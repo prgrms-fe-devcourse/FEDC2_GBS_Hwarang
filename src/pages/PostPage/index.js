@@ -185,7 +185,7 @@ const PostPage = () => {
     const filepath = post.plans[index].image.split(
       "https://mygbs.s3-ap-northeast-2.amazonaws.com/"
     )[1];
-    await deleteImageToS3(filepath);
+    await deleteImageToS3(filepath, "test");
 
     setPost({
       ...post,
@@ -260,7 +260,7 @@ const PostPage = () => {
 
     if (e.target.files && e.target.files[0]) {
       if (id) {
-        const result = await uploadImageToS3(e.target.files[0]);
+        const result = await uploadImageToS3(e.target.files[0], "test");
         const imageUrl = result.location;
         setPost({
           ...post,
