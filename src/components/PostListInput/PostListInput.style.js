@@ -1,14 +1,25 @@
 import styled from "@emotion/styled";
+import Common from "styles/common";
 
-export const Container = styled.div`
-  /* position: absolute;
-  top: 0; */
-`;
+export const Container = styled.div``;
 
 export const InputContainer = styled.div`
   display: flex;
+  background-color: ${Common.colors.white};
+  border-radius: 10px;
+  padding: 5px;
 `;
 
-export const select = styled.select`
+export const ResultContainer = styled.div``;
+
+export const Select = styled.select`
+  font-size: "15px";
+  border-radius: 10px;
+  color: ${Common.colors.main};
   border: none;
+  outline: none;
+`;
+
+export const Option = styled.option`
+  color: ${Common.colors.main};
 `;

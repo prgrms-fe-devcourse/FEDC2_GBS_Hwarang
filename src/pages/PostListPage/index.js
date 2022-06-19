@@ -12,7 +12,7 @@ const PostListPage = () => {
   const postListData = useRecoilValue(postList);
 
   /* 1. 검색 options */
-  const { tasks } = useTasks();
+  const { tasks, channel } = useTasks();
 
   /* 2. Params 이용한 검색 Sorting options */
   const { Options } = useParams();
@@ -25,16 +25,37 @@ const PostListPage = () => {
   const [folded, setFolded] = useState(false);
 
   useEffect(() => {
+    if (channel.length !== 0 && channel !== "none") {
+      let result = optionData.filter(
+        (item) => String(item.channel) === channel
+      );
+
+      if (tasks.length !== 0 && optionData) {
+        const titleSet = tasks.map((item) => item.title);
+        result = result.filter((item) => titleSet.includes(item.title));
+        console.log(result);
+      }
+
+      setRenderData(result);
+      // if (result.length) {
+      //   setRenderData(result);
+      // } else {
+      //   검색결과없을시
+      //   setRenderData();
+      // }
+      console.log(channel);
+      return;
+    }
     if (tasks.length !== 0 && optionData) {
       const titleSet = tasks.map((item) => item.title);
       const result = optionData.filter((item) => titleSet.includes(item.title));
-
       setRenderData(result);
+      console.log(channel);
       return;
     }
 
     setRenderData(optionData);
-  }, [tasks, optionData]);
+  }, [tasks, optionData, channel]);
 
   /* Header fold */
   const handleHeader = () => {
