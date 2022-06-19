@@ -3,17 +3,21 @@ import Avatar from "components/Avatar";
 import React, { useCallback, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { useRecoilValue } from "recoil";
+import { jwtToken } from "recoil/authentication";
 import { userInfo } from "recoil/user";
+import { addComment } from "api/comment-api";
 import * as S from "./CommentInput.style";
 
 const propTypes = {
+  postId: PropTypes.string.isRequired,
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 const defaultProps = {
   maxHeight: 100,
 };
 
-const CommentInput = ({ maxHeight }) => {
+const CommentInput = ({ postId, maxHeight }) => {
+  const token = useRecoilValue(jwtToken);
   const userData = useRecoilValue(userInfo);
   const [inputFocus, setInputFocus] = useState(false);
   const [comment, setComment] = useState("");
@@ -37,8 +41,14 @@ const CommentInput = ({ maxHeight }) => {
     setInputFocus(false);
   };
 
-  const handleOnConfirm = () => {
-    console.log(comment);
+  const handleOnConfirm = async () => {
+    try {
+      const response = await addComment(comment, postId, token);
+      handleOnCancel();
+      console.log(response);
+    } catch (exception) {
+      console.error(exception);
+    }
   };
 
   return (
