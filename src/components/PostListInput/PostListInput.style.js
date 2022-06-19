@@ -1,7 +1,14 @@
 import styled from "@emotion/styled";
 
-// eslint-disable-next-line import/prefer-default-export
 export const Container = styled.div`
   /* position: absolute;
   top: 0; */
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+`;
+
+export const select = styled.select`
+  border: none;
 `;
