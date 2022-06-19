@@ -5,7 +5,9 @@ const Content = styled.li`
   display: flex;
   padding: 24px 0;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    background-color: ${({ type }) =>
+      type === "detail" ? "none" : "rgba(0, 0, 0, 0.2)"};
   }
 `;
 
@@ -69,6 +71,12 @@ const Info = styled.div`
   }
 `;
 
+const TextWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  height: 50px;
+`;
+
 export default {
   Content,
   Dot,
@@ -77,4 +85,5 @@ export default {
   ButtonWrapper,
   IconWrapper,
   Info,
+  TextWrapper,
 };
