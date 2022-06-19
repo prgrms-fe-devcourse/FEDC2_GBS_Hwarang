@@ -35,7 +35,6 @@ const PostListFilter = ({ folded, options }) => {
       path: "comments",
     },
   ];
-
   return (
     <div>
       <S.Wrapper>
