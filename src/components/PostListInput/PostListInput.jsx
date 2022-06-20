@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Input, InputResult } from "components";
 import { getChannels } from "api/post-api";
 import { useRecoilValue } from "recoil";
