@@ -30,6 +30,38 @@ const InnerWrapper = styled.div`
   z-index: 1000;
 `;
 
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 24px;
+  right: 88px;
+  z-index: 1000;
+  cursor: pointer;
+`;
+
+const List = styled.ul`
+  display: ${({ visible }) => (visible ? "block" : "none")};
+  position: absolute;
+  top: 60px;
+  right: 108px;
+  z-index: 1000;
+  border: 1px solid ${Common.colors.gray05};
+  border-radius: 3px;
+  background-color: ${Common.colors.bg_white};
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  cursor: pointer;
+`;
+
+const Item = styled.li`
+  display: flex;
+  border-bottom: ${({ last }) =>
+    last ? "none" : `1px solid ${Common.colors.gray05}`};
+  padding: 5px;
+  &:hover {
+    background-color: ${Common.colors.gray06};
+  }
+`;
+
 const ButtonWrapper = styled.div`
   display: ${({ isHovering }) => (isHovering ? "block" : "none")};
   position: absolute;
@@ -90,4 +122,7 @@ export default {
   Line,
   AddPlanContainer,
   ActionsContainer,
+  IconWrapper,
+  List,
+  Item,
 };

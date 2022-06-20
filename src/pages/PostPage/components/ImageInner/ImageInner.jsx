@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { ImageUploader, Text, Input, ToggleButton, Image } from "components";
+import {
+  ImageUploader,
+  Text,
+  Input,
+  ToggleButton,
+  Image,
+  Icon,
+} from "components";
 import likesSvg from "assets/likes.svg";
 import likesClickedSvg from "assets/likes_clicked.svg";
 import commentSvg from "assets/comment.svg";
 import Common from "styles/common";
+import { useClickAway } from "hooks";
 import Option from "../SelectItem";
 import Select from "../Select";
 import S from "../../PostPage.style";
@@ -35,6 +43,16 @@ const ImageInner = ({
   onChangeHandler,
   channels,
 }) => {
+  const [visible, setVisible] = useState(false);
+  const ref = useClickAway(() => setVisible(false));
+
+  const handleOnClick = () => {
+    setVisible(!visible);
+  };
+
+  const editPost = () => {};
+
+  const deletePost = () => {};
   return (
     <>
       {type !== "detail" && (
@@ -113,6 +131,30 @@ const ImageInner = ({
           </Select>
         )}
       </S.InnerWrapper>
+      <S.IconWrapper>
+        <Icon
+          name="more_vert"
+          style={{ fontSize: 30, fontWeight: "bold", color: "white" }}
+          onClick={handleOnClick}
+        />
+      </S.IconWrapper>
+      <S.List ref={ref} visible={visible}>
+        <S.Item onClick={editPost}>
+          <Text size="$c1" style={{ marginRight: 10 }}>
+            수정하기
+          </Text>
+          <Icon name="edit" />
+        </S.Item>
+        <S.Item last onClick={deletePost}>
+          <Text size="$c1" color="rgb(212, 55, 55)" style={{ marginRight: 10 }}>
+            삭제하기
+          </Text>
+          <Icon
+            name="delete"
+            style={{ color: "rgb(212, 55, 55)", fontSize: 20 }}
+          />
+        </S.Item>
+      </S.List>
     </>
   );
 };
