@@ -123,6 +123,7 @@ export const setLikePost = async (postId, token) => {
     }
   );
 
+  // 좋아요가 완료되었다면, 알림 생성
   return res;
 };
 
