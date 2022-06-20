@@ -13,6 +13,9 @@ export const MainInputContainer = styled.div`
 `;
 
 export const MainInputResult = styled.div`
-  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
   background-color: ${Common.colors.white};
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 `;

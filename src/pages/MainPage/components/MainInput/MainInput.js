@@ -36,27 +36,29 @@ const MainInput = () => {
         onChange={handleChange}
         width="100%"
         height="75px"
-        fontSize={15}
         onSearch={handleOnSearch}
         initialValue={keyword}
+        style={{ borderRadius: "30px", padding: "10px 20px", fontSize: "20px" }}
       />
-      <InputResult
-        inputType="post"
-        type="none"
-        keyword={keyword}
-        data={posts.map((post) => {
-          const { content } = post;
-          return { ...content, _id: post._id, image: post.image };
-        })}
-        options={["title"]}
-        width="100%"
-        height="auto"
-        maxHeight="250px"
-      >
-        <Text size="$b2" strong style={{ padding: "17px 10px 10px 10px" }}>
-          추천 게시글👍
-        </Text>
-      </InputResult>
+      <S.MainInputResult>
+        <InputResult
+          inputType="post"
+          type="none"
+          keyword={keyword}
+          data={posts.map((post) => {
+            const { content } = post;
+            return { ...content, _id: post._id, image: post.image };
+          })}
+          options={["title"]}
+          width="100%"
+          height="auto"
+          maxHeight="250px"
+        >
+          <Text size="$b2" strong style={{ padding: "17px 10px 10px 10px" }}>
+            추천 게시글👍
+          </Text>
+        </InputResult>
+      </S.MainInputResult>
     </S.MainInputContainer>
   );
 };

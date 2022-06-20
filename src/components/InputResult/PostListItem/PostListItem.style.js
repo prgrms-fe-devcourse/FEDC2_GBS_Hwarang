@@ -1,16 +1,17 @@
 import styled from "@emotion/styled";
+import Common from "styles/common";
 
 // eslint-disable-next-line import/prefer-default-export
 export const ListItem = styled.li`
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* width: 100%; */
-  padding: 4px 0;
-  border-bottom: 1px solid #c0c0c0;
+  padding: 10px 20px;
+  border-bottom: 1px solid ${Common.colors.gray05};
   cursor: pointer;
 
   &:hover {
-    background-color: #e6e6e6;
+    background-color: ${Common.colors.gray06};
   }
 `;
