@@ -17,6 +17,7 @@ const PostListPage = () => {
 
   /* 2. Params 이용한 검색 Sorting options */
   const { Options } = useParams();
+
   const [optionData, setOptionData] = useState([]);
 
   /* 3. 최종적으로 보여지는 필터링 된 데이터 */

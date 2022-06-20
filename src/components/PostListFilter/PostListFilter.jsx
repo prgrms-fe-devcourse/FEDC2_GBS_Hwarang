@@ -13,6 +13,7 @@ const propTypes = {
 
 const PostListFilter = ({ folded, options }) => {
   const { tasks } = useTasks();
+
   const standard = [
     {
       title: "기본순",

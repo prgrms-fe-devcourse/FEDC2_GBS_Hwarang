@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, InputResult } from "components";
 import { getChannels } from "api/post-api";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
 import { useTasks } from "contexts/TaskProvider";
 import { useClickAway } from "hooks";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
+
 import * as S from "./PostListInput.style";
 
 const PostListInput = () => {
   const [keyword, setKeyword] = useState("");
   const [channels, setChannels] = useState([]);
   const { addTask } = useTasks();
+  const { search } = useLocation();
+  const query = queryString.parse(search);
+
   const posts = useRecoilValue(allPost);
+
+  useEffect(() => {
+    addTask(query.keyword, query.keyword);
+  }, []);
 
   /* Channel */
   const { selectChannel } = useTasks();
