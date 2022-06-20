@@ -3,13 +3,6 @@ import Common from "styles/common";
 import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
-  position: absolute;
-  top: 100px;
-  right: calc(50% - 350px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   .fold__filter-div {
     display: none;
   }
@@ -17,13 +10,20 @@ export const Wrapper = styled.div`
   .fold__input {
     position: fixed;
     top: 5px;
-    right: calc(50% - 250px);
+    right: calc(50% - 305px);
   }
 `;
 
-export const InputWrapper = styled.div``;
+export const InputWrapper = styled.div`
+  position: absolute;
+  top: 100px;
+  right: calc(50% - 305px);
+`;
 
 export const filterContainer = styled.div`
+  position: absolute;
+  top: 280px;
+  right: calc(50% - 350px);
   display: grid;
   grid-template-rows: 1fr 3fr;
   width: 700px;

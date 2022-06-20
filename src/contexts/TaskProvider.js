@@ -2,7 +2,6 @@
 import React, { createContext, useContext, useState } from "react";
 
 const TaskContext = createContext();
-
 export const useTasks = () => useContext(TaskContext);
 
 // eslint-disable-next-line react/prop-types
@@ -12,9 +11,10 @@ const TaskProvider = ({ children }) => {
   const addTask = (_id, title) => {
     const isInclude = tasks.some((task) => task.id === _id);
     if (isInclude) {
-      console.log("이미 존재하는 검색어입니다.");
+      alert("😯 이미 존재하는 검색어입니다.");
       return;
     }
+
     setTasks([
       ...tasks,
       {

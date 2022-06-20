@@ -25,35 +25,45 @@ const PostListPage = () => {
   const [folded, setFolded] = useState(false);
 
   useEffect(() => {
+    /* Refactoring 예정  ->  Channel API 연동 및 함수 분리 */
     if (channel.length !== 0 && channel !== "none") {
-      let result = optionData.filter(
-        (item) => String(item.channel) === channel
+      const channelFilterResult = optionData.filter(
+        (item) => item.channel.name === channel
       );
 
-      if (tasks.length !== 0 && optionData) {
-        const titleSet = tasks.map((item) => item.title);
-        result = result.filter((item) => titleSet.includes(item.title));
-        console.log(result);
-      }
+      if (tasks.length !== 0) {
+        const tasksTitle = tasks.map((task) => task.title);
+        let result = [];
 
-      setRenderData(result);
-      // if (result.length) {
-      //   setRenderData(result);
-      // } else {
-      //   검색결과없을시
-      //   setRenderData();
-      // }
-      console.log(channel);
+        tasksTitle.forEach((title) => {
+          const filterData = channelFilterResult.filter(({ content }) => {
+            if (!content || !content.title) return false;
+            return content.title.includes(title);
+          });
+
+          result = [...result, ...filterData];
+        });
+
+        setRenderData(result);
+        return;
+      }
+      setRenderData(channelFilterResult);
       return;
     }
     if (tasks.length !== 0 && optionData) {
-      const titleSet = tasks.map((item) => item.title);
-      const result = optionData.filter((item) =>
-        titleSet.includes(item.content.title)
-      );
+      const tasksTitle = tasks.map((task) => task.title);
+      let result = [];
+
+      tasksTitle.forEach((title) => {
+        const filterData = optionData.filter(({ content }) => {
+          if (!content || !content.title) return false;
+          return content.title.includes(title);
+        });
+
+        result = [...result, ...filterData];
+      });
 
       setRenderData(result);
-      console.log(channel);
       return;
     }
 
@@ -86,6 +96,10 @@ const PostListPage = () => {
 
     setOptionData(postListData[Options]);
   }, [Options, postListData]);
+
+  useEffect(() => {
+    console.log(renderData);
+  }, [renderData]);
 
   return (
     <div>

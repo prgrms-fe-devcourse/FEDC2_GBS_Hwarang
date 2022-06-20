@@ -5,7 +5,6 @@ import Common from "styles/common";
 const PageWrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 100vh;
 
   .fold__header {
     position: fixed;
