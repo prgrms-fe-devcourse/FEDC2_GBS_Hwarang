@@ -12,7 +12,8 @@ import likesSvg from "assets/likes.svg";
 import likesClickedSvg from "assets/likes_clicked.svg";
 import commentSvg from "assets/comment.svg";
 import Common from "styles/common";
-import { useClickAway } from "hooks";
+import { useNavigate } from "react-router-dom";
+import { removePost } from "api/post-api";
 import Option from "../SelectItem";
 import Select from "../Select";
 import S from "../../PostPage.style";
@@ -24,6 +25,8 @@ const propTypes = {
   post: PropTypes.instanceOf(Object),
   onChangeHandler: PropTypes.func,
   channels: PropTypes.instanceOf(Array),
+  userId: PropTypes.string,
+  token: PropTypes.string,
 };
 
 const defaultProps = {
@@ -33,6 +36,8 @@ const defaultProps = {
   post: null,
   onChangeHandler: () => {},
   channels: null,
+  userId: null,
+  token: null,
 };
 
 const ImageInner = ({
@@ -42,21 +47,29 @@ const ImageInner = ({
   post,
   onChangeHandler,
   channels,
+  userId,
+  token,
 }) => {
   const [visible, setVisible] = useState(false);
-  const ref = useClickAway(() => setVisible(false));
-
-  useEffect(() => {
-    console.log(post);
-  }, [post]);
-
+  const navigate = useNavigate();
+  const postId = post._id;
+  const authorId = post.author?._id;
   const handleOnClick = () => {
     setVisible(!visible);
   };
 
-  const editPost = () => {};
+  const editPost = () => {
+    navigate(`/post/edit/${postId}`);
+  };
 
-  const deletePost = () => {};
+  const deletePost = async () => {
+    console.log(post);
+    console.log(postId);
+    console.log(token);
+    const res = await removePost(postId, token);
+    console.log(res);
+  };
+
   return (
     <>
       {type !== "detail" && (
@@ -135,30 +148,38 @@ const ImageInner = ({
           </Select>
         )}
       </S.InnerWrapper>
-      <S.IconWrapper>
-        <Icon
-          name="more_vert"
-          style={{ fontSize: 30, fontWeight: "bold", color: "white" }}
-          onClick={handleOnClick}
-        />
-      </S.IconWrapper>
-      <S.List ref={ref} visible={visible}>
-        <S.Item onClick={editPost}>
-          <Text size="$c1" style={{ marginRight: 10 }}>
-            수정하기
-          </Text>
-          <Icon name="edit" />
-        </S.Item>
-        <S.Item last onClick={deletePost}>
-          <Text size="$c1" color="rgb(212, 55, 55)" style={{ marginRight: 10 }}>
-            삭제하기
-          </Text>
-          <Icon
-            name="delete"
-            style={{ color: "rgb(212, 55, 55)", fontSize: 20 }}
-          />
-        </S.Item>
-      </S.List>
+      {type === "detail" && authorId === userId && (
+        <>
+          <S.IconWrapper>
+            <Icon
+              name="more_vert"
+              style={{ fontSize: 30, fontWeight: "bold", color: "white" }}
+              onClick={handleOnClick}
+            />
+          </S.IconWrapper>
+          <S.List visible={visible}>
+            <S.Item onClick={editPost}>
+              <Text size="$c1" style={{ marginRight: 10 }}>
+                수정하기
+              </Text>
+              <Icon name="edit" />
+            </S.Item>
+            <S.Item last onClick={deletePost}>
+              <Text
+                size="$c1"
+                color="rgb(212, 55, 55)"
+                style={{ marginRight: 10 }}
+              >
+                삭제하기
+              </Text>
+              <Icon
+                name="delete"
+                style={{ color: "rgb(212, 55, 55)", fontSize: 20 }}
+              />
+            </S.Item>
+          </S.List>
+        </>
+      )}
     </>
   );
 };
