@@ -8,6 +8,7 @@ export const ListItem = styled.li`
   padding: 8px 16px;
   box-sizing: border-box;
   cursor: pointer;
+  margin: 4px 0 !important;
 
   &:hover {
     background-color: #e6e6e6;

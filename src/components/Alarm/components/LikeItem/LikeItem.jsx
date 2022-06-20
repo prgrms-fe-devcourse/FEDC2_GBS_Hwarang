@@ -15,7 +15,7 @@ const LikeItem = ({ info }) => {
     <div style={{ display: "flex", fontSize: 13, lineHeight: "22px" }}>
       <div>
         <Text strong size="$c1" style={{ display: "inline-block" }}>
-          👍{info.author?.fullName || "익명님"}
+          👍{info.author?.fullName || "익명"}
         </Text>
         님이 {`"${post?.content?.title}"`} 일정을 좋아합니다.
       </div>

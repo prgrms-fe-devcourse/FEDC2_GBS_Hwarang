@@ -10,13 +10,13 @@ const propTypes = {
 };
 
 const CommentItem = ({ info }) => {
-  const image = useRecoilValue(postById(info.post));
+  const post = useRecoilValue(postById(info.post));
 
   return (
-    <>
+    <div style={{ display: "flex", fontSize: 13, lineHeight: "22px" }}>
       <div>
         <Text strong size="$c1" style={{ display: "inline-block" }}>
-          {info.author}
+          {info.author?.fullName || "익명"}
         </Text>
         님이
         <Text strong size="$c1" style={{ display: "inline-block" }}>
@@ -26,16 +26,16 @@ const CommentItem = ({ info }) => {
         </Text>
         댓글을 달았습니다.
       </div>
-      {image && (
+      {post?.image && (
         <Image
-          src={image}
+          src={post.image}
           width="50px"
           height="auto"
           mode="contain"
           style={{ marginLeft: 10 }}
         />
       )}
-    </>
+    </div>
   );
 };
 

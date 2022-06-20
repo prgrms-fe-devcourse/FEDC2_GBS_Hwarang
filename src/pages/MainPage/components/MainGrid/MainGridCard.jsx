@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Flux, Image, Text, ToggleButton } from "components";
 import commentSvg from "assets/comment.svg";
 import LikeButton from "components/LikeButton";
+import { useSetRecoilState } from "recoil";
+import { addLike, removeLike } from "recoil/post";
 import S from "./MainGridCard.style";
 
 const propTypes = {
@@ -47,6 +49,8 @@ const MainGridCard = ({
 }) => {
   const { FluxRow, FluxCol } = Flux;
   const navigate = useNavigate();
+  const addLikeState = useSetRecoilState(addLike);
+  const removeLikeState = useSetRecoilState(removeLike);
   const wrapperStyle = {
     gap,
     margin,
@@ -55,6 +59,9 @@ const MainGridCard = ({
   const handleOnClick = () => {
     navigate(`/post/detail/${id}`);
   };
+  const handleAddLike = (postId, data) => addLikeState({ postId, like: data });
+  const handleRemoveLike = (postId, likeId) =>
+    removeLikeState({ postId, likeId });
 
   return (
     <>
@@ -73,7 +80,13 @@ const MainGridCard = ({
           </Text>
         </FluxCol>
         <FluxCol span={1.5}>
-          <LikeButton id={id} isLiked={isLiked} likesNum={likesNum} />
+          <LikeButton
+            id={id}
+            isLiked={isLiked}
+            likesNum={likesNum}
+            onAddLike={handleAddLike}
+            onRemoveLike={handleRemoveLike}
+          />
         </FluxCol>
         <FluxCol span={1.5}>
           <ToggleButton textSize="$n1" text={commentsNum}>
