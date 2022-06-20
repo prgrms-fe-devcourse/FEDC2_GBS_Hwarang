@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, InputResult } from "components";
 import { getChannels } from "api/post-api";
 import { useRecoilValue } from "recoil";
@@ -10,12 +10,8 @@ import * as S from "./PostListInput.style";
 const PostListInput = () => {
   const [keyword, setKeyword] = useState("");
   const [channels, setChannels] = useState([]);
-  const { addTask } = useTasks();
+  const { addTask, selectChannel } = useTasks();
   const posts = useRecoilValue(allPost);
-
-  /* Channel */
-  const { selectChannel } = useTasks();
-  getChannels().then((res) => setChannels(res));
 
   /* InputResult display attr */
   const [show, setShow] = useState(true);
@@ -23,12 +19,20 @@ const PostListInput = () => {
     if (!e) setShow(false);
   });
 
+  useEffect(() => {
+    const getChannelsList = async () => {
+      const res = await getChannels();
+      setChannels(res.data);
+    };
+
+    if (channels.length === 0) getChannelsList();
+  }, [channels]);
+
   const handleChange = (e) => {
     const { value, name } = e.target;
 
     if (name === "keyword") {
       setKeyword(value);
-
       if (!show) setShow(true);
     }
   };
@@ -47,11 +51,12 @@ const PostListInput = () => {
       <S.InputContainer>
         <S.Select onChange={onChange}>
           <S.Option value="none">대륙 선택</S.Option>
-          {channels.map((item) => (
-            <S.Option key={item._id} value={item._id}>
-              {item.name}
-            </S.Option>
-          ))}
+          {channels.length !== 0 &&
+            channels.map((item) => (
+              <S.Option key={item._id} value={item._id}>
+                {item.name}
+              </S.Option>
+            ))}
         </S.Select>
         <Input
           name="keyword"
