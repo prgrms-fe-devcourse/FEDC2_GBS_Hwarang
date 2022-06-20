@@ -6,11 +6,14 @@ export const Container = styled.div``;
 export const InputContainer = styled.div`
   display: flex;
   background-color: ${Common.colors.white};
+  border: 1px solid ${Common.colors.main};
   border-radius: 10px;
-  padding: 5px;
 `;
 
-export const ResultContainer = styled.div``;
+export const ResultContainer = styled.div`
+  text-align: "center";
+  margin-left: 80px;
+`;
 
 export const Select = styled.select`
   font-size: "15px";

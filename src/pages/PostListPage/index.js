@@ -9,6 +9,7 @@ import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
   const data = useRecoilValue(allData);
+  console.log(data);
   const postListData = useRecoilValue(postList);
 
   /* 1. 검색 options */
@@ -27,15 +28,15 @@ const PostListPage = () => {
   useEffect(() => {
     if (channel.length !== 0 && channel !== "none") {
       let result = optionData.filter(
-        (item) => String(item.channel) === channel
+        (item) => String(item.channel._id) === channel
       );
 
       if (tasks.length !== 0 && optionData) {
         const titleSet = tasks.map((item) => item.title);
-        result = result.filter((item) => titleSet.includes(item.title));
-        console.log(result);
+        result = result.filter((item) => titleSet.includes(item.content.title));
+        // console.log(result);
       }
-
+      console.log(result);
       setRenderData(result);
       // if (result.length) {
       //   setRenderData(result);

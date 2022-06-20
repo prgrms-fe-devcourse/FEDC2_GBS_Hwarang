@@ -46,15 +46,19 @@ const PostListInput = () => {
         />
       </S.InputContainer>
 
-      <InputResult
-        inputType="filter"
-        type="none"
-        keyword={keyword}
-        data={posts}
-        options={["content"]}
-        width="500px"
-        height="175px"
-      />
+      <S.ResultContainer>
+        <InputResult
+          inputType="filter"
+          type="none"
+          keyword={keyword}
+          data={posts}
+          options={["content"]}
+          width="500px"
+          height="175px"
+          style={{ margin: 0 }}
+        />
+      </S.ResultContainer>
+
       {/* {console.log(`id:${posts}`)} */}
     </S.Container>
   );
