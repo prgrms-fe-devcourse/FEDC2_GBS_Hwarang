@@ -10,6 +10,8 @@ const ImageSlider = ({ children, width, height }) => {
     height,
   };
 
+  // const cloneSlide = [children[children.length - 1], ...children, children[0]];
+
   const useInterval = (callback, delay) => {
     const savedCallback = useRef();
     useEffect(() => {
