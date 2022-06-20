@@ -209,7 +209,7 @@ function Navigation() {
         show={sideBarShow}
         onClose={() => setSideBarShow(false)}
       >
-        <SideBar margin={5} padding="36px 0 0 0" />
+        <SideBar margin={5} padding="36px 0 0 0" show={sideBarShow} />
       </Popup>
     </>
   );

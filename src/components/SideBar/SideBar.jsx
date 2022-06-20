@@ -10,13 +10,15 @@ import * as S from "./Sidebar.style";
 const propTypes = {
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  show: PropTypes.bool,
 };
 const defaultProps = {
   margin: 0,
   padding: 0,
+  show: false,
 };
 
-const SideBar = ({ margin, padding }) => {
+const SideBar = ({ margin, padding, show }) => {
   const myData = useRecoilValue(userInfo);
   const [userKeyword, setUserKeyword] = useState("");
   const [users, setUsers] = useState([]);
@@ -77,9 +79,18 @@ const SideBar = ({ margin, padding }) => {
     };
   }, [fetchData, timer]);
 
+  useEffect(() => {
+    setUserKeyword("");
+  }, [show]);
+
   return (
     <div style={containerStyle}>
-      <Input name="user" onChange={handleChange} width="100%" />
+      <Input
+        name="user"
+        onChange={handleChange}
+        width="100%"
+        keyword={userKeyword}
+      />
       <S.HeaderWrapper>
         <Text strong size="$b3" style={{ display: "inline-block" }}>
           사용자 검색 결과
