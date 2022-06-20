@@ -71,8 +71,7 @@ export const mainPost = selector({
   },
 });
 
-
-export const postImage = selectorFamily({
+export const postById = selectorFamily({
   key: "postImage",
   get:
     (postId) =>
