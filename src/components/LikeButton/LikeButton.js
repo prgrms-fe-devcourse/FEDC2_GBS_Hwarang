@@ -3,10 +3,10 @@ import likesSvg from "assets/likes.svg";
 import { Image, ToggleButton } from "components";
 import likesClickedSvg from "assets/likes_clicked.svg";
 import PropTypes from "prop-types";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { setLikePost, setUnLikePost } from "api/post-api";
-import { addLike, getLikeId, removeLike } from "recoil/post";
+import { getLikeId } from "recoil/post";
 import { userInfo } from "recoil/user";
 
 const propTypes = {
@@ -17,6 +17,9 @@ const propTypes = {
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   textSize: PropTypes.string,
   style: PropTypes.instanceOf(Object),
+  textColor: PropTypes.string,
+  onAddLike: PropTypes.func.isRequired,
+  onRemoveLike: PropTypes.func.isRequired,
 };
 const defaultProps = {
   isLiked: false,
@@ -25,6 +28,7 @@ const defaultProps = {
   height: 15,
   textSize: "$n1",
   style: {},
+  textColor: "#000000",
 };
 
 const LikeButton = ({
@@ -34,13 +38,14 @@ const LikeButton = ({
   width,
   height,
   textSize,
+  textColor,
+  onAddLike,
+  onRemoveLike,
   ...props
 }) => {
   const token = useRecoilValue(jwtToken);
-  const userData = useRecoilValue(userInfo);
   const likeId = useRecoilValue(getLikeId(id));
-  const addLikeState = useSetRecoilState(addLike);
-  const removeLikeState = useSetRecoilState(removeLike);
+  const userData = useRecoilValue(userInfo);
 
   const handleOnClick = async () => {
     try {
@@ -49,8 +54,8 @@ const LikeButton = ({
         : await setLikePost(id, userData._id, token);
       if (response && response.data) {
         const { data } = response;
-        if (!isLiked) addLikeState({ postId: id, like: data });
-        else removeLikeState({ postId: id, likeId });
+        if (!isLiked) onAddLike(id, data);
+        else onRemoveLike(id, likeId);
         return true;
       }
     } catch (exception) {
@@ -72,6 +77,7 @@ const LikeButton = ({
       }
       textSize={textSize}
       text={likesNum}
+      textColor={textColor}
       initialState={token && isLiked}
       style={{ ...props.style }}
     >

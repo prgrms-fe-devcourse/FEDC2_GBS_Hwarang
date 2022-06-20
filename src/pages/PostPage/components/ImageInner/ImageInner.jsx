@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import {
   ImageUploader,
@@ -8,8 +8,10 @@ import {
   Image,
   Icon,
 } from "components";
-import likesSvg from "assets/likes.svg";
-import likesClickedSvg from "assets/likes_clicked.svg";
+import LikeButton from "components/LikeButton";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { userInfo } from "recoil/user";
+import { addLike, removeLike } from "recoil/post";
 import commentSvg from "assets/comment.svg";
 import Common from "styles/common";
 import { useNavigate } from "react-router-dom";
@@ -53,12 +55,33 @@ const ImageInner = ({
   const navigate = useNavigate();
   const postId = post._id;
   const authorId = post.author?._id;
+  const userData = useRecoilValue(userInfo);
+  const addLikeState = useSetRecoilState(addLike);
+  const removeLikeState = useSetRecoilState(removeLike);
+
   const handleOnClick = () => {
     setVisible(!visible);
   };
 
+  const [likedNum, setLikedNum] = useState(
+    () => post?.likes?.length || 0,
+    [post]
+  );
+  const isLiked = useMemo(() => {
+    return post?.likes?.filter((like) => like.user === userData._id).length > 0;
+  }, [post, userData]);
+
   const editPost = () => {
     navigate(`/post/edit/${postId}`);
+  };
+
+  const handleAddLike = (id, data) => {
+    addLikeState({ postId: id, like: data });
+    setLikedNum((pre) => pre + 1);
+  };
+  const handleRemoveLike = (id, likeId) => {
+    removeLikeState({ postId: id, likeId });
+    setLikedNum((pre) => pre - 1);
   };
 
   return (
@@ -101,7 +124,7 @@ const ImageInner = ({
       <S.InnerWrapper position="right">
         {type === "detail" ? (
           <div style={{ display: "flex" }}>
-            <ToggleButton
+            {/* <ToggleButton
               disabled={false}
               onClick={() => {
                 console.log("Clicked!");
@@ -119,7 +142,16 @@ const ImageInner = ({
               text={post?.likes?.length}
             >
               <Image src={likesSvg} width={20} height={20} mode="contain" />
-            </ToggleButton>
+            </ToggleButton> */}
+            <LikeButton
+              id={postId}
+              isLiked={isLiked}
+              likesNum={likedNum}
+              textColor="#FFFFFF"
+              onAddLike={handleAddLike}
+              onRemoveLike={handleRemoveLike}
+              textSize="$c1"
+            />
             <ToggleButton
               textSize="$c1"
               textColor="white"
