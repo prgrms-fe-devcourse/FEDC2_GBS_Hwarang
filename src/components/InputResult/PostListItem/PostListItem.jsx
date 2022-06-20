@@ -1,7 +1,8 @@
 import React from "react";
 // import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Image } from "components";
+import { Image, Text } from "components";
+import { DEFAULT_COVER_IMAGE } from "api/url";
 import * as S from "./PostListItem.style";
 
 const propTypes = {
@@ -10,7 +11,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  width: "100%",
+  width: null,
   post: {},
 };
 
@@ -26,16 +27,18 @@ const PostListItem = ({ width, post, ...props }) => {
   };
   return (
     <S.ListItem style={sizeStyle} onClick={handleonClick(_id)} {...props}>
-      {post.title}
-      {post.image && (
-        <Image
-          src={post.image}
-          width="220px"
-          height="auto"
-          mode="contain"
-          style={{ marginRight: 10 }}
-        />
-      )}
+      <div>
+        <Text size="$c1" strong>
+          {post.title}
+        </Text>
+      </div>
+      <Image
+        src={post.image || DEFAULT_COVER_IMAGE}
+        width="110px"
+        height={post.image ? "auto" : "75px"}
+        mode={post.image ? "contain" : "cover"}
+        style={{ marginRight: 10, borderRadius: 5 }}
+      />
     </S.ListItem>
   );
 };

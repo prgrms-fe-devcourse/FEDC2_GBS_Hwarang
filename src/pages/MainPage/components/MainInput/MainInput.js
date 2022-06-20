@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "components/Input";
+import { Input, Text } from "components";
 import InputResult from "components/InputResult";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
@@ -42,8 +42,13 @@ const MainInput = () => {
         })}
         options={["title"]}
         width="100%"
-        height="175px"
-      />
+        height="auto"
+        maxHeight="250px"
+      >
+        <Text size="$b2" strong style={{ padding: "17px 10px 10px 10px" }}>
+          추천 게시글👍
+        </Text>
+      </InputResult>
     </S.MainInputContainer>
   );
 };

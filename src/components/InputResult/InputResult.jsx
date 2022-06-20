@@ -7,6 +7,7 @@ import PostListItem from "./PostListItem";
 import UserListItem from "./UserListItem";
 
 const propTypes = {
+  children: PropTypes.node,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   data: PropTypes.instanceOf(Array),
@@ -14,9 +15,11 @@ const propTypes = {
   options: PropTypes.instanceOf(Array),
   inputType: PropTypes.string,
   type: PropTypes.oneOf(["all", "none"]),
+  maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 const defaultProps = {
+  children: null,
   width: 300,
   height: 500,
   data: [],
@@ -24,9 +27,11 @@ const defaultProps = {
   options: ["title"],
   inputType: "post",
   type: "none",
+  maxHeight: null,
 };
 
 const InputResult = ({
+  children,
   width,
   height,
   data,
@@ -34,10 +39,12 @@ const InputResult = ({
   options,
   inputType,
   type,
+  maxHeight,
 }) => {
   const sizeStyle = {
     width,
     height,
+    maxHeight,
   };
 
   const isNoneResult = !keyword && type === "none";
@@ -50,26 +57,29 @@ const InputResult = ({
   }, [keyword]);
 
   return (
-    <div>
+    <S.ResultWrap>
       {!isNoneResult && reusltData?.length > 0 && (
-        <S.Container style={sizeStyle}>
-          {reusltData.map((item) => {
-            const { _id } = item;
-            return (
-              <div key={_id}>
-                {inputType === "post" ? (
-                  <PostListItem post={item} />
-                ) : inputType === "user" ? (
-                  <UserListItem user={item} />
-                ) : (
-                  <PostListFilterItem filter={item} />
-                )}
-              </div>
-            );
-          })}
-        </S.Container>
+        <>
+          {children}
+          <S.Container style={sizeStyle}>
+            {reusltData.map((item) => {
+              const { _id } = item;
+              return (
+                <div key={_id}>
+                  {inputType === "post" ? (
+                    <PostListItem post={item} />
+                  ) : inputType === "user" ? (
+                    <UserListItem user={item} />
+                  ) : (
+                    <PostListFilterItem filter={item} />
+                  )}
+                </div>
+              );
+            })}
+          </S.Container>
+        </>
       )}
-    </div>
+    </S.ResultWrap>
   );
 };
 
