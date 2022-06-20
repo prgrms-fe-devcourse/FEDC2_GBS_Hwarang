@@ -10,14 +10,14 @@ export const Wrapper = styled.div`
   .fold__input {
     position: fixed;
     top: 5px;
-    right: calc(50% + 250px);
+    right: calc(50% - 305px);
   }
 `;
 
 export const InputWrapper = styled.div`
   position: absolute;
   top: 100px;
-  right: calc(50% + 250px);
+  right: calc(50% - 305px);
 `;
 
 export const filterContainer = styled.div`

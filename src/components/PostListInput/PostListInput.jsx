@@ -53,7 +53,7 @@ const PostListInput = () => {
           style={{ fontSize: "15px", border: "none" }}
           placeholder="가고 싶은 여행지를 입력해보세요!"
           width="500px"
-          height="60px"
+          height="50px"
         />
       </S.InputContainer>
       <S.ResultWrapper ref={ref} style={{ display: show ? "block" : "none" }}>
@@ -61,14 +61,16 @@ const PostListInput = () => {
           inputType="filter"
           type="none"
           keyword={keyword}
-          data={posts}
-          options={["content"]}
-          width="500px"
+          data={posts.map((post) => {
+            const { content } = post;
+            return { ...content, _id: post._id, image: post.image };
+          })}
+          options={["title"]}
+          width="610px"
           height="150px"
           border
         />
       </S.ResultWrapper>
-      {/* {console.log(`id:${posts}`)} */}
     </S.Container>
   );
 };

@@ -13,7 +13,7 @@ const defaultProps = {
 
 const PostFilterItem = ({ filter, ...props }) => {
   const { addTask } = useTasks();
-  const { _id, content } = filter;
+  const { _id, title } = filter;
   const handleonClick = (id, tit) => {
     addTask(id, tit);
   };
@@ -21,11 +21,11 @@ const PostFilterItem = ({ filter, ...props }) => {
   return (
     <S.ListItem
       onClick={() => {
-        handleonClick(_id, content.title);
+        handleonClick(_id, title);
       }}
       {...props}
     >
-      {filter.content.title}
+      {filter.title}
     </S.ListItem>
   );
 };
