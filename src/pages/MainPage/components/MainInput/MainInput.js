@@ -38,7 +38,12 @@ const MainInput = () => {
         height="75px"
         onSearch={handleOnSearch}
         initialValue={keyword}
-        style={{ borderRadius: "30px", padding: "10px 20px", fontSize: "20px" }}
+        style={{
+          borderRadius: "30px",
+          padding: "10px 20px",
+          fontSize: "20px",
+          backgroundColor: "rgba(255, 255, 255 ,0.5)",
+        }}
       />
       <S.MainInputResult>
         <InputResult
