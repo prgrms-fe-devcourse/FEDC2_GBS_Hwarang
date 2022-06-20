@@ -4,20 +4,37 @@ import { getChannels } from "api/post-api";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
 import { useTasks } from "contexts/TaskProvider";
+import { useClickAway } from "hooks";
 import * as S from "./PostListInput.style";
 
 const PostListInput = () => {
   const [keyword, setKeyword] = useState("");
   const [channels, setChannels] = useState([]);
+  const { addTask } = useTasks();
   const posts = useRecoilValue(allPost);
 
+  /* Channel */
   const { selectChannel } = useTasks();
   getChannels().then((res) => setChannels(res));
+
+  /* InputResult display attr */
+  const [show, setShow] = useState(true);
+  const ref = useClickAway((e) => {
+    if (!e) setShow(false);
+  });
+
   const handleChange = (e) => {
     const { value, name } = e.target;
+
     if (name === "keyword") {
       setKeyword(value);
+
+      if (!show) setShow(true);
     }
+  };
+
+  const handleSearch = () => {
+    addTask(keyword, keyword);
   };
 
   const onChange = (e) => {
@@ -42,20 +59,25 @@ const PostListInput = () => {
           style={{ fontSize: "15px", border: "none" }}
           placeholder="가고 싶은 여행지를 입력해보세요!"
           width="500px"
-          height="60px"
+          height="50px"
+          onSearch={handleSearch}
         />
       </S.InputContainer>
-
-      <InputResult
-        inputType="filter"
-        type="none"
-        keyword={keyword}
-        data={posts}
-        options={["content"]}
-        width="500px"
-        height="175px"
-      />
-      {/* {console.log(`id:${posts}`)} */}
+      <S.ResultWrapper ref={ref} style={{ display: show ? "block" : "none" }}>
+        <InputResult
+          inputType="filter"
+          type="none"
+          keyword={keyword}
+          data={posts.map((post) => {
+            const { content } = post;
+            return { ...content, _id: post._id, image: post.image };
+          })}
+          options={["title"]}
+          width="610px"
+          height="150px"
+          border
+        />
+      </S.ResultWrapper>
     </S.Container>
   );
 };

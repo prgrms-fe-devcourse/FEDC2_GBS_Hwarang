@@ -38,7 +38,7 @@ const CommentItem = ({ commentData, onDelComment }) => {
           {comment}
         </Text>
       </div>
-      {userData._id === author.__id && (
+      {userData._id === author._id && (
         <S.CommentDelButton className="del__btn">
           <Icon name="delete" onClick={handleOnDelete} />
         </S.CommentDelButton>

@@ -72,6 +72,7 @@ function UserPage() {
   useEffect(() => {
     const getMyPost = async (id) => {
       const res = await getPostByUserId(id);
+      console.log(res.data);
       setMyPost(res.data);
     };
     if (userData) {
@@ -231,7 +232,7 @@ function UserPage() {
         </S.FollowBlock>
       </S.ImageWrapper>
       <S.Main>
-        {myPost?.length ? (
+        {myPost?.length > 0 ? (
           <PostList
             data={myPost}
             listTitle={`${userData?.fullName}의 여행 리스트`}
