@@ -13,17 +13,10 @@ import {
   DELETE_LIKE,
 } from "./url";
 
-// import Channel from "../mock/channel.json";
-// import Post from "../mock/posts.json";
-
 // 채널 목록
 export const getChannels = async () => {
   const res = await axios.get(`${BASE_URL}${GET_CHANNELS}`);
-  // await new Promise((resolve) => {
-  //   setTimeout(resolve, 1000);
-  // });
   return res;
-  // return Channel;
 };
 
 // 특정 채널 정보
