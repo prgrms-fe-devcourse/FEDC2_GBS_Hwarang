@@ -24,3 +24,4 @@ export { default as Modal } from "./Modal";
 export { default as Alarm } from "./Alarm";
 export { default as SideBar } from "./SideBar";
 export { default as ImageUploader } from "./ImageUploader";
+export { default as Comment } from "./Comment";

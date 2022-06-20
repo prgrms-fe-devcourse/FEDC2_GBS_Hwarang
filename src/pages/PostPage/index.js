@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 import React, { useState, useEffect } from "react";
-import { Image, Text } from "components";
+import { Image, Text, Comment } from "components";
 import useLocalStorage from "hooks/useLocalStorage";
 import {
   getChannels,
@@ -169,7 +169,8 @@ const PostPage = () => {
     setType(pathname[2]);
     setPostId(params?.ID || pathname[3] || "");
     fetchData();
-  }, [location, params, type]);
+    setLoading(false);
+  }, [location, params, type, post.comments]);
 
   useEffect(() => {
     // Todo: App.js로 빼서 recoil 사용하여 갖고오기?
@@ -374,6 +375,11 @@ const PostPage = () => {
           registPost={registPost}
           temporarySave={temporarySave}
         />
+      )}
+      {type === "detail" && (
+        <S.CommentWrapper>
+          <Comment postId={postId} comments={post.comments} />
+        </S.CommentWrapper>
       )}
     </S.Container>
   );

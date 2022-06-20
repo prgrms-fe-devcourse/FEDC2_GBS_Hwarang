@@ -112,6 +112,12 @@ const ActionsContainer = styled.div`
   }
 `;
 
+const CommentWrapper = styled.div`
+  padding-top: 100px;
+  padding-left: 100px;
+  padding-right: 100px;
+`;
+
 export default {
   Container,
   HeadeContainer,
@@ -127,4 +133,5 @@ export default {
   IconWrapper,
   List,
   Item,
+  CommentWrapper,
 };
