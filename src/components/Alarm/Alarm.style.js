@@ -4,6 +4,8 @@ import styled from "@emotion/styled";
 export const AlarmWrapper = styled.div`
   position: absolute;
   width: 300px;
+  max-height: 300px;
+  overflow: auto;
   padding: 15px;
   top: 100%;
   right: 0;

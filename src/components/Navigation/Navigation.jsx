@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import useQuery from "hooks/useQuery";
 import { Button, Image, Icon, Popup, Alarm, SideBar } from "components";
 import { userInfo } from "recoil/user";
 import { loginStatus, logoutProcess } from "../../recoil/authentication";
@@ -116,7 +117,9 @@ NavButtonBlock.defaultProps = {
 };
 
 function Navigation() {
+  const location = useLocation();
   // 사용자 리스트 사이드 바 hide / show flag
+  const query = useQuery();
   const [sideBarShow, setSideBarShow] = useState(false);
   const [modalStatus, setModalStatus] = useState({
     visible: false,
@@ -131,6 +134,23 @@ function Navigation() {
       type,
     });
   };
+
+  // navigation 변경될 때마다, 모든 popup 닫기
+  useEffect(() => {
+    setSideBarShow(false);
+    setModalStatus({
+      visible: false,
+      type: "",
+    });
+  }, [location]);
+  useEffect(() => {
+    if (query.get("needLogin") != null) {
+      setModalStatus({
+        visible: true,
+        type: "login",
+      });
+    }
+  }, [query]);
 
   return (
     <>

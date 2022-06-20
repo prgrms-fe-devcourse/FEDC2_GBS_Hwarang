@@ -17,12 +17,16 @@ export const getAlarms = async (token) => {
 };
 
 // 모든 알림 읽음 처리
-export const seenAlarm = async () => {
-  await axios.get(`${BASE_URL}${SEEN_NOTIFICATION}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const seenAlarm = async (token) => {
+  await axios.put(
+    `${BASE_URL}${SEEN_NOTIFICATION}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };
 
 // 알림 생성
