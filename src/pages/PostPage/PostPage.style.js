@@ -35,6 +35,7 @@ const IconWrapper = styled.div`
   top: 24px;
   right: 88px;
   z-index: 1000;
+  user-select: none;
   cursor: pointer;
 `;
 
@@ -49,6 +50,7 @@ const List = styled.ul`
   background-color: ${Common.colors.bg_white};
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  user-select: none;
   cursor: pointer;
 `;
 
@@ -56,7 +58,7 @@ const Item = styled.li`
   display: flex;
   border-bottom: ${({ last }) =>
     last ? "none" : `1px solid ${Common.colors.gray05}`};
-  padding: 5px;
+  padding: 10px;
   &:hover {
     background-color: ${Common.colors.gray06};
   }
