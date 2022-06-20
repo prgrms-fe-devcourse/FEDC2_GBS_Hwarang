@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   .fold__input {
     position: fixed;
     top: 5px;
-    right: calc(50% - 250px);
+    right: calc(50% + 250px);
   }
 `;
 
@@ -22,7 +22,7 @@ export const InputWrapper = styled.div`
 
 export const filterContainer = styled.div`
   position: absolute;
-  top: 200px;
+  top: 280px;
   right: calc(50% - 350px);
   display: grid;
   grid-template-rows: 1fr 3fr;
