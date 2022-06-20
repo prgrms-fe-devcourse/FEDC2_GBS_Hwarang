@@ -47,7 +47,6 @@ const PostListInput = () => {
 
   const onChange = (e) => {
     const { value } = e.target;
-    console.log(value);
     selectChannel(value);
   };
 

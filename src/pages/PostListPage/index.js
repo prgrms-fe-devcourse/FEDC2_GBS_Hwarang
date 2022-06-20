@@ -10,7 +10,7 @@ import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
   const initialAllPost = useRecoilValue(postListPosts);
-  const { tasks } = useTasks();
+  const { tasks, channel } = useTasks();
   const { Options } = useParams();
   const [optionPosts, setOptionPosts] = useState([]);
   const [renderData, setRenderData] = useState([]);
@@ -18,25 +18,35 @@ const PostListPage = () => {
 
   // 1) 필터링
   useEffect(() => {
-    if (tasks.length !== 0 && initialAllPost) {
-      const tasksTitle = tasks.map((task) => task.title);
-      let result = [];
+    if (!initialAllPost) return;
 
+    let result = [];
+    if (channel)
+      result = initialAllPost.filter((post) => post.channel._id === channel);
+    else {
+      result = [...initialAllPost];
+    }
+
+    /* 필터링 기준 (키워드 또는 제목) */
+    let filteredResult = [];
+
+    if (tasks.length !== 0) {
+      const tasksTitle = tasks.map((task) => task.title);
       tasksTitle.forEach((title) => {
-        const filterData = initialAllPost.filter(({ content }) => {
+        const filterData = result.filter(({ content }) => {
           if (!content || !content.title) return false;
           return content.title.includes(title);
         });
 
-        result = [...result, ...filterData];
+        filteredResult = [...filteredResult, ...filterData];
       });
 
-      setOptionPosts(result);
+      setOptionPosts(filteredResult);
       return;
     }
 
-    setOptionPosts(initialAllPost);
-  }, [tasks, initialAllPost]);
+    setOptionPosts(result);
+  }, [tasks, initialAllPost, channel]);
 
   useEffect(() => {
     if (!optionPosts) return;
