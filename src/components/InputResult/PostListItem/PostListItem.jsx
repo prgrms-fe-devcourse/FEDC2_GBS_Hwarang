@@ -1,5 +1,5 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Image, Text } from "components";
 import { DEFAULT_COVER_IMAGE } from "api/url";
@@ -17,16 +17,17 @@ const defaultProps = {
 
 const PostListItem = ({ width, post, ...props }) => {
   const { _id } = post;
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const sizeStyle = {
     width,
   };
-  const handleonClick = () => {
+  const handleOnClick = () => {
     // TODO: 해당 id를 가진 post로 이동
-    // navigate(`/userpage/${id}`);
+    navigate(`/post/detail/${_id}`);
   };
+
   return (
-    <S.ListItem style={sizeStyle} onClick={handleonClick(_id)} {...props}>
+    <S.ListItem style={sizeStyle} onClick={handleOnClick} {...props}>
       <div>
         <Text size="$c1" strong>
           {post.title}
