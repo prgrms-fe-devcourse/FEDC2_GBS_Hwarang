@@ -47,14 +47,15 @@ const InputResult = ({
     maxHeight,
   };
 
-  const isNoneResult = !keyword && type === "none";
+  const isNoneResult = keyword === "" && type === "none";
   const reusltData = useMemo(() => {
+    if (keyword === "" && type === "all") return data;
     return data.filter((item) => {
       return options.some(
         (key) => item[key]?.toLowerCase().indexOf(keyword.toLowerCase()) >= 0
       );
     });
-  }, [keyword]);
+  }, [keyword, data]);
 
   return (
     <S.ResultWrap>
