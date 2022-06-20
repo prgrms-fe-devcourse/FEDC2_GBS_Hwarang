@@ -15,7 +15,7 @@ const PostListInput = () => {
 
   /* InputResult display attr */
   const [show, setShow] = useState(true);
-  const ref = useClickAway((e) => {
+  const clickAwayRef = useClickAway((e) => {
     if (!e) setShow(false);
   });
 
@@ -28,7 +28,7 @@ const PostListInput = () => {
     if (channels.length === 0) getChannelsList();
   }, [channels]);
 
-  const handleChange = (e) => {
+  const handleOnChange = (e) => {
     const { value, name } = e.target;
 
     if (name === "keyword") {
@@ -37,7 +37,7 @@ const PostListInput = () => {
     }
   };
 
-  const handleSearch = () => {
+  const handleOnSearch = () => {
     addTask(keyword, keyword);
   };
 
@@ -60,15 +60,18 @@ const PostListInput = () => {
         </S.Select>
         <Input
           name="keyword"
-          onChange={handleChange}
+          onChange={handleOnChange}
           style={{ fontSize: "15px", border: "none" }}
           placeholder="가고 싶은 여행지를 입력해보세요!"
           width="500px"
           height="50px"
-          onSearch={handleSearch}
+          onSearch={handleOnSearch}
         />
       </S.InputContainer>
-      <S.ResultWrapper ref={ref} style={{ display: show ? "block" : "none" }}>
+      <S.ResultWrapper
+        ref={clickAwayRef}
+        style={{ display: show ? "block" : "none" }}
+      >
         <InputResult
           inputType="filter"
           type="none"

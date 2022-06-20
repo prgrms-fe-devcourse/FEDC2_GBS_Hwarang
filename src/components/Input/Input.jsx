@@ -82,7 +82,10 @@ const Input = React.forwardRef(
       onChange(e);
     };
     const handleOnSearch = () => {
-      if (onSearch && keyword !== "") onSearch(keyword);
+      if (onSearch && keyword !== "") {
+        onSearch(keyword);
+        setKeyword("");
+      }
     };
 
     useEffect(() => {

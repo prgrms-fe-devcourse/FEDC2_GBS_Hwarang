@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input, Text } from "components";
-import InputResult from "components/InputResult";
+import { Input, Text, InputResult } from "components";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
+import { useTasks } from "contexts/TaskProvider";
 import { useClickAway } from "hooks";
 import * as S from "./MainInput.style";
 
@@ -11,6 +11,7 @@ const MainInput = () => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const posts = useRecoilValue(allPost);
+  const { addTask } = useTasks();
 
   const ref = useClickAway(() => {
     setKeyword("");
@@ -24,9 +25,8 @@ const MainInput = () => {
   };
 
   const handleOnSearch = (searchKeyword) => {
-    // input result에서의 click event와 함께 처리하고 싶었는데, 나중에 refactoring 시에
-    // inputresult의 node를 동적으로 넘겨서 수정해야 겠습니다.
-    navigate(`/travel-destination/all?keyword=${searchKeyword}`);
+    addTask(searchKeyword, searchKeyword);
+    navigate(`/travel-destination/all`);
   };
 
   return (
