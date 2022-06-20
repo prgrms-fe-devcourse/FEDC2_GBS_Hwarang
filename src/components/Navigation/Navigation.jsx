@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  useRecoilState,
+  useRecoilValue,
+  // eslint-disable-next-line
+  useRecoilTransaction_UNSTABLE,
+} from "recoil";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Button, Image, Icon, Popup, Text } from "components";
-import Alarm from "components/Alarm";
-import SideBar from "components/SideBar";
 import useQuery from "hooks/useQuery";
+import { Button, Image, Icon, Popup, Alarm, SideBar, Text } from "components";
 import { userInfo } from "recoil/user";
-import { loginStatus, logoutProcess } from "../../recoil/authentication";
+import { useCookies } from "react-cookie";
+import { loginStatus, jwtToken } from "../../recoil/authentication";
 import * as Ns from "./Navigation.style";
 import Modal from "../Modal";
 import Login from "./Login";
@@ -19,13 +23,19 @@ const BUTTON_FONT_SIZE = "$n1";
 const BUTTON_HEIGHT = 45;
 
 const LoggedInedBlock = () => {
-  const setLogOut = useSetRecoilState(logoutProcess);
   const myInfo = useRecoilValue(userInfo);
   const navigate = useNavigate();
+  const [, , removeCookie] = useCookies(["token"]);
+
+  const LogOut = useRecoilTransaction_UNSTABLE(({ set }) => () => {
+    set(loginStatus, false);
+    set(jwtToken, "");
+  });
 
   const handleLogOut = async () => {
     await userLogout();
-    setLogOut();
+    LogOut();
+    removeCookie("token", { path: "/" });
     navigate("/");
   };
 
@@ -47,6 +57,7 @@ const LoggedInedBlock = () => {
         width={BUTTON_WIDTH}
         textSize={BUTTON_FONT_SIZE}
         height={BUTTON_HEIGHT}
+        onClick={() => navigate("/post/create")}
       >
         글쓰기
       </Button>
@@ -220,7 +231,7 @@ function Navigation() {
         show={sideBarShow}
         onClose={() => setSideBarShow(false)}
       >
-        <SideBar margin={5} padding="36px 0 0 0" />
+        <SideBar margin={5} padding="36px 0 0 0" show={sideBarShow} />
       </Popup>
     </>
   );

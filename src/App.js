@@ -17,13 +17,11 @@ import {
 import { userInfo } from "recoil/user";
 import { getAllPosts } from "api/post-api";
 import { allPost, setLikePost } from "recoil/post";
-import { Footer } from "components";
 import TaskProvider from "contexts/TaskProvider";
+import { Footer } from "components";
 // eslint-disable-next-line import/named
-
 import { MainPage, PostListPage, UserPage } from "./pages";
 import Auth from "./hoc";
-
 import "./utils/date";
 
 function App() {
@@ -41,6 +39,15 @@ function App() {
     contents: { isTokenValid, userData },
   } = useRecoilValueLoadable(isUserAuthenticated);
   const setUserInfo = useSetRecoilState(userInfo);
+
+  useEffect(() => {
+    if (!isLogined && TokenExist) {
+      if (isTokenValid) {
+        setIsLogined(true);
+        setUserInfo(userData);
+      }
+    }
+  }, [isLogined, TokenExist, isTokenValid, userData]);
 
   useEffect(() => {
     async function fetchData() {

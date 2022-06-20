@@ -30,6 +30,8 @@ export const SubscribeContainer = styled.div`
 `;
 
 export const Form = styled.form`
+  display: flex;
+  align-items: end;
   margin-bottom: 10px;
   input::placeholder {
     color: ${Common.colors.footerText};

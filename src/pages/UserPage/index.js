@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Image, Text, Avatar, PostList, Button, Icon, Modal } from "components";
+import {
+  Image,
+  Text,
+  Avatar,
+  PostList,
+  Button,
+  Icon,
+  Modal,
+  PrivateRoute,
+} from "components";
 import { useParams, useNavigate } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { jwtToken } from "recoil/authentication";
+import { jwtToken, loginStatus } from "recoil/authentication";
+import { useRecoilValue, useSetRecoilState, useRecoilCallback } from "recoil";
 import { userInfo } from "recoil/user";
+import { unSeenNotifications } from "recoil/notification";
 import { getPostByUserId } from "api/post-api";
 import { DEFAULT_COVER_IMAGE, DEFAULT_PROFILE_IMAGE } from "api/url";
 import { getUserInfoById, followUser, unFollowUser } from "api/user-api";
+import { createAlarm, getAlarms } from "api/alarm-api";
 import ImageButton from "./components/ImageButton";
 import NoPostWrapper from "./components/NoPostList";
 import FollowButton from "./components/FollowButton";
@@ -24,6 +35,7 @@ function UserPage() {
   const [profileImgHover, setProfileImgHover] = useState(false);
   const [coverImageHover, setCoverImageHover] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [FollowAuthTrigger, setFollowAuthTrigger] = useState(false);
   const [myPost, setMyPost] = useState([]);
 
   // yeoonju-jane 사용자 정보 변경
@@ -31,8 +43,14 @@ function UserPage() {
   const [showModifyPasswordModal, setModifyPasswordModal] = useState(false);
 
   const myInfo = useRecoilValue(userInfo);
+  const isLogin = useRecoilValue(loginStatus);
   const setMyInfo = useSetRecoilState(userInfo);
   const token = useRecoilValue(jwtToken);
+
+  const updateNotifications = useRecoilCallback(({ set }) => async () => {
+    const res = await getAlarms(token);
+    set(unSeenNotifications, res.data);
+  });
 
   const getUserData = async (id) => {
     if (!id) return;
@@ -72,7 +90,8 @@ function UserPage() {
 
   const handleFollowClick = async (id) => {
     if (!id) return;
-    await followUser(id, token);
+    const res = await followUser(id, token);
+    return res.data;
   };
 
   const handleUnFollowClick = async (id) => {
@@ -88,8 +107,24 @@ function UserPage() {
   };
 
   const handleButtonClick = async (id, isFollow) => {
+    setFollowAuthTrigger(true);
+
+    if (!isLogin) return;
+
     if (isFollow) await handleUnFollowClick(id);
-    else await handleFollowClick(id);
+    else {
+      const followResult = await handleFollowClick(id);
+      if (followResult) {
+        await createAlarm(
+          "FOLLOW",
+          followResult._id,
+          followResult.user,
+          null,
+          token
+        );
+        await updateNotifications();
+      }
+    }
     // refetch data
     await getUserData(id);
 
@@ -177,10 +212,16 @@ function UserPage() {
         </S.ExtraInfoWrapper>
         <S.FollowBlock>
           {!isOwner && (
-            <FollowButton
-              handleClick={() => handleButtonClick(ID, isFollowing)}
-              isUnFollow={isFollowing}
-            />
+            <PrivateRoute
+              trigger={FollowAuthTrigger}
+              setTrigger={setFollowAuthTrigger}
+              isAutoTrigger={false}
+            >
+              <FollowButton
+                handleClick={() => handleButtonClick(ID, isFollowing)}
+                isUnFollow={isLogin && isFollowing}
+              />
+            </PrivateRoute>
           )}
           {isOwner && (
             <Button onClick={() => setModifyPasswordModal(true)}>
