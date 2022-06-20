@@ -10,13 +10,14 @@ const propTypes = {
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   textSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   backgroundColor: PropTypes.string,
+  margin: PropTypes.string,
   color: PropTypes.string,
   border: PropTypes.bool,
   borderRadius: PropTypes.number,
   type: PropTypes.string,
   props: PropTypes.instanceOf(Object),
-  onClick: PropTypes.func,
   style: PropTypes.instanceOf(Object),
+  onClick: PropTypes.func,
 };
 
 const defaultProps = {
@@ -24,13 +25,14 @@ const defaultProps = {
   height: 50,
   textSize: "$b3",
   backgroundColor: Common.colors.main,
+  margin: "0 auto",
   color: Common.colors.white,
   border: false,
   borderRadius: 10,
   type: "button",
   props: {},
-  onClick: () => {},
   style: {},
+  onClick: () => {},
 };
 
 const Button = ({
@@ -39,6 +41,7 @@ const Button = ({
   height,
   textSize,
   backgroundColor,
+  margin,
   color,
   border,
   borderRadius,
@@ -64,10 +67,11 @@ const Button = ({
 
   return (
     <SButton
-      {...props}
-      style={{ ...buttonStyle, ...props.style }}
       type={type}
       onClick={onClick}
+      margin={margin}
+      style={{ ...props.style, ...buttonStyle }}
+      {...props}
     >
       <Text size={textSize} color={color} strong>
         {children}

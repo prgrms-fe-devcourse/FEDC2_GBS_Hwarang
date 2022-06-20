@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Image, Text, Avatar, PostList, Button, Icon, Modal } from "components";
+import {
+  Image,
+  Text,
+  Avatar,
+  PostList,
+  Button,
+  Icon,
+  Modal,
+  PrivateRoute,
+} from "components";
 import { useParams, useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { jwtToken } from "recoil/authentication";
+import { jwtToken, loginStatus } from "recoil/authentication";
 import { userInfo } from "recoil/user";
 import { getPostByUserId } from "api/post-api";
 import { DEFAULT_COVER_IMAGE, DEFAULT_PROFILE_IMAGE } from "api/url";
@@ -24,6 +33,7 @@ function UserPage() {
   const [profileImgHover, setProfileImgHover] = useState(false);
   const [coverImageHover, setCoverImageHover] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [FollowAuthTrigger, setFollowAuthTrigger] = useState(false);
   const [myPost, setMyPost] = useState([]);
 
   // yeoonju-jane 사용자 정보 변경
@@ -31,6 +41,7 @@ function UserPage() {
   const [showModifyPasswordModal, setModifyPasswordModal] = useState(false);
 
   const myInfo = useRecoilValue(userInfo);
+  const isLogin = useRecoilValue(loginStatus);
   const setMyInfo = useSetRecoilState(userInfo);
   const token = useRecoilValue(jwtToken);
 
@@ -88,6 +99,10 @@ function UserPage() {
   };
 
   const handleButtonClick = async (id, isFollow) => {
+    setFollowAuthTrigger(true);
+
+    if (!isLogin) return;
+
     if (isFollow) await handleUnFollowClick(id);
     else await handleFollowClick(id);
     // refetch data
@@ -177,10 +192,16 @@ function UserPage() {
         </S.ExtraInfoWrapper>
         <S.FollowBlock>
           {!isOwner && (
-            <FollowButton
-              handleClick={() => handleButtonClick(ID, isFollowing)}
-              isUnFollow={isFollowing}
-            />
+            <PrivateRoute
+              trigger={FollowAuthTrigger}
+              setTrigger={setFollowAuthTrigger}
+              isAutoTrigger={false}
+            >
+              <FollowButton
+                handleClick={() => handleButtonClick(ID, isFollowing)}
+                isUnFollow={isLogin && isFollowing}
+              />
+            </PrivateRoute>
           )}
           {isOwner && (
             <Button onClick={() => setModifyPasswordModal(true)}>
