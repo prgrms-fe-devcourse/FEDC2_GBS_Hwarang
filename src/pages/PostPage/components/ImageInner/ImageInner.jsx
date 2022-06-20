@@ -13,7 +13,6 @@ import likesClickedSvg from "assets/likes_clicked.svg";
 import commentSvg from "assets/comment.svg";
 import Common from "styles/common";
 import { useNavigate } from "react-router-dom";
-import { removePost } from "api/post-api";
 import Option from "../SelectItem";
 import Select from "../Select";
 import S from "../../PostPage.style";
@@ -26,7 +25,7 @@ const propTypes = {
   onChangeHandler: PropTypes.func,
   channels: PropTypes.instanceOf(Array),
   userId: PropTypes.string,
-  token: PropTypes.string,
+  deletePost: PropTypes.func,
 };
 
 const defaultProps = {
@@ -37,7 +36,7 @@ const defaultProps = {
   onChangeHandler: () => {},
   channels: null,
   userId: null,
-  token: null,
+  deletePost: () => {},
 };
 
 const ImageInner = ({
@@ -48,7 +47,7 @@ const ImageInner = ({
   onChangeHandler,
   channels,
   userId,
-  token,
+  deletePost,
 }) => {
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
@@ -60,14 +59,6 @@ const ImageInner = ({
 
   const editPost = () => {
     navigate(`/post/edit/${postId}`);
-  };
-
-  const deletePost = async () => {
-    console.log(post);
-    console.log(postId);
-    console.log(token);
-    const res = await removePost(postId, token);
-    console.log(res);
   };
 
   return (

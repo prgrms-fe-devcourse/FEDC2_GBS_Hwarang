@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Image, Text } from "components";
 import useLocalStorage from "hooks/useLocalStorage";
-import { getChannels, createPost, getPost, updatePost } from "api/post-api";
+import {
+  getChannels,
+  createPost,
+  getPost,
+  updatePost,
+  removePost,
+} from "api/post-api";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useHover from "hooks/useHover";
 import { userInfo } from "recoil/user";
@@ -289,6 +295,11 @@ const PostPage = () => {
     }
   };
 
+  const deletePost = async () => {
+    const res = await removePost(postId, token);
+    console.log(res);
+  };
+
   const onImageChange = async (e) => {
     const { id } = e.target;
 
@@ -334,7 +345,7 @@ const PostPage = () => {
           onChangeHandler={onChangeHandler}
           channels={channels}
           userId={userId}
-          token={token}
+          deletePost={deletePost}
         />
       </S.HeadeContainer>
       <S.ContentContainer>
