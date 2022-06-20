@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React from "react";
 import PropTypes from "prop-types";
+import Common from "styles/common";
 import PostListFilterItem from "./PostListFilterItem";
 import * as S from "./InputResult.style";
 import PostListItem from "./PostListItem";
@@ -13,6 +14,7 @@ const propTypes = {
   keyword: PropTypes.string,
   options: PropTypes.instanceOf(Array),
   inputType: PropTypes.string,
+  border: PropTypes.bool,
   type: PropTypes.oneOf(["all", "none"]),
 };
 
@@ -23,6 +25,7 @@ const defaultProps = {
   keyword: "",
   options: ["title"],
   inputType: "post",
+  border: false,
   type: "none",
 };
 
@@ -33,11 +36,14 @@ const InputResult = ({
   keyword,
   options,
   inputType,
+  border,
   type,
 }) => {
   const sizeStyle = {
     width,
     height,
+    border: border ? `1px solid ${Common.colors.gray05}` : undefined,
+    borderRadius: border ? "0 0 8px 8px" : undefined,
   };
 
   const isNoneResult = !keyword && type === "none";
