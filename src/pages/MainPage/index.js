@@ -25,6 +25,7 @@ const MainPage = () => {
     <div>
       <S.Header>
         <S.HeaderCarousel>
+          <S.CarouselDim />
           <ImageSlider width="100%" height="auto">
             {ImageData}
           </ImageSlider>

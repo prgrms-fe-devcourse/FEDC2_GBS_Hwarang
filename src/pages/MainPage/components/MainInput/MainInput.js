@@ -18,7 +18,13 @@ const MainInput = () => {
 
   return (
     <S.MainInputContainer>
-      <Input name="keyword" onChange={handleChange} width="100%" />
+      <Input
+        name="keyword"
+        onChange={handleChange}
+        width="100%"
+        height={75}
+        borderColor="#FFFFFF"
+      />
       <InputResult
         inputType="post"
         type="none"

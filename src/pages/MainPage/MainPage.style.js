@@ -11,22 +11,33 @@ const Header = styled.div`
 
 const HeaderText = styled.div`
   position: absolute;
-  top: 350px;
+  top: 280px;
   right: calc(50% - 170px);
-  width: 340px;
+  width: 350px;
   font-size: ${Common.fontSize.title};
   font-weight: bold;
   color: white;
   text-align: center;
+  z-index: 2;
 `;
 
 const HeaderInput = styled.input`
   position: absolute;
-  top: 430px;
+  top: 350px;
   right: calc(50% - 400px);
   width: 800px;
   height: 75px;
   border-radius: 20px;
+`;
+
+const CarouselDim = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0, 0.6);
+  z-index: 1;
 `;
 
 const HeaderCarousel = styled.div`
@@ -66,4 +77,5 @@ export default {
   SectionWrapper,
   LinkButton,
   Footer,
+  CarouselDim,
 };

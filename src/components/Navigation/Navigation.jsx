@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import Button from "components/Button";
-import Image from "components/Image";
-import Icon from "components/Icon";
-import Popup from "components/Popup";
+import { Button, Image, Icon, Popup, Text } from "components";
 import Alarm from "components/Alarm";
 import SideBar from "components/SideBar";
 import useQuery from "hooks/useQuery";
@@ -178,11 +175,25 @@ function Navigation() {
         </Ns.NavLogoBlock>
         <Ns.LinkBlock>
           <Ns.NavigationLink to="/travel-destination/all">
-            여행지
+            <Text size="$c2" color="#000000" strong>
+              여행
+            </Text>
           </Ns.NavigationLink>
-          <Ns.NavigationLink to="/plan">일정 만들기</Ns.NavigationLink>
-          <Ns.NavigationLink to="/hotel">호텔</Ns.NavigationLink>
-          <Ns.NavigationLink to="/guide">이용방법</Ns.NavigationLink>
+          <Ns.NavigationLink to="/plan">
+            <Text size="$c2" color="#000000" strong>
+              일정 만들기
+            </Text>
+          </Ns.NavigationLink>
+          <Ns.NavigationLink to="/hotel">
+            <Text size="$c2" color="#000000" strong>
+              호텔
+            </Text>
+          </Ns.NavigationLink>
+          <Ns.NavigationLink to="/guide">
+            <Text size="$c2" color="#000000" strong>
+              이용방법
+            </Text>
+          </Ns.NavigationLink>
         </Ns.LinkBlock>
         <NavButtonBlock isLogined={isLogined} setModalStatus={setModalStatus} />
       </Ns.Navigation>

@@ -73,6 +73,7 @@ export const SubButton = styled.button`
 
 export const NavigationLink = styled(NavLink)`
   text-decoration: none;
+  margin: 0 55px;
 `;
 
 export const Form = styled.form`
