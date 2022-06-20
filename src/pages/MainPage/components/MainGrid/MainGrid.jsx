@@ -33,13 +33,9 @@ const MainGrid = ({ data, mainTitle }) => {
             commentsNum,
             isLiked,
           }) => {
-            const handleOnClick = (id) => {
-              alert(id);
-            };
-
             return (
               <FluxCol key={_id}>
-                <S.CardWrapper onClick={() => handleOnClick(_id)}>
+                <S.CardWrapper>
                   <MainGridCard
                     src={image || DEFAULT_COVER_IMAGE}
                     textChildren={content.title}

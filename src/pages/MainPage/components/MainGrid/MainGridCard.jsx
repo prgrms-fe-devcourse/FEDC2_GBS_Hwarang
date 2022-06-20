@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Flux, Image, Text, ToggleButton } from "components";
 import commentSvg from "assets/comment.svg";
 import LikeButton from "components/LikeButton";
@@ -45,15 +46,20 @@ const MainGridCard = ({
   id,
 }) => {
   const { FluxRow, FluxCol } = Flux;
+  const navigate = useNavigate();
   const wrapperStyle = {
     gap,
     margin,
   };
 
+  const handleOnClick = () => {
+    navigate(`/post/detail/${id}`);
+  };
+
   return (
     <>
       <S.CardWrapper style={wrapperStyle}>
-        <S.ImageDiv>
+        <S.ImageDiv onClick={handleOnClick}>
           <Image src={src} width="100%" height={180} />
         </S.ImageDiv>
         <Text size={textSize} strong>
