@@ -36,16 +36,12 @@ export const allPost = selector({
   },
 });
 
-export const allData = selector({
-  key: "allData",
+export const postListPosts = selector({
+  key: "postListPosts",
   get: ({ get }) => {
-    const data = get(allPost).map((post) => ({
-      ...post,
-      comments: post.comments.length,
-      likes: post.likes.length,
-    }));
+    const posts = [...get(allPost)];
 
-    return data;
+    return posts;
   },
 });
 
@@ -71,54 +67,6 @@ export const mainPost = selector({
     return {
       popularPost: popular,
       latestPost: latest,
-    };
-  },
-});
-
-/* postListPage */
-export const postList = selector({
-  key: "postList",
-  get: ({ get }) => {
-    // 1. 기본순
-    const posts = [...get(allPost)];
-
-    // 2. 인기순
-    const popular = [
-      ...posts.sort((a, b) => {
-        return b.likesNum - a.likesNum;
-      }),
-    ];
-    // 3. 최신순
-    const latest = [
-      ...posts.sort((a, b) => {
-        const dateA = new Date(a.createdAt);
-        const dateB = new Date(b.createdAt);
-        return dateB.getTime() - dateA.getTime();
-      }),
-    ];
-
-    // 4. 오래된 순
-    const oldest = [
-      ...posts.sort((a, b) => {
-        const dateA = new Date(a.createdAt);
-        const dateB = new Date(b.createdAt);
-        return dateA.getTime() - dateB.getTime();
-      }),
-    ];
-
-    // 5. 댓글 많은 순
-    const comments = [
-      ...posts.sort((a, b) => {
-        return b.commentsNum - a.commentsNum;
-      }),
-    ];
-
-    return {
-      all: posts,
-      popular,
-      latest,
-      oldest,
-      comments,
     };
   },
 });

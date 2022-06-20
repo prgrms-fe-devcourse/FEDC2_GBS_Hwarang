@@ -14,17 +14,10 @@ import {
   DELETE_LIKE,
 } from "./url";
 
-// import Channel from "../mock/channel.json";
-// import Post from "../mock/posts.json";
-
 // 채널 목록
 export const getChannels = async () => {
   const res = await axios.get(`${BASE_URL}${GET_CHANNELS}`);
-  // await new Promise((resolve) => {
-  //   setTimeout(resolve, 1000);
-  // });
   return res;
-  // return Channel;
 };
 
 // 특정 채널 정보
@@ -42,16 +35,10 @@ export const getAllPosts = async () => {
 };
 
 // 특정 채널의 포스트 목록
-export const getPostsByChannel = async (channelId, offset, limit) => {
-  const res = await axios.get(`${BASE_URL}${GET_POSTS}/${channelId}`, {
-    offset,
-    limit,
-  });
-  // await new Promise((resolve) => {
-  //   setTimeout(resolve, 1000);
-  // });
+export const getPostsByChannel = async (channelId) => {
+  const res = await axios.get(`${BASE_URL}${GET_POSTS}/${channelId}`);
+
   return res;
-  // return Post.filter((post) => post.channel === channeld);
 };
 
 // post 상세 정보

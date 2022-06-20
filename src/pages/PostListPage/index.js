@@ -2,73 +2,62 @@ import { PostList, PostListFilter } from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useTasks } from "contexts/TaskProvider";
-import { allData, postList } from "recoil/post";
+import { postListPosts } from "recoil/post";
 import { useParams } from "react-router-dom";
+import { useSorting } from "hooks";
 import S from "./PostListPage.style";
 import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
-  const data = useRecoilValue(allData);
-  const postListData = useRecoilValue(postList);
-
-  /* 1. 검색 options */
+  const initialAllPost = useRecoilValue(postListPosts);
   const { tasks, channel } = useTasks();
-
-  /* 2. Params 이용한 검색 Sorting options */
   const { Options } = useParams();
-  const [optionData, setOptionData] = useState([]);
-
-  /* 3. 최종적으로 보여지는 필터링 된 데이터 */
+  const [optionPosts, setOptionPosts] = useState([]);
   const [renderData, setRenderData] = useState([]);
-
-  /* Header Fold */
   const [folded, setFolded] = useState(false);
 
+  // 1) 필터링
   useEffect(() => {
-    /* Refactoring 예정  ->  Channel API 연동 및 함수 분리 */
-    if (channel.length !== 0 && channel !== "none") {
-      const channelFilterResult = optionData.filter(
-        (item) => item.channel.name === channel
-      );
+    if (!initialAllPost) return;
 
-      if (tasks.length !== 0) {
-        const tasksTitle = tasks.map((task) => task.title);
-        let result = [];
-
-        tasksTitle.forEach((title) => {
-          const filterData = channelFilterResult.filter(({ content }) => {
-            if (!content || !content.title) return false;
-            return content.title.includes(title);
-          });
-
-          result = [...result, ...filterData];
-        });
-
-        setRenderData(result);
-        return;
-      }
-      setRenderData(channelFilterResult);
-      return;
+    let result = [];
+    if (channel)
+      result = initialAllPost.filter((post) => post.channel._id === channel);
+    else {
+      result = [...initialAllPost];
     }
-    if (tasks.length !== 0 && optionData) {
-      const tasksTitle = tasks.map((task) => task.title);
-      let result = [];
 
+    /* 필터링 기준 (키워드 또는 제목) */
+    let filteredResult = [];
+
+    if (tasks.length !== 0) {
+      const tasksTitle = tasks.map((task) => task.title);
       tasksTitle.forEach((title) => {
-        const filterData = optionData.filter(({ content }) => {
+        const filterData = result.filter(({ content }) => {
           if (!content || !content.title) return false;
           return content.title.includes(title);
         });
 
-        result = [...result, ...filterData];
+        filteredResult = [...filteredResult, ...filterData];
       });
 
-      setRenderData(result);
+      setOptionPosts(filteredResult);
       return;
     }
 
-    setRenderData(optionData);
-  }, [tasks, optionData, channel]);
+    setOptionPosts(result);
+  }, [tasks, initialAllPost, channel]);
+
+  useEffect(() => {
+    if (!optionPosts) return;
+    if (!Options || Options === "all") {
+      setRenderData(optionPosts);
+      return;
+    }
+
+    const sortedRenderData = useSorting(optionPosts, Options);
+    setRenderData(sortedRenderData);
+  }, [optionPosts, Options]);
 
   /* Header fold */
   const handleHeader = () => {
@@ -87,19 +76,6 @@ const PostListPage = () => {
       window.removeEventListener("scroll", handleHeader);
     };
   }, []);
-
-  useEffect(() => {
-    if (!Options) {
-      setOptionData(data);
-      return;
-    }
-
-    setOptionData(postListData[Options]);
-  }, [Options, postListData]);
-
-  useEffect(() => {
-    console.log(renderData);
-  }, [renderData]);
 
   return (
     <div>

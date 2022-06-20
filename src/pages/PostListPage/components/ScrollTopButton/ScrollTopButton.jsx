@@ -16,7 +16,6 @@ const ScrollTopButton = () => {
       border
       color={Common.colors.main}
       onClick={() => {
-        console.log("click");
         handleScroll();
       }}
     >
