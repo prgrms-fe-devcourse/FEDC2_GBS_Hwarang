@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
+import { Dot } from "components";
 import * as IS from "./ImageSlider.style";
 import Slide from "../Slide";
 
@@ -38,6 +39,7 @@ const ImageSlider = ({ children, width, height }) => {
       setCurrentSlide(currentSlide + 1);
     }
   }, 6000);
+
   const nextSlide = () => {
     if (currentSlide >= TOTAL_SLIDES) {
       setCurrentSlide(0);
@@ -52,10 +54,15 @@ const ImageSlider = ({ children, width, height }) => {
       setCurrentSlide(currentSlide - 1);
     }
   };
+
   useEffect(() => {
-    slideRef.current.style.transition = "all 2s ease-in-out";
-    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
-  }, [currentSlide]);
+    const element = slideRef.current;
+
+    if (element) {
+      element.style.transition = "all 2s ease-in-out";
+      element.style.transform = `translateX(-${currentSlide}00%)`;
+    }
+  }, [currentSlide, slideRef]);
 
   return (
     <IS.Container style={{ ...sliderStyle }}>
@@ -64,7 +71,7 @@ const ImageSlider = ({ children, width, height }) => {
           <Slide key={item.id} src={item.src} />
         ))}
       </IS.SliderContainer>
-      <IS.ButtonContainer>
+      <IS.DotWrap>
         <IS.Icon
           role="button"
           onClick={prevSlide}
@@ -74,6 +81,22 @@ const ImageSlider = ({ children, width, height }) => {
         >
           arrow_back_ios
         </IS.Icon>
+        <div>
+          {Array.from({ length: children.length }).map((_, index) => (
+            <Dot
+              // eslint-disable-next-line react/no-array-index-key
+              key={`dot-${index}`}
+              color="#FFFFFF"
+              style={{
+                position: "sticky",
+                display: "inline-block",
+                margin: "0 10px",
+                cursor: "pointer",
+              }}
+              onClick={() => setCurrentSlide(index)}
+            />
+          ))}
+        </div>
         <IS.Icon
           role="button"
           style={{ right: 0 }}
@@ -84,7 +107,7 @@ const ImageSlider = ({ children, width, height }) => {
         >
           arrow_forward_ios
         </IS.Icon>
-      </IS.ButtonContainer>
+      </IS.DotWrap>
     </IS.Container>
   );
 };

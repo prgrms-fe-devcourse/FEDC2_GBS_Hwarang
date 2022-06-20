@@ -21,7 +21,7 @@ const Dot = ({ size, color, ...props }) => {
     border: "none",
     position: "absolute",
   };
-  return <div style={{ ...DotStyle, ...props.style }} />;
+  return <div {...props} style={{ ...DotStyle, ...props.style }} />;
 };
 
 Dot.propTypes = propTypes;
