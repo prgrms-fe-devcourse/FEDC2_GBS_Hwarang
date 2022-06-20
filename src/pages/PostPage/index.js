@@ -25,6 +25,7 @@ const PostPage = () => {
   const token = useRecoilValue(jwtToken);
   const getUser = useRecoilValue(userInfo);
   const author = getUser.fullName;
+  const userId = getUser._id;
   const navigate = useNavigate();
   const [tempData, setTempData, removeTempData] = useLocalStorage("post", {});
   const [isHovering, handleMouseEnter, handleMouseLeave] = useHover({
@@ -68,8 +69,19 @@ const PostPage = () => {
 
   const [post, setPost] = useState({});
   const [channels, setChannels] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!loading) {
+      if (type === "edit" && post.author._id !== userId) {
+        alert("잘못된 접근입니다.");
+        navigate("/");
+      }
+    }
+  }, [post]);
+
+  useEffect(() => {
+    console.log("render");
     const fetchData = async () => {
       try {
         if (type === "create") {
@@ -102,6 +114,10 @@ const PostPage = () => {
           }
         } else {
           const response = await getPost(postId);
+          if (!response.data) {
+            alert("존재하지 않는 게시글 입니다.");
+            navigate("/");
+          }
           const parse = JSON.parse(response.data.title);
           if (type === "edit") {
             if (hasTempData && checkTempData()) {
@@ -241,23 +257,35 @@ const PostPage = () => {
     const mergeData = mergePlans();
     const { title, registImage, channelId } = mergeData;
     if (type === "create") {
+      if (channelId === null) {
+        alert("채널을 선택해주세요");
+        return;
+      }
       const formData = new FormData();
       formData.append("title", title);
       formData.append("image", registImage);
       formData.append("channelId", channelId);
-      const creatResult = await createPost(formData, token);
-      if (creatResult.data._id)
-        navigate(`/post/detail/${creatResult.data._id}`);
+      const res = await createPost(formData, token);
+      if (res.status === 200) {
+        alert("작성이 완료되었습니다.");
+        navigate(`/post/detail/${res.data._id}`);
+      }
     }
     if (type === "edit") {
+      if (channelId === null) {
+        alert("채널을 선택해주세요");
+        return;
+      }
       const formData = new FormData();
       formData.append("postId", postId);
       formData.append("title", title);
       formData.append("image", registImage);
       formData.append("channelId", channelId);
-      const updateResult = await updatePost(formData, token);
-      if (updateResult.data._id)
-        navigate(`/post/detail/${updateResult.data._id}`);
+      const res = await updatePost(formData, token);
+      if (res.status === 200) {
+        alert("수정이 완료되었습니다.");
+        navigate(`/post/detail/${postId}`);
+      }
     }
   };
 
@@ -305,6 +333,8 @@ const PostPage = () => {
           post={post}
           onChangeHandler={onChangeHandler}
           channels={channels}
+          userId={userId}
+          token={token}
         />
       </S.HeadeContainer>
       <S.ContentContainer>
