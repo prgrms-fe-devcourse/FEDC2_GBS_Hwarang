@@ -82,7 +82,7 @@ const CommentInput = ({ maxHeight, onAddComment }) => {
               width={70}
               height={43}
               textSize="$n1"
-              margin={10}
+              margin="10px"
               onClick={handleOnConfirm}
             >
               등록
