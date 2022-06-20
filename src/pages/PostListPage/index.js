@@ -33,18 +33,18 @@ const PostListPage = () => {
 
       if (tasks.length !== 0) {
         const tasksTitle = tasks.map((task) => task.title);
-        const result = [];
+        let result = [];
 
         tasksTitle.forEach((title) => {
-          result.push(
-            channelFilterResult.filter(({ content }) => {
-              if (!content || !content.title) return false;
-              return content.title.includes(title);
-            })
-          );
+          const filterData = channelFilterResult.filter(({ content }) => {
+            if (!content || !content.title) return false;
+            return content.title.includes(title);
+          });
+
+          result = [...result, ...filterData];
         });
 
-        setRenderData(result[0]);
+        setRenderData(result);
         return;
       }
       setRenderData(channelFilterResult);
@@ -52,18 +52,18 @@ const PostListPage = () => {
     }
     if (tasks.length !== 0 && optionData) {
       const tasksTitle = tasks.map((task) => task.title);
-      const result = [];
+      let result = [];
 
       tasksTitle.forEach((title) => {
-        result.push(
-          optionData.filter(({ content }) => {
-            if (!content || !content.title) return false;
-            return content.title.includes(title);
-          })
-        );
+        const filterData = optionData.filter(({ content }) => {
+          if (!content || !content.title) return false;
+          return content.title.includes(title);
+        });
+
+        result = [...result, ...filterData];
       });
 
-      setRenderData(result[0]);
+      setRenderData(result);
       return;
     }
 
