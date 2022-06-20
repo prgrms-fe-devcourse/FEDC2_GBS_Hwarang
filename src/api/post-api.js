@@ -34,16 +34,10 @@ export const getAllPosts = async () => {
 };
 
 // 특정 채널의 포스트 목록
-export const getPostsByChannel = async (channelId, offset, limit) => {
-  const res = await axios.get(`${BASE_URL}${GET_POSTS}/${channelId}`, {
-    offset,
-    limit,
-  });
-  // await new Promise((resolve) => {
-  //   setTimeout(resolve, 1000);
-  // });
+export const getPostsByChannel = async (channelId) => {
+  const res = await axios.get(`${BASE_URL}${GET_POSTS}/${channelId}`);
+
   return res;
-  // return Post.filter((post) => post.channel === channeld);
 };
 
 // post 상세 정보
