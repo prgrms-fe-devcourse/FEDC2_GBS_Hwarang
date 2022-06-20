@@ -9,6 +9,7 @@ import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
   const data = useRecoilValue(allData);
+  console.log(data);
   const postListData = useRecoilValue(postList);
 
   /* 1. 검색 options */
