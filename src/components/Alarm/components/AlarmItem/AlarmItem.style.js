@@ -8,3 +8,11 @@ export const AlarmItemWrapper = styled.div`
     background-color: rgba(236, 236, 236, 1);
   }
 `;
+
+export const NoneAlarm = styled.div`
+  display: flex;
+  height: 120px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
