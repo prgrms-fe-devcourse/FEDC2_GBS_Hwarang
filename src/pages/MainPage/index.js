@@ -30,8 +30,21 @@ const MainPage = () => {
             {ImageData}
           </ImageSlider>
         </S.HeaderCarousel>
-        <S.HeaderText>여기 가봤슈?</S.HeaderText>
+        <S.HeaderText>
+          <Image
+            src="https://mygbs.s3.ap-northeast-2.amazonaws.com/main_text.png"
+            width="350px"
+            height="auto"
+          />
+        </S.HeaderText>
         <MainInput />
+        <S.HeaderDescription>
+          <Image
+            src="https://mygbs.s3.ap-northeast-2.amazonaws.com/main_ment.png"
+            width={450}
+            height="auto"
+          />
+        </S.HeaderDescription>
       </S.Header>
       <S.Section>
         <S.SectionWrapper>
