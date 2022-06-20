@@ -13,6 +13,6 @@ export const ListItem = styled.li`
   cursor: pointer;
 
   &:hover {
-    background-color: #e6e6e6;
+    background-color: ${Common.colors.gray06};
   }
 `;
