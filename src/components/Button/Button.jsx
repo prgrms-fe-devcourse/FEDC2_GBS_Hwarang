@@ -70,8 +70,8 @@ const Button = ({
       type={type}
       onClick={onClick}
       margin={margin}
-      style={{ ...props.style, ...buttonStyle }}
       {...props}
+      style={{ ...buttonStyle, ...props.style }}
     >
       <Text size={textSize} color={color} strong>
         {children}
