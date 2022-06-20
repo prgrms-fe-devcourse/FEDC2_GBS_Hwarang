@@ -82,7 +82,7 @@ export const removePost = async (postId, token) => {
   return res;
 };
 
-export const getPostByUserId = async (userId, offset = 6, limit = 6) => {
+export const getPostByUserId = async (userId, offset, limit) => {
   if (!userId) return []; // 방어 코드
   const res = await axios.get(`${BASE_URL}${GET_POST_BY_ID}/${userId}`, {
     params: {

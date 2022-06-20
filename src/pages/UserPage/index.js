@@ -72,8 +72,12 @@ function UserPage() {
   useEffect(() => {
     const getMyPost = async (id) => {
       const res = await getPostByUserId(id);
-      console.log(res.data);
-      setMyPost(res.data);
+      const newPosts = res.data.map((post) => ({
+        ...post,
+        content: JSON.parse(post.title),
+        title: null,
+      }));
+      setMyPost(newPosts);
     };
     if (userData) {
       // eslint-disable-next-line
