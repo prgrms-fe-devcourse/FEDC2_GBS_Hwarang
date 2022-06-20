@@ -10,13 +10,15 @@ import * as S from "./PostListInput.style";
 const PostListInput = () => {
   const [keyword, setKeyword] = useState("");
   const [channels, setChannels] = useState([]);
+  const { addTask } = useTasks();
   const posts = useRecoilValue(allPost);
 
+  /* Channel */
   const { selectChannel } = useTasks();
   getChannels().then((res) => setChannels(res));
 
+  /* InputResult display attr */
   const [show, setShow] = useState(true);
-
   const ref = useClickAway((e) => {
     if (!e) setShow(false);
   });
@@ -29,6 +31,10 @@ const PostListInput = () => {
 
       if (!show) setShow(true);
     }
+  };
+
+  const handleSearch = () => {
+    addTask(keyword, keyword);
   };
 
   const onChange = (e) => {
@@ -54,6 +60,7 @@ const PostListInput = () => {
           placeholder="가고 싶은 여행지를 입력해보세요!"
           width="500px"
           height="50px"
+          onSearch={handleSearch}
         />
       </S.InputContainer>
       <S.ResultWrapper ref={ref} style={{ display: show ? "block" : "none" }}>
