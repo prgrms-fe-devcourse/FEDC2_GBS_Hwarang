@@ -1,5 +1,5 @@
 import { selector, atom } from "recoil";
-import { getCookie, setCookie } from "../utils/cookie";
+import { getCookie, setCookie, removeCookie } from "../utils/cookie";
 import { userAuth } from "../api/auth-api";
 
 export const jwtToken = atom({
@@ -33,6 +33,18 @@ export const loginProcess = selector({
     });
 
     set(jwtToken, newValue);
+  },
+});
+
+export const logoutProcess = selector({
+  key: "logoutProcess",
+  get: ({ get }) => {
+    return !get(loginStatus);
+  },
+  set: ({ set }) => {
+    removeCookie("token", { path: "/" });
+    set(jwtToken, "");
+    set(loginStatus, false);
   },
 });
 
