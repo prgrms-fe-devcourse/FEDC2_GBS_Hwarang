@@ -16,6 +16,7 @@ const propTypes = {
   borderRadius: PropTypes.number,
   type: PropTypes.string,
   props: PropTypes.instanceOf(Object),
+  style: PropTypes.instanceOf(Object),
   onClick: PropTypes.func,
 };
 
@@ -30,6 +31,7 @@ const defaultProps = {
   borderRadius: 10,
   type: "button",
   props: {},
+  style: {},
   onClick: () => {},
 };
 
@@ -65,10 +67,10 @@ const Button = ({
 
   return (
     <SButton
-      style={buttonStyle}
       type={type}
       onClick={onClick}
       margin={margin}
+      style={{ ...props.style, ...buttonStyle }}
       {...props}
     >
       <Text size={textSize} color={color} strong>
