@@ -5,3 +5,5 @@ export const Container = styled.div`
   position: absolute;
   z-index: 300;
 `;
+
+export const ResultWrapper = styled.div``;
