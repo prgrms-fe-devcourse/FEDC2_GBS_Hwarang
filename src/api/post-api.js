@@ -6,6 +6,7 @@ import {
   GET_CHANNEL_BY_NAME,
   GET_POST,
   GET_POSTS,
+  GET_CHANNELS,
   UPDATE_POST,
   GET_POST_BY_ID,
   CREATE_POST,
@@ -13,17 +14,10 @@ import {
   DELETE_LIKE,
 } from "./url";
 
-import Channel from "../mock/channel.json";
-// import Post from "../mock/posts.json";
-
 // 채널 목록
 export const getChannels = async () => {
-  // const res = await axios.get(`${BASE_URL}${GET_CHANNELS}`);
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1000);
-  });
-  // return res;
-  return Channel;
+  const res = await axios.get(`${BASE_URL}${GET_CHANNELS}`);
+  return res;
 };
 
 // 특정 채널 정보
