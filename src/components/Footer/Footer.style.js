@@ -4,16 +4,15 @@ import Common from "styles/common";
 export const Container = styled.div`
   background-color: ${Common.colors.bg_gray};
   font-size: 12px;
+  line-height: 1.2;
 `;
 
 export const TopContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 50px;
-  padding-bottom: 80px;
-  padding-left: 80px;
-  padding-right: 180px;
+  padding: 50px 180px 70px 80px;
+
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     gap: 20px;
@@ -21,7 +20,7 @@ export const TopContainer = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  max-width: 600px;
+  max-width: 550px;
 `;
 
 export const SubscribeContainer = styled.div`
@@ -49,13 +48,11 @@ export const ContentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding-left: 180px;
-  padding-right: 180px;
-  padding-bottom: 80px;
+  padding: 0 180px 70px 180px;
 `;
 
 export const Item = styled.div`
-  width: 200px;
+  width: 240px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -68,7 +65,7 @@ export const BottomContainer = styled.div`
   padding: 20px 180px;
 `;
 
-export const InformaionContainer = styled.div`
+export const InformationContainer = styled.div`
   display: flex;
   gap: 3px;
   align-items: flex-end;

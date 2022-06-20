@@ -55,7 +55,7 @@ const Section = styled.div`
 
 const SectionWrapper = styled.div`
   box-sizing: border-box;
-  padding: 80px 0;
+  padding: 100px 0;
 `;
 
 const LinkButton = styled(Link)`
