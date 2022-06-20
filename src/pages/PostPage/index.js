@@ -350,7 +350,11 @@ const PostPage = () => {
       </S.HeadeContainer>
       <S.ContentContainer>
         <S.Author>
-          <Text strong>{author}님의 여행 일정</Text>
+          {type === "detail" ? (
+            <Text strong>{post.author.fullName}님의 여행 일정</Text>
+          ) : (
+            <Text strong>{author}님의 여행 일정</Text>
+          )}
         </S.Author>
         <S.ContentList>
           <S.Line
