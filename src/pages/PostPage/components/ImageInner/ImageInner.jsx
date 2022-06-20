@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   ImageUploader,
@@ -46,6 +46,10 @@ const ImageInner = ({
   const [visible, setVisible] = useState(false);
   const ref = useClickAway(() => setVisible(false));
 
+  useEffect(() => {
+    console.log(post);
+  }, [post]);
+
   const handleOnClick = () => {
     setVisible(!visible);
   };
@@ -72,11 +76,11 @@ const ImageInner = ({
       )}
       <S.InnerWrapper position="left">
         {type === "detail" ? (
-          <Text color="$white">{post.title}</Text>
+          <Text color="$white">{post?.title}</Text>
         ) : (
           <Input
             placeholder="일정 제목을 입력해주세요"
-            defaultValue={post.title || null}
+            defaultValue={post?.title || null}
             onChange={(e) => onChangeHandler(null, "title", e.target.value)}
             width={500}
             useIcon={false}
@@ -108,20 +112,20 @@ const ImageInner = ({
               }
               textSize="$c1"
               textColor="white"
-              text={post.likes.length}
+              text={post?.likes?.length}
             >
               <Image src={likesSvg} width={20} height={20} mode="contain" />
             </ToggleButton>
             <ToggleButton
               textSize="$c1"
               textColor="white"
-              text={post.comments.length}
+              text={post?.comments?.length}
             >
               <Image src={commentSvg} width={20} height={20} />
             </ToggleButton>
           </div>
         ) : (
-          <Select channelId={post.channelId} onChangeHandler={onChangeHandler}>
+          <Select channelId={post?.channelId} onChangeHandler={onChangeHandler}>
             {channels &&
               channels.map((channel) => (
                 <Option key={channel._id} value={channel.name} id={channel._id}>

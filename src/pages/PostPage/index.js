@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Image, Text } from "components";
 import useLocalStorage from "hooks/useLocalStorage";
 import { getChannels, createPost, getPost, updatePost } from "api/post-api";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useHover from "hooks/useHover";
 import { userInfo } from "recoil/user";
 import { useRecoilValue } from "recoil";
@@ -31,10 +31,10 @@ const PostPage = () => {
     content: false,
     image: false,
   });
+  const params = useParams();
+  const [postId, setPostId] = useState(params?.ID || "");
   const location = useLocation();
-  const pathname = location.pathname.split("/");
-  const type = pathname[2];
-  const postId = pathname[3];
+  const [type, setType] = useState(location.pathname.split("/")[2]);
 
   const hasTempData = Object.keys(tempData).length;
   const checkTempData = () => {
@@ -146,8 +146,11 @@ const PostPage = () => {
         console.log("error", exception);
       }
     };
+    const pathname = location.pathname.split("/");
+    setType(pathname[2]);
+    setPostId(params?.ID || pathname[3] || "");
     fetchData();
-  }, []);
+  }, [location, params, type]);
 
   useEffect(() => {
     // Todo: App.js로 빼서 recoil 사용하여 갖고오기?
@@ -242,7 +245,9 @@ const PostPage = () => {
       formData.append("title", title);
       formData.append("image", registImage);
       formData.append("channelId", channelId);
-      await createPost(formData, token);
+      const creatResult = await createPost(formData, token);
+      if (creatResult.data._id)
+        navigate(`/post/detail/${creatResult.data._id}`);
     }
     if (type === "edit") {
       const formData = new FormData();
@@ -250,9 +255,10 @@ const PostPage = () => {
       formData.append("title", title);
       formData.append("image", registImage);
       formData.append("channelId", channelId);
-      await updatePost(formData, token);
+      const updateResult = await updatePost(formData, token);
+      if (updateResult.data._id)
+        navigate(`/post/detail/${updateResult.data._id}`);
     }
-    navigate(`/post/detail/${postId}`);
   };
 
   const onImageChange = async (e) => {
