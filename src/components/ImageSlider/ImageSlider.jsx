@@ -93,6 +93,7 @@ const ImageSlider = ({ children, width, height }) => {
                 margin: "0 10px",
                 cursor: "pointer",
               }}
+              blank={index !== currentSlide}
               onClick={() => setCurrentSlide(index)}
             />
           ))}

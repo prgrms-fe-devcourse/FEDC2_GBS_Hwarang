@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
-import { Icon, Text } from "components";
+import { Icon, Text, Divider } from "components";
 import FollowItem from "../FollowItem";
 import CommentItem from "../CommentItem";
 import * as S from "./AlarmItem.style";
@@ -27,10 +27,9 @@ function AlarmItem({ notification }) {
 
   const getType = useCallback((item) => {
     if (item?._id) {
-      if (!item.post && item.follow?._id) return "Follow";
       if (item.comment) return "Comment";
       if (item.post) return "Like";
-      return "none";
+      return "Follow";
     }
   }, []);
 
@@ -38,12 +37,14 @@ function AlarmItem({ notification }) {
     // eslint-disable-next-line
     <S.AlarmItemWrapper>
       {resultNotification && resultNotification.length > 0 ? (
-        resultNotification.map((item) =>
-          React.createElement(ALARM_ITEM[getType(item)], {
-            key: item._id,
-            info: item,
-          })
-        )
+        resultNotification.map((item) => (
+          <li key={item._id}>
+            {React.createElement(ALARM_ITEM[getType(item)], {
+              info: item,
+            })}
+            <Divider size={18} style={{ opacity: 0.2 }} />
+          </li>
+        ))
       ) : (
         <S.NoneAlarm>
           <div style={{ display: "inline-block" }}>

@@ -18,7 +18,7 @@ export const addComment = async (comment, postId, userId, token) => {
     }
   );
 
-  // 댓글 작성 성공 시, 알림 생성
+  // 댓글 작성이 완료되었다면 알림 생성
   await createAlarm("COMMENT", res.data._id, userId, postId, token);
   return res;
 };

@@ -11,16 +11,15 @@ const propTypes = {
 
 const LikeItem = ({ info }) => {
   const post = useRecoilValue(postById(info.post));
-  console.log(post);
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", fontSize: 13, lineHeight: "22px" }}>
       <div>
         <Text strong size="$c1" style={{ display: "inline-block" }}>
           👍{info.author?.fullName || "익명님"}
         </Text>
         님이 {`"${post?.content?.title}"`} 일정을 좋아합니다.
       </div>
-      {post.image && (
+      {post?.image && (
         <Image
           src={post.image}
           width="50px"

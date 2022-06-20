@@ -12,7 +12,7 @@ const defaultProp = {
 
 const FollowItem = ({ info }) => {
   return (
-    <div>
+    <div style={{ fontSize: 13, lineHeight: "22px" }}>
       <Text strong size="$c1" style={{ display: "inline-block" }}>
         {info.author.fullName}
       </Text>
@@ -20,7 +20,7 @@ const FollowItem = ({ info }) => {
       <Text strong size="$c1" style={{ display: "inline-block" }}>
         진연주
       </Text>
-      님을 구독했습니다.
+      님을 구독했습니다.🔥
     </div>
   );
 };
