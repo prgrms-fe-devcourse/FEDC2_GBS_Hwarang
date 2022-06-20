@@ -10,11 +10,8 @@ import * as S from "./PostListInput.style";
 const PostListInput = () => {
   const [keyword, setKeyword] = useState("");
   const [channels, setChannels] = useState([]);
-  const { addTask } = useTasks();
+  const { addTask, selectChannel } = useTasks();
   const posts = useRecoilValue(allPost);
-
-  /* Channel */
-  const { selectChannel } = useTasks();
 
   /* InputResult display attr */
   const [show, setShow] = useState(true);
@@ -36,7 +33,6 @@ const PostListInput = () => {
 
     if (name === "keyword") {
       setKeyword(value);
-
       if (!show) setShow(true);
     }
   };
