@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import PostListFilterItem from "./PostListFilterItem";
 import * as S from "./InputResult.style";
@@ -7,6 +7,7 @@ import PostListItem from "./PostListItem";
 import UserListItem from "./UserListItem";
 
 const propTypes = {
+  children: PropTypes.node,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   data: PropTypes.instanceOf(Array),
@@ -14,9 +15,11 @@ const propTypes = {
   options: PropTypes.instanceOf(Array),
   inputType: PropTypes.string,
   type: PropTypes.oneOf(["all", "none"]),
+  maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 const defaultProps = {
+  children: null,
   width: 300,
   height: 500,
   data: [],
@@ -24,9 +27,11 @@ const defaultProps = {
   options: ["title"],
   inputType: "post",
   type: "none",
+  maxHeight: null,
 };
 
 const InputResult = ({
+  children,
   width,
   height,
   data,
@@ -34,30 +39,48 @@ const InputResult = ({
   options,
   inputType,
   type,
+  maxHeight,
 }) => {
   const sizeStyle = {
     width,
     height,
+    maxHeight,
   };
 
-  const isNoneResult = !keyword && type === "none";
+  // const [focusedIndex, setFocusedIndex] = useState(0);
+  const isNoneResult = keyword === "" && type === "none";
+  const reusltData = useMemo(() => {
+    if (keyword === "" && type === "all") return data;
+    return data.filter((item) => {
+      return options.some(
+        (key) => item[key]?.toLowerCase().indexOf(keyword.toLowerCase()) >= 0
+      );
+    });
+  }, [keyword, data]);
+
+  // useEffect(() => {
+  //   function indexChangeEvent(e) {
+  //     const { key } = e;
+  //     if (key === "ArrowDown") {
+  //       setFocusedIndex((pre) => (pre === reusltData.length - 1 ? 0 : pre + 1));
+  //     } else if (key === "ArrowUp") {
+  //       setFocusedIndex((pre) => (pre === 0 ? reusltData.length - 1 : pre - 1));
+  //     }
+  //   }
+  //   document.addEventListener("keydown", indexChangeEvent);
+
+  //   return () => {
+  //     document.removeEventListener("keydown", indexChangeEvent);
+  //   };
+  // }, [reusltData]);
 
   return (
-    <div>
-      {!isNoneResult && (
-        <S.Container style={sizeStyle}>
-          {data
-            .filter((item) => {
-              return options.some((key) => {
-                if (key === "content" && !item[key].title) return;
-                return key !== "content"
-                  ? item[key].toLowerCase().indexOf(keyword.toLowerCase()) >= 0
-                  : item[key].title
-                      .toLowerCase()
-                      .indexOf(keyword.toLowerCase()) >= 0;
-              });
-            })
-            .map((item) => {
+    <S.ResultWrap>
+      {!isNoneResult && reusltData?.length > 0 && (
+        <>
+          {children}
+          <S.Container style={sizeStyle}>
+            {reusltData.map((item) => {
               const { _id } = item;
               return (
                 <div key={_id}>
@@ -71,9 +94,10 @@ const InputResult = ({
                 </div>
               );
             })}
-        </S.Container>
+          </S.Container>
+        </>
       )}
-    </div>
+    </S.ResultWrap>
   );
 };
 

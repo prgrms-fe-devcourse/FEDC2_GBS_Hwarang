@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import * as S from "./Input.style";
 import Icon from "../Icon";
@@ -18,6 +18,9 @@ const propTypes = {
   fontColor: PropTypes.string,
   useIcon: PropTypes.bool,
   isFileUploadInput: PropTypes.bool,
+  onChange: PropTypes.func,
+  onSearch: PropTypes.func,
+  keyword: PropTypes.string,
 };
 
 const defaultProps = {
@@ -34,6 +37,9 @@ const defaultProps = {
   fontColor: "#ffc2c0",
   useIcon: true,
   isFileUploadInput: false,
+  onChange: null,
+  onSearch: null,
+  keyword: "",
 };
 
 const Input = React.forwardRef(
@@ -52,6 +58,9 @@ const Input = React.forwardRef(
       fontColor,
       useIcon,
       isFileUploadInput,
+      onChange,
+      onSearch,
+      keyword,
       ...props
     },
     ref
@@ -67,6 +76,26 @@ const Input = React.forwardRef(
       border: `1px solid ${borderColor}`,
     };
 
+    const handleOnChange = (e) => {
+      onChange(e);
+    };
+    const handleOnSearch = () => {
+      if (onSearch && keyword !== "") onSearch(keyword);
+    };
+
+    useEffect(() => {
+      function handleKeyDown(e) {
+        if (e.key === "Enter") {
+          handleOnSearch();
+        }
+      }
+
+      document.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }, [handleOnSearch]);
+
     return (
       <S.Wrapper style={wrapperStyle} block={block}>
         <S.Label>{label}</S.Label>
@@ -79,10 +108,12 @@ const Input = React.forwardRef(
             style={{ ...inputStyle }}
             {...props}
             ref={ref}
+            value={keyword}
+            onChange={handleOnChange}
           />
           {useIcon && (
             <IconGroup>
-              <Icon />
+              <Icon onClick={handleOnSearch} />
             </IconGroup>
           )}
         </S.InputWrapper>
