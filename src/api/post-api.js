@@ -61,16 +61,17 @@ export const getPost = async (postId) => {
 
 // post 수정하기
 export const updatePost = async (post, token) => {
-  await axios.put(`${BASE_URL}${UPDATE_POST}`, post, {
+  const res = await axios.put(`${BASE_URL}${UPDATE_POST}`, post, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  return res;
 };
 
 // post 삭제하기
 export const removePost = async (postId, token) => {
-  await axios.put(
+  const res = await axios.delete(
     `${BASE_URL}${DELETE_POST}`,
     { id: postId },
     {
@@ -79,6 +80,7 @@ export const removePost = async (postId, token) => {
       },
     }
   );
+  return res;
 };
 
 export const getPostByUserId = async (userId, offset = 6, limit = 6) => {
