@@ -8,18 +8,23 @@ import * as S from "./PostListItem.style";
 const propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   post: PropTypes.instanceOf(Object),
+  index: PropTypes.number,
+  focusedIndex: PropTypes.number,
 };
 
 const defaultProps = {
   width: null,
   post: {},
+  index: 0,
+  focusedIndex: 0,
 };
 
-const PostListItem = ({ width, post, ...props }) => {
+const PostListItem = ({ width, post, index, focusedIndex, ...props }) => {
   const { _id } = post;
   const navigate = useNavigate();
   const sizeStyle = {
     width,
+    // backgroundColor: index === focusedIndex ? "#e6e6e6" : null,
   };
   const handleOnClick = () => {
     // TODO: 해당 id를 가진 post로 이동
