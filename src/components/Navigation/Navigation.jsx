@@ -7,13 +7,8 @@ import {
 } from "recoil";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import Button from "components/Button";
-import Image from "components/Image";
-import Icon from "components/Icon";
-import Popup from "components/Popup";
-import Alarm from "components/Alarm";
-import SideBar from "components/SideBar";
 import useQuery from "hooks/useQuery";
+import { Button, Image, Icon, Popup, Alarm, SideBar } from "components";
 import { userInfo } from "recoil/user";
 import { useCookies } from "react-cookie";
 import { loginStatus, jwtToken } from "../../recoil/authentication";

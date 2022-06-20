@@ -21,3 +21,5 @@ export { default as Divider } from "./Divider";
 export { default as Skeleton } from "./Skeleton";
 export { default as PrivateRoute } from "./PrivateRoute";
 export { default as Modal } from "./Modal";
+export { default as Alarm } from "./Alarm";
+export { default as SideBar } from "./SideBar";
