@@ -4,6 +4,7 @@ import { getChannels } from "api/post-api";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
 import { useTasks } from "contexts/TaskProvider";
+import { useClickAway } from "hooks";
 import * as S from "./PostListInput.style";
 
 const PostListInput = () => {
@@ -13,10 +14,20 @@ const PostListInput = () => {
 
   const { selectChannel } = useTasks();
   getChannels().then((res) => setChannels(res));
+
+  const [show, setShow] = useState(true);
+
+  const ref = useClickAway((e) => {
+    if (!e) setShow(false);
+  });
+
   const handleChange = (e) => {
     const { value, name } = e.target;
+
     if (name === "keyword") {
       setKeyword(value);
+
+      if (!show) setShow(true);
     }
   };
 
@@ -45,17 +56,18 @@ const PostListInput = () => {
           height="60px"
         />
       </S.InputContainer>
-
-      <InputResult
-        inputType="filter"
-        type="none"
-        keyword={keyword}
-        data={posts}
-        options={["content"]}
-        width="500px"
-        height="150px"
-        border
-      />
+      <S.ResultWrapper ref={ref} style={{ display: show ? "block" : "none" }}>
+        <InputResult
+          inputType="filter"
+          type="none"
+          keyword={keyword}
+          data={posts}
+          options={["content"]}
+          width="500px"
+          height="150px"
+          border
+        />
+      </S.ResultWrapper>
       {/* {console.log(`id:${posts}`)} */}
     </S.Container>
   );

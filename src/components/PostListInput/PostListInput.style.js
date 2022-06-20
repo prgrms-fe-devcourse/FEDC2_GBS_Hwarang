@@ -23,3 +23,5 @@ export const Select = styled.select`
 export const Option = styled.option`
   color: ${Common.colors.main};
 `;
+
+export const ResultWrapper = styled.div``;
