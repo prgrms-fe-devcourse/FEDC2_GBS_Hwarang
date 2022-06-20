@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import * as S from "./Input.style";
 import Icon from "../Icon";
@@ -20,6 +20,7 @@ const propTypes = {
   isFileUploadInput: PropTypes.bool,
   onChange: PropTypes.func,
   onSearch: PropTypes.func,
+  keyword: PropTypes.string,
 };
 
 const defaultProps = {
@@ -38,6 +39,7 @@ const defaultProps = {
   isFileUploadInput: false,
   onChange: null,
   onSearch: null,
+  keyword: "",
 };
 
 const Input = React.forwardRef(
@@ -58,6 +60,7 @@ const Input = React.forwardRef(
       isFileUploadInput,
       onChange,
       onSearch,
+      keyword,
       ...props
     },
     ref
@@ -73,10 +76,7 @@ const Input = React.forwardRef(
       border: `1px solid ${borderColor}`,
     };
 
-    const [keyword, setKeyword] = useState("");
-
     const handleOnChange = (e) => {
-      setKeyword(e.target.value);
       onChange(e);
     };
     const handleOnSearch = () => {

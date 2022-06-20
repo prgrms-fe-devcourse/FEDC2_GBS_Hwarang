@@ -4,12 +4,17 @@ import { Input, Text } from "components";
 import InputResult from "components/InputResult";
 import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
+import { useClickAway } from "hooks";
 import * as S from "./MainInput.style";
 
 const MainInput = () => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const posts = useRecoilValue(allPost);
+
+  const ref = useClickAway(() => {
+    setKeyword("");
+  });
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -25,9 +30,10 @@ const MainInput = () => {
   };
 
   return (
-    <S.MainInputContainer>
+    <S.MainInputContainer ref={ref}>
       <Input
         name="keyword"
+        keyword={keyword}
         onChange={handleChange}
         width="100%"
         onSearch={handleOnSearch}
