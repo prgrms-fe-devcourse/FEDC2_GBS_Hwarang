@@ -53,7 +53,8 @@ const PostListInput = () => {
         data={posts}
         options={["content"]}
         width="500px"
-        height="175px"
+        height="150px"
+        border
       />
       {/* {console.log(`id:${posts}`)} */}
     </S.Container>

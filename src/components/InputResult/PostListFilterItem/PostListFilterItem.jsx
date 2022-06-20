@@ -4,19 +4,14 @@ import { useTasks } from "contexts/TaskProvider";
 import * as S from "./PostListFilterItem.style";
 
 const propTypes = {
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   filter: PropTypes.instanceOf(Object),
 };
 
 const defaultProps = {
-  width: "100%",
   filter: {},
 };
 
-const PostFilterItem = ({ width, filter, ...props }) => {
-  const sizeStyle = {
-    width,
-  };
+const PostFilterItem = ({ filter, ...props }) => {
   const { addTask } = useTasks();
   const { _id, content } = filter;
   const handleonClick = (id, tit) => {
@@ -25,7 +20,6 @@ const PostFilterItem = ({ width, filter, ...props }) => {
 
   return (
     <S.ListItem
-      style={sizeStyle}
       onClick={() => {
         handleonClick(_id, content.title);
       }}
