@@ -18,7 +18,7 @@ const PostFilterItem = ({ width, filter, ...props }) => {
     width,
   };
   const { addTask } = useTasks();
-  const { _id, title } = filter;
+  const { _id, content } = filter;
   const handleonClick = (id, tit) => {
     addTask(id, tit);
   };
@@ -27,11 +27,11 @@ const PostFilterItem = ({ width, filter, ...props }) => {
     <S.ListItem
       style={sizeStyle}
       onClick={() => {
-        handleonClick(_id, title);
+        handleonClick(_id, content.title);
       }}
       {...props}
     >
-      {filter.title}
+      {filter.content.title}
     </S.ListItem>
   );
 };

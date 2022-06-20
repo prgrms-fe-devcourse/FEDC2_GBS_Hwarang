@@ -29,7 +29,7 @@ const PostListInput = () => {
         type="none"
         keyword={keyword}
         data={posts}
-        options={["title"]}
+        options={["content"]}
         width="500px"
         height="175px"
       />

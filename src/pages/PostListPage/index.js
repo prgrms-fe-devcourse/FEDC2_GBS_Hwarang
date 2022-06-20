@@ -27,7 +27,9 @@ const PostListPage = () => {
   useEffect(() => {
     if (tasks.length !== 0 && optionData) {
       const titleSet = tasks.map((item) => item.title);
-      const result = optionData.filter((item) => titleSet.includes(item.title));
+      const result = optionData.filter((item) =>
+        titleSet.includes(item.content.title)
+      );
 
       setRenderData(result);
       return;
