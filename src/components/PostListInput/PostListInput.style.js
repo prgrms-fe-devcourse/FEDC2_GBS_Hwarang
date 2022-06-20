@@ -8,13 +8,17 @@ export const InputContainer = styled.div`
   height: 60px;
   display: flex;
   background-color: ${Common.colors.white};
+  border: 1px solid ${Common.colors.main};
   border-radius: 10px;
   padding: 5px;
   border-radius: 10px;
   border: 1px solid ${Common.colors.main};
 `;
 
-export const ResultContainer = styled.div``;
+export const ResultContainer = styled.div`
+  text-align: "center";
+  margin-left: 80px;
+`;
 
 export const Select = styled.select`
   box-sizing: border-box;

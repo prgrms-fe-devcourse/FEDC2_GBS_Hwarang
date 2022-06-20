@@ -42,7 +42,8 @@ const PostListFilter = ({ folded, options }) => {
           <PostListInput />
         </S.InputWrapper>
         <S.filterContainer className={folded ? "fold__filter-div" : ""}>
-          <S.searchSelected>
+          <S.searchSelected placeholder="검색어가 등록됩니다.">
+            <span />
             {tasks.map((item) => (
               <DeletableChip key={item.id} id={item.id} content={item.title} />
             ))}
