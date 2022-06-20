@@ -1,4 +1,5 @@
 import axios from "axios";
+import { createAlarm } from "./alarm-api";
 import {
   BASE_URL,
   GET_ONLINE_USERS,
@@ -59,7 +60,7 @@ export const uploadProfileImage = async (file, token) => {
  * @param {*} token 나
  * @returns Follow model
  */
-export const followUser = async (id, token) => {
+export const followUser = async (id, userId, token) => {
   if (!id) return {};
   const res = await axios.post(
     `${BASE_URL}${FOLLOW_USER}`,
@@ -72,6 +73,9 @@ export const followUser = async (id, token) => {
       },
     }
   );
+
+  // 팔로우 성공 후, 알림 생성
+  await createAlarm("FOLLOW", res.data.user, userId, null, token);
   return res;
 };
 
