@@ -2,16 +2,18 @@
  * 사용자의 프로필 사진과 알람 리스트를 관리하는 component
  */
 import { Avatar, Dot, Divider, Text } from "components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { profileImg } from "recoil/user";
+import { useLocation } from "react-router-dom";
 import { unSeenNotifications } from "recoil/notification";
 import { seenAlarm } from "api/alarm-api";
 import AlarmItem from "./components/AlarmItem";
 import * as S from "./Alarm.style";
 
 const Alarm = () => {
+  const location = useLocation();
   const profile = useRecoilValue(profileImg);
   const [showAlarm, setShowAlarm] = useState(false);
   const { state, contents: notification } =
@@ -24,6 +26,10 @@ const Alarm = () => {
       await seenAlarm(token);
     }
   };
+
+  useEffect(() => {
+    setShowAlarm(false);
+  }, [location]);
 
   return (
     <div style={{ display: "inline-block", position: "relative", zIndex: 998 }}>

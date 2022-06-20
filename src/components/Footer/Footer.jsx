@@ -39,7 +39,12 @@ const Footer = () => {
             <Button
               style={{ display: "inline", padding: "2px 6px", marginLeft: 5 }}
               textSize={12}
-              color={`${Common.colors.white}`}
+              width={95}
+              height={25}
+              color={`${Common.colors.footerText}`}
+              borderRadius={0}
+              backgroundColor="transparent"
+              border
             >
               트렌드 레터 구독
             </Button>
