@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
 import React, { useState, useEffect } from "react";
 import { Image, Text } from "components";
 import useLocalStorage from "hooks/useLocalStorage";
@@ -45,7 +47,6 @@ const PostPage = () => {
 
   const hasTempData = Object.keys(tempData).length;
   const checkTempData = () => {
-    // Todo: 왜 object가 아닐까?
     if (typeof checkTempData !== "function") {
       return false;
     }
@@ -87,12 +88,10 @@ const PostPage = () => {
   }, [post]);
 
   useEffect(() => {
-    console.log("render");
     const fetchData = async () => {
       try {
         if (type === "create") {
           if (hasTempData && checkTempData()) {
-            // eslint-disable-next-line no-alert
             if (window.confirm("저장된 데이터가 있습니다. 불러오시겠습니까?")) {
               const parseTemp = JSON.parse(tempData.title);
               setPost({
@@ -128,7 +127,6 @@ const PostPage = () => {
           if (type === "edit") {
             if (hasTempData && checkTempData()) {
               if (
-                // eslint-disable-next-line no-alert
                 window.confirm("저장된 데이터가 있습니다. 불러오시겠습니까?")
               ) {
                 const parseTemp = JSON.parse(tempData.title);
@@ -164,7 +162,6 @@ const PostPage = () => {
           }
         }
       } catch (exception) {
-        // eslint-disable-next-line no-console
         console.log("error", exception);
       }
     };
@@ -181,7 +178,6 @@ const PostPage = () => {
         const response = await getChannels();
         setChannels(response.data);
       } catch (exception) {
-        // eslint-disable-next-line no-console
         console.log("error", exception);
       }
     };
@@ -254,7 +250,6 @@ const PostPage = () => {
 
   const temporarySave = () => {
     setTempData(mergePlans());
-    // eslint-disable-next-line no-alert
     alert("임시저장 되었습니다.");
   };
 
@@ -297,7 +292,10 @@ const PostPage = () => {
 
   const deletePost = async () => {
     const res = await removePost(postId, token);
-    console.log(res);
+    if (res.status === 200) {
+      alert("삭제가 완료되었습니다.");
+      navigate("/travel-destination/all");
+    }
   };
 
   const onImageChange = async (e) => {

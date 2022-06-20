@@ -71,15 +71,14 @@ export const updatePost = async (post, token) => {
 
 // post 삭제하기
 export const removePost = async (postId, token) => {
-  const res = await axios.delete(
-    `${BASE_URL}${DELETE_POST}`,
-    { id: postId },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const res = await axios.delete(`${BASE_URL}${DELETE_POST}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: {
+      id: postId,
+    },
+  });
   return res;
 };
 
