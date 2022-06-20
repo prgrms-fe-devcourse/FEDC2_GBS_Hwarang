@@ -71,6 +71,7 @@ export const mainPost = selector({
   },
 });
 
+
 export const postImage = selectorFamily({
   key: "postImage",
   get:
@@ -81,7 +82,7 @@ export const postImage = selectorFamily({
         return post._id === postId;
       });
 
-      return data.length > 0 && data[0].image ? data[0].image : undefined;
+      return data.length > 0 ? data[0] : undefined;
     },
 });
 

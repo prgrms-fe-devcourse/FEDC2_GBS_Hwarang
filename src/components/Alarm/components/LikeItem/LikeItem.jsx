@@ -9,36 +9,29 @@ const propTypes = {
   info: PropTypes.instanceOf(Object).isRequired,
 };
 
-const CommentItem = ({ info }) => {
-  const image = useRecoilValue(postById(info.post));
-
+const LikeItem = ({ info }) => {
+  const post = useRecoilValue(postById(info.post));
   return (
-    <>
+    <div style={{ display: "flex", fontSize: 13, lineHeight: "22px" }}>
       <div>
         <Text strong size="$c1" style={{ display: "inline-block" }}>
-          {info.author}
+          👍{info.author?.fullName || "익명님"}
         </Text>
-        님이
-        <Text strong size="$c1" style={{ display: "inline-block" }}>
-          {`"`}
-          {info.comment && info.comment.comment}
-          {`"`}
-        </Text>
-        댓글을 달았습니다.
+        님이 {`"${post?.content?.title}"`} 일정을 좋아합니다.
       </div>
-      {image && (
+      {post?.image && (
         <Image
-          src={image}
+          src={post.image}
           width="50px"
           height="auto"
           mode="contain"
           style={{ marginLeft: 10 }}
         />
       )}
-    </>
+    </div>
   );
 };
 
-CommentItem.propTypes = propTypes;
+LikeItem.propTypes = propTypes;
 
-export default CommentItem;
+export default LikeItem;

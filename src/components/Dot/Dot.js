@@ -5,20 +5,22 @@ const propTypes = {
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   color: PropTypes.string,
   style: PropTypes.instanceOf(Object),
+  blank: PropTypes.bool,
 };
 const defaultProps = {
   size: 10,
   color: "#000000",
   style: null,
+  blank: false,
 };
 
-const Dot = ({ size, color, ...props }) => {
+const Dot = ({ size, color, blank, ...props }) => {
   const DotStyle = {
     width: `${typeof size === "string" ? `${size}` : `${size}px`}`,
     height: `${typeof size === "string" ? `${size}` : `${size}px`}`,
-    backgroundColor: color,
+    backgroundColor: blank ? "transparent" : color,
     borderRadius: "50%",
-    border: "none",
+    border: `1px solid ${color}`,
     position: "absolute",
   };
   return <div {...props} style={{ ...DotStyle, ...props.style }} />;
