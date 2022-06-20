@@ -13,11 +13,18 @@ export const SliderContainer = styled.div`
   width: 100%;
 `;
 export const Icon = styled.span`
+<<<<<<< HEAD
   /* position: absolute;
   top: 300px; */
   color: ${Common.colors.white};
   font-size: 20px;
   font-weight: bold;
+=======
+  position: absolute;
+  top: 300px;
+  font-size: 50px;
+  color: ${Common.colors.white};
+>>>>>>> 18ce7db (style:input 스타일 수정)
   cursor: pointer;
 `;
 
