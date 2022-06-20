@@ -7,6 +7,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { setLikePost, setUnLikePost } from "api/post-api";
 import { addLike, getLikeId, removeLike } from "recoil/post";
+import { userInfo } from "recoil/user";
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -36,6 +37,7 @@ const LikeButton = ({
   ...props
 }) => {
   const token = useRecoilValue(jwtToken);
+  const userData = useRecoilValue(userInfo);
   const likeId = useRecoilValue(getLikeId(id));
   const addLikeState = useSetRecoilState(addLike);
   const removeLikeState = useSetRecoilState(removeLike);
@@ -44,7 +46,7 @@ const LikeButton = ({
     try {
       const response = isLiked
         ? await setUnLikePost(likeId, token)
-        : await setLikePost(id, token);
+        : await setLikePost(id, userData._id, token);
       if (response && response.data) {
         const { data } = response;
         if (!isLiked) addLikeState({ postId: id, like: data });

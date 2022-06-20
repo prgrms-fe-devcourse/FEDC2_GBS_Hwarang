@@ -109,7 +109,7 @@ export const createPost = async (post, token) => {
  * @param {*} token 현재 로그인 user의 token
  * @returns Like model
  */
-export const setLikePost = async (postId, token) => {
+export const setLikePost = async (postId, userId, token) => {
   if (!token) throw Error("token 정보가 올바르지 않습니다.");
 
   const res = await axios.post(
@@ -125,6 +125,8 @@ export const setLikePost = async (postId, token) => {
   );
 
   // 좋아요가 완료되었다면, 알림 생성
+  await createAlarm("LIKE", res.data._id, userId, postId, token);
+
   return res;
 };
 
