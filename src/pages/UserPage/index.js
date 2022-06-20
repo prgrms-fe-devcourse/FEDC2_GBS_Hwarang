@@ -90,7 +90,7 @@ function UserPage() {
 
   const handleFollowClick = async (id) => {
     if (!id) return;
-    const res = await followUser(id, token);
+    const res = await followUser(id, myInfo._id, token);
     return res.data;
   };
 
