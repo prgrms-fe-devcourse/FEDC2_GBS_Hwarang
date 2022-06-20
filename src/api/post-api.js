@@ -9,6 +9,8 @@ import {
   UPDATE_POST,
   GET_POST_BY_ID,
   CREATE_POST,
+  CREATE_LIKE,
+  DELETE_LIKE,
 } from "./url";
 
 import Channel from "../mock/channel.json";
@@ -97,5 +99,50 @@ export const createPost = async (post, token) => {
       "content-type": "multipart/form-data",
     },
   });
+  return res;
+};
+
+/**
+ * 특정 포스트 좋아요
+ * @param {*} postId 포스트 id
+ * @param {*} token 현재 로그인 user의 token
+ * @returns Like model
+ */
+export const setLikePost = async (postId, token) => {
+  if (!token) throw Error("token 정보가 올바르지 않습니다.");
+
+  const res = await axios.post(
+    `${BASE_URL}${CREATE_LIKE}`,
+    {
+      postId,
+    },
+    {
+      headers: {
+        Authorization: `bearer ${token}`,
+      },
+    }
+  );
+
+  return res;
+};
+
+/**
+ * 특정 포스트 좋아요
+ * @param {*} likeId 좋아요 Id
+ * @param {*} token 현재 로그인 user의 token
+ * @returns Like model
+ */
+export const setUnLikePost = async (likeId, token) => {
+  if (!token) throw Error("token 정보가 올바르지 않습니다.");
+
+  const res = await axios.delete(`${BASE_URL}${DELETE_LIKE}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: {
+      id: likeId,
+    },
+  });
+
   return res;
 };

@@ -18,6 +18,7 @@ const propTypes = {
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  initialState: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -29,6 +30,7 @@ const defaultProps = {
   disabled: true,
   onClick: undefined,
   gap: 10,
+  initialState: false,
 };
 
 const ToggleButton = ({
@@ -41,8 +43,9 @@ const ToggleButton = ({
   strong,
   disabled,
   gap,
+  initialState,
 }) => {
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(initialState);
   const [currentChild, setCurrentChild] = useState(children);
 
   const WrapperStyle = {
@@ -55,14 +58,13 @@ const ToggleButton = ({
     fontWeight: strong ? "bold" : undefined,
   };
 
-  const handleClicked = () => {
-    onClick();
-    setClicked(!clicked);
+  const handleClicked = async () => {
+    const response = await onClick();
+    if (response) setClicked(!clicked);
   };
 
   useEffect(() => {
     if (!replaceChildren) return;
-
     if (!clicked) {
       setCurrentChild(children);
       return;
@@ -70,6 +72,10 @@ const ToggleButton = ({
 
     setCurrentChild(replaceChildren);
   }, [clicked]);
+
+  useEffect(() => {
+    setClicked(initialState);
+  }, [initialState]);
 
   return (
     <S.Wrapper onClick={handleClicked} disabled={disabled} style={WrapperStyle}>
