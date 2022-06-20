@@ -1,18 +1,16 @@
 import React from "react";
-import Alaram from "components/Alarm";
+import CommentInput from "components/CommentInput/CommentInput";
 import { RecoilRoot } from "recoil";
 
 export default {
-  title: "Component/Alarm",
-  component: Alaram,
+  title: "Component/CommentInput",
+  component: CommentInput,
 };
 
 export const Default = () => {
   return (
     <RecoilRoot>
-      <div style={{ marginLeft: "300px" }}>
-        <Alaram />
-      </div>
+      <CommentInput />
     </RecoilRoot>
   );
 };
