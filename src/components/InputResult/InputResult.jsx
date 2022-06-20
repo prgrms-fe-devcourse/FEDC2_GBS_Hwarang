@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import PostListFilterItem from "./PostListFilterItem";
 import * as S from "./InputResult.style";
@@ -41,36 +41,32 @@ const InputResult = ({
   };
 
   const isNoneResult = !keyword && type === "none";
+  const reusltData = useMemo(() => {
+    return data.filter((item) => {
+      return options.some(
+        (key) => item[key]?.toLowerCase().indexOf(keyword.toLowerCase()) >= 0
+      );
+    });
+  }, [keyword]);
 
   return (
     <div>
-      {!isNoneResult && (
+      {!isNoneResult && reusltData?.length > 0 && (
         <S.Container style={sizeStyle}>
-          {data
-            .filter((item) => {
-              return options.some((key) => {
-                if (key === "content" && !item[key].title) return;
-                return key !== "content"
-                  ? item[key].toLowerCase().indexOf(keyword.toLowerCase()) >= 0
-                  : item[key].title
-                      .toLowerCase()
-                      .indexOf(keyword.toLowerCase()) >= 0;
-              });
-            })
-            .map((item) => {
-              const { _id } = item;
-              return (
-                <div key={_id}>
-                  {inputType === "post" ? (
-                    <PostListItem post={item} />
-                  ) : inputType === "user" ? (
-                    <UserListItem user={item} />
-                  ) : (
-                    <PostListFilterItem filter={item} />
-                  )}
-                </div>
-              );
-            })}
+          {reusltData.map((item) => {
+            const { _id } = item;
+            return (
+              <div key={_id}>
+                {inputType === "post" ? (
+                  <PostListItem post={item} />
+                ) : inputType === "user" ? (
+                  <UserListItem user={item} />
+                ) : (
+                  <PostListFilterItem filter={item} />
+                )}
+              </div>
+            );
+          })}
         </S.Container>
       )}
     </div>
