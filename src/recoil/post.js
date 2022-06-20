@@ -123,7 +123,7 @@ export const postList = selector({
   },
 });
 
-export const postImage = selectorFamily({
+export const postById = selectorFamily({
   key: "postImage",
   get:
     (postId) =>
@@ -133,7 +133,7 @@ export const postImage = selectorFamily({
         return post._id === postId;
       });
 
-      return data.length > 0 && data[0].image ? data[0].image : undefined;
+      return data.length > 0 ? data[0] : undefined;
     },
 });
 
