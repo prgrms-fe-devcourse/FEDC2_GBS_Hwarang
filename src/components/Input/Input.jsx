@@ -19,6 +19,7 @@ const propTypes = {
   useIcon: PropTypes.bool,
   isFileUploadInput: PropTypes.bool,
   onChange: PropTypes.func,
+  initialValue: PropTypes.string,
   onSearch: PropTypes.func,
 };
 
@@ -37,6 +38,7 @@ const defaultProps = {
   useIcon: true,
   isFileUploadInput: false,
   onChange: null,
+  initialValue: "",
   onSearch: null,
 };
 
@@ -58,6 +60,7 @@ const Input = React.forwardRef(
       isFileUploadInput,
       onChange,
       onSearch,
+      initialValue,
       ...props
     },
     ref
@@ -72,7 +75,7 @@ const Input = React.forwardRef(
     const inputStyle = {
       border: `1px solid ${borderColor}`,
     };
-    const [keyword, setKeyword] = useState("");
+    const [keyword, setKeyword] = useState(initialValue);
 
     const handleOnChange = (e) => {
       setKeyword(e.target.value);
@@ -94,6 +97,10 @@ const Input = React.forwardRef(
         document.removeEventListener("keydown", handleKeyDown);
       };
     }, [handleOnSearch]);
+
+    useEffect(() => {
+      setKeyword(initialValue);
+    }, [initialValue]);
 
     return (
       <S.Wrapper style={wrapperStyle} block={block}>

@@ -36,7 +36,10 @@ const MainInput = () => {
         keyword={keyword}
         onChange={handleChange}
         width="100%"
+        height="75px"
+        fontSize={15}
         onSearch={handleOnSearch}
+        initialValue={keyword}
       />
       <InputResult
         inputType="post"

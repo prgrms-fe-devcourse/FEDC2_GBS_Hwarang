@@ -2,11 +2,12 @@
  * 사용자의 프로필 사진과 알람 리스트를 관리하는 component
  */
 import { Avatar, Dot, Divider, Text } from "components";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
 import { jwtToken } from "recoil/authentication";
 import { profileImg } from "recoil/user";
 import { useLocation } from "react-router-dom";
+import { useClickAway } from "hooks";
 import { unSeenNotifications } from "recoil/notification";
 import { seenAlarm } from "api/alarm-api";
 import AlarmItem from "./components/AlarmItem";
@@ -20,6 +21,10 @@ const Alarm = () => {
     useRecoilValueLoadable(unSeenNotifications);
   const token = useRecoilValue(jwtToken);
 
+  const ref = useClickAway(() => {
+    setShowAlarm(false);
+  });
+
   const handlerAlarmClick = async () => {
     setShowAlarm((prev) => !prev);
     if (!showAlarm) {
@@ -27,12 +32,20 @@ const Alarm = () => {
     }
   };
 
+  const resultNotification = useMemo(() => {
+    if (state !== "hasValue") return [];
+    return notification.filter((noti) => !noti.seen);
+  }, [notification, state]);
+
   useEffect(() => {
     setShowAlarm(false);
   }, [location]);
 
   return (
-    <div style={{ display: "inline-block", position: "relative", zIndex: 998 }}>
+    <div
+      ref={ref}
+      style={{ display: "inline-block", position: "relative", zIndex: 998 }}
+    >
       <S.ProfileWrapper onClick={handlerAlarmClick}>
         <Avatar src={profile} size={45} />
         {Array.isArray(notification) &&
@@ -48,11 +61,15 @@ const Alarm = () => {
           </Text>
           <ul style={{ listStyle: "none", padding: 0, marginTop: 20 }}>
             <Divider size={15} />
-            {Array.isArray(notification) &&
-              state === "hasValue" &&
-              notification
-                .filter((noti) => !noti.seen)
-                .map((item) => <AlarmItem key={item._id} item={item} />)}
+            {state === "hasValue" &&
+              (resultNotification ? (
+                Array.isArray(resultNotification) &&
+                resultNotification.map((item) => (
+                  <AlarmItem key={item._id} item={item} />
+                ))
+              ) : (
+                <div>hello world</div>
+              ))}
           </ul>
         </S.AlarmWrapper>
       )}

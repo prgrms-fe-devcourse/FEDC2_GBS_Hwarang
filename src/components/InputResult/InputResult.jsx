@@ -58,22 +58,6 @@ const InputResult = ({
     });
   }, [keyword, data]);
 
-  // useEffect(() => {
-  //   function indexChangeEvent(e) {
-  //     const { key } = e;
-  //     if (key === "ArrowDown") {
-  //       setFocusedIndex((pre) => (pre === reusltData.length - 1 ? 0 : pre + 1));
-  //     } else if (key === "ArrowUp") {
-  //       setFocusedIndex((pre) => (pre === 0 ? reusltData.length - 1 : pre - 1));
-  //     }
-  //   }
-  //   document.addEventListener("keydown", indexChangeEvent);
-
-  //   return () => {
-  //     document.removeEventListener("keydown", indexChangeEvent);
-  //   };
-  // }, [reusltData]);
-
   return (
     <S.ResultWrap>
       {!isNoneResult && reusltData?.length > 0 && (

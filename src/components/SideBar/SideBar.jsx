@@ -89,7 +89,7 @@ const SideBar = ({ margin, padding, show }) => {
         name="user"
         onChange={handleChange}
         width="100%"
-        keyword={userKeyword}
+        initialValue={userKeyword}
       />
       <S.HeaderWrapper>
         <Text strong size="$b3" style={{ display: "inline-block" }}>
