@@ -58,9 +58,12 @@ const InputResult = ({
   const resultData = useMemo(() => {
     if (keyword === "" && type === "all") return data;
     return data.filter((item) => {
-      return options.some(
-        (key) => item[key]?.toLowerCase().indexOf(keyword.toLowerCase()) >= 0
-      );
+      return options.some((key) => {
+        if (key === "content" && !item[key].title) return;
+        return key !== "content"
+          ? item[key]?.toLowerCase().indexOf(keyword.toLowerCase()) >= 0
+          : item[key].title.toLowerCase().indexOf(keyword.toLowerCase()) >= 0;
+      });
     });
   }, [keyword, data]);
 
