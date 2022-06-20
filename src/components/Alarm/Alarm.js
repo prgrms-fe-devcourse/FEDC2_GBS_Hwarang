@@ -1,7 +1,7 @@
 /**
  * 사용자의 프로필 사진과 알람 리스트를 관리하는 component
  */
-import { Avatar, Dot, Divider, Text } from "components";
+import { Avatar, Dot, Divider, Text, Icon } from "components";
 import React, { useEffect, useMemo, useState } from "react";
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
 import { jwtToken } from "recoil/authentication";
@@ -33,7 +33,7 @@ const Alarm = () => {
   };
 
   const resultNotification = useMemo(() => {
-    if (state !== "hasValue") return [];
+    if (state !== "hasValue") return undefined;
     return notification.filter((noti) => !noti.seen);
   }, [notification, state]);
 
@@ -61,15 +61,18 @@ const Alarm = () => {
           </Text>
           <ul style={{ listStyle: "none", padding: 0, marginTop: 20 }}>
             <Divider size={15} />
-            {state === "hasValue" &&
-              (resultNotification ? (
-                Array.isArray(resultNotification) &&
-                resultNotification.map((item) => (
-                  <AlarmItem key={item._id} item={item} />
-                ))
-              ) : (
-                <div>hello world</div>
-              ))}
+            {resultNotification && resultNotification.length > 0 ? (
+              resultNotification.map((item) => (
+                <AlarmItem key={item._id} item={item} />
+              ))
+            ) : (
+              <S.NoneAlarm>
+                <div style={{ display: "inline-block" }}>
+                  <Icon name="notifications_off" fontSize={35} />
+                </div>
+                <Text size="$n1">읽지 않은 알림이 없습니다.</Text>
+              </S.NoneAlarm>
+            )}
           </ul>
         </S.AlarmWrapper>
       )}

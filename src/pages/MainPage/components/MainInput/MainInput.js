@@ -33,7 +33,6 @@ const MainInput = () => {
     <S.MainInputContainer ref={ref}>
       <Input
         name="keyword"
-        keyword={keyword}
         onChange={handleChange}
         width="100%"
         height="75px"
