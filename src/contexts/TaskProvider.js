@@ -8,6 +8,11 @@ export const useTasks = () => useContext(TaskContext);
 const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [channel, setChannel] = useState("");
+
+  // const addMainQuery = (_id, title) => {
+
+  // }
+
   const addTask = (_id, title) => {
     const isInclude = tasks.some((task) => task.id === _id);
     if (isInclude) {
@@ -31,6 +36,10 @@ const TaskProvider = ({ children }) => {
     setChannel(id);
   };
 
+  const removeAll = () => {
+    setTasks([]);
+  };
+
   return (
     <TaskContext.Provider
       value={{
@@ -39,6 +48,7 @@ const TaskProvider = ({ children }) => {
         removeTask,
         channel,
         selectChannel,
+        removeAll,
       }}
     >
       {children}

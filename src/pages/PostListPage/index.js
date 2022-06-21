@@ -10,11 +10,15 @@ import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
   const initialAllPost = useRecoilValue(postListPosts);
-  const { tasks, channel } = useTasks();
+  const { tasks, channel, removeAll } = useTasks();
   const { Options } = useParams();
   const [optionPosts, setOptionPosts] = useState([]);
   const [renderData, setRenderData] = useState([]);
   const [folded, setFolded] = useState(false);
+
+  useEffect(() => {
+    return () => removeAll();
+  }, []);
 
   // 1) 필터링
   useEffect(() => {

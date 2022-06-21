@@ -49,6 +49,7 @@ const ImageSlider = ({ children, width, height }) => {
       setCurrentSlide(currentSlide + 1);
     }
   };
+
   const prevSlide = () => {
     if (currentSlide === 0) {
       setCurrentSlide(TOTAL_SLIDES);
@@ -68,7 +69,10 @@ const ImageSlider = ({ children, width, height }) => {
 
   return (
     <IS.Container style={{ ...sliderStyle }}>
-      <IS.SliderContainer className="hi" ref={slideRef}>
+      <IS.SliderContainer
+        ref={slideRef}
+        style={{ transform: `translateX(${-100 / TOTAL_SLIDES})` }}
+      >
         {children.map((item) => (
           <Slide key={item.id} src={item.src} />
         ))}
