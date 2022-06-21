@@ -2,6 +2,7 @@
  * Post 관련 repository
  */
 
+// eslint-disable-next-line no-unused-vars
 import { getChannels, getPosts } from "api/post-api";
 
 /**

@@ -7,6 +7,7 @@ const propTypes = {
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   fontSize: PropTypes.number,
   name: PropTypes.string,
+  style: PropTypes.instanceOf(Object),
 };
 
 const defaultProps = {
@@ -14,6 +15,7 @@ const defaultProps = {
   height: "100%",
   fontSize: 20,
   name: "search",
+  style: null,
 };
 
 const Icon = ({ width, height, fontSize, name, ...props }) => {
@@ -23,7 +25,11 @@ const Icon = ({ width, height, fontSize, name, ...props }) => {
     fontSize,
   };
   return (
-    <S.Icon className="material-symbols-outlined" style={sizeStyle} {...props}>
+    <S.Icon
+      className="material-symbols-outlined"
+      {...props}
+      style={{ ...sizeStyle, ...props.style }}
+    >
       {name}
     </S.Icon>
   );

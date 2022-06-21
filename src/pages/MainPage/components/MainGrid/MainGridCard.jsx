@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Flux, Image, Text, ToggleButton } from "components";
 import commentSvg from "assets/comment.svg";
 import LikeButton from "components/LikeButton";
@@ -13,10 +14,9 @@ const propTypes = {
   margin: PropTypes.number,
   author: PropTypes.string,
   createdAt: PropTypes.string,
-  likesNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   commentsNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  isLiked: PropTypes.bool,
   id: PropTypes.string.isRequired,
+  likes: PropTypes.instanceOf(Array),
 };
 
 const defaultProps = {
@@ -26,9 +26,8 @@ const defaultProps = {
   margin: 10,
   author: "user",
   createdAt: "",
-  likesNum: 0,
   commentsNum: 0,
-  isLiked: false,
+  likes: [],
 };
 
 const MainGridCard = ({
@@ -39,21 +38,25 @@ const MainGridCard = ({
   margin,
   author,
   createdAt,
-  likesNum,
   commentsNum,
-  isLiked,
+  likes,
   id,
 }) => {
   const { FluxRow, FluxCol } = Flux;
+  const navigate = useNavigate();
   const wrapperStyle = {
     gap,
     margin,
   };
 
+  const handleOnClick = () => {
+    navigate(`/post/detail/${id}`);
+  };
+
   return (
     <>
       <S.CardWrapper style={wrapperStyle}>
-        <S.ImageDiv>
+        <S.ImageDiv onClick={handleOnClick}>
           <Image src={src} width="100%" height={180} />
         </S.ImageDiv>
         <Text size={textSize} strong>
@@ -67,7 +70,7 @@ const MainGridCard = ({
           </Text>
         </FluxCol>
         <FluxCol span={1.5}>
-          <LikeButton id={id} isLiked={isLiked} likesNum={likesNum} />
+          <LikeButton id={id} likes={likes} />
         </FluxCol>
         <FluxCol span={1.5}>
           <ToggleButton textSize="$n1" text={commentsNum}>

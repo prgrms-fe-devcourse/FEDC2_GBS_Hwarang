@@ -38,8 +38,13 @@ const Footer = () => {
             />
             <Button
               style={{ display: "inline", padding: "2px 6px", marginLeft: 5 }}
-              textSize={12}
-              color={`${Common.colors.white}`}
+              textSize={11}
+              width={100}
+              height={25}
+              color={`${Common.colors.footerText}`}
+              borderRadius={0}
+              backgroundColor="transparent"
+              border
             >
               트렌드 레터 구독
             </Button>
@@ -69,7 +74,7 @@ const Footer = () => {
             Notice
           </Text>
           <Text size={12} color={`${Common.colors.footerText}`}>
-            [당첨자 발표]가봤슈 2주년 감사 2벤트
+            [당첨자 발표] 가봤슈 2주년 감사 2벤트
           </Text>
         </S.Item>
         <S.Item>
@@ -77,7 +82,7 @@ const Footer = () => {
             Contact Us
           </Text>
           <Text size={12} color={`${Common.colors.footerText}`}>
-            개발 화라리와 만날 생각을 하고 있으시다면우리는 바쁜 몸이라는걸
+            개발 화라리와 만날 생각을 하고 있으시다면 우리는 바쁜 몸이라는걸
             기억해 주세요!
           </Text>
         </S.Item>
@@ -100,15 +105,15 @@ const Footer = () => {
         </S.Item>
       </S.ContentContainer>
       <S.BottomContainer>
-        <S.InformaionContainer>
+        <S.InformationContainer>
           <Text size={12} color={`${Common.colors.footerText}`}>
             사업자 정보 | 개인정보처리방침 | 이용약관 | 저작권 정책 |
             청소년보호정책
           </Text>
           <Text size={10} color={`${Common.colors.footerText}`}>
-            © UNIVTOMORROW. ALL RIGHTS RESERVED.
+            © 개발화라리. ALL RIGHTS RESERVED.
           </Text>
-        </S.InformaionContainer>
+        </S.InformationContainer>
         <S.IconContainer>
           <Icon
             name="bolt"
@@ -159,7 +164,7 @@ const Footer = () => {
       </S.BottomContainer>
       <S.CopyrightWrapper>
         <Text size={12} color={`${Common.colors.white}`}>
-          Copyright © 2022 GBS All rights reserved.
+          Copyright © 2022 GBS(개발화라리) All rights reserved.
         </Text>
       </S.CopyrightWrapper>
     </S.Container>

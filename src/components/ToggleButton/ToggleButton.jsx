@@ -58,7 +58,8 @@ const ToggleButton = ({
     fontWeight: strong ? "bold" : undefined,
   };
 
-  const handleClicked = async () => {
+  const handleClicked = async (e) => {
+    e.stopPropagation();
     const response = await onClick();
     if (response) setClicked(!clicked);
   };
@@ -82,7 +83,9 @@ const ToggleButton = ({
       <div>{currentChild}</div>
       <S.TextWrapper style={textStyle}>
         {typeof text === "string" || typeof text === "number" ? (
-          <Text size={textSize}>{text}</Text>
+          <Text size={textSize} color={textColor}>
+            {text}
+          </Text>
         ) : (
           text
         )}

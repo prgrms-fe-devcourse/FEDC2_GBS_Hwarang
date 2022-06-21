@@ -1,74 +1,74 @@
-import { PostList, PostListFilter } from "components";
+import { PostList, PostListFilter, Text, Spinner } from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useTasks } from "contexts/TaskProvider";
-import { allData, postList } from "recoil/post";
+import { postListPosts } from "recoil/post";
 import { useParams } from "react-router-dom";
+import { useSorting } from "hooks";
 import S from "./PostListPage.style";
 import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
-  const data = useRecoilValue(allData);
-  const postListData = useRecoilValue(postList);
-
-  /* 1. 검색 options */
+  const initialAllPost = useRecoilValue(postListPosts);
   const { tasks, channel } = useTasks();
-
-  /* 2. Params 이용한 검색 Sorting options */
   const { Options } = useParams();
-  const [optionData, setOptionData] = useState([]);
-
-  /* 3. 최종적으로 보여지는 필터링 된 데이터 */
+  const [optionPosts, setOptionPosts] = useState(undefined);
   const [renderData, setRenderData] = useState([]);
-
-  /* Header Fold */
   const [folded, setFolded] = useState(false);
+  const [noResult, setNoResult] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    /* Refactoring 예정  ->  Channel API 연동 및 함수 분리 */
-    if (channel.length !== 0 && channel !== "none") {
-      const channelFilterResult = optionData.filter(
-        (item) => item.channel.name === channel
-      );
-
-      if (tasks.length !== 0) {
-        const tasksTitle = tasks.map((task) => task.title);
-        let result = [];
-
-        tasksTitle.forEach((title) => {
-          const filterData = channelFilterResult.filter(({ content }) => {
-            if (!content || !content.title) return false;
-            return content.title.includes(title);
-          });
-
-          result = [...result, ...filterData];
-        });
-
-        setRenderData(result);
-        return;
-      }
-      setRenderData(channelFilterResult);
+    if (initialAllPost.length === 0) {
+      setLoading(true);
       return;
     }
-    if (tasks.length !== 0 && optionData) {
-      const tasksTitle = tasks.map((task) => task.title);
-      let result = [];
 
+    setLoading(false);
+    let result = [];
+    if (channel)
+      result = initialAllPost.filter((post) => post.channel._id === channel);
+    else {
+      result = [...initialAllPost];
+    }
+
+    let filteredResult = [];
+
+    if (tasks.length !== 0) {
+      const tasksTitle = tasks.map((task) => task.title);
       tasksTitle.forEach((title) => {
-        const filterData = optionData.filter(({ content }) => {
+        const filterData = result.filter(({ content }) => {
           if (!content || !content.title) return false;
           return content.title.includes(title);
         });
 
-        result = [...result, ...filterData];
+        filteredResult = [...filteredResult, ...filterData];
       });
 
-      setRenderData(result);
+      setOptionPosts(filteredResult);
       return;
     }
 
-    setRenderData(optionData);
-  }, [tasks, optionData, channel]);
+    setOptionPosts(result);
+  }, [tasks, initialAllPost, channel]);
+
+  useEffect(() => {
+    if (!optionPosts) return;
+    if (optionPosts.length === 0) {
+      setNoResult(true);
+      return;
+    }
+
+    setNoResult(false);
+
+    if (!Options || Options === "all") {
+      setRenderData(optionPosts);
+      return;
+    }
+
+    const sortedRenderData = useSorting(optionPosts, Options);
+    setRenderData(sortedRenderData);
+  }, [optionPosts, Options]);
 
   /* Header fold */
   const handleHeader = () => {
@@ -88,19 +88,6 @@ const PostListPage = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!Options) {
-      setOptionData(data);
-      return;
-    }
-
-    setOptionData(postListData[Options]);
-  }, [Options, postListData]);
-
-  useEffect(() => {
-    console.log(renderData);
-  }, [renderData]);
-
   return (
     <div>
       <S.PageWrapper>
@@ -110,7 +97,26 @@ const PostListPage = () => {
           </S.Header>
         </S.HeaderWrapper>
         <S.Section>
-          <PostList data={renderData} listTitle="검색 결과" />
+          {loading ? (
+            <S.LoadingWrapper>
+              <Spinner />
+            </S.LoadingWrapper>
+          ) : (
+            <div />
+          )}
+          {noResult ? (
+            <S.NoDataWrapper>
+              <Text
+                strong
+                style={{ width: "fit-content", margin: "0 auto" }}
+                size="$c2"
+              >
+                😔 검색된 여행지가 없습니다.
+              </Text>
+            </S.NoDataWrapper>
+          ) : (
+            <PostList data={renderData} listTitle="검색 결과" />
+          )}
         </S.Section>
         <ScrollTopButton />
       </S.PageWrapper>

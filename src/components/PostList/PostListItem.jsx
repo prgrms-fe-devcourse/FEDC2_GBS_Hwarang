@@ -1,19 +1,19 @@
 import { Flux, Image, Text, ToggleButton } from "components";
-import likesSvg from "assets/likes.svg";
-import likesClickedSvg from "assets/likes_clicked.svg";
 import commentSvg from "assets/comment.svg";
+import LikeButton from "components/LikeButton";
 import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 import S from "./PostListItem.style";
 
 const propTypes = {
+  id: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   title: PropTypes.string,
   textSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   author: PropTypes.string,
   createdAt: PropTypes.string,
-  likesNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   commentsNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  likes: PropTypes.instanceOf(Array),
 };
 
 const defaultProps = {
@@ -21,12 +21,15 @@ const defaultProps = {
   textSize: "$b3",
   author: "user",
   createdAt: "",
-  likesNum: 0,
   commentsNum: 0,
+  likes: [],
 };
 
 const PostListItem = forwardRef(
-  ({ src, title, textSize, author, createdAt, likesNum, commentsNum }, ref) => {
+  (
+    { id, likes, src, title, textSize, author, createdAt, commentsNum },
+    ref
+  ) => {
     const { FluxRow, FluxCol } = Flux;
 
     return (
@@ -50,7 +53,7 @@ const PostListItem = forwardRef(
           </FluxCol>
         </FluxRow>
         <S.numWrapper>
-          <ToggleButton
+          {/* <ToggleButton
             disabled={false}
             onClick={() => {
               console.log("Clicked!");
@@ -67,7 +70,8 @@ const PostListItem = forwardRef(
             text={likesNum}
           >
             <Image src={likesSvg} width={20} height={20} mode="contain" />
-          </ToggleButton>
+          </ToggleButton> */}
+          <LikeButton textSize="$c1" id={id} likes={likes} />
           <ToggleButton textSize="$c1" text={commentsNum}>
             <Image src={commentSvg} width={20} height={20} />
           </ToggleButton>

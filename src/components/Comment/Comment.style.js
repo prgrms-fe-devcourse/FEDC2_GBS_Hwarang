@@ -3,4 +3,12 @@ import styled from "@emotion/styled";
 const CommentsWrap = styled.div`
   width: 100%;
 `;
-export default CommentsWrap;
+
+const CommentsNum = styled.div`
+  padding-bottom: 30px;
+`;
+
+export default {
+  CommentsWrap,
+  CommentsNum,
+};

@@ -1,32 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import Text from "components/Text";
+import Image from "components/Image";
+import { useRecoilValue } from "recoil";
+import { postById } from "recoil/post";
 
-const proptype = {
-  comment: PropTypes.instanceOf(Object),
+const propTypes = {
+  info: PropTypes.instanceOf(Object).isRequired,
 };
 
-const defaultProp = {
-  comment: {},
-};
-
-function CommentItem({ comment }) {
-  const navigate = useNavigate();
-  const { author, post } = comment;
-
-  const handleClick = () => {
-    navigate(`/post/detail/${post?.id}`);
-  };
+const CommentItem = ({ info }) => {
+  const post = useRecoilValue(postById(info.post));
 
   return (
-    // eslint-disable-next-line
-    <div onClick={handleClick}>
-      {author?.fullName}님이 포스트에 댓글을 작성하였습니다
+    <div style={{ display: "flex", fontSize: 13, lineHeight: "22px" }}>
+      <div>
+        <Text strong size="$c1" style={{ display: "inline-block" }}>
+          {info.author?.fullName || "익명"}
+        </Text>
+        님이
+        <Text strong size="$c1" style={{ display: "inline-block" }}>
+          {`"`}
+          {info.comment && info.comment.comment}
+          {`"`}
+        </Text>
+        댓글을 달았습니다.
+      </div>
+      {post?.image && (
+        <Image
+          src={post.image}
+          width="50px"
+          height="auto"
+          mode="contain"
+          style={{ marginLeft: 10 }}
+        />
+      )}
     </div>
   );
-}
+};
 
-CommentItem.propTypes = proptype;
-CommentItem.defaultProps = defaultProp;
+CommentItem.propTypes = propTypes;
 
 export default CommentItem;

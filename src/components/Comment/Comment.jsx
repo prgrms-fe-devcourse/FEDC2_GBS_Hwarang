@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import CommentInput from "components/CommentInput/CommentInput";
 import CommentItem from "components/CommentItem/CommentItem";
 import { useRecoilValue } from "recoil";
+import { userInfo } from "recoil/user";
 import { jwtToken } from "recoil/authentication";
 import { addComment, deleteComment } from "api/comment-api";
-import CommentsWrap from "./Comment.style";
+import { Text } from "components";
+import S from "./Comment.style";
 
 const propTypes = {
   postId: PropTypes.string.isRequired,
@@ -17,12 +19,12 @@ const defaultProps = {
 };
 
 const Comment = ({ postId, comments, maxHeight }) => {
+  const userData = useRecoilValue(userInfo);
   const token = useRecoilValue(jwtToken);
 
   const handleAddComment = async (comment) => {
     try {
-      const response = await addComment(comment, postId, token);
-      handleOnCancel();
+      const response = await addComment(comment, postId, userData._id, token);
       console.log(response);
     } catch (exception) {
       console.error(exception);
@@ -40,7 +42,14 @@ const Comment = ({ postId, comments, maxHeight }) => {
 
   return (
     <div>
-      <CommentsWrap>
+      <S.CommentsWrap>
+        {comments && (
+          <S.CommentsNum>
+            <Text strong size="$b1">
+              댓글 {comments.length}개
+            </Text>
+          </S.CommentsNum>
+        )}
         {comments &&
           comments.map((comment) => (
             <CommentItem
@@ -49,7 +58,7 @@ const Comment = ({ postId, comments, maxHeight }) => {
               onDelComment={handleRemoveComment}
             />
           ))}
-      </CommentsWrap>
+      </S.CommentsWrap>
       <CommentInput maxHeight={maxHeight} onAddComment={handleAddComment} />
     </div>
   );

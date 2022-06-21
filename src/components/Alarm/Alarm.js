@@ -2,21 +2,28 @@
  * 사용자의 프로필 사진과 알람 리스트를 관리하는 component
  */
 import { Avatar, Dot, Divider, Text } from "components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
+import { unSeenNotifications } from "recoil/notification";
 import { jwtToken } from "recoil/authentication";
 import { profileImg } from "recoil/user";
-import { unSeenNotifications } from "recoil/notification";
+import { useLocation } from "react-router-dom";
+import { useClickAway } from "hooks";
 import { seenAlarm } from "api/alarm-api";
 import AlarmItem from "./components/AlarmItem";
 import * as S from "./Alarm.style";
 
 const Alarm = () => {
+  const location = useLocation();
   const profile = useRecoilValue(profileImg);
   const [showAlarm, setShowAlarm] = useState(false);
+  const token = useRecoilValue(jwtToken);
   const { state, contents: notification } =
     useRecoilValueLoadable(unSeenNotifications);
-  const token = useRecoilValue(jwtToken);
+
+  const ref = useClickAway(() => {
+    setShowAlarm(false);
+  });
 
   const handlerAlarmClick = async () => {
     setShowAlarm((prev) => !prev);
@@ -25,8 +32,15 @@ const Alarm = () => {
     }
   };
 
+  useEffect(() => {
+    setShowAlarm(false);
+  }, [location]);
+
   return (
-    <div style={{ display: "inline-block", position: "relative", zIndex: 998 }}>
+    <div
+      ref={ref}
+      style={{ display: "inline-block", position: "relative", zIndex: 998 }}
+    >
       <S.ProfileWrapper onClick={handlerAlarmClick}>
         <Avatar src={profile} size={45} />
         {Array.isArray(notification) &&
@@ -35,18 +49,14 @@ const Alarm = () => {
             <Dot size={15} color="#D43737" style={{ top: 0, right: 0 }} />
           )}
       </S.ProfileWrapper>
-      {showAlarm && (
+      {showAlarm && state === "hasValue" && (
         <S.AlarmWrapper>
           <Text size="$c1" strong>
             알림 왔슈📌
           </Text>
           <ul style={{ listStyle: "none", padding: 0, marginTop: 20 }}>
-            <Divider size={15} />
-            {Array.isArray(notification) &&
-              state === "hasValue" &&
-              notification
-                .filter((noti) => !noti.seen)
-                .map((item) => <AlarmItem key={item._id} item={item} />)}
+            <Divider size={5} />
+            <AlarmItem notification={notification} />
           </ul>
         </S.AlarmWrapper>
       )}

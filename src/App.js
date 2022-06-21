@@ -16,17 +16,17 @@ import {
 } from "recoil/authentication";
 import { userInfo } from "recoil/user";
 import { getAllPosts } from "api/post-api";
-import { allPost, setLikePost } from "recoil/post";
+import { allPost } from "recoil/post";
 import TaskProvider from "contexts/TaskProvider";
 import { Footer } from "components";
 // eslint-disable-next-line import/named
-import { MainPage, PostListPage, UserPage } from "./pages";
+
+import { MainPage, PostListPage, UserPage, PostPage } from "./pages";
 import Auth from "./hoc";
 import "./utils/date";
 
 function App() {
   const setPosts = useSetRecoilState(allPost);
-  const setLikePosts = useSetRecoilState(setLikePost);
 
   // component
   const MainPageComponent = Auth(MainPage);
@@ -58,7 +58,6 @@ function App() {
           if (isTokenValid) {
             setIsLogined(true);
             setUserInfo(userData);
-            setLikePosts(userData._id);
           }
         }
       } catch (exception) {
@@ -81,6 +80,9 @@ function App() {
               element={<PostListPageComponent />}
             />
             <Route path="userpage/:ID" element={<UserPageComponent />} />
+            <Route path="/post/create" element={<PostPage />} />
+            <Route path="/post/edit/:ID" element={<PostPage />} />
+            <Route path="/post/detail/:ID" element={<PostPage />} />
             <Route path="*" element={<div>Not Found!</div>} />
           </Routes>
           <Footer />

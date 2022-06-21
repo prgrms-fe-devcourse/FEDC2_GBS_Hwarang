@@ -35,12 +35,19 @@ const CommentInput = ({ maxHeight, onAddComment }) => {
   };
 
   const handleOnCancel = () => {
+    const element = ref.current;
+    if (element) {
+      element.style.height = "25px";
+    }
     setComment("");
     setInputFocus(false);
   };
 
   const handleOnConfirm = () => {
-    if (onAddComment) onAddComment(comment);
+    if (onAddComment) {
+      onAddComment(comment);
+      handleOnCancel();
+    }
   };
 
   return (
@@ -50,7 +57,7 @@ const CommentInput = ({ maxHeight, onAddComment }) => {
         size={50}
         style={{ width: 50, height: 50 }}
       />
-      <div style={{ width: "100%", marginLeft: 10 }}>
+      <div style={{ flexGrow: 1, marginLeft: 10 }}>
         <S.CommentInputTextArea
           ref={ref}
           onFocus={() => setInputFocus(true)}
@@ -75,7 +82,7 @@ const CommentInput = ({ maxHeight, onAddComment }) => {
               width={70}
               height={43}
               textSize="$n1"
-              margin={10}
+              margin="10px"
               onClick={handleOnConfirm}
             >
               등록

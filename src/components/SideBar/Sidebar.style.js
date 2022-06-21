@@ -24,5 +24,5 @@ export const WarnWrapper = styled.div`
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
-  bottom: 82%;
+  bottom: 86%;
 `;

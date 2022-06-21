@@ -17,7 +17,7 @@ const propTypes = {
 const defaultProps = {
   lazy: false,
   threshold: 0.5,
-  placeholder: "https://via.placeholder.com/300",
+  placeholder: "https://mygbs.s3.ap-northeast-2.amazonaws.com/whiteBox.png",
   width: 300,
   height: 300,
   alt: "Image",

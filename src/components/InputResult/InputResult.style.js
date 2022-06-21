@@ -9,6 +9,7 @@ export const Container = styled.ul`
   padding: 0;
   overflow-y: auto;
   overscroll-behavior-y: contain;
+  overflow-x: hidden;
   background-color: white;
 
   & li {

@@ -72,7 +72,12 @@ function UserPage() {
   useEffect(() => {
     const getMyPost = async (id) => {
       const res = await getPostByUserId(id);
-      setMyPost(res.data);
+      const newPosts = res.data.map((post) => ({
+        ...post,
+        content: JSON.parse(post.title),
+        title: null,
+      }));
+      setMyPost(newPosts);
     };
     if (userData) {
       // eslint-disable-next-line
@@ -90,7 +95,7 @@ function UserPage() {
 
   const handleFollowClick = async (id) => {
     if (!id) return;
-    const res = await followUser(id, token);
+    const res = await followUser(id, myInfo._id, token);
     return res.data;
   };
 
@@ -231,7 +236,7 @@ function UserPage() {
         </S.FollowBlock>
       </S.ImageWrapper>
       <S.Main>
-        {myPost?.length ? (
+        {myPost?.length > 0 ? (
           <PostList
             data={myPost}
             listTitle={`${userData?.fullName}의 여행 리스트`}

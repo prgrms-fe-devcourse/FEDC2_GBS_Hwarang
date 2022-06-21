@@ -8,18 +8,28 @@ import { MainGrid, MainInput, ImageData, MainSkeleton } from "./components";
 
 const MainPage = () => {
   const { popularPost, latestPost } = useRecoilValue(mainPost);
+  const [popular, setPopular] = useState(undefined);
+  const [latest, setLatest] = useState(undefined);
   const [loadingPopular, setLoadingPopular] = useState(true);
   const [loadingLatest, setLoadingLatest] = useState(true);
 
   useEffect(() => {
+    if (popularPost.content === null) return;
+
     if (popularPost.length !== 0) {
+      setPopular(popularPost);
       setLoadingPopular(false);
     }
+  }, [popularPost]);
+
+  useEffect(() => {
+    if (latestPost.content === null) return;
 
     if (latestPost.length !== 0) {
+      setLatest(latestPost);
       setLoadingLatest(false);
     }
-  }, [popularPost, latestPost]);
+  }, [latestPost]);
 
   return (
     <div>
@@ -30,8 +40,21 @@ const MainPage = () => {
             {ImageData}
           </ImageSlider>
         </S.HeaderCarousel>
-        <S.HeaderText>여기 가봤슈?</S.HeaderText>
+        <S.HeaderText>
+          <Image
+            src="https://mygbs.s3.ap-northeast-2.amazonaws.com/main_text.png"
+            width="350px"
+            height="auto"
+          />
+        </S.HeaderText>
         <MainInput />
+        <S.HeaderDescription>
+          <Image
+            src="https://mygbs.s3.ap-northeast-2.amazonaws.com/main_ment.png"
+            width={450}
+            height="auto"
+          />
+        </S.HeaderDescription>
       </S.Header>
       <S.Section>
         <S.SectionWrapper>
@@ -39,7 +62,7 @@ const MainPage = () => {
             <MainSkeleton />
           ) : (
             <MainGrid
-              data={popularPost}
+              data={popular || []}
               mainTitle="가봤슈 사용자들의 최고 인기 여행지"
             />
           )}
@@ -63,7 +86,7 @@ const MainPage = () => {
             <MainSkeleton />
           ) : (
             <MainGrid
-              data={latestPost}
+              data={latest || []}
               mainTitle="가봤슈 사용자들의 최근 여행지"
             />
           )}
