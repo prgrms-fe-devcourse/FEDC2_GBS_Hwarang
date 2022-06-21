@@ -37,9 +37,6 @@ const PostList = ({ data, listTitle }) => {
       }
     });
   };
-  const handleOnClickItem = (id) => {
-    navigate(`/post/detail/${id}`);
-  };
 
   useEffect(() => {
     if (data.length === 0) return;
@@ -94,10 +91,7 @@ const PostList = ({ data, listTitle }) => {
           }
 
           return (
-            <S.PostListItemWrapper
-              key={_id}
-              onClick={() => handleOnClickItem(_id)}
-            >
+            <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
               <PostListItem
                 id={_id}
                 likes={likes}
