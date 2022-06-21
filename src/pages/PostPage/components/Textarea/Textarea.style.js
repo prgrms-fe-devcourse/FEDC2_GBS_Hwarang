@@ -6,6 +6,7 @@ export const Textarea = styled.textarea`
   border: none;
   resize: none;
   font-size: ${Common.fontSize.c1};
+  font-family: "Noto Sans KR", sans-serif;
   &:focus {
     outline: none;
   }

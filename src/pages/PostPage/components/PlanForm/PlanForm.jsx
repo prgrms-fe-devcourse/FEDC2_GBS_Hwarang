@@ -83,7 +83,7 @@ const PlanForm = ({
         {type === "detail" ? (
           <>
             <S.TextWrapper>
-              <Text size="$b1" strong>
+              <Text size="$b2" strong>
                 {title}
               </Text>
             </S.TextWrapper>

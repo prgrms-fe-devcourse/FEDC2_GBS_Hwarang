@@ -3,11 +3,12 @@ import Common from "styles/common";
 
 const Content = styled.li`
   display: flex;
+  gap: 15px;
   padding: 24px 0;
   &:hover {
     /* background-color: rgba(0, 0, 0, 0.2); */
     background-color: ${({ type }) =>
-      type === "detail" ? "none" : "rgba(0, 0, 0, 0.2)"};
+      type === "detail" ? "none" : Common.colors.gray05};
   }
 `;
 
@@ -15,8 +16,8 @@ const Dot = styled.div`
   align-self: center;
   width: 20px;
   height: 20px;
-  margin-left: 100px;
-  margin-right: 80px;
+  margin-left: 51px;
+  margin-right: 60px;
   border: 1px solid ${Common.colors.main};
   border-radius: 50%;
   background-color: ${({ isHovering }) =>
@@ -63,9 +64,10 @@ const IconWrapper = styled.div`
 const Info = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   gap: 5px;
   margin-left: 16px;
-  margin-top: 16px;
+  margin-top: 5px;
   input::placeholder {
     color: ${Common.colors.gray04};
   }

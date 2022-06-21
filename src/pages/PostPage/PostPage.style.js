@@ -79,27 +79,33 @@ const ButtonWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: calc(50% - 100px);
+  z-index: 10;
 `;
 
-const ContentContainer = styled.div``;
+const ContentContainer = styled.div`
+  width: 100%;
+`;
 
 const Author = styled.div`
-  padding-left: 100px;
-  padding-top: 80px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 120px 0 20px 0;
 `;
 
 const ContentList = styled.ul`
   position: relative;
+  width: 80%;
+  margin: 0 auto;
   padding-top: 30px;
 `;
 
 const Line = styled.div`
   position: absolute;
   top: 144px;
-  left: 109px;
+  left: 60px;
   width: 4px;
   background-color: ${Common.colors.main};
-  z-index: -1;
+  z-index: 0;
 `;
 
 const AddPlanContainer = styled.div`
@@ -123,9 +129,8 @@ const ActionsContainer = styled.div`
 `;
 
 const CommentWrapper = styled.div`
-  padding-top: 100px;
-  padding-left: 100px;
-  padding-right: 100px;
+  width: 80%;
+  margin: 100px auto;
 `;
 
 export default {
