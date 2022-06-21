@@ -54,7 +54,7 @@ export const isUserAuthenticated = selector({
     const token = get(jwtToken);
     if (token) {
       const res = await userAuth(token);
-      if (res.statusText === "OK") {
+      if (res && res.data) {
         return {
           isTokenValid: true,
           userData: res.data,

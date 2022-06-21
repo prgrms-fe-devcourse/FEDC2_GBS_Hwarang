@@ -54,12 +54,6 @@ function App() {
       try {
         const posts = await getAllPosts();
         await setPosts(posts);
-        if (!isLogined && TokenExist) {
-          if (isTokenValid) {
-            setIsLogined(true);
-            setUserInfo(userData);
-          }
-        }
       } catch (exception) {
         console.error("error", exception);
       }
