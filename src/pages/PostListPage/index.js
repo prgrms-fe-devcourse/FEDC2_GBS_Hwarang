@@ -1,4 +1,4 @@
-import { PostList, PostListFilter, Text, Spinner } from "components";
+import { PostList, PostListFilter } from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useTasks } from "contexts/TaskProvider";
@@ -12,27 +12,22 @@ const PostListPage = () => {
   const initialAllPost = useRecoilValue(postListPosts);
   const { tasks, channel } = useTasks();
   const { Options } = useParams();
-  const [optionPosts, setOptionPosts] = useState(undefined);
+  const [optionPosts, setOptionPosts] = useState([]);
   const [renderData, setRenderData] = useState([]);
   const [folded, setFolded] = useState(false);
-  const [noResult, setNoResult] = useState(false);
-  const [loading, setLoading] = useState(false);
 
+  // 1) 필터링
   useEffect(() => {
-    if (initialAllPost.length === 0) {
-      setLoading(true);
-      return;
-    }
+    if (!initialAllPost) return;
 
-    setLoading(false);
     let result = [];
-
-    if (channel !== "none")
+    if (channel)
       result = initialAllPost.filter((post) => post.channel._id === channel);
     else {
       result = [...initialAllPost];
     }
 
+    /* 필터링 기준 (키워드 또는 제목) */
     let filteredResult = [];
 
     if (tasks.length !== 0) {
@@ -46,11 +41,7 @@ const PostListPage = () => {
         filteredResult = [...filteredResult, ...filterData];
       });
 
-      const removeDuplicate = filteredResult.filter(
-        (post, i) => filteredResult.indexOf(post) === i
-      );
-
-      setOptionPosts(removeDuplicate);
+      setOptionPosts(filteredResult);
       return;
     }
 
@@ -59,13 +50,6 @@ const PostListPage = () => {
 
   useEffect(() => {
     if (!optionPosts) return;
-    if (optionPosts.length === 0) {
-      setNoResult(true);
-      return;
-    }
-
-    setNoResult(false);
-
     if (!Options || Options === "all") {
       setRenderData(optionPosts);
       return;
@@ -102,26 +86,7 @@ const PostListPage = () => {
           </S.Header>
         </S.HeaderWrapper>
         <S.Section>
-          {loading ? (
-            <S.LoadingWrapper>
-              <Spinner />
-            </S.LoadingWrapper>
-          ) : (
-            <div />
-          )}
-          {noResult ? (
-            <S.NoDataWrapper>
-              <Text
-                strong
-                style={{ width: "fit-content", margin: "0 auto" }}
-                size="$c2"
-              >
-                😔 검색된 여행지가 없습니다.
-              </Text>
-            </S.NoDataWrapper>
-          ) : (
-            <PostList data={renderData} listTitle="검색 결과" />
-          )}
+          <PostList data={renderData} listTitle="검색 결과" />
         </S.Section>
         <ScrollTopButton />
       </S.PageWrapper>

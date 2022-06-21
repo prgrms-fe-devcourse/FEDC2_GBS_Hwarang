@@ -377,9 +377,13 @@ const PostPage = () => {
           temporarySave={temporarySave}
         />
       )}
-      {type === "detail" && (
+      {type === "detail" && post && (
         <S.CommentWrapper>
-          <Comment postId={postId} comments={post.comments} user={userId} />
+          <Comment
+            postId={postId}
+            comments={post.comments}
+            user={post.author._id}
+          />
         </S.CommentWrapper>
       )}
     </S.Container>
