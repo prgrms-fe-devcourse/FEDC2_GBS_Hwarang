@@ -10,7 +10,7 @@ import * as S from "./PostListInput.style";
 const PostListInput = () => {
   const [keyword, setKeyword] = useState("");
   const [channels, setChannels] = useState([]);
-  const { addTask, selectChannel } = useTasks();
+  const { addTask, channel, selectChannel } = useTasks();
   const posts = useRecoilValue(allPost);
 
   /* InputResult display attr */
@@ -37,6 +37,10 @@ const PostListInput = () => {
     }
   };
 
+  useEffect(() => {
+    console.log("hi");
+  });
+
   const handleOnSearch = () => {
     addTask(keyword, keyword);
   };
@@ -49,7 +53,8 @@ const PostListInput = () => {
   return (
     <S.Container>
       <S.InputContainer>
-        <S.Select onChange={onChange}>
+        <S.Select onChange={onChange} key={new Date()} defaultValue={channel}>
+          {console.log(channel)}
           <S.Option value="none">대륙 선택</S.Option>
           {channels.length !== 0 &&
             channels.map((item) => (
