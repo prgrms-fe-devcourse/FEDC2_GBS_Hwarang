@@ -37,10 +37,6 @@ const PostListInput = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("hi");
-  });
-
   const handleOnSearch = () => {
     addTask(keyword, keyword);
   };
@@ -54,7 +50,6 @@ const PostListInput = () => {
     <S.Container>
       <S.InputContainer>
         <S.Select onChange={onChange} key={new Date()} defaultValue={channel}>
-          {console.log(channel)}
           <S.Option value="none">대륙 선택</S.Option>
           {channels.length !== 0 &&
             channels.map((item) => (

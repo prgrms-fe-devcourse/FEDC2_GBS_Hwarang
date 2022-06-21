@@ -15,11 +15,12 @@ const propTypes = {
 const PostList = ({ data, listTitle }) => {
   const navigate = useNavigate();
   const [renderData, setRenderData] = useState(undefined);
+  const { tasks, channel, setChannel, setTasks } = useTasks();
+
   const [page, setPage] = useState(0);
   const [lastIntersectingItem, setLastIntersectionItem] = useState(null);
   const [completeData, setCompleteData] = useState(false);
 
-  const { tasks, setTasks, channel, setChannel } = useTasks();
   const [tempQuery, setTempQuery, removeTempQuery] = useLocalStorage(
     "query",
     []
