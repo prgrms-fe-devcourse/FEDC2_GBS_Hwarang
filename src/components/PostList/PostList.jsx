@@ -24,7 +24,6 @@ const PostList = ({ data, listTitle }) => {
 
   useEffect(() => {
     if (tempData.length !== 0) {
-      console.log("hi");
       setTasks(tempData);
       removeTempData("query");
     }
