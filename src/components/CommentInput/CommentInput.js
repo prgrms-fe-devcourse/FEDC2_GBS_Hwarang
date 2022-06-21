@@ -72,6 +72,7 @@ const CommentInput = ({ maxHeight, onAddComment }) => {
               width={70}
               height={42}
               textSize="$n1"
+              margin="10px"
               color="$black01"
               backgroundColor="$white"
               onClick={handleOnCancel}

@@ -21,6 +21,7 @@ import TaskProvider from "contexts/TaskProvider";
 import { Footer } from "components";
 // eslint-disable-next-line import/named
 
+import ScrollToTop from "utils/ScrollToTop";
 import { MainPage, PostListPage, UserPage, PostPage } from "./pages";
 import Auth from "./hoc";
 import "./utils/date";
@@ -66,20 +67,22 @@ function App() {
     <div>
       <TaskProvider>
         <Router>
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<MainPageComponent />} />
-            <Route
-              path="/travel-destination/:Options"
-              element={<PostListPageComponent />}
-            />
-            <Route path="userpage/:ID" element={<UserPageComponent />} />
-            <Route path="/post/create" element={<PostPage />} />
-            <Route path="/post/edit/:ID" element={<PostPage />} />
-            <Route path="/post/detail/:ID" element={<PostPage />} />
-            <Route path="*" element={<div>Not Found!</div>} />
-          </Routes>
-          <Footer />
+          <ScrollToTop>
+            <Navigation />
+            <Routes>
+              <Route path="/" element={<MainPageComponent />} />
+              <Route
+                path="/travel-destination/:Options"
+                element={<PostListPageComponent />}
+              />
+              <Route path="userpage/:ID" element={<UserPageComponent />} />
+              <Route path="/post/create" element={<PostPage />} />
+              <Route path="/post/edit/:ID" element={<PostPage />} />
+              <Route path="/post/detail/:ID" element={<PostPage />} />
+              <Route path="*" element={<div>Not Found!</div>} />
+            </Routes>
+            <Footer />
+          </ScrollToTop>
         </Router>
       </TaskProvider>
     </div>

@@ -53,7 +53,7 @@ const ImageInner = ({
 }) => {
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
-  const postId = post._id;
+  const postId = post._id || "";
   const authorId = post.author?._id;
 
   const handleOnClick = () => {
@@ -61,6 +61,7 @@ const ImageInner = ({
   };
 
   const editPost = () => {
+    setVisible(!visible);
     navigate(`/post/edit/${postId}`);
   };
 
@@ -83,7 +84,7 @@ const ImageInner = ({
       )}
       <S.InnerWrapper position="left">
         {type === "detail" ? (
-          <Text color="$white">{post?.title}</Text>
+          <Text color="$white">{post.title ? post.title : ""}</Text>
         ) : (
           <Input
             placeholder="일정 제목을 입력해주세요"
