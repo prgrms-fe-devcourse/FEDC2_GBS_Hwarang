@@ -45,7 +45,11 @@ const PostListPage = () => {
         filteredResult = [...filteredResult, ...filterData];
       });
 
-      setOptionPosts(filteredResult);
+      const removeDuplicate = filteredResult.filter(
+        (post, i) => filteredResult.indexOf(post) === i
+      );
+
+      setOptionPosts(removeDuplicate);
       return;
     }
 
