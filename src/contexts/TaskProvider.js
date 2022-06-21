@@ -39,6 +39,7 @@ const TaskProvider = ({ children }) => {
     <TaskContext.Provider
       value={{
         tasks,
+        setTasks,
         addTask,
         removeTask,
         channel,
