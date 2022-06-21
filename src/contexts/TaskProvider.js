@@ -31,6 +31,10 @@ const TaskProvider = ({ children }) => {
     setChannel(id);
   };
 
+  const removeAll = () => {
+    setTasks([]);
+  };
+
   return (
     <TaskContext.Provider
       value={{
@@ -39,6 +43,7 @@ const TaskProvider = ({ children }) => {
         removeTask,
         channel,
         selectChannel,
+        removeAll,
       }}
     >
       {children}
