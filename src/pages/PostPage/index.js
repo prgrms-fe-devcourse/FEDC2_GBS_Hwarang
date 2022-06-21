@@ -75,7 +75,6 @@ const PostPage = () => {
   };
 
   const [post, setPost] = useState({});
-  // eslint-disable-next-line no-unused-vars
   const [comments, setComments] = useState([]);
   const [channels, setChannels] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -390,7 +389,7 @@ const PostPage = () => {
         <S.CommentWrapper>
           <Comment
             postId={postId}
-            comments={post.comments}
+            comments={comments}
             user={userId}
             setComments={setComments}
           />
