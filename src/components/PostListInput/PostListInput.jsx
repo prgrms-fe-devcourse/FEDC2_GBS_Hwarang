@@ -49,13 +49,8 @@ const PostListInput = () => {
   return (
     <S.Container>
       <S.InputContainer>
-<<<<<<< HEAD
-        <S.Select onChange={onChange} key={new Date()} value={channel}>
-          <S.Option value="none">모든 대륙</S.Option>
-=======
         <S.Select onChange={onChange} value={channel}>
           <S.Option value="none">대륙 선택</S.Option>
->>>>>>> 8247874 (fix:channel select 수정)
           {channels.length !== 0 &&
             channels.map((item) => (
               <S.Option key={item._id} value={item._id}>

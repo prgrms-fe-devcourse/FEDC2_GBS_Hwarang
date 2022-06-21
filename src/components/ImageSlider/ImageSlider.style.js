@@ -8,9 +8,10 @@ export const Container = styled.div`
 
 export const SliderContainer = styled.div`
   display: flex;
-  transform: translate(0, 0);
   height: 100%;
   width: 100%;
+  transition: ${(props) => (props.end ? "" : "transform 2s ease-in")};
+  transform: ${(props) => `translateX(-${props.count}00%)`};
 `;
 export const Icon = styled.span`
   /* position: absolute;
