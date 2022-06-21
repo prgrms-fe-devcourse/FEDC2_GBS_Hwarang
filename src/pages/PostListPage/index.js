@@ -10,7 +10,7 @@ import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
   const initialAllPost = useRecoilValue(postListPosts);
-  const { tasks, channel, removeAll } = useTasks();
+  const { tasks, channel, removeAll, selectChannel } = useTasks();
   const { Options } = useParams();
   const [optionPosts, setOptionPosts] = useState(undefined);
   const [renderData, setRenderData] = useState([]);
@@ -19,7 +19,10 @@ const PostListPage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    return () => removeAll();
+    return () => {
+      removeAll();
+      selectChannel("none");
+    };
   }, []);
   // 1) 필터링
   useEffect(() => {
@@ -31,9 +34,9 @@ const PostListPage = () => {
     setLoading(false);
     let result = [];
 
-    if (channel !== "none")
+    if (channel !== "none") {
       result = initialAllPost.filter((post) => post.channel._id === channel);
-    else {
+    } else {
       result = [...initialAllPost];
     }
 

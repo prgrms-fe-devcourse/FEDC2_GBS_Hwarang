@@ -19,13 +19,22 @@ const PostList = ({ data, listTitle }) => {
   const [lastIntersectingItem, setLastIntersectionItem] = useState(null);
   const [completeData, setCompleteData] = useState(false);
 
-  const { tasks, setTasks } = useTasks();
-  const [tempData, setTempData, removeTempData] = useLocalStorage("query", []);
+  const { tasks, setTasks, channel, selectChannel } = useTasks();
+  const [tempQuery, setTempQuery, removeTempQuery] = useLocalStorage(
+    "query",
+    []
+  );
+  const [tempChannel, setTempChannel, removeTempChannel] = useLocalStorage(
+    "channel",
+    ""
+  );
 
   useEffect(() => {
-    if (tempData.length !== 0) {
-      setTasks(tempData);
-      removeTempData("query");
+    if (tempQuery.length !== 0) {
+      setTasks(tempQuery);
+      selectChannel(tempChannel);
+      removeTempQuery();
+      removeTempChannel();
     }
   }, []);
 
@@ -50,7 +59,8 @@ const PostList = ({ data, listTitle }) => {
     });
   };
   const handleOnClickItem = (id) => {
-    setTempData(tasks);
+    setTempQuery(tasks);
+    setTempChannel(channel);
     navigate(`/post/detail/${id}`);
   };
 
