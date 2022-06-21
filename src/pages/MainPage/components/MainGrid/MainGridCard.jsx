@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { Flux, Image, Text, ToggleButton } from "components";
 import commentSvg from "assets/comment.svg";
 import LikeButton from "components/LikeButton";
-import { useSetRecoilState } from "recoil";
-import { addLike, removeLike } from "recoil/post";
 import S from "./MainGridCard.style";
 
 const propTypes = {
@@ -16,10 +14,9 @@ const propTypes = {
   margin: PropTypes.number,
   author: PropTypes.string,
   createdAt: PropTypes.string,
-  likesNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   commentsNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  isLiked: PropTypes.bool,
   id: PropTypes.string.isRequired,
+  likes: PropTypes.instanceOf(Array),
 };
 
 const defaultProps = {
@@ -29,9 +26,8 @@ const defaultProps = {
   margin: 10,
   author: "user",
   createdAt: "",
-  likesNum: 0,
   commentsNum: 0,
-  isLiked: false,
+  likes: [],
 };
 
 const MainGridCard = ({
@@ -42,15 +38,12 @@ const MainGridCard = ({
   margin,
   author,
   createdAt,
-  likesNum,
   commentsNum,
-  isLiked,
+  likes,
   id,
 }) => {
   const { FluxRow, FluxCol } = Flux;
   const navigate = useNavigate();
-  const addLikeState = useSetRecoilState(addLike);
-  const removeLikeState = useSetRecoilState(removeLike);
   const wrapperStyle = {
     gap,
     margin,
@@ -59,9 +52,6 @@ const MainGridCard = ({
   const handleOnClick = () => {
     navigate(`/post/detail/${id}`);
   };
-  const handleAddLike = (postId, data) => addLikeState({ postId, like: data });
-  const handleRemoveLike = (postId, likeId) =>
-    removeLikeState({ postId, likeId });
 
   return (
     <>
@@ -80,13 +70,7 @@ const MainGridCard = ({
           </Text>
         </FluxCol>
         <FluxCol span={1.5}>
-          <LikeButton
-            id={id}
-            isLiked={isLiked}
-            likesNum={likesNum}
-            onAddLike={handleAddLike}
-            onRemoveLike={handleRemoveLike}
-          />
+          <LikeButton id={id} likes={likes} />
         </FluxCol>
         <FluxCol span={1.5}>
           <ToggleButton textSize="$n1" text={commentsNum}>

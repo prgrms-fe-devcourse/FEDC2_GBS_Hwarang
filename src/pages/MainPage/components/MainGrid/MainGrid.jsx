@@ -23,16 +23,7 @@ const MainGrid = ({ data, mainTitle }) => {
       </S.TextWrapper>
       <FluxRow>
         {data.map(
-          ({
-            _id,
-            image,
-            content,
-            author,
-            createdAt,
-            likesNum,
-            commentsNum,
-            isLiked,
-          }) => {
+          ({ _id, image, content, author, createdAt, commentsNum, likes }) => {
             return (
               <FluxCol key={_id}>
                 <S.CardWrapper>
@@ -41,9 +32,8 @@ const MainGrid = ({ data, mainTitle }) => {
                     textChildren={content.title}
                     author={author.fullName}
                     createdAt={createdAt}
-                    likesNum={likesNum}
                     commentsNum={commentsNum}
-                    isLiked={isLiked}
+                    likes={likes}
                     id={_id}
                   />
                 </S.CardWrapper>

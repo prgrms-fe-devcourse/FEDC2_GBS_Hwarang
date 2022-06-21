@@ -345,6 +345,7 @@ const PostPage = () => {
           channels={channels}
           userId={userId}
           deletePost={deletePost}
+          likes={post?.likes}
         />
       </S.HeadeContainer>
       <S.ContentContainer>

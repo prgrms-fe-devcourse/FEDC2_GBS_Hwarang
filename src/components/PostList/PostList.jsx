@@ -86,6 +86,7 @@ const PostList = ({ data, listTitle }) => {
             createdAt,
             likesNum,
             commentsNum,
+            likes,
           } = post;
 
           const handleOnClick = (id) => {
@@ -100,6 +101,8 @@ const PostList = ({ data, listTitle }) => {
           return (
             <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
               <PostListItem
+                id={_id}
+                likes={likes}
                 src={
                   image ||
                   "	https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Default+Cover+Image.png"
