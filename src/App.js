@@ -20,7 +20,6 @@ import { allPost } from "recoil/post";
 import TaskProvider from "contexts/TaskProvider";
 import { Footer } from "components";
 // eslint-disable-next-line import/named
-
 import { MainPage, PostListPage, UserPage, PostPage } from "./pages";
 import Auth from "./hoc";
 import "./utils/date";
