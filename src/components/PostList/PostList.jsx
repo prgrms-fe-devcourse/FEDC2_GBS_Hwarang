@@ -24,11 +24,12 @@ const PostList = ({ data, listTitle }) => {
   const { tasks, setTasks } = useTasks();
   const [tempData, setTempData, removeTempData] = useLocalStorage("query", []);
 
-  console.log(removeTempData);
-
   useEffect(() => {
-    setTasks(tempData);
-    removeTempData("query");
+    if (tempData.length !== 0) {
+      console.log("hi");
+      setTasks(tempData);
+      removeTempData("query");
+    }
   }, []);
 
   const getRenderData = () => {
