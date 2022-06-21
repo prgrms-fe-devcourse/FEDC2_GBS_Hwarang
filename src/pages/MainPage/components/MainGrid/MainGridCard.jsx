@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Flux, Image, Text, ToggleButton } from "components";
+import { Flux, Image, Text, ToggleButton, LikeButton } from "components";
 import commentSvg from "assets/comment.svg";
-import LikeButton from "components/LikeButton";
 import S from "./MainGridCard.style";
 
 const propTypes = {
@@ -64,15 +63,15 @@ const MainGridCard = ({
         </Text>
       </S.CardWrapper>
       <FluxRow padding="0 10px">
-        <FluxCol span={9}>
+        <FluxCol span={8.4}>
           <Text size="$n1">
             {author} / {createdAt.formatDate()}
           </Text>
         </FluxCol>
-        <FluxCol span={1.5}>
+        <FluxCol span={1.8}>
           <LikeButton id={id} likes={likes} />
         </FluxCol>
-        <FluxCol span={1.5}>
+        <FluxCol span={1.8}>
           <ToggleButton textSize="$n1" text={commentsNum}>
             <Image src={commentSvg} width={15} height={15} />
           </ToggleButton>
