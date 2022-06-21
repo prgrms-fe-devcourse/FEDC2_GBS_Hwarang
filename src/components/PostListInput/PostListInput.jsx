@@ -37,6 +37,10 @@ const PostListInput = () => {
     }
   };
 
+  useEffect(() => {
+    console.log("hi");
+  });
+
   const handleOnSearch = () => {
     addTask(keyword, keyword);
   };
