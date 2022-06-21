@@ -21,7 +21,6 @@ const PostListPage = () => {
   useEffect(() => {
     return () => removeAll();
   }, []);
-
   // 1) 필터링
   useEffect(() => {
     if (initialAllPost.length === 0) {
