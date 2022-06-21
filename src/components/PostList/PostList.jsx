@@ -19,7 +19,7 @@ const PostList = ({ data, listTitle }) => {
   const [lastIntersectingItem, setLastIntersectionItem] = useState(null);
   const [completeData, setCompleteData] = useState(false);
 
-  const { tasks, setTasks, channel, selectChannel } = useTasks();
+  const { tasks, setTasks, channel, setChannel } = useTasks();
   const [tempQuery, setTempQuery, removeTempQuery] = useLocalStorage(
     "query",
     []
@@ -30,9 +30,9 @@ const PostList = ({ data, listTitle }) => {
   );
 
   useEffect(() => {
-    if (tempQuery.length !== 0) {
+    if (tempQuery.length !== 0 || tempChannel.length !== 0) {
       setTasks(tempQuery);
-      selectChannel(tempChannel);
+      setChannel(tempChannel);
       removeTempQuery();
       removeTempChannel();
     }
