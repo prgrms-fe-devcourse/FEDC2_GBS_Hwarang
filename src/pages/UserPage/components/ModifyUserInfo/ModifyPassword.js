@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { userLogin, userLogout } from "api/auth-api";
 import { modifyPassword } from "api/user-api";
-import { Avatar, Button, Text } from "components";
+import { Button, Avatar, Text } from "components";
 import { DEFAULT_PROFILE_IMAGE } from "api/url";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
@@ -68,7 +68,7 @@ const ModifyPassword = ({ token, user, onClose }) => {
       <S.ProfileWrap>
         <Avatar src={user.image || DEFAULT_PROFILE_IMAGE} size={150} />
         <Text size="$b3" strong style={{ marginTop: 20 }}>
-          {user.fullName}
+          {user.fullName || ""}
         </Text>
       </S.ProfileWrap>
       <S.ModalInputWrap>
