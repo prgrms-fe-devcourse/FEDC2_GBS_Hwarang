@@ -151,6 +151,7 @@ function UserPage() {
           onMouseEnter={() => setCoverImageHover(true)}
           onMouseLeave={() => setCoverImageHover(false)}
         >
+          <S.Dim />
           <Image
             src={
               userData.coverImage ? userData.coverImage : DEFAULT_COVER_IMAGE
@@ -229,7 +230,9 @@ function UserPage() {
           )}
           {isOwner && (
             <Button onClick={() => setModifyPasswordModal(true)}>
-              비밀번호 변경
+              <Text color="white" size="$c1">
+                비밀번호 변경
+              </Text>
             </Button>
           )}
         </S.FollowBlock>
