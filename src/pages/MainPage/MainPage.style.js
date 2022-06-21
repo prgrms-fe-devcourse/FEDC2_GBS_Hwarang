@@ -58,6 +58,7 @@ const SectionWrapper = styled.div`
 
 const LinkButton = styled(Link)`
   text-decoration: none;
+  margin: 10px;
 `;
 
 const Footer = styled.div`
