@@ -173,7 +173,7 @@ const PostPage = () => {
     setPostId(params?.ID || pathname[3] || "");
     fetchData();
     setLoading(false);
-  }, [location, params, type]);
+  }, [location, params?.id, type]);
 
   useEffect(() => {
     // Todo: App.js로 빼서 recoil 사용하여 갖고오기?
@@ -326,6 +326,7 @@ const PostPage = () => {
     }
   };
 
+  // usePrompt("현재 페이지를 벗어나시겠습니까?", true);
   if (Object.keys(post).length === 0) {
     return <div>Loading...</div>;
   }
