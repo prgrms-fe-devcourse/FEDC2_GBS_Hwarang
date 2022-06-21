@@ -22,16 +22,19 @@ export const ResultContainer = styled.div`
 
 export const Select = styled.select`
   box-sizing: border-box;
-  width: 100px;
-  font-size: "15px";
+  width: 110px;
+  font-size: 14px;
   border-radius: 10px;
   color: ${Common.colors.main};
   border: none;
   outline: none;
+  padding: 5px 10px;
+  font-family: "Noto Sans KR", sans-serif;
 `;
 
 export const Option = styled.option`
   color: ${Common.colors.main};
+  padding: 10px;
 `;
 
 export const ResultWrapper = styled.div``;

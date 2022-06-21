@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
 export const InputWrapper = styled.div`
   position: absolute;
   top: 100px;
-  right: calc(50% - 305px);
+  right: calc(50% - 310px);
 `;
 
 export const filterContainer = styled.div`
