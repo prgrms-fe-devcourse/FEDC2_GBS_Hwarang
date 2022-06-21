@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false npx react-scripts build",
     "buildClient": "cd client/ && npm install && npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
