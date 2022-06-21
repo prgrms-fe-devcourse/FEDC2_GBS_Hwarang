@@ -8,18 +8,28 @@ import { MainGrid, MainInput, ImageData, MainSkeleton } from "./components";
 
 const MainPage = () => {
   const { popularPost, latestPost } = useRecoilValue(mainPost);
+  const [popular, setPopular] = useState(undefined);
+  const [latest, setLatest] = useState(undefined);
   const [loadingPopular, setLoadingPopular] = useState(true);
   const [loadingLatest, setLoadingLatest] = useState(true);
 
   useEffect(() => {
+    if (popularPost.content === null) return;
+
     if (popularPost.length !== 0) {
+      setPopular(popularPost);
       setLoadingPopular(false);
     }
+  }, [popularPost]);
+
+  useEffect(() => {
+    if (latestPost.content === null) return;
 
     if (latestPost.length !== 0) {
+      setLatest(latestPost);
       setLoadingLatest(false);
     }
-  }, [popularPost, latestPost]);
+  }, [latestPost]);
 
   return (
     <div>
@@ -52,7 +62,7 @@ const MainPage = () => {
             <MainSkeleton />
           ) : (
             <MainGrid
-              data={popularPost}
+              data={popular || []}
               mainTitle="가봤슈 사용자들의 최고 인기 여행지"
             />
           )}
@@ -76,7 +86,7 @@ const MainPage = () => {
             <MainSkeleton />
           ) : (
             <MainGrid
-              data={latestPost}
+              data={latest || []}
               mainTitle="가봤슈 사용자들의 최근 여행지"
             />
           )}
