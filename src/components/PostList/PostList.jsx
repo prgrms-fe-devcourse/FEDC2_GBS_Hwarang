@@ -1,6 +1,9 @@
 import { Text, Spinner } from "components";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useLocalStorage from "hooks/useLocalStorage";
+import { useTasks } from "contexts/TaskProvider";
 import S from "./PostList.style";
 import PostListItem from "./PostListItem";
 
@@ -16,6 +19,17 @@ const PostList = ({ data, listTitle }) => {
   const [lastIntersectingItem, setLastIntersectionItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [completeData, setCompleteData] = useState(false);
+
+  const navigate = useNavigate();
+  const { tasks, setTasks } = useTasks();
+  const [tempData, setTempData, removeTempData] = useLocalStorage("query", []);
+
+  console.log(removeTempData);
+
+  useEffect(() => {
+    setTasks(tempData);
+    removeTempData("query");
+  }, []);
 
   const getRenderData = () => {
     if (!renderData) return;
@@ -89,7 +103,8 @@ const PostList = ({ data, listTitle }) => {
           } = post;
 
           const handleOnClick = (id) => {
-            alert(id);
+            setTempData(tasks);
+            navigate(`/post/detail/${id}`);
           };
 
           const ItemProps = {};
