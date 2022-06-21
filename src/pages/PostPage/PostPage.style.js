@@ -5,21 +5,31 @@ const Container = styled.div`
   margin-bottom: 200px;
 `;
 
-const HeadeContainer = styled.div`
+const HeaderContainer = styled.div`
   position: relative;
   height: 550px;
   margin: 0 50px;
+
   input::placeholder {
     color: ${Common.colors.gray04};
   }
 `;
 
-const Cover = styled.div`
+const Dim = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: ${Common.colors.black01};
-  opacity: 0.2;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(60, 60, 60, 0.32) 75%,
+    rgba(30, 30, 30, 0.68) 85%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  opacity: 0.3;
+  z-index: 1;
 `;
 
 const InnerWrapper = styled.div`
@@ -120,8 +130,8 @@ const CommentWrapper = styled.div`
 
 export default {
   Container,
-  HeadeContainer,
-  Cover,
+  HeaderContainer,
+  Dim,
   InnerWrapper,
   ButtonWrapper,
   ContentContainer,

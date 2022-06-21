@@ -343,9 +343,9 @@ const PostPage = () => {
   if (Object.keys(post).length === 0) {
     return (
       <S.Container>
-        <S.HeadeContainer>
+        <S.HeaderContainer>
           <Skeleton.Box width={1340} height={550} />
-        </S.HeadeContainer>
+        </S.HeaderContainer>
       </S.Container>
     );
   }
@@ -353,12 +353,12 @@ const PostPage = () => {
   return (
     <S.Container>
       {/* {loading && <Loading />} */}
-      <S.HeadeContainer
+      <S.HeaderContainer
         name="image"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <S.Cover />
+        <S.Dim />
         <Image width="100%" height="100%" src={post.image || DefaultImage} />
         <ImageInner
           type={type}
@@ -371,7 +371,7 @@ const PostPage = () => {
           deletePost={deletePost}
           likes={post?.likes}
         />
-      </S.HeadeContainer>
+      </S.HeaderContainer>
       <S.ContentContainer>
         <S.Author>
           {type === "detail" ? (
