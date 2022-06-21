@@ -10,7 +10,31 @@ const ImageSlider = ({ children, width, height }) => {
     height,
   };
 
-  // const cloneSlide = [children[children.length - 1], ...children, children[0]];
+  const TOTAL_SLIDES = children.length - 1;
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isEnd, setIsEnd] = useState(false);
+  const slideRef = useRef(null);
+
+  const nextSlide = () => {
+    if (currentSlide >= TOTAL_SLIDES) {
+      setIsEnd(true);
+      setCurrentSlide(0);
+    } else {
+      setIsEnd(false);
+      setCurrentSlide(currentSlide + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (currentSlide === 0) {
+      setIsEnd(true);
+      setCurrentSlide(TOTAL_SLIDES);
+    } else {
+      setIsEnd(false);
+      setCurrentSlide(currentSlide - 1);
+    }
+  };
 
   const useInterval = (callback, delay) => {
     const savedCallback = useRef();
@@ -26,53 +50,24 @@ const ImageSlider = ({ children, width, height }) => {
         const id = setInterval(tick, delay);
         return () => clearInterval(id);
       }
-    }, [delay]);
+    }, [delay, nextSlide, prevSlide]);
   };
-
-  const TOTAL_SLIDES = children.length - 1;
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slideRef = useRef(null);
 
   useInterval(() => {
     if (currentSlide >= TOTAL_SLIDES) {
+      setIsEnd(true);
       setCurrentSlide(0);
     } else {
+      setIsEnd(false);
       setCurrentSlide(currentSlide + 1);
     }
   }, 6000);
 
-  const nextSlide = () => {
-    if (currentSlide >= TOTAL_SLIDES) {
-      setCurrentSlide(0);
-    } else {
-      setCurrentSlide(currentSlide + 1);
-    }
-  };
-
-  const prevSlide = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(TOTAL_SLIDES);
-    } else {
-      setCurrentSlide(currentSlide - 1);
-    }
-  };
-
-  useEffect(() => {
-    const element = slideRef.current;
-
-    if (element) {
-      element.style.transition = "all 2s ease-in-out";
-      element.style.transform = `translateX(-${currentSlide}00%)`;
-    }
-  }, [currentSlide, slideRef]);
+  // const element = slideRef.current;
 
   return (
     <IS.Container style={{ ...sliderStyle }}>
-      <IS.SliderContainer
-        ref={slideRef}
-        style={{ transform: `translateX(${-100 / TOTAL_SLIDES})` }}
-      >
+      <IS.SliderContainer ref={slideRef} end={isEnd} count={currentSlide}>
         {children.map((item) => (
           <Slide key={item.id} src={item.src} />
         ))}
