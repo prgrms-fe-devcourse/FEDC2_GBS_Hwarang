@@ -11,13 +11,13 @@ import {
 } from "components";
 import { useParams, useNavigate } from "react-router-dom";
 import { jwtToken, loginStatus } from "recoil/authentication";
-import { useRecoilValue, useSetRecoilState, useRecoilCallback } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userInfo } from "recoil/user";
-import { unSeenNotifications } from "recoil/notification";
+// import { unSeenNotifications } from "recoil/notification";
 import { getPostByUserId } from "api/post-api";
 import { DEFAULT_COVER_IMAGE, DEFAULT_PROFILE_IMAGE } from "api/url";
 import { getUserInfoById, followUser, unFollowUser } from "api/user-api";
-import { createAlarm, getAlarms } from "api/alarm-api";
+// import { createAlarm, getAlarms } from "api/alarm-api";
 import ImageButton from "./components/ImageButton";
 import NoPostWrapper from "./components/NoPostList";
 import FollowButton from "./components/FollowButton";
@@ -47,10 +47,10 @@ function UserPage() {
   const setMyInfo = useSetRecoilState(userInfo);
   const token = useRecoilValue(jwtToken);
 
-  const updateNotifications = useRecoilCallback(({ set }) => async () => {
-    const res = await getAlarms(token);
-    set(unSeenNotifications, res.data);
-  });
+  // const updateNotifications = useRecoilCallback(({ set }) => async () => {
+  //   const res = await getAlarms(token);
+  //   set(unSeenNotifications, res.data);
+  // });
 
   const getUserData = async (id) => {
     if (!id) return;
@@ -97,7 +97,8 @@ function UserPage() {
 
   const handleFollowClick = async (id) => {
     if (!id) return;
-    const res = await followUser(id, myInfo._id, token);
+    // const res = await followUser(id, myInfo._id, token);
+    const res = await followUser(id, userData._id, token);
     return res.data;
   };
 
@@ -120,17 +121,18 @@ function UserPage() {
 
     if (isFollow) await handleUnFollowClick(id);
     else {
-      const followResult = await handleFollowClick(id);
-      if (followResult) {
-        await createAlarm(
-          "FOLLOW",
-          followResult._id,
-          followResult.user,
-          null,
-          token
-        );
-        await updateNotifications();
-      }
+      // const followResult = await handleFollowClick(id);
+      await handleFollowClick(id);
+      // if (followResult) {
+      //   await createAlarm(
+      //     "FOLLOW",
+      //     followResult._id,
+      //     followResult.user,
+      //     null,
+      //     token
+      //   );
+      //   await updateNotifications();
+      // }
     }
     // refetch data
     await getUserData(id);

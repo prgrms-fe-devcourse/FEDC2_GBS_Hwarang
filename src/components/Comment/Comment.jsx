@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import CommentInput from "components/CommentInput/CommentInput";
 import CommentItem from "components/CommentItem/CommentItem";
 import { useRecoilValue } from "recoil";
-import { userInfo } from "recoil/user";
 import { jwtToken } from "recoil/authentication";
 import { addComment, deleteComment } from "api/comment-api";
 import { Text } from "components";
@@ -13,18 +12,18 @@ const propTypes = {
   postId: PropTypes.string.isRequired,
   comments: PropTypes.instanceOf(Array).isRequired,
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  userId: PropTypes.string.isRequired,
 };
 const defaultProps = {
   maxHeight: 100,
 };
 
-const Comment = ({ postId, comments, maxHeight }) => {
-  const userData = useRecoilValue(userInfo);
+const Comment = ({ postId, comments, maxHeight, userId }) => {
   const token = useRecoilValue(jwtToken);
 
   const handleAddComment = async (comment) => {
     try {
-      const response = await addComment(comment, postId, userData._id, token);
+      const response = await addComment(comment, postId, userId, token);
       console.log(response);
     } catch (exception) {
       console.error(exception);

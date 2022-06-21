@@ -379,7 +379,7 @@ const PostPage = () => {
       )}
       {type === "detail" && (
         <S.CommentWrapper>
-          <Comment postId={postId} comments={post.comments} />
+          <Comment postId={postId} comments={post.comments} user={userId} />
         </S.CommentWrapper>
       )}
     </S.Container>
