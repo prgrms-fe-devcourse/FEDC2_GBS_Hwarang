@@ -58,7 +58,16 @@ const MainGridCard = ({
         <S.ImageDiv onClick={handleOnClick}>
           <Image src={src} width="100%" height={180} />
         </S.ImageDiv>
-        <Text size={textSize} strong>
+        <Text
+          size={textSize}
+          strong
+          style={{
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            padding: "2px 0",
+          }}
+        >
           {textChildren}
         </Text>
       </S.CardWrapper>
