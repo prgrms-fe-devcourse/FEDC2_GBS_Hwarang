@@ -306,6 +306,15 @@ const PostPage = () => {
 
     if (e.target.files && e.target.files[0]) {
       if (id) {
+        setPost({
+          ...post,
+          plans: [...post.plans].map((plan) =>
+            plan._id === id
+              ? { ...plan, image: URL.createObjectURL(e.target.files[0]) }
+              : plan
+          ),
+        });
+
         const result = await uploadImageToS3(e.target.files[0], "test");
         const imageUrl = result.location;
         setPost({
