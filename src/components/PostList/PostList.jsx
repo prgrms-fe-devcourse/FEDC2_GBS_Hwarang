@@ -41,7 +41,6 @@ const PostList = ({ data, listTitle }) => {
     navigate(`/post/detail/${id}`);
   };
 
-  /* data 변경 */
   useEffect(() => {
     if (data.length === 0) return;
 
@@ -64,6 +63,10 @@ const PostList = ({ data, listTitle }) => {
 
     return () => observer && observer.disconnect();
   }, [lastIntersectingItem]);
+
+  const handleOnClick = (id) => {
+    navigate(`/post/detail/${id}`);
+  };
 
   return (
     <S.PostListWrapper>

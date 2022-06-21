@@ -170,12 +170,7 @@ function UserPage() {
               src={userData.image ? userData.image : DEFAULT_PROFILE_IMAGE}
               size={150}
             />
-            {isOwner && profileImgHover && (
-              <>
-                <ImageButton isCover={false} />
-                <S.Dim />
-              </>
-            )}
+            {isOwner && profileImgHover && <ImageButton isCover={false} />}
           </div>
           <div className="text-wrapper">
             <Text color={FONT_COLOR} strong size={FONT_SIZE}>

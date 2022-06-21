@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
+import Common from "styles/common";
 
 // eslint-disable-next-line
 export const Line = styled.hr`
   border: 0;
-  background-color: black;
+  background-color: ${Common.colors.gray05};
 
   &.vertical {
     position: relative;

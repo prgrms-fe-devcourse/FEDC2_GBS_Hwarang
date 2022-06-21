@@ -52,16 +52,6 @@ const Header = styled.div`
   height: 100%;
 `;
 
-const HeaderInput = styled.input`
-  position: absolute;
-  top: 150px;
-  right: calc(50% - 250px);
-  font-size: 20px;
-  width: 500px;
-  height: 60px;
-  border-radius: 20px;
-`;
-
 const Section = styled.div`
   box-sizing: border-box;
   height: auto;
@@ -92,7 +82,6 @@ export default {
   PageWrapper,
   HeaderWrapper,
   Header,
-  HeaderInput,
   Section,
   LoadingWrapper,
   GotoTopButton,

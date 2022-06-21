@@ -29,7 +29,7 @@ const defaultProps = {
   strong: false,
   disabled: true,
   onClick: undefined,
-  gap: 10,
+  gap: 7,
   initialState: false,
 };
 
