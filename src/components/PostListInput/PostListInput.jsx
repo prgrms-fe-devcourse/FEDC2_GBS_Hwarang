@@ -10,7 +10,7 @@ import * as S from "./PostListInput.style";
 const PostListInput = () => {
   const [keyword, setKeyword] = useState("");
   const [channels, setChannels] = useState([]);
-  const { addTask, channel, selectChannel } = useTasks();
+  const { addTask, channel, setChannel } = useTasks();
   const posts = useRecoilValue(allPost);
 
   /* InputResult display attr */
@@ -47,7 +47,7 @@ const PostListInput = () => {
 
   const onChange = (e) => {
     const { value } = e.target;
-    selectChannel(value);
+    setChannel(value);
   };
 
   return (

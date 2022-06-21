@@ -15,7 +15,7 @@ import S from "./PostListPage.style";
 
 const PostListPage = () => {
   const initialAllPost = useRecoilValue(postListPosts);
-  const { tasks, channel, removeAll, selectChannel } = useTasks();
+  const { tasks, channel, setTasks, setChannel } = useTasks();
   const { Options } = useParams();
   const [optionPosts, setOptionPosts] = useState(undefined);
   const [renderData, setRenderData] = useState([]);
@@ -25,8 +25,8 @@ const PostListPage = () => {
 
   useEffect(() => {
     return () => {
-      removeAll();
-      selectChannel("none");
+      setTasks([]);
+      setChannel("none");
     };
   }, []);
   // 1) 필터링
