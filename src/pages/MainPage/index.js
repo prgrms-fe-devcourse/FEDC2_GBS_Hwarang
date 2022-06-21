@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Button, Image, ImageSlider } from "components";
 import { useRecoilValue } from "recoil";
 import { mainPost } from "recoil/post";
-import Common from "styles/common";
 import S from "./MainPage.style";
 import { MainGrid, MainInput, ImageData, MainSkeleton } from "./components";
 
@@ -66,14 +65,14 @@ const MainPage = () => {
               mainTitle="가봤슈 사용자들의 최고 인기 여행지"
             />
           )}
-          <Button color="white" type="button">
-            <S.LinkButton
-              to="/travel-destination/popular"
-              style={{ color: "white" }}
-            >
+          <S.LinkButton
+            to="/travel-destination/popular"
+            style={{ color: "white" }}
+          >
+            <Button color="white" type="button">
               더보기
-            </S.LinkButton>
-          </Button>
+            </Button>
+          </S.LinkButton>
         </S.SectionWrapper>
         <Image
           /* Marketing Image */
@@ -90,14 +89,14 @@ const MainPage = () => {
               mainTitle="가봤슈 사용자들의 최근 여행지"
             />
           )}
-          <Button color="$main" backgroundColor="$white" type="button" border>
-            <S.LinkButton
-              to="/travel-destination/latest"
-              style={{ color: Common.colors.main }}
-            >
+          <S.LinkButton
+            to="/travel-destination/latest"
+            style={{ color: "white" }}
+          >
+            <Button color="white" type="button">
               더보기
-            </S.LinkButton>
-          </Button>
+            </Button>
+          </S.LinkButton>
         </S.SectionWrapper>
       </S.Section>
     </div>
