@@ -93,7 +93,7 @@ const PlanForm = ({
           <>
             <Input
               placeholder="여행지 이름을 입력해 주세요."
-              defaultValue={title}
+              initialValue={title}
               onChange={(e) => onChangeHandler(_id, "title", e.target.value)}
               useIcon={false}
               maxLength="30"

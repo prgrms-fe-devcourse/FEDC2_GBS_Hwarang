@@ -87,7 +87,7 @@ const ImageInner = ({
         ) : (
           <Input
             placeholder="일정 제목을 입력해주세요"
-            defaultValue={post?.title || null}
+            initialValue={post?.title}
             onChange={(e) => onChangeHandler(null, "title", e.target.value)}
             width={500}
             useIcon={false}

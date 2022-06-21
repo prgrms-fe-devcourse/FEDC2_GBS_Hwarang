@@ -75,7 +75,7 @@ const Input = React.forwardRef(
     const inputStyle = {
       border: `1px solid ${borderColor}`,
     };
-    const [keyword, setKeyword] = useState(initialValue);
+    const [keyword, setKeyword] = useState("");
 
     const handleOnChange = (e) => {
       setKeyword(e.target.value);
@@ -102,7 +102,7 @@ const Input = React.forwardRef(
     }, [handleOnSearch]);
 
     useEffect(() => {
-      setKeyword(initialValue);
+      setKeyword(initialValue || "");
     }, [initialValue]);
 
     return (
