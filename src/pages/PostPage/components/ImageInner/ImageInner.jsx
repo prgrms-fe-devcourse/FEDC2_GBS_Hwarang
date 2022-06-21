@@ -53,7 +53,7 @@ const ImageInner = ({
 }) => {
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
-  const postId = post._id;
+  const postId = post._id || "";
   const authorId = post.author?._id;
 
   const handleOnClick = () => {

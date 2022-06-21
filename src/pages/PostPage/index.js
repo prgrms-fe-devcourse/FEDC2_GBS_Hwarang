@@ -325,12 +325,10 @@ const PostPage = () => {
     }
   };
 
-  // usePrompt("현재 페이지를 벗어나시겠습니까?", true);
   if (Object.keys(post).length === 0) {
     return <div>Loading...</div>;
   }
 
-  console.log(post);
   return (
     <S.Container>
       <S.HeadeContainer
@@ -390,7 +388,7 @@ const PostPage = () => {
           <Comment
             postId={postId}
             comments={comments}
-            user={userId}
+            userId={userId}
             setComments={setComments}
           />
         </S.CommentWrapper>
