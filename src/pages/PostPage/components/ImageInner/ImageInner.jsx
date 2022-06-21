@@ -84,7 +84,7 @@ const ImageInner = ({
       )}
       <S.InnerWrapper position="left">
         {type === "detail" ? (
-          <Text color="$white">{post?.title}</Text>
+          <Text color="$white">{post.title ? post.title : ""}</Text>
         ) : (
           <Input
             placeholder="일정 제목을 입력해주세요"
