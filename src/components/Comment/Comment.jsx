@@ -11,19 +11,22 @@ import S from "./Comment.style";
 const propTypes = {
   postId: PropTypes.string.isRequired,
   comments: PropTypes.instanceOf(Array).isRequired,
+  setComments: PropTypes.func,
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   userId: PropTypes.string.isRequired,
 };
 const defaultProps = {
+  setComments: () => {},
   maxHeight: 100,
 };
 
-const Comment = ({ postId, comments, maxHeight, userId }) => {
+const Comment = ({ postId, comments, maxHeight, userId, setComments }) => {
   const token = useRecoilValue(jwtToken);
 
   const handleAddComment = async (comment) => {
     try {
       const response = await addComment(comment, postId, userId, token);
+      setComments([...comments, response.data]);
       console.log(response);
     } catch (exception) {
       console.error(exception);
@@ -33,6 +36,7 @@ const Comment = ({ postId, comments, maxHeight, userId }) => {
   const handleRemoveComment = async (_id) => {
     try {
       const response = await deleteComment(_id, token);
+      setComments([...comments].filter((comment) => comment._id !== _id));
       console.log(response);
     } catch (exception) {
       console.error(exception);

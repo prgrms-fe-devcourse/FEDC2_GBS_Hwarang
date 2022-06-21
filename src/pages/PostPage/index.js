@@ -75,6 +75,8 @@ const PostPage = () => {
   };
 
   const [post, setPost] = useState({});
+  // eslint-disable-next-line no-unused-vars
+  const [comments, setComments] = useState([]);
   const [channels, setChannels] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -159,6 +161,7 @@ const PostPage = () => {
               title: parse.title,
               plans: parse.plans,
             });
+            setComments(response.data.comments);
           }
         }
       } catch (exception) {
@@ -170,7 +173,7 @@ const PostPage = () => {
     setPostId(params?.ID || pathname[3] || "");
     fetchData();
     setLoading(false);
-  }, [location, params, type, post.comments]);
+  }, [location, params, type]);
 
   useEffect(() => {
     // Todo: App.js로 빼서 recoil 사용하여 갖고오기?
@@ -327,6 +330,7 @@ const PostPage = () => {
     return <div>Loading...</div>;
   }
 
+  console.log(post);
   return (
     <S.Container>
       <S.HeadeContainer
@@ -351,7 +355,7 @@ const PostPage = () => {
       <S.ContentContainer>
         <S.Author>
           {type === "detail" ? (
-            <Text strong>{post.author.fullName}님의 여행 일정</Text>
+            <Text strong>{post.author?.fullName}님의 여행 일정</Text>
           ) : (
             <Text strong>{author}님의 여행 일정</Text>
           )}
@@ -383,7 +387,12 @@ const PostPage = () => {
       )}
       {type === "detail" && (
         <S.CommentWrapper>
-          <Comment postId={postId} comments={post.comments} user={userId} />
+          <Comment
+            postId={postId}
+            comments={post.comments}
+            user={userId}
+            setComments={setComments}
+          />
         </S.CommentWrapper>
       )}
     </S.Container>
