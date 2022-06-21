@@ -37,7 +37,11 @@ const PostList = ({ data, listTitle }) => {
       }
     });
   };
+  const handleOnClickItem = (id) => {
+    navigate(`/post/detail/${id}`);
+  };
 
+  /* data 변경 */
   useEffect(() => {
     if (data.length === 0) return;
 
@@ -60,10 +64,6 @@ const PostList = ({ data, listTitle }) => {
 
     return () => observer && observer.disconnect();
   }, [lastIntersectingItem]);
-
-  const handleOnClick = (id) => {
-    navigate(`/post/detail/${id}`);
-  };
 
   return (
     <S.PostListWrapper>
@@ -91,7 +91,10 @@ const PostList = ({ data, listTitle }) => {
           }
 
           return (
-            <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
+            <S.PostListItemWrapper
+              key={_id}
+              onClick={() => handleOnClickItem(_id)}
+            >
               <PostListItem
                 id={_id}
                 likes={likes}
