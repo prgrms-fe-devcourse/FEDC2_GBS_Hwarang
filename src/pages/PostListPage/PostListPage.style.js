@@ -69,10 +69,23 @@ const Section = styled.div`
   padding: 80px 0;
 `;
 
+const LoadingWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 const GotoTopButton = styled(Button)`
   position: fixed;
   right: 10px;
   bottom: 10px;
+`;
+
+const NoDataWrapper = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  height: 240px;
+  padding-top: 110px;
 `;
 
 export default {
@@ -81,5 +94,7 @@ export default {
   Header,
   HeaderInput,
   Section,
+  LoadingWrapper,
   GotoTopButton,
+  NoDataWrapper,
 };

@@ -1,4 +1,4 @@
-import { Text, Spinner } from "components";
+import { Text } from "components";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import S from "./PostList.style";
@@ -9,28 +9,22 @@ const propTypes = {
   listTitle: PropTypes.string.isRequired,
 };
 
-/* "검색 결과가 없을 때"에 대한 예외 처리 필요 */
 const PostList = ({ data, listTitle }) => {
   const [renderData, setRenderData] = useState(undefined);
   const [page, setPage] = useState(0);
   const [lastIntersectingItem, setLastIntersectionItem] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [completeData, setCompleteData] = useState(false);
 
   const getRenderData = () => {
     if (!renderData) return;
-    setLoading(true);
 
     const addData = data.slice(page * 10, page * 10 + 10);
     if (addData.length === 0) {
-      setLoading(false);
       setCompleteData(true);
     }
 
     const renderScrollData = [...renderData, ...addData];
     setRenderData(renderScrollData);
-
-    setLoading(false);
   };
 
   const onIntersect = (entries, observer) => {
@@ -45,12 +39,9 @@ const PostList = ({ data, listTitle }) => {
   /* data 변경 */
   useEffect(() => {
     if (data.length === 0) return;
-    setLoading(true);
 
     setRenderData(data.slice(0, 10));
     setPage(0);
-
-    setLoading(false);
   }, [data]);
 
   useEffect(() => {
@@ -117,7 +108,6 @@ const PostList = ({ data, listTitle }) => {
             </S.PostListItemWrapper>
           );
         })}
-      <S.LoadingWrapper>{loading ? <Spinner /> : null}</S.LoadingWrapper>
       {completeData ? (
         <S.NoDataWrapper>
           <Text
