@@ -26,7 +26,8 @@ const PostListPage = () => {
 
     setLoading(false);
     let result = [];
-    if (channel)
+
+    if (channel !== "none")
       result = initialAllPost.filter((post) => post.channel._id === channel);
     else {
       result = [...initialAllPost];
