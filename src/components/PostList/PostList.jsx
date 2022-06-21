@@ -1,6 +1,7 @@
 import { Text } from "components";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import S from "./PostList.style";
 import PostListItem from "./PostListItem";
 
@@ -10,6 +11,7 @@ const propTypes = {
 };
 
 const PostList = ({ data, listTitle }) => {
+  const navigate = useNavigate();
   const [renderData, setRenderData] = useState(undefined);
   const [page, setPage] = useState(0);
   const [lastIntersectingItem, setLastIntersectionItem] = useState(null);
@@ -34,6 +36,9 @@ const PostList = ({ data, listTitle }) => {
         observer.unobserve(entry.target);
       }
     });
+  };
+  const handleOnClickItem = (id) => {
+    navigate(`/post/detail/${id}`);
   };
 
   /* data 변경 */
@@ -80,17 +85,16 @@ const PostList = ({ data, listTitle }) => {
             likes,
           } = post;
 
-          const handleOnClick = (id) => {
-            alert(id);
-          };
-
           const ItemProps = {};
           if (index === renderData.length - 1) {
             ItemProps.ref = setLastIntersectionItem;
           }
 
           return (
-            <S.PostListItemWrapper key={_id} onClick={() => handleOnClick(_id)}>
+            <S.PostListItemWrapper
+              key={_id}
+              onClick={() => handleOnClickItem(_id)}
+            >
               <PostListItem
                 id={_id}
                 likes={likes}

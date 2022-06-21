@@ -5,7 +5,6 @@ import { useRecoilValue } from "recoil";
 import { allPost } from "recoil/post";
 import { useTasks } from "contexts/TaskProvider";
 import { useClickAway } from "hooks";
-
 import * as S from "./PostListInput.style";
 
 const PostListInput = () => {

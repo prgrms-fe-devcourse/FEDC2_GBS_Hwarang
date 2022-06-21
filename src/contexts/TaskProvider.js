@@ -7,7 +7,7 @@ export const useTasks = () => useContext(TaskContext);
 // eslint-disable-next-line react/prop-types
 const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
-  const [channel, setChannel] = useState("");
+  const [channel, setChannel] = useState("none");
   const addTask = (_id, title) => {
     const isInclude = tasks.some((task) => task.id === _id);
     if (isInclude) {

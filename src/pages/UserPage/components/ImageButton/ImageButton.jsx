@@ -1,9 +1,7 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { useSetRecoilState, useRecoilValue } from "recoil";
-import Icon from "components/Icon";
-import Input from "components/Input";
-import Image from "components/Image";
+import { Input, Image } from "components";
 import { jwtToken } from "recoil/authentication";
 import { profileImg, coverImg } from "recoil/user";
 import { uploadCoverImage, uploadProfileImage } from "api/user-api";
@@ -66,7 +64,13 @@ function ImageButton({ isCover, isCoverHover }) {
           )}
         </S.CameraWrapper>
       ) : (
-        <Icon onClick={handleClick} name="file_upload" fontSize={40} />
+        <S.CameraWrapper onClick={handleClick}>
+          <Image
+            src="https://mygbs.s3.ap-northeast-2.amazonaws.com/user/camera_hover.svg"
+            width="60px"
+            height="60px"
+          />
+        </S.CameraWrapper>
       )}
     </S.ImageButtonWrapper>
   );

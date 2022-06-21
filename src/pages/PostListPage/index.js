@@ -26,7 +26,8 @@ const PostListPage = () => {
 
     setLoading(false);
     let result = [];
-    if (channel)
+
+    if (channel !== "none")
       result = initialAllPost.filter((post) => post.channel._id === channel);
     else {
       result = [...initialAllPost];
@@ -45,7 +46,11 @@ const PostListPage = () => {
         filteredResult = [...filteredResult, ...filterData];
       });
 
-      setOptionPosts(filteredResult);
+      const removeDuplicate = filteredResult.filter(
+        (post, i) => filteredResult.indexOf(post) === i
+      );
+
+      setOptionPosts(removeDuplicate);
       return;
     }
 

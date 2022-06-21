@@ -71,7 +71,7 @@ const ModifyUserName = ({ token, user, onClose }) => {
       <S.ProfileWrap>
         <Avatar src={user.image || DEFAULT_PROFILE_IMAGE} size={150} />
         <Text size="$b3" strong style={{ marginTop: 20 }}>
-          {user.fullName}
+          {user?.fullName || ""}
         </Text>
       </S.ProfileWrap>
       <S.ModalInputWrap>
