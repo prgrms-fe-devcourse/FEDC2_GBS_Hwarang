@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 import React, { useState, useEffect } from "react";
-import { Image, Text, Comment } from "components";
+import { Image, Text, Comment, Skeleton } from "components";
 import useLocalStorage from "hooks/useLocalStorage";
 import {
   getChannels,
@@ -21,6 +22,7 @@ import S from "./PostPage.style";
 import PlanForm from "./components/PlanForm";
 import CreateButton from "./components/CreateButton";
 import ImageInner from "./components/ImageInner";
+import Loading from "./components/Loading";
 
 const propTypes = {};
 
@@ -77,10 +79,10 @@ const PostPage = () => {
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
   const [channels, setChannels] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!loading) {
+    if (Object.keys(post).length !== 0) {
       if (type === "edit" && post.author._id !== userId) {
         alert("잘못된 접근입니다.");
         navigate("/");
@@ -171,7 +173,6 @@ const PostPage = () => {
     setType(pathname[2]);
     setPostId(params?.ID || pathname[3] || "");
     fetchData();
-    setLoading(false);
   }, [location, params?.id, type]);
 
   useEffect(() => {
@@ -257,10 +258,12 @@ const PostPage = () => {
   };
 
   const registPost = async () => {
+    window.scrollTo({ top: 0 });
     removeTempData();
     const mergeData = mergePlans();
     const { title, registImage, channelId } = mergeData;
     if (type === "create") {
+      setLoading(true);
       if (channelId === null) {
         alert("채널을 선택해주세요");
         return;
@@ -273,9 +276,11 @@ const PostPage = () => {
       if (res.status === 200) {
         alert("작성이 완료되었습니다.");
         navigate(`/post/detail/${res.data._id}`);
+        setLoading(false);
       }
     }
     if (type === "edit") {
+      setLoading(true);
       if (channelId === null) {
         alert("채널을 선택해주세요");
         return;
@@ -289,6 +294,7 @@ const PostPage = () => {
       if (res.status === 200) {
         alert("수정이 완료되었습니다.");
         navigate(`/post/detail/${postId}`);
+        setLoading(false);
       }
     }
   };
@@ -335,11 +341,18 @@ const PostPage = () => {
   };
 
   if (Object.keys(post).length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <S.Container>
+        <S.HeadeContainer>
+          <Skeleton.Box width={1340} height={550} />
+        </S.HeadeContainer>
+      </S.Container>
+    );
   }
 
   return (
     <S.Container>
+      {/* {loading && <Loading />} */}
       <S.HeadeContainer
         name="image"
         onMouseEnter={handleMouseEnter}
