@@ -61,6 +61,7 @@ const ImageInner = ({
   };
 
   const editPost = () => {
+    setVisible(!visible);
     navigate(`/post/edit/${postId}`);
   };
 
