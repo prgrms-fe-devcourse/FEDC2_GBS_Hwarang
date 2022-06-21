@@ -8,19 +8,16 @@ import {
   Icon,
   Modal,
   PrivateRoute,
+  ScrollTopButton,
 } from "components";
 import { useParams, useNavigate } from "react-router-dom";
 import { jwtToken, loginStatus } from "recoil/authentication";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userInfo } from "recoil/user";
-// import { unSeenNotifications } from "recoil/notification";
 import { getPostByUserId } from "api/post-api";
 import { DEFAULT_COVER_IMAGE, DEFAULT_PROFILE_IMAGE } from "api/url";
 import { getUserInfoById, followUser, unFollowUser } from "api/user-api";
-// import { createAlarm, getAlarms } from "api/alarm-api";
-import ImageButton from "./components/ImageButton";
-import NoPostWrapper from "./components/NoPostList";
-import FollowButton from "./components/FollowButton";
+import { ImageButton, NoPostWrapper, FollowButton } from "./components";
 import * as S from "./UserPage.style";
 import { ModifyUserName, ModifyPassword } from "./components/ModifyUserInfo";
 
@@ -270,6 +267,7 @@ function UserPage() {
           />
         </Modal>
       </S.Main>
+      <ScrollTopButton />
     </>
   );
 }

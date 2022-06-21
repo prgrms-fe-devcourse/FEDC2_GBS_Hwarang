@@ -26,3 +26,4 @@ export { default as SideBar } from "./SideBar";
 export { default as ImageUploader } from "./ImageUploader";
 export { default as Comment } from "./Comment";
 export { default as LikeButton } from "./LikeButton";
+export { default as ScrollTopButton } from "./ScrollTopButton";

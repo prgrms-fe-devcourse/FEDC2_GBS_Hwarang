@@ -1,4 +1,10 @@
-import { PostList, PostListFilter, Text, Spinner } from "components";
+import {
+  PostList,
+  PostListFilter,
+  Text,
+  Spinner,
+  ScrollTopButton,
+} from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useTasks } from "contexts/TaskProvider";
@@ -6,7 +12,6 @@ import { postListPosts } from "recoil/post";
 import { useParams } from "react-router-dom";
 import { useSorting } from "hooks";
 import S from "./PostListPage.style";
-import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
   const initialAllPost = useRecoilValue(postListPosts);
