@@ -9,24 +9,21 @@ import { Text } from "components";
 import S from "./Comment.style";
 
 const propTypes = {
-  postId: PropTypes.string,
+  postId: PropTypes.string.isRequired,
   comments: PropTypes.instanceOf(Array).isRequired,
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  user: PropTypes.string,
+  userId: PropTypes.string.isRequired,
 };
 const defaultProps = {
-  postId: null,
   maxHeight: 100,
-  user: null,
 };
 
-const Comment = ({ postId, comments, maxHeight, user }) => {
+const Comment = ({ postId, comments, maxHeight, userId }) => {
   const token = useRecoilValue(jwtToken);
 
   const handleAddComment = async (comment) => {
-    if (!postId || !user) return;
     try {
-      const response = await addComment(comment, postId, user, token);
+      const response = await addComment(comment, postId, userId, token);
       console.log(response);
     } catch (exception) {
       console.error(exception);

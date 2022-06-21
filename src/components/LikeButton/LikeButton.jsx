@@ -95,7 +95,7 @@ const LikeButton = ({
       textSize={textSize}
       text={likeNum}
       textColor={textColor}
-      initialState={token !== undefined && isLiked}
+      initialState={token && isLiked}
       style={{ ...props.style }}
     >
       <Image src={likesSvg} width={width} height={height} mode="contain" />
