@@ -22,7 +22,7 @@ import { Footer } from "components";
 // eslint-disable-next-line import/named
 
 import ScrollToTop from "utils/ScrollToTop";
-import { MainPage, PostListPage, UserPage, PostPage } from "./pages";
+import { MainPage, PostListPage, UserPage, PostPage, GuidePage } from "./pages";
 import Auth from "./hoc";
 import "./utils/date";
 
@@ -76,9 +76,10 @@ function App() {
                 element={<PostListPageComponent />}
               />
               <Route path="userpage/:ID" element={<UserPageComponent />} />
-              <Route path="/post/create" element={<PostPage />} />
-              <Route path="/post/edit/:ID" element={<PostPage />} />
-              <Route path="/post/detail/:ID" element={<PostPage />} />
+              <Route exact path="/post/create" element={<PostPage />} />
+              <Route exact path="/post/edit/:ID" element={<PostPage />} />
+              <Route exact path="/post/detail/:ID" element={<PostPage />} />
+              <Route path="/guide" element={<GuidePage />} />
               <Route path="*" element={<div>Not Found!</div>} />
             </Routes>
             <Footer />
