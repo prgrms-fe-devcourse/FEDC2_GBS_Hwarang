@@ -46,6 +46,8 @@ const Text = ({
     fontSize,
     textDecoration: underline ? "underline" : undefined,
     color: fontColor,
+    whiteSpace: "pre-wrap",
+    lineHeight: "1.2",
   };
 
   return <Tag style={{ ...fontStyle, ...props.style }}>{children}</Tag>;
