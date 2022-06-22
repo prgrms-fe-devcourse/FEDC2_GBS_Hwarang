@@ -29,6 +29,14 @@ const Dot = styled.div`
 
 const ImageContainer = styled.div`
   position: relative;
+  &:hover {
+    .css-1j9s42l {
+      display: block;
+    }
+    .css-qw4r3r {
+      display: flex;
+    }
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -39,7 +47,7 @@ const ImageWrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  display: ${({ isHovering }) => (isHovering ? "block" : "none")};
+  display: none;
   position: absolute;
   top: 40%;
   left: 0;
@@ -50,7 +58,7 @@ const IconWrapper = styled.div`
   position: absolute;
   top: -10px;
   right: -20px;
-  display: ${({ isHovering }) => (isHovering ? "flex" : "none")};
+  display: none;
   justify-content: center;
   align-items: center;
   width: 40px;
