@@ -10,30 +10,37 @@ const ImageSlider = ({ children, width, height }) => {
     height,
   };
 
-  const TOTAL_SLIDES = children.length - 1;
+  const cloneSlide = [children[children.length - 1], ...children, children[0]];
+  const TOTAL_SLIDES = cloneSlide.length - 1;
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isEnd, setIsEnd] = useState(false);
-  const slideRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(1);
+  const [carouselTransition, setCarouselTransition] = useState(
+    "transform 500ms ease-in-out"
+  );
+
+  const moveToNthSlide = (n) => {
+    setTimeout(() => {
+      setCarouselTransition("");
+      setCurrentSlide(n);
+    }, 500);
+  };
 
   const nextSlide = () => {
-    if (currentSlide >= TOTAL_SLIDES) {
-      setIsEnd(true);
-      setCurrentSlide(0);
-    } else {
-      setIsEnd(false);
-      setCurrentSlide(currentSlide + 1);
+    const newCurr = currentSlide + 1;
+    setCurrentSlide(newCurr);
+    if (newCurr === TOTAL_SLIDES + 1) {
+      moveToNthSlide(1);
     }
+    setCarouselTransition("transform 500ms ease-in-out");
   };
 
   const prevSlide = () => {
-    if (currentSlide === 0) {
-      setIsEnd(true);
-      setCurrentSlide(TOTAL_SLIDES);
-    } else {
-      setIsEnd(false);
-      setCurrentSlide(currentSlide - 1);
+    const newCurr = currentSlide - 1;
+    setCurrentSlide(newCurr);
+    if (newCurr === 0) {
+      moveToNthSlide(TOTAL_SLIDES + 1);
     }
+    setCarouselTransition("transform 500ms ease-in-out");
   };
 
   const useInterval = (callback, delay) => {
@@ -54,21 +61,25 @@ const ImageSlider = ({ children, width, height }) => {
   };
 
   useInterval(() => {
-    if (currentSlide >= TOTAL_SLIDES) {
-      setIsEnd(true);
-      setCurrentSlide(0);
-    } else {
-      setIsEnd(false);
-      setCurrentSlide(currentSlide + 1);
+    const newCurr = currentSlide + 1;
+    setCurrentSlide(newCurr);
+    if (newCurr === TOTAL_SLIDES) {
+      moveToNthSlide(1);
     }
+    setCarouselTransition("transform 500ms ease-in-out");
   }, 6000);
 
   // const element = slideRef.current;
 
   return (
     <IS.Container style={{ ...sliderStyle }}>
-      <IS.SliderContainer ref={slideRef} end={isEnd} count={currentSlide}>
-        {children.map((item) => (
+      <IS.SliderContainer
+        style={{
+          transform: `translateX(-${currentSlide * 100}%)`,
+          transition: `${carouselTransition}`,
+        }}
+      >
+        {cloneSlide.map((item) => (
           <Slide key={item.id} src={item.src} />
         ))}
       </IS.SliderContainer>
