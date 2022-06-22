@@ -29,7 +29,7 @@ import {
   PostDetailPage,
   PostCreatePage,
   PostEditPage,
-  GuidePage
+  GuidePage,
 } from "./pages";
 import Auth from "./hoc";
 import "./utils/date";
