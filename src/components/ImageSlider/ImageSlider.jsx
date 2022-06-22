@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Dot } from "components";
@@ -79,8 +80,8 @@ const ImageSlider = ({ children, width, height }) => {
           transition: `${carouselTransition}`,
         }}
       >
-        {cloneSlide.map((item) => (
-          <Slide key={item.id} src={item.src} />
+        {cloneSlide.map((item, index) => (
+          <Slide key={index} src={item.src} />
         ))}
       </IS.SliderContainer>
       <IS.DotWrap>
