@@ -9,13 +9,18 @@ export const MainInputContainer = styled.div`
   width: 800px;
   height: 75px;
   border-radius: 20px;
-  z-index: 2;
+  z-index: 10;
 `;
 
 export const MainInputResult = styled.div`
+  position: relative;
+  top: -38px;
+  width: 800px;
   box-sizing: border-box;
   overflow: hidden;
   background-color: ${Common.colors.white};
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  opacity: 0.85;
+  z-index: 3;
 `;

@@ -35,14 +35,15 @@ const MainInput = () => {
         name="keyword"
         onChange={handleChange}
         width="100%"
-        height="75px"
+        height="76px"
         onSearch={handleOnSearch}
         initialValue={keyword}
         style={{
           borderRadius: "30px",
           padding: "10px 20px",
           fontSize: "20px",
-          backgroundColor: "rgba(255, 255, 255 ,0.5)",
+          backgroundColor: "rgba(255, 255, 255 ,1)",
+          border: "none",
         }}
       />
       <S.MainInputResult>
@@ -57,10 +58,10 @@ const MainInput = () => {
           options={["title"]}
           width="100%"
           height="auto"
-          maxHeight="250px"
+          maxHeight="225px"
         >
-          <Text size="$b2" strong style={{ padding: "17px 10px 10px 10px" }}>
-            추천 게시글👍
+          <Text size="$b3" strong style={{ padding: "50px 10px 10px 25px" }}>
+            👍 추천 게시글
           </Text>
         </InputResult>
       </S.MainInputResult>

@@ -81,7 +81,7 @@ const PostListInput = () => {
             return { ...content, _id: post._id, image: post.image };
           })}
           options={["title"]}
-          width="610px"
+          width="622px"
           height="150px"
           border
         />
