@@ -7,8 +7,8 @@ COPY package.json /usr/src/app/package.json
 # COPY package-lock.json /usr/src/app/package-lock.json
 RUN yarn install --network-timeout 100000
 
-# COPY . /usr/src/app
-# COPY ./build /usr/src/app/build
+COPY . /usr/src/app
+COPY ./build /usr/src/app/build
 
 FROM nginx:alpine
 
