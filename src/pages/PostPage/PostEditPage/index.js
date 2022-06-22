@@ -231,9 +231,9 @@ const PostEditPage = () => {
   if (Object.keys(post).length === 0) {
     return (
       <S.Container>
-        <S.HeadeContainer>
+        <S.HeaderContainer>
           <Skeleton.Box width={1340} height={550} />
-        </S.HeadeContainer>
+        </S.HeaderContainer>
       </S.Container>
     );
   }
@@ -242,12 +242,12 @@ const PostEditPage = () => {
   return (
     <S.Container>
       {loading && <Loading />}
-      <S.HeadeContainer
+      <S.HeaderContainer
         name="image"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <S.Cover />
+        <S.Dim />
         <Image width="100%" height="100%" src={post.image || DefaultImage} />
         <ImageInner
           type={type}
@@ -257,7 +257,7 @@ const PostEditPage = () => {
           onChangeHandler={onChangeHandler}
           channels={channels}
         />
-      </S.HeadeContainer>
+      </S.HeaderContainer>
       <S.ContentContainer>
         <S.Author>
           <Text strong>{author}님의 여행 일정</Text>

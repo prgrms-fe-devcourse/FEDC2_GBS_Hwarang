@@ -60,17 +60,17 @@ const PostDetailPage = () => {
   if (Object.keys(post).length === 0) {
     return (
       <S.Container>
-        <S.HeadeContainer>
+        <S.HeaderContainer>
           <Skeleton.Box width={1340} height={550} />
-        </S.HeadeContainer>
+        </S.HeaderContainer>
       </S.Container>
     );
   }
 
   return (
     <S.Container>
-      <S.HeadeContainer>
-        <S.Cover />
+      <S.HeaderContainer>
+        <S.Dim />
         <Image width="100%" height="100%" src={post.image || DefaultImage} />
         <ImageInner
           type={type}
@@ -79,7 +79,7 @@ const PostDetailPage = () => {
           deletePost={deletePost}
           likes={post.likes}
         />
-      </S.HeadeContainer>
+      </S.HeaderContainer>
       <S.ContentContainer>
         <S.Author>
           <Text strong>{post.author.fullName}님의 여행 일정</Text>
