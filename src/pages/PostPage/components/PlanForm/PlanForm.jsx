@@ -54,7 +54,7 @@ const PlanForm = ({
           <Icon name="close" onClick={() => removePlan(_id)} />
         )}
       </S.Dot>
-      <S.ImageContainer name="image">
+      <S.ImageContainer name="image" type={type}>
         <S.ImageWrapper>
           <Image
             width="100%"

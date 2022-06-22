@@ -30,10 +30,10 @@ const ImageContainer = styled.div`
   position: relative;
   &:hover {
     .css-1j9s42l {
-      display: ${({ type }) => (type !== "detail" ? "none" : "block")};
+      display: ${({ type }) => (type === "detail" ? "none" : "block")};
     }
     .css-qw4r3r {
-      display: ${({ type }) => (type !== "detail" ? "none" : "flex")};
+      display: ${({ type }) => (type === "detail" ? "none" : "flex")};
     }
   }
 `;
