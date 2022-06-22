@@ -29,6 +29,7 @@ const PostEditPage = () => {
   const token = useRecoilValue(jwtToken);
   const getUser = useRecoilValue(userInfo);
   const author = getUser.fullName;
+  const userId = getUser._id;
   const [tempData, setTempData, removeTempData] = useLocalStorage("post", {});
   const [isHovering, handleMouseEnter, handleMouseLeave] = useHover({
     content: false,
@@ -52,6 +53,12 @@ const PostEditPage = () => {
           alert("존재하지 않는 게시글 입니다.");
           navigate("/");
         }
+
+        if (response.data.author._id !== userId) {
+          alert("잘못된 접근입니다.");
+          navigate("/");
+        }
+
         const parse = JSON.parse(response.data.title);
 
         if (hasTempData(tempData) && checkTempData(tempData, type)) {
