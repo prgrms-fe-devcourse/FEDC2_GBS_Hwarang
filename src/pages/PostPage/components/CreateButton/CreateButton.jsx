@@ -20,24 +20,24 @@ const CreateButton = ({ addPlan, registPost, temporarySave }) => {
     <>
       <S.AddPlanContainer>
         <Button
-          width={250}
+          width={200}
           height={60}
           border
           backgroundColor="$white"
           color="$gray03"
-          textSize="$b1"
+          textSize="$b2"
           onClick={addPlan}
         >
           일정추가 +
         </Button>
       </S.AddPlanContainer>
       <S.ActionsContainer>
-        <Button width={230} height={80} onClick={registPost}>
+        <Button width={200} height={70} onClick={registPost}>
           일정 등록
         </Button>
         <Button
-          width={230}
-          height={80}
+          width={200}
+          height={70}
           border
           backgroundColor="$white"
           color="$main"

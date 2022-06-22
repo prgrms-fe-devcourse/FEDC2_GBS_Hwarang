@@ -30,6 +30,9 @@ export const Select = styled.select`
   outline: none;
   padding: 5px 10px;
   font-family: "Noto Sans KR", sans-serif;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const Option = styled.option`

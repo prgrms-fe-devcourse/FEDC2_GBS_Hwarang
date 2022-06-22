@@ -27,18 +27,15 @@ const TaskProvider = ({ children }) => {
     setTasks(tasks.filter((item) => item.id !== id));
   };
 
-  const selectChannel = (id) => {
-    setChannel(id);
-  };
-
   return (
     <TaskContext.Provider
       value={{
         tasks,
+        setTasks,
         addTask,
         removeTask,
         channel,
-        selectChannel,
+        setChannel,
       }}
     >
       {children}

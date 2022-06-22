@@ -42,8 +42,3 @@ npm install
 - [react-hook-form](https://react-hook-form.com/)
 - [emotion](https://emotion.sh/docs/introduction)
 - [react-router-dom](https://reactrouter.com/docs/en/v6/getting-started/overview)
-
-# main은 Production용입니다
-
-git webhook을 통해서 jenkins와 연동하였습니다 따라서 main branch에 푸시하면 자동으로 jenkins build 됩니다.
-ec2가 t2.micro라서 react build 까지 감내하지 못하고 있습니다... 따라서 build를 로컬에서 진행한 후 푸시하여야 정상 작동 합니다

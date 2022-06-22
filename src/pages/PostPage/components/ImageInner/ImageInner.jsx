@@ -7,8 +7,8 @@ import {
   ToggleButton,
   Image,
   Icon,
+  LikeButton,
 } from "components";
-import LikeButton from "components/LikeButton";
 import commentSvg from "assets/comment.svg";
 import Common from "styles/common";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +53,7 @@ const ImageInner = ({
 }) => {
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
-  const postId = post._id;
+  const postId = post._id || "";
   const authorId = post.author?._id;
 
   const handleOnClick = () => {
@@ -61,6 +61,7 @@ const ImageInner = ({
   };
 
   const editPost = () => {
+    setVisible(!visible);
     navigate(`/post/edit/${postId}`);
   };
 
@@ -83,13 +84,15 @@ const ImageInner = ({
       )}
       <S.InnerWrapper position="left">
         {type === "detail" ? (
-          <Text color="$white">{post?.title}</Text>
+          <Text color="$white" size="$h1" strong>
+            {post.title ? post.title : ""}
+          </Text>
         ) : (
           <Input
             placeholder="일정 제목을 입력해주세요"
             initialValue={post?.title}
             onChange={(e) => onChangeHandler(null, "title", e.target.value)}
-            width={500}
+            width={600}
             useIcon={false}
             style={{
               backgroundColor: "transparent",
@@ -103,26 +106,7 @@ const ImageInner = ({
       </S.InnerWrapper>
       <S.InnerWrapper position="right">
         {type === "detail" ? (
-          <div style={{ display: "flex" }}>
-            {/* <ToggleButton
-              disabled={false}
-              onClick={() => {
-                console.log("Clicked!");
-              }}
-              replaceChildren={
-                <Image
-                  src={likesClickedSvg}
-                  width={20}
-                  height={20}
-                  mode="contain"
-                />
-              }
-              textSize="$c1"
-              textColor="white"
-              text={post?.likes?.length}
-            >
-              <Image src={likesSvg} width={20} height={20} mode="contain" />
-            </ToggleButton> */}
+          <div style={{ display: "flex", gap: "7px" }}>
             <LikeButton
               id={postId}
               likes={likes}

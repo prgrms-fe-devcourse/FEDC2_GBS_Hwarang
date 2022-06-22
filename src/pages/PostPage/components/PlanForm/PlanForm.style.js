@@ -3,11 +3,11 @@ import Common from "styles/common";
 
 const Content = styled.li`
   display: flex;
+  gap: 15px;
   padding: 24px 0;
   &:hover {
-    /* background-color: rgba(0, 0, 0, 0.2); */
     background-color: ${({ type }) =>
-      type === "detail" ? "none" : "rgba(0, 0, 0, 0.2)"};
+      type === "detail" ? "none" : Common.colors.gray05};
   }
 `;
 
@@ -15,8 +15,8 @@ const Dot = styled.div`
   align-self: center;
   width: 20px;
   height: 20px;
-  margin-left: 100px;
-  margin-right: 80px;
+  margin-left: 51px;
+  margin-right: 60px;
   border: 1px solid ${Common.colors.main};
   border-radius: 50%;
   background-color: ${({ isHovering }) =>
@@ -28,6 +28,14 @@ const Dot = styled.div`
 
 const ImageContainer = styled.div`
   position: relative;
+  &:hover {
+    .css-1j9s42l {
+      display: ${({ type }) => (type === "detail" ? "none" : "block")};
+    }
+    .css-qw4r3r {
+      display: ${({ type }) => (type === "detail" ? "none" : "flex")};
+    }
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -38,7 +46,7 @@ const ImageWrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  display: ${({ isHovering }) => (isHovering ? "block" : "none")};
+  display: none;
   position: absolute;
   top: 40%;
   left: 0;
@@ -49,7 +57,7 @@ const IconWrapper = styled.div`
   position: absolute;
   top: -10px;
   right: -20px;
-  display: ${({ isHovering }) => (isHovering ? "flex" : "none")};
+  display: none;
   justify-content: center;
   align-items: center;
   width: 40px;
@@ -63,9 +71,10 @@ const IconWrapper = styled.div`
 const Info = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   gap: 5px;
   margin-left: 16px;
-  margin-top: 16px;
+  margin-top: 5px;
   input::placeholder {
     color: ${Common.colors.gray04};
   }

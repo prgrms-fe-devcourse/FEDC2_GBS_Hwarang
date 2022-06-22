@@ -122,7 +122,11 @@ const Input = React.forwardRef(
           />
           {useIcon && (
             <IconGroup>
-              <Icon onClick={handleOnSearch} />
+              <Icon
+                onClick={handleOnSearch}
+                fontSize={25}
+                style={{ cursor: "pointer" }}
+              />
             </IconGroup>
           )}
         </S.InputWrapper>

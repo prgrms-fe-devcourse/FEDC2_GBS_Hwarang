@@ -54,11 +54,7 @@ const PlanForm = ({
           <Icon name="close" onClick={() => removePlan(_id)} />
         )}
       </S.Dot>
-      <S.ImageContainer
-        name="image"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <S.ImageContainer name="image" type={type}>
         <S.ImageWrapper>
           <Image
             width="100%"
@@ -67,7 +63,7 @@ const PlanForm = ({
             styled={{ borderRadius: 6 }}
           />
         </S.ImageWrapper>
-        <S.ButtonWrapper isHovering={isHovering.image}>
+        <S.ButtonWrapper>
           <ImageUploader
             id={_id}
             onChange={onImageChange}
@@ -75,7 +71,7 @@ const PlanForm = ({
             useButton
           />
         </S.ButtonWrapper>
-        <S.IconWrapper isHovering={isHovering.image}>
+        <S.IconWrapper>
           <Icon name="close" onClick={() => removePlanImage(_id)} />
         </S.IconWrapper>
       </S.ImageContainer>
@@ -83,7 +79,7 @@ const PlanForm = ({
         {type === "detail" ? (
           <>
             <S.TextWrapper>
-              <Text size="$b1" strong>
+              <Text size="$b2" strong>
                 {title}
               </Text>
             </S.TextWrapper>

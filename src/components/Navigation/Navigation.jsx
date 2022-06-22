@@ -185,19 +185,19 @@ function Navigation() {
           </div>
         </Ns.NavLogoBlock>
         <Ns.LinkBlock>
+          <Ns.NavigationLink to="/">
+            <Text size="$c2" color="#000000" strong>
+              가봤슈
+            </Text>
+          </Ns.NavigationLink>
           <Ns.NavigationLink to="/travel-destination/all">
             <Text size="$c2" color="#000000" strong>
-              여행
+              여행지
             </Text>
           </Ns.NavigationLink>
           <Ns.NavigationLink to="/plan">
             <Text size="$c2" color="#000000" strong>
               일정 만들기
-            </Text>
-          </Ns.NavigationLink>
-          <Ns.NavigationLink to="/hotel">
-            <Text size="$c2" color="#000000" strong>
-              호텔
             </Text>
           </Ns.NavigationLink>
           <Ns.NavigationLink to="/guide">

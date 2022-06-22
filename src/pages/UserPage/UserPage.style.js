@@ -12,6 +12,8 @@ export const UserInfoWrapper = styled.div`
   transform: translateY(50%);
   display: flex;
   gap: 1rem;
+  z-index: 10;
+
   .image-wrapper {
     position: relative;
   }
@@ -29,8 +31,14 @@ export const Dim = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(60, 60, 60, 0.32) 75%,
+    rgba(30, 30, 30, 0.68) 85%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  opacity: 0.3;
   z-index: 1;
 `;
 
@@ -41,6 +49,7 @@ export const ExtraInfoWrapper = styled.div`
   display: flex;
   gap: 1rem;
   margin-bottom: 10px;
+  z-index: 10;
 `;
 
 export const ExtraInfo = styled.div`

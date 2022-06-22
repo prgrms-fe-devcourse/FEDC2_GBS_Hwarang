@@ -18,8 +18,8 @@ const propTypes = {
 
 const defaultProps = {
   channelId: "",
-  padding: "8px 6px",
-  fontSize: `${Common.fontSize.b2}`,
+  padding: "10px",
+  fontSize: `${Common.fontSize.b3}`,
   fontWeight: "bold",
   color: `${Common.colors.gray04}`,
   backgroundColor: `${Common.colors.black01}`,

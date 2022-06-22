@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 import React, { useState, useEffect } from "react";
-import { Image, Text, Comment } from "components";
+import { Image, Text, Comment, Skeleton } from "components";
 import useLocalStorage from "hooks/useLocalStorage";
 import {
   getChannels,
@@ -21,6 +22,7 @@ import S from "./PostPage.style";
 import PlanForm from "./components/PlanForm";
 import CreateButton from "./components/CreateButton";
 import ImageInner from "./components/ImageInner";
+import Loading from "./components/Loading";
 
 const propTypes = {};
 
@@ -75,11 +77,12 @@ const PostPage = () => {
   };
 
   const [post, setPost] = useState({});
+  const [comments, setComments] = useState([]);
   const [channels, setChannels] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!loading) {
+    if (Object.keys(post).length !== 0) {
       if (type === "edit" && post.author._id !== userId) {
         alert("잘못된 접근입니다.");
         navigate("/");
@@ -159,6 +162,7 @@ const PostPage = () => {
               title: parse.title,
               plans: parse.plans,
             });
+            setComments(response.data.comments);
           }
         }
       } catch (exception) {
@@ -169,8 +173,7 @@ const PostPage = () => {
     setType(pathname[2]);
     setPostId(params?.ID || pathname[3] || "");
     fetchData();
-    setLoading(false);
-  }, [location, params, type, post.comments]);
+  }, [location, params?.id, type]);
 
   useEffect(() => {
     // Todo: App.js로 빼서 recoil 사용하여 갖고오기?
@@ -255,10 +258,12 @@ const PostPage = () => {
   };
 
   const registPost = async () => {
+    window.scrollTo({ top: 0 });
     removeTempData();
     const mergeData = mergePlans();
     const { title, registImage, channelId } = mergeData;
     if (type === "create") {
+      setLoading(true);
       if (channelId === null) {
         alert("채널을 선택해주세요");
         return;
@@ -271,9 +276,11 @@ const PostPage = () => {
       if (res.status === 200) {
         alert("작성이 완료되었습니다.");
         navigate(`/post/detail/${res.data._id}`);
+        setLoading(false);
       }
     }
     if (type === "edit") {
+      setLoading(true);
       if (channelId === null) {
         alert("채널을 선택해주세요");
         return;
@@ -287,6 +294,7 @@ const PostPage = () => {
       if (res.status === 200) {
         alert("수정이 완료되었습니다.");
         navigate(`/post/detail/${postId}`);
+        setLoading(false);
       }
     }
   };
@@ -304,6 +312,15 @@ const PostPage = () => {
 
     if (e.target.files && e.target.files[0]) {
       if (id) {
+        setPost({
+          ...post,
+          plans: [...post.plans].map((plan) =>
+            plan._id === id
+              ? { ...plan, image: URL.createObjectURL(e.target.files[0]) }
+              : plan
+          ),
+        });
+
         const result = await uploadImageToS3(e.target.files[0], "test");
         const imageUrl = result.location;
         setPost({
@@ -324,17 +341,24 @@ const PostPage = () => {
   };
 
   if (Object.keys(post).length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <S.Container>
+        <S.HeaderContainer>
+          <Skeleton.Box width={1340} height={550} />
+        </S.HeaderContainer>
+      </S.Container>
+    );
   }
 
   return (
     <S.Container>
-      <S.HeadeContainer
+      {/* {loading && <Loading />} */}
+      <S.HeaderContainer
         name="image"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <S.Cover />
+        <S.Dim />
         <Image width="100%" height="100%" src={post.image || DefaultImage} />
         <ImageInner
           type={type}
@@ -347,10 +371,14 @@ const PostPage = () => {
           deletePost={deletePost}
           likes={post?.likes}
         />
-      </S.HeadeContainer>
+      </S.HeaderContainer>
       <S.ContentContainer>
         <S.Author>
-          <Text strong>{author}님의 여행 일정</Text>
+          {type === "detail" ? (
+            <Text strong>{post.author?.fullName}님의 여행 일정</Text>
+          ) : (
+            <Text strong>{author}님의 여행 일정</Text>
+          )}
         </S.Author>
         <S.ContentList>
           <S.Line
@@ -379,7 +407,12 @@ const PostPage = () => {
       )}
       {type === "detail" && (
         <S.CommentWrapper>
-          <Comment postId={postId} comments={post.comments} user={userId} />
+          <Comment
+            postId={postId}
+            comments={comments}
+            userId={userId}
+            setComments={setComments}
+          />
         </S.CommentWrapper>
       )}
     </S.Container>

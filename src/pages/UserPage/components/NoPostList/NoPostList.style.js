@@ -5,6 +5,7 @@ import Common from "styles/common";
 export const NoPostWrapper = styled.div`
   border: 1px solid ${Common.colors.main};
   border-radius: 10px;
+  max-width: 1200px;
   width: 90%;
   margin: 0 auto;
   margin-bottom: 12rem;

@@ -1,4 +1,10 @@
-import { PostList, PostListFilter, Text, Spinner } from "components";
+import {
+  PostList,
+  PostListFilter,
+  Text,
+  Spinner,
+  ScrollTopButton,
+} from "components";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useTasks } from "contexts/TaskProvider";
@@ -6,11 +12,10 @@ import { postListPosts } from "recoil/post";
 import { useParams } from "react-router-dom";
 import { useSorting } from "hooks";
 import S from "./PostListPage.style";
-import ScrollTopButton from "./components/ScrollTopButton";
 
 const PostListPage = () => {
   const initialAllPost = useRecoilValue(postListPosts);
-  const { tasks, channel } = useTasks();
+  const { tasks, channel, setTasks, setChannel } = useTasks();
   const { Options } = useParams();
   const [optionPosts, setOptionPosts] = useState(undefined);
   const [renderData, setRenderData] = useState([]);
@@ -18,6 +23,13 @@ const PostListPage = () => {
   const [noResult, setNoResult] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    return () => {
+      setTasks([]);
+      setChannel("none");
+    };
+  }, []);
+  // 1) 필터링
   useEffect(() => {
     if (initialAllPost.length === 0) {
       setLoading(true);
@@ -27,9 +39,9 @@ const PostListPage = () => {
     setLoading(false);
     let result = [];
 
-    if (channel !== "none")
+    if (channel !== "none") {
       result = initialAllPost.filter((post) => post.channel._id === channel);
-    else {
+    } else {
       result = [...initialAllPost];
     }
 

@@ -2,7 +2,9 @@ import styled from "@emotion/styled";
 import Common from "styles/common";
 
 const Select = styled.div`
-  width: 288px;
+  width: 300px;
+  border-radius: 10px;
+  overflow: hidden;
   user-select: none;
 `;
 

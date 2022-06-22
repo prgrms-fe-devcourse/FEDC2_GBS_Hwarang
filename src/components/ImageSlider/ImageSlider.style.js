@@ -8,7 +8,6 @@ export const Container = styled.div`
 
 export const SliderContainer = styled.div`
   display: flex;
-  transform: translate(0, 0);
   height: 100%;
   width: 100%;
 `;

@@ -10,7 +10,7 @@ import * as S from "./PostListInput.style";
 const PostListInput = () => {
   const [keyword, setKeyword] = useState("");
   const [channels, setChannels] = useState([]);
-  const { addTask, selectChannel } = useTasks();
+  const { addTask, channel, setChannel } = useTasks();
   const posts = useRecoilValue(allPost);
 
   /* InputResult display attr */
@@ -43,13 +43,13 @@ const PostListInput = () => {
 
   const onChange = (e) => {
     const { value } = e.target;
-    selectChannel(value);
+    setChannel(value);
   };
 
   return (
     <S.Container>
       <S.InputContainer>
-        <S.Select onChange={onChange}>
+        <S.Select onChange={onChange} value={channel}>
           <S.Option value="none">대륙 선택</S.Option>
           {channels.length !== 0 &&
             channels.map((item) => (
@@ -81,7 +81,7 @@ const PostListInput = () => {
             return { ...content, _id: post._id, image: post.image };
           })}
           options={["title"]}
-          width="610px"
+          width="622px"
           height="150px"
           border
         />

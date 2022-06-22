@@ -2,6 +2,8 @@ import { Text } from "components";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "hooks/useLocalStorage";
+import { useTasks } from "contexts/TaskProvider";
 import S from "./PostList.style";
 import PostListItem from "./PostListItem";
 
@@ -13,9 +15,29 @@ const propTypes = {
 const PostList = ({ data, listTitle }) => {
   const navigate = useNavigate();
   const [renderData, setRenderData] = useState(undefined);
+  const { tasks, channel, setChannel, setTasks } = useTasks();
+
   const [page, setPage] = useState(0);
   const [lastIntersectingItem, setLastIntersectionItem] = useState(null);
   const [completeData, setCompleteData] = useState(false);
+
+  const [tempQuery, setTempQuery, removeTempQuery] = useLocalStorage(
+    "query",
+    []
+  );
+  const [tempChannel, setTempChannel, removeTempChannel] = useLocalStorage(
+    "channel",
+    ""
+  );
+
+  useEffect(() => {
+    if (tempQuery.length !== 0 || tempChannel.length !== 0) {
+      setTasks(tempQuery);
+      setChannel(tempChannel);
+      removeTempQuery();
+      removeTempChannel();
+    }
+  }, []);
 
   const getRenderData = () => {
     if (!renderData) return;
@@ -38,6 +60,8 @@ const PostList = ({ data, listTitle }) => {
     });
   };
   const handleOnClickItem = (id) => {
+    setTempQuery(tasks);
+    setTempChannel(channel);
     navigate(`/post/detail/${id}`);
   };
 
