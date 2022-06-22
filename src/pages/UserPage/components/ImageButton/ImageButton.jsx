@@ -36,10 +36,10 @@ function ImageButton({ isCover, isCoverHover }) {
 
     if (isCover) {
       const result = await uploadCoverImage(formData, token);
-      if (result.statusText === "OK") setCoverImg(result.data.coverImage);
+      setCoverImg(result.data.coverImage);
     } else {
       const result = await uploadProfileImage(formData, token);
-      if (result.statusText === "OK") setProfileImg(result.data.image);
+      setProfileImg(result.data.image);
     }
   };
 

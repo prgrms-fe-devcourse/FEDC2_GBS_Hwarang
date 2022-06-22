@@ -126,8 +126,8 @@ const PostList = ({ data, listTitle }) => {
                   image ||
                   "	https://mygbs.s3.ap-northeast-2.amazonaws.com/user/Default+Cover+Image.png"
                 }
-                title={content.title || "Untitled"}
-                author={author.fullName}
+                title={content?.title || "Untitled"}
+                author={author?.fullName}
                 createdAt={createdAt.slice(0, 10)}
                 likesNum={likesNum}
                 commentsNum={commentsNum}

@@ -17,7 +17,7 @@ function NoPostList({ isOwner }) {
 
   const onButtonClick = (event) => {
     event.preventDefault();
-    navigate("/create-post");
+    navigate("/post/create");
   };
 
   return (
