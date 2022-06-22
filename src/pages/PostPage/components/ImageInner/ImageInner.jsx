@@ -107,25 +107,6 @@ const ImageInner = ({
       <S.InnerWrapper position="right">
         {type === "detail" ? (
           <div style={{ display: "flex", gap: "7px" }}>
-            {/* <ToggleButton
-              disabled={false}
-              onClick={() => {
-                console.log("Clicked!");
-              }}
-              replaceChildren={
-                <Image
-                  src={likesClickedSvg}
-                  width={20}
-                  height={20}
-                  mode="contain"
-                />
-              }
-              textSize="$c1"
-              textColor="white"
-              text={post?.likes?.length}
-            >
-              <Image src={likesSvg} width={20} height={20} mode="contain" />
-            </ToggleButton> */}
             <LikeButton
               id={postId}
               likes={likes}
