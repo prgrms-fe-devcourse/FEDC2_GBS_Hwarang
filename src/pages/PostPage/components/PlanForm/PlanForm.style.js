@@ -6,7 +6,6 @@ const Content = styled.li`
   gap: 15px;
   padding: 24px 0;
   &:hover {
-    /* background-color: rgba(0, 0, 0, 0.2); */
     background-color: ${({ type }) =>
       type === "detail" ? "none" : Common.colors.gray05};
   }
@@ -31,10 +30,10 @@ const ImageContainer = styled.div`
   position: relative;
   &:hover {
     .css-1j9s42l {
-      display: block;
+      display: ${({ type }) => (type !== "detail" ? "none" : "block")};
     }
     .css-qw4r3r {
-      display: flex;
+      display: ${({ type }) => (type !== "detail" ? "none" : "flex")};
     }
   }
 `;
