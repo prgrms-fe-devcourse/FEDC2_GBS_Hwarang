@@ -2,18 +2,18 @@ FROM node:lts-alpine as builder
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+# ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY package.json /usr/src/app/package.json
-COPY package-lock.json /usr/src/app/package-lock.json
-RUN npm install && mv node_modules ../
+# COPY package-lock.json /usr/src/app/package-lock.json
+RUN yarn install --network-timeout 100000
 
 COPY . /usr/src/app
-RUN npm run build
+COPY ./build /usr/src/app/build
 
 FROM nginx:alpine
 
 # nginx 기본 설정 삭제 후 config 복사
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm -rf /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/conf.d
 
 # 위에서 생성한 앱의 빌드산출물을 nginx의 샘플 앱이 사용하던 폴더로 이동

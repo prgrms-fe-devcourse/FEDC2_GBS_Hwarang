@@ -30,6 +30,7 @@ import {
   PostCreatePage,
   PostEditPage,
   GuidePage,
+  NotFoundPage,
 } from "./pages";
 import Auth from "./hoc";
 import "./utils/date";
@@ -88,7 +89,7 @@ function App() {
               <Route path="/post/edit/:ID" element={<PostEditPage />} />
               <Route path="/post/detail/:ID" element={<PostDetailPage />} />
               <Route path="/guide" element={<GuidePage />} />
-              <Route path="*" element={<div>Not Found!</div>} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
             <Footer />
           </ScrollToTop>
