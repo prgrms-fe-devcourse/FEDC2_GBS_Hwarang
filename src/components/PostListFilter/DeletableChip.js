@@ -19,6 +19,9 @@ const Container = styled.div`
   border-radius: 18px;
   padding: 7px;
   background-color: white;
+  :hover {
+    cursor: pointer;
+  }
 `;
 const Content = styled.span`
   display: block;
