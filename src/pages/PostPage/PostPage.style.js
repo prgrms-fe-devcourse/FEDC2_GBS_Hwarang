@@ -24,11 +24,10 @@ const Dim = styled.div`
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(60, 60, 60, 0.32) 75%,
-    rgba(30, 30, 30, 0.68) 85%,
+    rgba(60, 60, 60, 0.32) 80%,
+    rgba(30, 30, 30, 0.68) 90%,
     rgba(0, 0, 0, 0.8) 100%
   );
-  opacity: 0.3;
   z-index: 1;
 `;
 
@@ -37,14 +36,14 @@ const InnerWrapper = styled.div`
   bottom: 24px;
   left: ${({ position }) => (position === "left" ? "88px" : "auto")};
   right: ${({ position }) => (position === "right" ? "88px" : "auto")};
-  z-index: 1000;
+  z-index: 500;
 `;
 
 const IconWrapper = styled.div`
   position: absolute;
   top: 24px;
   right: 88px;
-  z-index: 1000;
+  z-index: 500;
   user-select: none;
   cursor: pointer;
 `;
@@ -54,7 +53,7 @@ const List = styled.ul`
   position: absolute;
   top: 60px;
   right: 108px;
-  z-index: 1000;
+  z-index: 500;
   border: 1px solid ${Common.colors.gray05};
   border-radius: 3px;
   background-color: ${Common.colors.bg_white};

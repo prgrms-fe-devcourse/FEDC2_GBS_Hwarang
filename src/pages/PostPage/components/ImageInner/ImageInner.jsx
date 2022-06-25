@@ -9,7 +9,7 @@ import {
   Icon,
   LikeButton,
 } from "components";
-import commentSvg from "assets/comment.svg";
+import commentSvg from "assets/comment_white.svg";
 import Common from "styles/common";
 import { useNavigate } from "react-router-dom";
 import Option from "../SelectItem";

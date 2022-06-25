@@ -34,11 +34,11 @@ export const Dim = styled.div`
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(60, 60, 60, 0.32) 75%,
-    rgba(30, 30, 30, 0.68) 85%,
+    rgba(60, 60, 60, 0.32) 80%,
+    rgba(30, 30, 30, 0.68) 90%,
     rgba(0, 0, 0, 0.8) 100%
   );
-  opacity: 0.3;
+  opacity: 0.7;
   z-index: 1;
 `;
 
